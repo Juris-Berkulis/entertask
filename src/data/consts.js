@@ -18,16 +18,22 @@ export const allAppComponentsWithPageTitle = {
         path: '/profile',
         pathCheck: /^$/,
     },
-    messenger: {
+    alltasks: {
         pageTitle: 'Пул задач',
         displayTitle: 'Задачи',
         path: '/alltasks',
         pathCheck: /^$/,
     },
-    usersApi: {
+    tasksfortoday: {
         pageTitle: 'Задачи на сегодня',
         displayTitle: 'Сегодня',
         path: '/tasksfortoday',
+        pathCheck: /^$/,
+    },
+    addtask: {
+        pageTitle: 'Добавить задачу',
+        displayTitle: 'Добавить',
+        path: '/addtask',
         pathCheck: /^$/,
     },
 };

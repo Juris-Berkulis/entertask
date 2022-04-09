@@ -10,11 +10,11 @@ export const NAVIGATION = [
         href: allAppComponentsWithPageTitle.profile.path,
     },
     {
-        name: allAppComponentsWithPageTitle.messenger.displayTitle,
-        href: allAppComponentsWithPageTitle.messenger.path,
+        name: allAppComponentsWithPageTitle.alltasks.displayTitle,
+        href: allAppComponentsWithPageTitle.alltasks.path,
     },
     {
-        name: allAppComponentsWithPageTitle.usersApi.displayTitle,
-        href: allAppComponentsWithPageTitle.usersApi.path,
+        name: allAppComponentsWithPageTitle.tasksfortoday.displayTitle,
+        href: allAppComponentsWithPageTitle.tasksfortoday.path,
     },
 ];
