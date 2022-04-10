@@ -17,7 +17,7 @@ export const TaskInput = (props) => {
         setInputValue(event.target.value);
 
         dispatch({
-            type: props.fieldName,
+            type: props.actionForInputFieldsValuesForNewTaskReducer,
             payload: event.target.value,
         });
     };
@@ -26,12 +26,12 @@ export const TaskInput = (props) => {
         setInputValue('');
 
         dispatch({
-            type: props.fieldName,
+            type: props.actionForInputFieldsValuesForNewTaskReducer,
             payload: '',
         });
-    }, [inputFieldsValuesInitializer, dispatch, props.fieldName]);
+    }, [inputFieldsValuesInitializer, dispatch, props.actionForInputFieldsValuesForNewTaskReducer]);
 
     return (
-        <TaskInputUI classes={classes} onSaveValueFromInput={onSaveValueFromInput} inputValue={inputValue}></TaskInputUI>
+        <TaskInputUI classes={classes} onSaveValueFromInput={onSaveValueFromInput} inputValue={inputValue} labelName={props.labelName} actionForInputFieldsValuesForNewTaskReducer={props.actionForInputFieldsValuesForNewTaskReducer}></TaskInputUI>
     )
 };

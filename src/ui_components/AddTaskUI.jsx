@@ -7,17 +7,17 @@ export const AddTaskUI = (props) => {
         <div>
             <form onSubmit={props.onSubmitForm}>
                 <div>
-                    <TaskInput fieldName={taskCategoryAction.type}></TaskInput>
-                    <TaskInput fieldName={taskNameAction.type}></TaskInput>
-                    <TaskInput fieldName={subtaskNameAction.type}></TaskInput>
-                    <TaskInput fieldName={taskPriorityAction.type}></TaskInput>
-                    <TaskInput fieldName={taskControlAction.type}></TaskInput>
-                    <TaskInput fieldName={taskUrgencyAction.type}></TaskInput>
-                    <TaskInput fieldName={taskImportanceAction.type}></TaskInput>
-                    <TaskInput fieldName={taskDeadlineAction.type}></TaskInput>
-                    <TaskInput fieldName={taskDurationAction.type}></TaskInput>
-                    <TaskInput fieldName={taskStatusAction.type}></TaskInput>
-                    <TaskInput fieldName={taskCommentAction.type}></TaskInput>
+                    <TaskInput actionForInputFieldsValuesForNewTaskReducer={taskCategoryAction.type} labelName='Категория'></TaskInput>
+                    <TaskInput actionForInputFieldsValuesForNewTaskReducer={taskNameAction.type} labelName='Нзавание задачи'></TaskInput>
+                    <TaskInput actionForInputFieldsValuesForNewTaskReducer={subtaskNameAction.type} labelName='Подзадача'></TaskInput>
+                    <TaskInput actionForInputFieldsValuesForNewTaskReducer={taskPriorityAction.type} labelName='Приоритет'></TaskInput>
+                    <TaskInput actionForInputFieldsValuesForNewTaskReducer={taskControlAction.type} labelName='Контроль'></TaskInput>
+                    <TaskInput actionForInputFieldsValuesForNewTaskReducer={taskUrgencyAction.type} labelName='Срочность'></TaskInput>
+                    <TaskInput actionForInputFieldsValuesForNewTaskReducer={taskImportanceAction.type} labelName='Важность'></TaskInput>
+                    <TaskInput actionForInputFieldsValuesForNewTaskReducer={taskDeadlineAction.type} labelName='Срок'></TaskInput>
+                    <TaskInput actionForInputFieldsValuesForNewTaskReducer={taskDurationAction.type} labelName='Продолжительность'></TaskInput>
+                    <TaskInput actionForInputFieldsValuesForNewTaskReducer={taskStatusAction.type} labelName='Статус'></TaskInput>
+                    <TaskInput actionForInputFieldsValuesForNewTaskReducer={taskCommentAction.type} labelName='Комментарий'></TaskInput>
                 </div>
                 <div>
                     <button type='submit'>Добавить задачу</button>

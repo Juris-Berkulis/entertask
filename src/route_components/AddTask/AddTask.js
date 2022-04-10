@@ -4,6 +4,7 @@ import { resetInputFieldsValuesInitializerAction } from '../../store/AppSwitches
 import { getAppSwitchesResetInputFieldsValuesInitializerSelector } from '../../store/AppSwitches/Selectors';
 import { inputFieldsValuesForNewTaskActionsList } from '../../store/InputFieldsValuesForNewTask/Action';
 import { getInputFieldsValuesForNewTaskSubtaskNameSelector, getInputFieldsValuesForNewTasktaskCategorySelector, getInputFieldsValuesForNewTaskTaskCommentSelector, getInputFieldsValuesForNewTaskTaskControlSelector, getInputFieldsValuesForNewTaskTaskDeadlineSelector, getInputFieldsValuesForNewTaskTaskDurationSelector, getInputFieldsValuesForNewTaskTaskImportanceSelector, getInputFieldsValuesForNewTaskTaskNameSelector, getInputFieldsValuesForNewTaskTaskPrioritySelector, getInputFieldsValuesForNewTaskTaskStatusSelector, getInputFieldsValuesForNewTaskTaskUrgencySelector } from '../../store/InputFieldsValuesForNewTask/Selectors';
+import { addNewTaskWithThunkAction } from '../../store/Tasks/Action';
 import { useStyles } from '../../styles/Style';
 import { AddTaskUI } from '../../ui_components/AddTaskUI';
 
@@ -44,6 +45,11 @@ export const AddTask = () => {
         };
 
         console.log(newTask)
+
+        const now = new Date();
+        const taskUTCDateAndTime = now.toUTCString();
+
+        dispatch(addNewTaskWithThunkAction(taskUTCDateAndTime, newTask));
 
         dispatch({
             type: resetInputFieldsValuesInitializerAction.type,

@@ -4,12 +4,14 @@ import { persistStore, persistReducer } from 'redux-persist';
 import storage from 'redux-persist/lib/storage';
 import { appSwitchesReducer } from './AppSwitches/Reducer';
 import { inputFieldsValuesForNewTaskReducer } from './InputFieldsValuesForNewTask/Reducer';
+import { tasksListReducer } from './Tasks/Reducer';
 
 const composeEnhancers = window.__REDUX_DEVTOOLS_EXTENSION_COMPOSE__ || compose;
 
 const rootReducer = combineReducers({
     appSwitchesStore: appSwitchesReducer,
     inputFieldsValuesForNewTaskStore: inputFieldsValuesForNewTaskReducer,
+    tasksListStore: tasksListReducer,
 });
 
 const persistConfig = {
