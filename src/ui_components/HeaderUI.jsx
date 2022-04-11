@@ -2,7 +2,7 @@ import React from 'react';
 
 export const HeaderUI = (props) => {
     return (
-        <div>
+        <div className={props.classes.header}>
             {props.navigationForProps}
         </div>
     )

@@ -7,7 +7,7 @@ export const useStyles = makeStyles({
   },
   main: {
     height: '100vh',
-    backgroundColor: '#ccccff',
+    backgroundColor: '#caffca',
     padding: '0 0 10vh',
   },
   field: {
@@ -17,5 +17,24 @@ export const useStyles = makeStyles({
   },
   field_mobileDevice: {
     padding: '2vh 2vw 5vh !important',
+  },
+  header: {
+    height: '10vh',
+    width: '100vw',
+    backgroundColor: '#00cc00',
+    padding: '0 10vw',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  header__link: {
+    height: '100%',
+    padding: '0 2vw',
+    textDecoration: 'none',
+    color: '#ffffff',
+    lineHeight: '10vh',
+    '&:hover': {
+      backgroundColor: '#00aa00',
+    }
   },
 });

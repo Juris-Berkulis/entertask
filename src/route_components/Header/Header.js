@@ -7,7 +7,7 @@ import { HeaderUI } from '../../ui_components/HeaderUI.jsx';
 export const Header = () => {
     const classes = useStyles();
 
-    const navigationForProps = NAVIGATION.map((item) => <Link to={item.href} key={item.name}>{item.name}</Link>);
+    const navigationForProps = NAVIGATION.map((item) => <Link className={classes.header__link} to={item.href} key={item.name}>{item.name}</Link>);
 
     return (
         <HeaderUI classes={classes} navigationForProps={navigationForProps}></HeaderUI>
