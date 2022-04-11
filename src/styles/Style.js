@@ -35,6 +35,39 @@ export const useStyles = makeStyles({
     lineHeight: '10vh',
     '&:hover': {
       backgroundColor: '#00aa00',
-    }
+    },
+  },
+  allTasks: {
+    height: '100%',
+  },
+  allTasks__addNewTaskBtn: {
+    display: 'inline-block',
+    textDecoration: 'none',
+    margin: '2vh 2vw',
+    padding: '2vh 2vw',
+    color: '#6f1a8c',
+    backgroundColor: 'transparent',
+    border: '3px solid #6f1a8c',
+    borderRadius: '50rem',
+    transition: 'color 0.2s linear 0.1s, background-color 0.2s linear 0.1s',
+    '&:hover': {
+      color: '#caffca',
+      backgroundColor: '#6f1a8c',
+    },
+  },
+  allTasks__tasksList: {
+    height: '80%',
+    overflow: 'auto',
+  },
+  allTasks__taskListItem: {
+    padding: '1vh 1vw',
+    '&:hover': {
+      backgroundColor: '#99ff99',
+    },
+  },
+  allTasks__taskListItemline: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
   },
 });

@@ -8,7 +8,7 @@ export const AddTaskUI = (props) => {
             <form onSubmit={props.onSubmitForm}>
                 <div>
                     <TaskInput actionForInputFieldsValuesForNewTaskReducer={taskCategoryAction.type} labelName='Категория'></TaskInput>
-                    <TaskInput actionForInputFieldsValuesForNewTaskReducer={taskNameAction.type} labelName='Нзавание задачи'></TaskInput>
+                    <TaskInput actionForInputFieldsValuesForNewTaskReducer={taskNameAction.type} labelName='Название задачи'></TaskInput>
                     <TaskInput actionForInputFieldsValuesForNewTaskReducer={subtaskNameAction.type} labelName='Подзадача'></TaskInput>
                     <TaskInput actionForInputFieldsValuesForNewTaskReducer={taskPriorityAction.type} labelName='Приоритет'></TaskInput>
                     <TaskInput actionForInputFieldsValuesForNewTaskReducer={taskControlAction.type} labelName='Контроль'></TaskInput>
