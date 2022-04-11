@@ -1,5 +1,5 @@
 import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 import { allAppComponentsWithPageTitle } from './data/consts';
 import { isMobileDevice } from './helper/helper';
@@ -16,30 +16,28 @@ export const App = () => {
 
   return (
     <PersistGate persistor={persistor}>
-    <div className={`${classes.main}`}>
-    <Switch>
-    <>
-      <Header></Header>
-      <div className={`${classes.field} ${isMobileDeviceBoolean ? classes.field_mobileDevice : null}`}>
-        <Route exact path={allAppComponentsWithPageTitle.home.path}>
-          {/* <Home></Home> */}
-        </Route>
-        <Route exact path={allAppComponentsWithPageTitle.profile.path}>
-          {/* <Home></Home> */}
-        </Route>
-        <Route exact path={allAppComponentsWithPageTitle.alltasks.path}>
-          <AllTasks></AllTasks>
-        </Route>
-        <Route exact path={allAppComponentsWithPageTitle.tasksfortoday.path}>
-          {/* <Home></Home> */}
-        </Route>
-        <Route exact path={allAppComponentsWithPageTitle.addtask.path}>
-          <AddTask></AddTask>
-        </Route>
+      <div className={`${classes.main}`}>
+        <Header></Header>
+        <div className={`${classes.field} ${isMobileDeviceBoolean ? classes.field_mobileDevice : null}`}>
+          <Routes>
+            {/* <Route exact path={allAppComponentsWithPageTitle.home.path} element={<Home />} /> */}
+              {/* <Home></Home> */}
+            {/* </Route> */}
+            {/* <Route exact path={allAppComponentsWithPageTitle.profile.path} element={<Home />} /> */}
+              {/* <Home></Home> */}
+            {/* </Route> */}
+            <Route exact path={allAppComponentsWithPageTitle.alltasks.path} element={<AllTasks />} />
+              {/* <AllTasks></AllTasks>
+            </Route> */}
+            {/* <Route exact path={allAppComponentsWithPageTitle.tasksfortoday.path} element={<Home />} /> */}
+              {/* <Home></Home> */}
+            {/* </Route> */}
+            <Route exact path={allAppComponentsWithPageTitle.addtask.path} element={<AddTask />} />
+              {/* <AddTask></AddTask>
+            </Route> */}
+          </Routes>
+        </div>
       </div>
-    </>
-    </Switch>
-    </div>
     </PersistGate>
   );
 };

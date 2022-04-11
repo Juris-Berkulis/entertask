@@ -1,5 +1,7 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useNavigate } from 'react-router-dom';
+import { allAppComponentsWithPageTitle } from '../../data/consts';
 import { resetInputFieldsValuesInitializerAction } from '../../store/AppSwitches/Action';
 import { getAppSwitchesResetInputFieldsValuesInitializerSelector } from '../../store/AppSwitches/Selectors';
 import { inputFieldsValuesForNewTaskActionsList } from '../../store/InputFieldsValuesForNewTask/Action';
@@ -12,6 +14,8 @@ export const AddTask = () => {
     const classes = useStyles();
 
     const dispatch = useDispatch();
+
+    const history = useNavigate();
 
     const taskCategory = useSelector(getInputFieldsValuesForNewTasktaskCategorySelector);
     const taskName = useSelector(getInputFieldsValuesForNewTaskTaskNameSelector);
@@ -57,6 +61,10 @@ export const AddTask = () => {
         });
     };
 
+    const returnToAllTasks = () => {
+        history(allAppComponentsWithPageTitle.alltasks.path);
+    };
+
     const resetInputsValuesByButton = () => {
         for (let i=0; i < inputFieldsValuesForNewTaskActionsList.length; i++) {
             dispatch({
@@ -72,6 +80,6 @@ export const AddTask = () => {
     };
 
     return (
-        <AddTaskUI classes={classes} onSubmitForm={onSubmitForm} resetInputsValuesByButton={resetInputsValuesByButton}></AddTaskUI>
+        <AddTaskUI classes={classes} onSubmitForm={onSubmitForm} resetInputsValuesByButton={resetInputsValuesByButton} returnToAllTasks={returnToAllTasks}></AddTaskUI>
     )
 };

@@ -21,6 +21,7 @@ export const AddTaskUI = (props) => {
                 </div>
                 <div>
                     <button type='submit'>Добавить задачу</button>
+                    <button type='button' onClick={(event) => {props.onSubmitForm(event); props.returnToAllTasks()}}>Добавить и вернуться</button>
                     <button type='reset' onClick={props.resetInputsValuesByButton}>Сбросить значения</button>
                 </div>
             </form>
