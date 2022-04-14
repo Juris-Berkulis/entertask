@@ -1,21 +1,22 @@
 import { tasksDBRef } from "../../firebase/firebase";
 
-export const addNewTaskWithThunkAction = (taskUTCDateAndTime, newTask) => () => {
+export const addNewTaskWithThunkAction = (taskUTCDateAndTime, taskUTCInMilliseconds, newTask) => () => {
     tasksDBRef.child('userUID').update({
-        [taskUTCDateAndTime]: '',
+        [taskUTCInMilliseconds]: '',
     });
-    tasksDBRef.child('userUID').child(taskUTCDateAndTime).child('taskCreateAt').set(taskUTCDateAndTime);
-    tasksDBRef.child('userUID').child(taskUTCDateAndTime).child('taskCategory').set(newTask.taskCategory);
-    tasksDBRef.child('userUID').child(taskUTCDateAndTime).child('taskName').set(newTask.taskName);
-    tasksDBRef.child('userUID').child(taskUTCDateAndTime).child('subtaskName').set(newTask.subtaskName);
-    tasksDBRef.child('userUID').child(taskUTCDateAndTime).child('taskPriority').set(newTask.taskPriority);
-    tasksDBRef.child('userUID').child(taskUTCDateAndTime).child('taskControl').set(newTask.taskControl);
-    tasksDBRef.child('userUID').child(taskUTCDateAndTime).child('taskUrgency').set(newTask.taskUrgency);
-    tasksDBRef.child('userUID').child(taskUTCDateAndTime).child('taskImportance').set(newTask.taskImportance);
-    tasksDBRef.child('userUID').child(taskUTCDateAndTime).child('taskDeadline').set(newTask.taskDeadline);
-    tasksDBRef.child('userUID').child(taskUTCDateAndTime).child('taskDuration').set(newTask.taskDuration);
-    tasksDBRef.child('userUID').child(taskUTCDateAndTime).child('taskStatus').set(newTask.taskStatus);
-    tasksDBRef.child('userUID').child(taskUTCDateAndTime).child('taskComment').set(newTask.taskComment);
+    tasksDBRef.child('userUID').child(taskUTCInMilliseconds).child('taskCreateAt').set(taskUTCDateAndTime);
+    tasksDBRef.child('userUID').child(taskUTCInMilliseconds).child('taskID').set(taskUTCInMilliseconds);
+    tasksDBRef.child('userUID').child(taskUTCInMilliseconds).child('taskCategory').set(newTask.taskCategory);
+    tasksDBRef.child('userUID').child(taskUTCInMilliseconds).child('taskName').set(newTask.taskName);
+    tasksDBRef.child('userUID').child(taskUTCInMilliseconds).child('subtaskName').set(newTask.subtaskName);
+    tasksDBRef.child('userUID').child(taskUTCInMilliseconds).child('taskPriority').set(newTask.taskPriority);
+    tasksDBRef.child('userUID').child(taskUTCInMilliseconds).child('taskControl').set(newTask.taskControl);
+    tasksDBRef.child('userUID').child(taskUTCInMilliseconds).child('taskUrgency').set(newTask.taskUrgency);
+    tasksDBRef.child('userUID').child(taskUTCInMilliseconds).child('taskImportance').set(newTask.taskImportance);
+    tasksDBRef.child('userUID').child(taskUTCInMilliseconds).child('taskDeadline').set(newTask.taskDeadline);
+    tasksDBRef.child('userUID').child(taskUTCInMilliseconds).child('taskDuration').set(newTask.taskDuration);
+    tasksDBRef.child('userUID').child(taskUTCInMilliseconds).child('taskStatus').set(newTask.taskStatus);
+    tasksDBRef.child('userUID').child(taskUTCInMilliseconds).child('taskComment').set(newTask.taskComment);
 };
 
 export const CHANGE_TASKS_LIST = 'CHANGE_TASKS_LIST';

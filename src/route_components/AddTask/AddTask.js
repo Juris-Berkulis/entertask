@@ -52,8 +52,9 @@ export const AddTask = () => {
 
         const now = new Date();
         const taskUTCDateAndTime = now.toUTCString();
+        const taskUTCInMilliseconds = now.getTime();
 
-        dispatch(addNewTaskWithThunkAction(taskUTCDateAndTime, newTask));
+        dispatch(addNewTaskWithThunkAction(taskUTCDateAndTime, taskUTCInMilliseconds, newTask));
 
         dispatch({
             type: resetInputFieldsValuesInitializerAction.type,
