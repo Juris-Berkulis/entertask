@@ -21,7 +21,7 @@ export const useStyles = makeStyles({
   header: {
     height: '10vh',
     width: '100vw',
-    backgroundColor: '#00cc00',
+    backgroundColor: '#006600',
     padding: '0 10vw',
     display: 'flex',
     justifyContent: 'center',
@@ -34,7 +34,7 @@ export const useStyles = makeStyles({
     color: '#ffffff',
     lineHeight: '10vh',
     '&:hover': {
-      backgroundColor: '#00aa00',
+      backgroundColor: '#007700',
     },
   },
   allTasks: {
@@ -45,14 +45,14 @@ export const useStyles = makeStyles({
     textDecoration: 'none',
     margin: '2vh 2vw',
     padding: '2vh 2vw',
-    color: '#6f1a8c',
+    color: '#006600',
     backgroundColor: 'transparent',
-    border: '3px solid #6f1a8c',
-    borderRadius: '50rem',
+    border: '3px solid #006600',
+    borderRadius: '50em',
     transition: 'color 0.2s linear 0.1s, background-color 0.2s linear 0.1s',
     '&:hover': {
       color: '#caffca',
-      backgroundColor: '#6f1a8c',
+      backgroundColor: '#006600',
     },
   },
   allTasks__tasksList: {
@@ -66,14 +66,84 @@ export const useStyles = makeStyles({
       backgroundColor: '#99ff99',
     },
   },
+  allTasks__taskListItemParagraph: {
+    fontSize: 'calc(1rem / 16 * 18)',
+    lineHeight: '100%',
+  },
+  allTasks__taskListItemParagraph_taskName: {
+    fontSize: 'calc(1rem / 16 * 24)',
+    lineHeight: '100%',
+    fontWeight: '700',
+  },
   allTasks__taskListItemBtnsPannel: {
     position: 'absolute',
     top: '5px',
     right: '5px',
   },
+  allTasks__taskListItemBtn: {
+    marginLeft: '0.5vw',
+    padding: '0.5vh 0.5vw',
+    color: '#ffffff',
+    backgroundColor: '#000066',
+    cursor: 'pointer',
+  },
+  allTasks__taskListItemBtn_change: {
+    transform: 'RotateY(180deg)',
+  },
+  allTasks__taskListItemBtn_delete: {
+    backgroundColor: '#cc0000',
+  },
   allTasks__taskListItemline: {
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
+  },
+  changeTask__wrapper: {
+    height: '80vh',
+  },
+  changeTask__form: {
+    height: '100%',
+  },
+  changeTask__btnWrapper: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    height: '10vh',
+    overflow: 'auto',
+  },
+  taskInputFields__wrapper: {
+    height: '70vh',
+    overflow: 'auto',
+  },
+  taskInput__wrapper: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+  taskInput__label: {
+    display: 'block',
+    width: '25vw',
+    margin: '1vh 1vw',
+  },
+  taskInput__input: {
+    display: 'block',
+    width: '50vw',
+    margin: '1vh 1vw',
+    padding: '1vh 1vw',
+    borderRadius: '50em',
+  },
+  btnForChangeTask: {
+    margin: '1vh 1vw',
+    padding: '1vh 1vw',
+    borderRadius: '50em',
+    color: '#ffffff',
+    backgroundColor: '#006600',
+    cursor: 'pointer',
+    transition: 'background-color 0.1s linear 0.1s',
+    '&:hover': {
+      backgroundColor: '#007700',
+    },
   },
 });

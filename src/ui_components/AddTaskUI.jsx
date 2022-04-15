@@ -1,28 +1,16 @@
 import React from 'react';
-import { subtaskNameAction, taskCategoryAction, taskCommentAction, taskControlAction, taskDeadlineAction, taskDurationAction, taskImportanceAction, taskNameAction, taskPriorityAction, taskStatusAction, taskUrgencyAction } from '../store/InputFieldsValuesForNewTask/Action';
-import { TaskInput } from '../widget_components/TaskInput/TaskInput';
+import { ButtonForChangeTaskUI } from './ButtonForChangeTaskUI';
+import { TaskInputFieldsUI } from './TaskInputFieldsUI';
 
 export const AddTaskUI = (props) => {
     return (
-        <div>
-            <form onSubmit={props.onSubmitForm}>
-                <div>
-                    <TaskInput actionForInputFieldsValuesForNewTaskReducer={taskCategoryAction.type} labelName='Категория'></TaskInput>
-                    <TaskInput actionForInputFieldsValuesForNewTaskReducer={taskNameAction.type} labelName='Название задачи'></TaskInput>
-                    <TaskInput actionForInputFieldsValuesForNewTaskReducer={subtaskNameAction.type} labelName='Подзадача'></TaskInput>
-                    <TaskInput actionForInputFieldsValuesForNewTaskReducer={taskPriorityAction.type} labelName='Приоритет'></TaskInput>
-                    <TaskInput actionForInputFieldsValuesForNewTaskReducer={taskControlAction.type} labelName='Контроль'></TaskInput>
-                    <TaskInput actionForInputFieldsValuesForNewTaskReducer={taskUrgencyAction.type} labelName='Срочность'></TaskInput>
-                    <TaskInput actionForInputFieldsValuesForNewTaskReducer={taskImportanceAction.type} labelName='Важность'></TaskInput>
-                    <TaskInput actionForInputFieldsValuesForNewTaskReducer={taskDeadlineAction.type} labelName='Срок'></TaskInput>
-                    <TaskInput actionForInputFieldsValuesForNewTaskReducer={taskDurationAction.type} labelName='Продолжительность'></TaskInput>
-                    <TaskInput actionForInputFieldsValuesForNewTaskReducer={taskStatusAction.type} labelName='Статус'></TaskInput>
-                    <TaskInput actionForInputFieldsValuesForNewTaskReducer={taskCommentAction.type} labelName='Комментарий'></TaskInput>
-                </div>
-                <div>
-                    <button type='submit'>Добавить задачу</button>
-                    <button type='button' onClick={(event) => {props.onSubmitForm(event); props.returnToAllTasks()}}>Добавить и вернуться</button>
-                    <button type='reset' onClick={props.resetInputsValuesByButton}>Сбросить значения</button>
+        <div className={props.classes.changeTask__wrapper}>
+            <form className={props.classes.changeTask__form} onSubmit={props.onSubmitForm}>
+                <TaskInputFieldsUI classes={props.classes}></TaskInputFieldsUI>
+                <div className={props.classes.changeTask__btnWrapper}>
+                    <ButtonForChangeTaskUI classes={props.classes} type='submit'>Добавить задачу</ButtonForChangeTaskUI>
+                    <ButtonForChangeTaskUI classes={props.classes} type='button' onClick={(event) => {props.onSubmitForm(event); props.returnToAllTasks()}}>Добавить и вернуться</ButtonForChangeTaskUI>
+                    <ButtonForChangeTaskUI classes={props.classes} type='reset' onClick={props.resetInputsValuesByButton}>Сбросить значения</ButtonForChangeTaskUI>
                 </div>
             </form>
         </div>
