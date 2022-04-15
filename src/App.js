@@ -5,6 +5,7 @@ import { allAppComponentsWithPageTitle } from './data/consts';
 import { isMobileDevice } from './helper/helper';
 import { AddTask } from './route_components/AddTask/AddTask';
 import { AllTasks } from './route_components/AllTasks/AllTasks';
+import { EditTask } from './route_components/EditTask/EditTask';
 import { Header } from './route_components/Header/Header';
 import { persistor } from './store/Store';
 import { useStyles } from './styles/Style';
@@ -33,6 +34,9 @@ export const App = () => {
               {/* <Home></Home> */}
             {/* </Route> */}
             <Route exact path={allAppComponentsWithPageTitle.addtask.path} element={<AddTask />} />
+              {/* <AddTask></AddTask>
+            </Route> */}
+            <Route exact path={allAppComponentsWithPageTitle.edittask.path} element={<EditTask />} />
               {/* <AddTask></AddTask>
             </Route> */}
           </Routes>

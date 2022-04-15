@@ -1,4 +1,5 @@
 import { 
+    editableTaskObjectAction,
     resetInputFieldsValuesInitializerAction 
 } from './Action.js';
 
@@ -10,6 +11,12 @@ export const appSwitchesReducer = (state = initialState, action) => {
             return {
                 ...state,
                 resetInputFieldsValuesInitializerCase: action.payload,
+            }
+        }
+        case editableTaskObjectAction.type: {
+            return {
+                ...state,
+                editableTaskObjectCase: action.payload,
             }
         }
         default: {

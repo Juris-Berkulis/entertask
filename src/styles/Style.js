@@ -60,10 +60,16 @@ export const useStyles = makeStyles({
     overflow: 'auto',
   },
   allTasks__taskListItem: {
+    position: 'relative',
     padding: '1vh 1vw',
     '&:hover': {
       backgroundColor: '#99ff99',
     },
+  },
+  allTasks__taskListItemBtnsPannel: {
+    position: 'absolute',
+    top: '5px',
+    right: '5px',
   },
   allTasks__taskListItemline: {
     display: 'flex',

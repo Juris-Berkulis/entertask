@@ -36,4 +36,10 @@ export const allAppComponentsWithPageTitle = {
         path: '/addtask',
         pathCheck: /^$/,
     },
+    edittask: {
+        pageTitle: 'Редактировать задачу',
+        displayTitle: 'Редактировать',
+        path: '/edittask',
+        pathCheck: /^$/,
+    },
 };

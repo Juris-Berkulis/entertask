@@ -23,13 +23,22 @@ export const TaskInput = (props) => {
     };
 
     useEffect(() => {
-        setInputValue('');
+        if (props.initialValueInInput) {
+            setInputValue(props.initialValueInInput);
 
-        dispatch({
-            type: props.actionForInputFieldsValuesForNewTaskReducer,
-            payload: '',
-        });
-    }, [inputFieldsValuesInitializer, dispatch, props.actionForInputFieldsValuesForNewTaskReducer]);
+            dispatch({
+                type: props.actionForInputFieldsValuesForNewTaskReducer,
+                payload: props.initialValueInInput,
+            });
+        } else {
+            setInputValue('');
+
+            dispatch({
+                type: props.actionForInputFieldsValuesForNewTaskReducer,
+                payload: '',
+            });
+        }
+    }, [inputFieldsValuesInitializer, dispatch, props.actionForInputFieldsValuesForNewTaskReducer, props.initialValueInInput]);
 
     return (
         <TaskInputUI classes={classes} onSaveValueFromInput={onSaveValueFromInput} inputValue={inputValue} labelName={props.labelName} actionForInputFieldsValuesForNewTaskReducer={props.actionForInputFieldsValuesForNewTaskReducer}></TaskInputUI>

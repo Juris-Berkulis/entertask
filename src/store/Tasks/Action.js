@@ -19,6 +19,24 @@ export const addNewTaskWithThunkAction = (taskUTCDateAndTime, taskUTCInMilliseco
     tasksDBRef.child('userUID').child(taskUTCInMilliseconds).child('taskComment').set(newTask.taskComment);
 };
 
+export const editTaskWithThunkAction = (taskUTCInMilliseconds, editableTask) => () => {
+    tasksDBRef.child('userUID').child(taskUTCInMilliseconds).child('taskCategory').set(editableTask.taskCategory);
+    tasksDBRef.child('userUID').child(taskUTCInMilliseconds).child('taskName').set(editableTask.taskName);
+    tasksDBRef.child('userUID').child(taskUTCInMilliseconds).child('subtaskName').set(editableTask.subtaskName);
+    tasksDBRef.child('userUID').child(taskUTCInMilliseconds).child('taskPriority').set(editableTask.taskPriority);
+    tasksDBRef.child('userUID').child(taskUTCInMilliseconds).child('taskControl').set(editableTask.taskControl);
+    tasksDBRef.child('userUID').child(taskUTCInMilliseconds).child('taskUrgency').set(editableTask.taskUrgency);
+    tasksDBRef.child('userUID').child(taskUTCInMilliseconds).child('taskImportance').set(editableTask.taskImportance);
+    tasksDBRef.child('userUID').child(taskUTCInMilliseconds).child('taskDeadline').set(editableTask.taskDeadline);
+    tasksDBRef.child('userUID').child(taskUTCInMilliseconds).child('taskDuration').set(editableTask.taskDuration);
+    tasksDBRef.child('userUID').child(taskUTCInMilliseconds).child('taskStatus').set(editableTask.taskStatus);
+    tasksDBRef.child('userUID').child(taskUTCInMilliseconds).child('taskComment').set(editableTask.taskComment);
+};
+
+export const deleteTaskWithThunkAction = (taskUTCInMilliseconds) => {
+    tasksDBRef.child('userUID').child(taskUTCInMilliseconds).remove();
+};
+
 export const CHANGE_TASKS_LIST = 'CHANGE_TASKS_LIST';
 
 export const changeTasksListAction = (payload) => ({
