@@ -10,6 +10,7 @@ export const TasksFilterUI = (props) => {
                     props.showListPropertiesForTasksFilter 
                     ? 
                     <li className={props.classes.tasksFilter__list}>
+                        <p className={props.classes.tasksFilter__listTitle}>{allSignsForTasksFilter[props.signForTasksFilter].decodingIntoRus}</p>
                         {props.propertiesForTasksFilterList}
                     </li>
                     : 

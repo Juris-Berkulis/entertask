@@ -1,5 +1,6 @@
 const RESET_INPUT_FIELDS_VALUES_INITIALIZER_ACTION = 'RESET_INPUT_FIELDS_VALUES_INITIALIZER_ACTION';
 const EDITABLE_TASK_OBJECT_ACTION = 'EDITABLE_TASK_OBJECT_ACTION';
+const SWITCH_FOR_CLOSE_ALL_LISTS_FOR_TASKS_PROPERTIES_FILTER_ACTION = 'SWITCH_FOR_CLOSE_ALL_LISTS_FOR_TASKS_PROPERTIES_FILTER_ACTION';
 
 export const resetInputFieldsValuesInitializerAction = {
     type: RESET_INPUT_FIELDS_VALUES_INITIALIZER_ACTION,
@@ -7,4 +8,8 @@ export const resetInputFieldsValuesInitializerAction = {
 
 export const editableTaskObjectAction = {
     type: EDITABLE_TASK_OBJECT_ACTION,
+};
+
+export const switchForCloseAllListsForTasksPropertiesFilterAction = {
+    type: SWITCH_FOR_CLOSE_ALL_LISTS_FOR_TASKS_PROPERTIES_FILTER_ACTION,
 };

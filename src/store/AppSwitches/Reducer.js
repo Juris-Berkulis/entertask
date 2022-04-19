@@ -1,6 +1,7 @@
 import { 
     editableTaskObjectAction,
-    resetInputFieldsValuesInitializerAction 
+    resetInputFieldsValuesInitializerAction, 
+    switchForCloseAllListsForTasksPropertiesFilterAction
 } from './Action.js';
 
 const initialState = {};
@@ -17,6 +18,12 @@ export const appSwitchesReducer = (state = initialState, action) => {
             return {
                 ...state,
                 editableTaskObjectCase: action.payload,
+            }
+        }
+        case switchForCloseAllListsForTasksPropertiesFilterAction.type: {
+            return {
+                ...state,
+                switchForCloseAllListsForTasksPropertiesFilterCase: action.payload,
             }
         }
         default: {
