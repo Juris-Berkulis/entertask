@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { allAppComponentsWithPageTitle } from '../../data/consts';
+import { fillInEmptyTaskAttributes } from '../../helper/helper';
 import { resetInputFieldsValuesInitializerAction } from '../../store/AppSwitches/Action';
 import { getAppSwitchesEditableTaskObjectSelector, getAppSwitchesResetInputFieldsValuesInitializerSelector } from '../../store/AppSwitches/Selectors';
 import { inputFieldsValuesForNewTaskActionsList } from '../../store/InputFieldsValuesForNewTask/Action';
@@ -50,17 +51,11 @@ export const EditTask = () => {
             taskComment: taskComment,
         };
 
-        console.log(editableTask)
-
-        for (let key in editableTask) {
-            if (editableTask[key] === '') {
-                editableTask[key] = '<пусто>';
-            }
-        }
+        const fullEditableTask = fillInEmptyTaskAttributes(editableTask);
 
         const taskUTCInMilliseconds = editableTaskObject.taskID;
 
-        dispatch(editTaskWithThunkAction(taskUTCInMilliseconds, editableTask));
+        dispatch(editTaskWithThunkAction(taskUTCInMilliseconds, fullEditableTask));
 
         dispatch({
             type: resetInputFieldsValuesInitializerAction.type,

@@ -1,5 +1,4 @@
 import React from 'react';
-import { Link } from 'react-router-dom';
 import { allSignsForTasksFilter } from '../data/consts';
 import { TasksFilter } from '../widget_components/TasksFilter/TasksFilter';
 

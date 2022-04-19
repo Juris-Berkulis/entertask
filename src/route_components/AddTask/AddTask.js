@@ -2,6 +2,7 @@ import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { allAppComponentsWithPageTitle } from '../../data/consts';
+import { fillInEmptyTaskAttributes } from '../../helper/helper';
 import { resetInputFieldsValuesInitializerAction } from '../../store/AppSwitches/Action';
 import { getAppSwitchesResetInputFieldsValuesInitializerSelector } from '../../store/AppSwitches/Selectors';
 import { inputFieldsValuesForNewTaskActionsList } from '../../store/InputFieldsValuesForNewTask/Action';
@@ -48,19 +49,13 @@ export const AddTask = () => {
             taskComment: taskComment,
         };
 
-        console.log(newTask)
-
-        for (let key in newTask) {
-            if (newTask[key] === '') {
-                newTask[key] = '<пусто>';
-            }
-        }
+        const fullNewTask = fillInEmptyTaskAttributes(newTask);
 
         const now = new Date();
         const taskUTCDateAndTime = now.toUTCString();
         const taskUTCInMilliseconds = now.getTime();
 
-        dispatch(addNewTaskWithThunkAction(taskUTCDateAndTime, taskUTCInMilliseconds, newTask));
+        dispatch(addNewTaskWithThunkAction(taskUTCDateAndTime, taskUTCInMilliseconds, fullNewTask));
 
         dispatch({
             type: resetInputFieldsValuesInitializerAction.type,

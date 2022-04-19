@@ -14,3 +14,12 @@ export const isMobileDevice = () => {
         return false
     };
 };
+
+export const fillInEmptyTaskAttributes = (task) => {
+    for (let key in task) {
+        if (task[key] === '') {
+            task[key] = '<пусто>';
+        }
+    }
+    return task
+};

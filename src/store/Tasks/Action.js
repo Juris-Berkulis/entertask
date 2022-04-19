@@ -1,6 +1,7 @@
 import { allSignsForTasksFilter } from "../../data/consts";
 import { tasksDBRef, tasksFilterDBRef } from "../../firebase/firebase";
 
+//! TODO: Объединить общий код с "editTaskWithThunkAction":
 export const addNewTaskWithThunkAction = (taskUTCDateAndTime, taskUTCInMilliseconds, newTask) => () => {
     tasksDBRef.child('userUID').update({
         [taskUTCInMilliseconds]: '',
@@ -38,6 +39,7 @@ export const changeTaskPropertyShowWithThunkAction = (sign, property, value) => 
     tasksFilterDBRef.child('userUID').child(sign).update({[property]: !value,});
 };
 
+//! TODO: Объединить общий код с "addNewTaskWithThunkAction":
 export const editTaskWithThunkAction = (taskUTCInMilliseconds, editableTask) => () => {
     tasksDBRef.child('userUID').child(taskUTCInMilliseconds).child(allSignsForTasksFilter.taskCategory.variable).set(editableTask.taskCategory);
     tasksDBRef.child('userUID').child(taskUTCInMilliseconds).child(allSignsForTasksFilter.taskName.variable).set(editableTask.taskName);
