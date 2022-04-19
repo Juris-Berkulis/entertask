@@ -1,13 +1,14 @@
 import React from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { allAppComponentsWithPageTitle } from '../../data/consts';
+import { allAppComponentsWithPageTitle, allSignsForTasksFilter } from '../../data/consts';
 import { fillInEmptyTaskAttributes } from '../../helper/helper';
 import { resetInputFieldsValuesInitializerAction } from '../../store/AppSwitches/Action';
 import { getAppSwitchesEditableTaskObjectSelector, getAppSwitchesResetInputFieldsValuesInitializerSelector } from '../../store/AppSwitches/Selectors';
 import { inputFieldsValuesForNewTaskActionsList } from '../../store/InputFieldsValuesForNewTask/Action';
 import { getInputFieldsValuesForNewTaskSubtaskNameSelector, getInputFieldsValuesForNewTasktaskCategorySelector, getInputFieldsValuesForNewTaskTaskCommentSelector, getInputFieldsValuesForNewTaskTaskControlSelector, getInputFieldsValuesForNewTaskTaskDeadlineSelector, getInputFieldsValuesForNewTaskTaskDurationSelector, getInputFieldsValuesForNewTaskTaskImportanceSelector, getInputFieldsValuesForNewTaskTaskNameSelector, getInputFieldsValuesForNewTaskTaskPrioritySelector, getInputFieldsValuesForNewTaskTaskStatusSelector, getInputFieldsValuesForNewTaskTaskUrgencySelector } from '../../store/InputFieldsValuesForNewTask/Selectors';
-import { editTaskWithThunkAction } from '../../store/Tasks/Action';
+import { deleteExtraSignOfTaskFilteringWithThunkAction, editTaskWithThunkAction } from '../../store/Tasks/Action';
+import { getTasksListTasksKindOfDictByUserUIDSelector } from '../../store/Tasks/Selectors';
 import { useStyles } from '../../styles/Style';
 import { EditTaskUI } from '../../ui_components/EditTaskUI';
 
@@ -34,8 +35,26 @@ export const EditTask = () => {
 
     const inputFieldsValuesInitializer = useSelector(getAppSwitchesResetInputFieldsValuesInitializerSelector);
 
+    const tasksKindOfDictByUserUIDSel = useSelector(getTasksListTasksKindOfDictByUserUIDSelector('userUID'));
+
     const editForm = (event) => {
         event.preventDefault();
+
+        const thisTaskWillBeDeleted = tasksKindOfDictByUserUIDSel[editableTaskObject.taskID];
+
+        for (let deleteTaskSign in thisTaskWillBeDeleted) {
+            if (deleteTaskSign !== allSignsForTasksFilter.taskCreateAt.variable && deleteTaskSign !== allSignsForTasksFilter.taskID.variable) {
+                for (let specificTaskId in tasksKindOfDictByUserUIDSel) {
+                    if (tasksKindOfDictByUserUIDSel[specificTaskId][deleteTaskSign]) {
+                        if (specificTaskId !== editableTaskObject.taskID && tasksKindOfDictByUserUIDSel[specificTaskId][deleteTaskSign] === thisTaskWillBeDeleted[deleteTaskSign]) {
+                            continue;
+                        }
+                    }
+    
+                    dispatch(deleteExtraSignOfTaskFilteringWithThunkAction(deleteTaskSign, thisTaskWillBeDeleted[deleteTaskSign]));
+                }
+            }
+        }
 
         const editableTask = {
             taskCategory: taskCategory,

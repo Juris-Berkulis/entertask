@@ -116,3 +116,7 @@ export const onTrackingChangeDictWithListsForTasksFilterWithThunkAction = (userU
 export const offTrackingChangeDictWithListsForTasksFilterWithThunkAction = (userUID) => (dispatch) => {
     tasksFilterDBRef.child(userUID).off('value', changeTasksFilter(dispatch));
 };
+
+export const deleteExtraSignOfTaskFilteringWithThunkAction = (sign, property) => () => {
+    tasksFilterDBRef.child('userUID').child(sign).child(property).remove();
+};

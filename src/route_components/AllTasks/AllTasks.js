@@ -3,8 +3,8 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { allAppComponentsWithPageTitle, allSignsForTasksFilter } from '../../data/consts';
 import { editableTaskObjectAction } from '../../store/AppSwitches/Action';
-import { deleteTaskWithThunkAction, offTrackingChangeValueInTasksListWithThunkAction, onTrackingChangeDictWithListsForTasksFilterWithThunkAction, onTrackingChangeValueInTasksListWithThunkAction } from '../../store/Tasks/Action';
-import { getTasksListDictWithListsForTasksFilterSelector, getTasksListTasksKindOfListByUserUID } from '../../store/Tasks/Selectors';
+import { deleteExtraSignOfTaskFilteringWithThunkAction, deleteTaskWithThunkAction, offTrackingChangeValueInTasksListWithThunkAction, onTrackingChangeDictWithListsForTasksFilterWithThunkAction, onTrackingChangeValueInTasksListWithThunkAction } from '../../store/Tasks/Action';
+import { getTasksListDictWithListsForTasksFilterSelector, getTasksListTasksKindOfDictByUserUIDSelector, getTasksListTasksKindOfListByUserUIDSelector } from '../../store/Tasks/Selectors';
 import { useStyles } from '../../styles/Style';
 import { AllTasksUI } from '../../ui_components/AllTasksUI';
 
@@ -15,7 +15,8 @@ export const AllTasks = () => {
 
     const dispatch = useDispatch();
 
-    const tasksListTasksKindOfListByIdSel = useSelector(getTasksListTasksKindOfListByUserUID('userUID'));
+    const tasksKindOfListByUserUIDSel = useSelector(getTasksListTasksKindOfListByUserUIDSelector('userUID'));
+    const tasksKindOfDictByUserUIDSel = useSelector(getTasksListTasksKindOfDictByUserUIDSelector('userUID'));
     const dictWithListsForTasksFilterSel = useSelector(getTasksListDictWithListsForTasksFilterSelector);
 
     const changeTask = (taskObject) => {
@@ -28,10 +29,24 @@ export const AllTasks = () => {
     };
 
     const deleteTask = (taskID) => {
+        const thisTaskWillBeDeleted = tasksKindOfDictByUserUIDSel[taskID];
+
+        for (let deleteTaskSign in thisTaskWillBeDeleted) {
+            for (let specificTaskId in tasksKindOfDictByUserUIDSel) {
+                if (tasksKindOfDictByUserUIDSel[specificTaskId][deleteTaskSign]) {
+                    if (specificTaskId !== taskID && tasksKindOfDictByUserUIDSel[specificTaskId][deleteTaskSign] === thisTaskWillBeDeleted[deleteTaskSign]) {
+                        continue;
+                    }
+                }
+
+                dispatch(deleteExtraSignOfTaskFilteringWithThunkAction(deleteTaskSign, thisTaskWillBeDeleted[deleteTaskSign]));
+            }
+        }
+
         deleteTaskWithThunkAction(taskID);
     };
 
-    const tasksListTasksKindOfListByIdSelForProps = tasksListTasksKindOfListByIdSel
+    const tasksListTasksKindOfListByIdSelForProps = tasksKindOfListByUserUIDSel
     .filter((item) => {
         return (
             dictWithListsForTasksFilterSel
