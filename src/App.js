@@ -21,24 +21,9 @@ export const App = () => {
         <Header></Header>
         <div className={`${classes.field} ${isMobileDeviceBoolean ? classes.field_mobileDevice : null}`}>
           <Routes>
-            {/* <Route exact path={allAppComponentsWithPageTitle.home.path} element={<Home />} /> */}
-              {/* <Home></Home> */}
-            {/* </Route> */}
-            {/* <Route exact path={allAppComponentsWithPageTitle.profile.path} element={<Home />} /> */}
-              {/* <Home></Home> */}
-            {/* </Route> */}
             <Route exact path={allAppComponentsWithPageTitle.alltasks.path} element={<AllTasks />} />
-              {/* <AllTasks></AllTasks>
-            </Route> */}
-            {/* <Route exact path={allAppComponentsWithPageTitle.tasksfortoday.path} element={<Home />} /> */}
-              {/* <Home></Home> */}
-            {/* </Route> */}
             <Route exact path={allAppComponentsWithPageTitle.addtask.path} element={<AddTask />} />
-              {/* <AddTask></AddTask>
-            </Route> */}
             <Route exact path={allAppComponentsWithPageTitle.edittask.path} element={<EditTask />} />
-              {/* <AddTask></AddTask>
-            </Route> */}
           </Routes>
         </div>
       </div>

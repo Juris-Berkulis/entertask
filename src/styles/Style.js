@@ -44,26 +44,14 @@ export const useStyles = makeStyles({
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
+    maxHeight: '18%',
+    overflow: 'auto',
+    marginBottom: '2%',
   },
   allTasks__filterLine: {
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'center',
-  },
-  allTasks__addNewTaskBtn: {
-    display: 'inline-block',
-    textDecoration: 'none',
-    margin: '2vh 2vw',
-    padding: '2vh 2vw',
-    color: '#006600',
-    backgroundColor: 'transparent',
-    border: '3px solid #006600',
-    borderRadius: '50em',
-    transition: 'color 0.2s linear 0.1s, background-color 0.2s linear 0.1s',
-    '&:hover': {
-      color: '#caffca',
-      backgroundColor: '#006600',
-    },
   },
   allTasks__tasksList: {
     height: '80%',
@@ -79,6 +67,7 @@ export const useStyles = makeStyles({
   allTasks__taskListItemParagraph: {
     fontSize: 'calc(1rem / 16 * 18)',
     lineHeight: '100%',
+    textAlign: 'center',
   },
   allTasks__taskListItemParagraph_taskName: {
     fontSize: 'calc(1rem / 16 * 24)',

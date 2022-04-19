@@ -6,16 +6,10 @@ export const appTitle = {
 export const mobileScreenWidth = 1000;
 
 export const allAppComponentsWithPageTitle = {
-    home: {
-        pageTitle: 'Домашняя страница',
-        displayTitle: 'Дом',
+    tasksfortoday: {
+        pageTitle: 'Задачи на сегодня',
+        displayTitle: 'Сегодня',
         path: '/',
-        pathCheck: /^$/,
-    },
-    profile: {
-        pageTitle: 'Профиль',
-        displayTitle: 'Профиль',
-        path: '/profile',
         pathCheck: /^$/,
     },
     alltasks: {
@@ -24,10 +18,10 @@ export const allAppComponentsWithPageTitle = {
         path: '/alltasks',
         pathCheck: /^$/,
     },
-    tasksfortoday: {
-        pageTitle: 'Задачи на сегодня',
-        displayTitle: 'Сегодня',
-        path: '/tasksfortoday',
+    profile: {
+        pageTitle: 'Профиль',
+        displayTitle: 'Профиль',
+        path: '/profile',
         pathCheck: /^$/,
     },
     addtask: {
