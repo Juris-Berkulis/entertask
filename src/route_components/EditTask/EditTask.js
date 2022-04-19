@@ -52,6 +52,12 @@ export const EditTask = () => {
 
         console.log(editableTask)
 
+        for (let key in editableTask) {
+            if (editableTask[key] === '') {
+                editableTask[key] = '<пусто>';
+            }
+        }
+
         const taskUTCInMilliseconds = editableTaskObject.taskID;
 
         dispatch(editTaskWithThunkAction(taskUTCInMilliseconds, editableTask));

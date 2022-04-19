@@ -40,6 +40,16 @@ export const useStyles = makeStyles({
   allTasks: {
     height: '100%',
   },
+  allTasks__filterWrapper: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+  },
+  allTasks__filterLine: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+  },
   allTasks__addNewTaskBtn: {
     display: 'inline-block',
     textDecoration: 'none',
@@ -97,6 +107,42 @@ export const useStyles = makeStyles({
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
+  },
+  tasksFilter__listWrapper: {
+    position: 'relative',
+  },
+  tasksFilter__btn: {
+    width: '150px',
+    cursor: 'pointer',
+    border: '1px solid #006600',
+    borderRadius: '0',
+    color: '#006600',
+    backgroundColor: 'transparent',
+    transition: 'color 0.2s linear 0.1s, background-color 0.2s linear 0.1s',
+    '&:hover': {
+      color: '#caffca',
+      backgroundColor: '#006600',
+    },
+  },
+  tasksFilter__list: {
+    position: 'absolute',
+    top: '0',
+    left: '0',
+    maxHeight: '50vh',
+    minWidth: '10vw',
+    maxWidth: '50vw',
+    overflow: 'auto',
+    listStyle: 'none',
+    backgroundColor: '#ffffff',
+    border: '1px solid #000000',
+    zIndex: '2',
+  },
+  tasksFilter__listItem: {
+    borderBottom: '1px solid #000000',
+    cursor: 'pointer',
+    '&:hover': {
+      backgroundColor: '#aaffaa',
+    },
   },
   changeTask__wrapper: {
     height: '80vh',

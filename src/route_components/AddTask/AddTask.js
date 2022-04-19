@@ -50,6 +50,12 @@ export const AddTask = () => {
 
         console.log(newTask)
 
+        for (let key in newTask) {
+            if (newTask[key] === '') {
+                newTask[key] = '<пусто>';
+            }
+        }
+
         const now = new Date();
         const taskUTCDateAndTime = now.toUTCString();
         const taskUTCInMilliseconds = now.getTime();

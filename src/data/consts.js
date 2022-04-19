@@ -43,3 +43,58 @@ export const allAppComponentsWithPageTitle = {
         pathCheck: /^$/,
     },
 };
+
+export const allSignsForTasksFilter = {
+    taskCreateAt: {
+        variable: 'taskCreateAt',
+        decodingIntoRus: 'Дата создания',
+    },
+    taskID: {
+        variable: 'taskID',
+        decodingIntoRus: 'id',
+    },
+    taskCategory: {
+        variable: 'taskCategory',
+        decodingIntoRus: 'Категория',
+    },
+    taskName: {
+        variable: 'taskName',
+        decodingIntoRus: 'Задача',
+    },
+    subtaskName: {
+        variable: 'subtaskName',
+        decodingIntoRus: 'Подзадача',
+    },
+    taskPriority: {
+        variable: 'taskPriority',
+        decodingIntoRus: 'Приоритет',
+    },
+    taskControl: {
+        variable: 'taskControl',
+        decodingIntoRus: 'Контроль',
+    },
+    taskUrgency: {
+        variable: 'taskUrgency',
+        decodingIntoRus: 'Срочность',
+    },
+    taskImportance: {
+        variable: 'taskImportance',
+        decodingIntoRus: 'Важность',
+    },
+    taskDeadline: {
+        variable: 'taskDeadline',
+        decodingIntoRus: 'Срок',
+    },
+    taskDuration: {
+        variable: 'taskDuration',
+        decodingIntoRus: 'Продолжительность',
+    },
+    taskStatus: {
+        variable: 'taskStatus',
+        decodingIntoRus: 'Статус',
+    },
+    taskComment: {
+        variable: 'taskComment',
+        decodingIntoRus: 'Комментарий',
+    },
+};
