@@ -38,10 +38,6 @@ export const changeTaskPropertyShowWithThunkAction = (sign, property, value) => 
     tasksFilterDBRef.child('userUID').child(sign).update({[property]: !value,});
 };
 
-// export const add = (all) => () => {
-//     tasksFilterDBRef.child('userUID').set(all)
-// }
-
 export const editTaskWithThunkAction = (taskUTCInMilliseconds, editableTask) => () => {
     tasksDBRef.child('userUID').child(taskUTCInMilliseconds).child(allSignsForTasksFilter.taskCategory.variable).set(editableTask.taskCategory);
     tasksDBRef.child('userUID').child(taskUTCInMilliseconds).child(allSignsForTasksFilter.taskName.variable).set(editableTask.taskName);

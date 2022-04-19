@@ -1,9 +1,6 @@
 import { CHANGE_TASKS_LIST, dictWithListsForTasksFilterAction } from "./Action";
 
-//! FIX: Удалить "messages: {},":
-const initialState = {
-    messages: {},
-};
+const initialState = {};
 
 export const tasksListReducer = (state = initialState, action) => {
     switch(action.type) {

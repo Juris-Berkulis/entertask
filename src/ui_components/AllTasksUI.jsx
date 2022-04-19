@@ -6,7 +6,6 @@ import { TasksFilter } from '../widget_components/TasksFilter/TasksFilter';
 export const AllTasksUI = (props) => {
     return (
         <div className={props.classes.allTasks}>
-            {/* {props.myDiv} */}
             <div className={props.classes.allTasks__filterWrapper}>
                 <div className={props.classes.allTasks__filterLine}>
                     <TasksFilter propertiesForTasksFilter={props.dictWithListsForTasksFilterSel.taskCategory} signForTasksFilter={allSignsForTasksFilter.taskCategory.variable}></TasksFilter>
