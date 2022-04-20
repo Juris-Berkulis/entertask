@@ -26,7 +26,6 @@ export const TasksFilter = (props) => {
 
     const togglePropertyShow = (item) => {
         dispatch(changeTaskPropertyShowWithThunkAction(props.signForTasksFilter, item, props.propertiesForTasksFilter[item]));
-        toggleListPropertiesForTasksFilter();
     };
 
     const propertiesForTasksFilterList = Object.keys(props.propertiesForTasksFilter).map((item) => {
