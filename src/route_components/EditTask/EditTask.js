@@ -33,25 +33,35 @@ export const EditTask = () => {
 
     const editableTaskObject = useSelector(getAppSwitchesEditableTaskObjectSelector);
 
-    const inputFieldsValuesInitializer = useSelector(getAppSwitchesResetInputFieldsValuesInitializerSelector);
+    const inputFieldsValuesInitializerSel = useSelector(getAppSwitchesResetInputFieldsValuesInitializerSelector);
 
     const tasksKindOfDictByUserUIDSel = useSelector(getTasksListTasksKindOfDictByUserUIDSelector('userUID'));
 
     const editForm = (event) => {
         event.preventDefault();
 
-        const thisTaskWillBeDeleted = tasksKindOfDictByUserUIDSel[editableTaskObject.taskID];
+        const thisTaskWillBeEdited = tasksKindOfDictByUserUIDSel[editableTaskObject.taskID];
 
-        for (let deleteTaskSign in thisTaskWillBeDeleted) {
-            if (deleteTaskSign !== allSignsForTasksFilter.taskCreateAt.variable && deleteTaskSign !== allSignsForTasksFilter.taskID.variable) {
+        for (let editTaskSign in thisTaskWillBeEdited) {
+            if (editTaskSign !== allSignsForTasksFilter.taskCreateAt.variable && editTaskSign !== allSignsForTasksFilter.taskID.variable) {
+                let deleteTaskSignIsFind = false;
                 for (let specificTaskId in tasksKindOfDictByUserUIDSel) {
-                    if (tasksKindOfDictByUserUIDSel[specificTaskId][deleteTaskSign]) {
-                        if (specificTaskId !== editableTaskObject.taskID && tasksKindOfDictByUserUIDSel[specificTaskId][deleteTaskSign] === thisTaskWillBeDeleted[deleteTaskSign]) {
+                    if (tasksKindOfDictByUserUIDSel[specificTaskId][editTaskSign]) {
+                        if (+specificTaskId === editableTaskObject.taskID) {
                             continue;
+                        } else if (+specificTaskId !== editableTaskObject.taskID) {
+                            if (tasksKindOfDictByUserUIDSel[specificTaskId][editTaskSign] === thisTaskWillBeEdited[editTaskSign]) {
+                                deleteTaskSignIsFind = true;
+                                break;
+                            } else if (tasksKindOfDictByUserUIDSel[specificTaskId][editTaskSign] !== thisTaskWillBeEdited[editTaskSign]) {
+                                continue;
+                            }
                         }
                     }
+                }
     
-                    dispatch(deleteExtraSignOfTaskFilteringWithThunkAction(deleteTaskSign, thisTaskWillBeDeleted[deleteTaskSign]));
+                if (!deleteTaskSignIsFind) {
+                    dispatch(deleteExtraSignOfTaskFilteringWithThunkAction(editTaskSign, thisTaskWillBeEdited[editTaskSign]));
                 }
             }
         }
@@ -78,7 +88,7 @@ export const EditTask = () => {
 
         dispatch({
             type: resetInputFieldsValuesInitializerAction.type,
-            payload: inputFieldsValuesInitializer + 1,
+            payload: inputFieldsValuesInitializerSel + 1,
         });
 
         history(allAppComponentsWithPageTitle.alltasks.path);
@@ -94,7 +104,7 @@ export const EditTask = () => {
 
         dispatch({
             type: resetInputFieldsValuesInitializerAction.type,
-            payload: inputFieldsValuesInitializer + 1,
+            payload: inputFieldsValuesInitializerSel + 1,
         });
     };
 

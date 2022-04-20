@@ -32,13 +32,23 @@ export const AllTasks = () => {
         const thisTaskWillBeDeleted = tasksKindOfDictByUserUIDSel[taskID];
 
         for (let deleteTaskSign in thisTaskWillBeDeleted) {
+            let deleteTaskSignIsFind = false;
             for (let specificTaskId in tasksKindOfDictByUserUIDSel) {
                 if (tasksKindOfDictByUserUIDSel[specificTaskId][deleteTaskSign]) {
-                    if (specificTaskId !== taskID && tasksKindOfDictByUserUIDSel[specificTaskId][deleteTaskSign] === thisTaskWillBeDeleted[deleteTaskSign]) {
+                    if (+specificTaskId === taskID) {
                         continue;
+                    } else if (+specificTaskId !== taskID) {
+                        if (tasksKindOfDictByUserUIDSel[specificTaskId][deleteTaskSign] === thisTaskWillBeDeleted[deleteTaskSign]) {
+                            deleteTaskSignIsFind = true;
+                            break;
+                        } else if (tasksKindOfDictByUserUIDSel[specificTaskId][deleteTaskSign] !== thisTaskWillBeDeleted[deleteTaskSign]) {
+                            continue;
+                        }
                     }
                 }
+            }
 
+            if (!deleteTaskSignIsFind) {
                 dispatch(deleteExtraSignOfTaskFilteringWithThunkAction(deleteTaskSign, thisTaskWillBeDeleted[deleteTaskSign]));
             }
         }
