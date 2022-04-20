@@ -115,6 +115,9 @@ export const AllTasks = () => {
                 <p className={`${classes.allTasks__taskListItemParagraph}`}>Статус: {item.taskStatus}</p>
             </div>
             <div className={`${classes.allTasks__taskListItemline}`}>
+                <p className={`${classes.allTasks__taskListItemParagraph}`}>Дата создания: {item.taskCreateAt}</p>
+            </div>
+            <div className={`${classes.allTasks__taskListItemline}`}>
                 <p className={`${classes.allTasks__taskListItemParagraph}`}>Комментарий: {item.taskComment}</p>
             </div>
         </li>

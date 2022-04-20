@@ -48,11 +48,6 @@ export const useStyles = makeStyles({
     overflow: 'auto',
     marginBottom: '2%',
   },
-  allTasks__filterLine: {
-    display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'center',
-  },
   allTasks__tasksList: {
     height: '80%',
     overflow: 'auto',
