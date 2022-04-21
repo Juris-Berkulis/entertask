@@ -1,5 +1,6 @@
 import { allSignsForTasksFilter } from "../../data/consts";
 import { tasksDBRef, tasksFilterDBRef } from "../../firebase/firebase";
+var firebaseKeyEncode = require('firebase-key-encode');
 
 //! TODO: Объединить общий код с "editTaskWithThunkAction":
 export const addNewTaskWithThunkAction = (taskUTCDateAndTime, taskUTCInMilliseconds, newTask) => () => {
@@ -20,23 +21,23 @@ export const addNewTaskWithThunkAction = (taskUTCDateAndTime, taskUTCInMilliseco
     tasksDBRef.child('userUID').child(taskUTCInMilliseconds).child(allSignsForTasksFilter.taskStatus.variable).set(newTask.taskStatus);
     tasksDBRef.child('userUID').child(taskUTCInMilliseconds).child(allSignsForTasksFilter.taskComment.variable).set(newTask.taskComment);
 
-    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskCreateAt.variable).update({[taskUTCDateAndTime]: true,});
-    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskID.variable).update({[taskUTCInMilliseconds]: true,});
-    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskCategory.variable).update({[newTask.taskCategory]: true,});
-    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskName.variable).update({[newTask.taskName]: true,});
-    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.subtaskName.variable).update({[newTask.subtaskName]: true,});
-    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskPriority.variable).update({[newTask.taskPriority]: true,});
-    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskControl.variable).update({[newTask.taskControl]: true,});
-    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskUrgency.variable).update({[newTask.taskUrgency]: true,});
-    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskImportance.variable).update({[newTask.taskImportance]: true,});
-    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskDeadline.variable).update({[newTask.taskDeadline]: true,});
-    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskDuration.variable).update({[newTask.taskDuration]: true,});
-    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskStatus.variable).update({[newTask.taskStatus]: true,});
-    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskComment.variable).update({[newTask.taskComment]: true,});
+    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskCreateAt.variable).update({[firebaseKeyEncode.encode(taskUTCDateAndTime)]: true,});
+    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskID.variable).update({[firebaseKeyEncode.encode(taskUTCInMilliseconds)]: true,});
+    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskCategory.variable).update({[firebaseKeyEncode.encode(newTask.taskCategory)]: true,});
+    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskName.variable).update({[firebaseKeyEncode.encode(newTask.taskName)]: true,});
+    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.subtaskName.variable).update({[firebaseKeyEncode.encode(newTask.subtaskName)]: true,});
+    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskPriority.variable).update({[firebaseKeyEncode.encode(newTask.taskPriority)]: true,});
+    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskControl.variable).update({[firebaseKeyEncode.encode(newTask.taskControl)]: true,});
+    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskUrgency.variable).update({[firebaseKeyEncode.encode(newTask.taskUrgency)]: true,});
+    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskImportance.variable).update({[firebaseKeyEncode.encode(newTask.taskImportance)]: true,});
+    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskDeadline.variable).update({[firebaseKeyEncode.encode(newTask.taskDeadline)]: true,});
+    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskDuration.variable).update({[firebaseKeyEncode.encode(newTask.taskDuration)]: true,});
+    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskStatus.variable).update({[firebaseKeyEncode.encode(newTask.taskStatus)]: true,});
+    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskComment.variable).update({[firebaseKeyEncode.encode(newTask.taskComment)]: true,});
 };
 
 export const changeTaskPropertyShowWithThunkAction = (sign, property, value) => () => {
-    tasksFilterDBRef.child('userUID').child(sign).update({[property]: !value,});
+    tasksFilterDBRef.child('userUID').child(sign).update({[firebaseKeyEncode.encode(property)]: !value,});
 };
 
 //! TODO: Объединить общий код с "addNewTaskWithThunkAction":
@@ -53,17 +54,17 @@ export const editTaskWithThunkAction = (taskUTCInMilliseconds, editableTask) => 
     tasksDBRef.child('userUID').child(taskUTCInMilliseconds).child(allSignsForTasksFilter.taskStatus.variable).set(editableTask.taskStatus);
     tasksDBRef.child('userUID').child(taskUTCInMilliseconds).child(allSignsForTasksFilter.taskComment.variable).set(editableTask.taskComment);
 
-    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskCategory.variable).update({[editableTask.taskCategory]: true,});
-    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskName.variable).update({[editableTask.taskName]: true,});
-    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.subtaskName.variable).update({[editableTask.subtaskName]: true,});
-    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskPriority.variable).update({[editableTask.taskPriority]: true,});
-    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskControl.variable).update({[editableTask.taskControl]: true,});
-    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskUrgency.variable).update({[editableTask.taskUrgency]: true,});
-    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskImportance.variable).update({[editableTask.taskImportance]: true,});
-    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskDeadline.variable).update({[editableTask.taskDeadline]: true,});
-    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskDuration.variable).update({[editableTask.taskDuration]: true,});
-    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskStatus.variable).update({[editableTask.taskStatus]: true,});
-    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskComment.variable).update({[editableTask.taskComment]: true,});
+    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskCategory.variable).update({[firebaseKeyEncode.encode(editableTask.taskCategory)]: true,});
+    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskName.variable).update({[firebaseKeyEncode.encode(editableTask.taskName)]: true,});
+    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.subtaskName.variable).update({[firebaseKeyEncode.encode(editableTask.subtaskName)]: true,});
+    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskPriority.variable).update({[firebaseKeyEncode.encode(editableTask.taskPriority)]: true,});
+    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskControl.variable).update({[firebaseKeyEncode.encode(editableTask.taskControl)]: true,});
+    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskUrgency.variable).update({[firebaseKeyEncode.encode(editableTask.taskUrgency)]: true,});
+    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskImportance.variable).update({[firebaseKeyEncode.encode(editableTask.taskImportance)]: true,});
+    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskDeadline.variable).update({[firebaseKeyEncode.encode(editableTask.taskDeadline)]: true,});
+    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskDuration.variable).update({[firebaseKeyEncode.encode(editableTask.taskDuration)]: true,});
+    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskStatus.variable).update({[firebaseKeyEncode.encode(editableTask.taskStatus)]: true,});
+    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskComment.variable).update({[firebaseKeyEncode.encode(editableTask.taskComment)]: true,});
 };
 
 export const deleteTaskWithThunkAction = (taskUTCInMilliseconds) => {
@@ -118,7 +119,7 @@ export const offTrackingChangeDictWithListsForTasksFilterWithThunkAction = (user
 };
 
 export const deleteExtraSignOfTaskFilteringWithThunkAction = (sign, property) => () => {
-    tasksFilterDBRef.child('userUID').child(sign).child(property).remove();
+    tasksFilterDBRef.child('userUID').child(sign).child(firebaseKeyEncode.encode(property)).remove();
 };
 
 export const TASKS_SIGN_FOR_TASKS_SORTING_ACTION = 'TASKS_SIGN_FOR_TASKS_SORTING_ACTION';
