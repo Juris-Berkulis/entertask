@@ -2,7 +2,8 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { switchForCloseAllListsForTasksPropertiesFilterAction } from '../../store/AppSwitches/Action';
 import { getAppSwitchesSwitchForCloseAllListsForTasksPropertiesFilterSelector } from '../../store/AppSwitches/Selectors';
-import { changeTaskPropertyShowWithThunkAction, tasksSignForTasksSortingAction } from '../../store/Tasks/Action';
+import { changeTaskPropertyShowWithThunkAction, reverseDirectionForTasksSortinBySignAction, tasksSignForTasksSortingAction } from '../../store/Tasks/Action';
+import { getTasksListReverseDirectionForTasksSortinBySignSelector, getTasksListTasksSignForTasksSortingSelector } from '../../store/Tasks/Selectors';
 import { useStyles } from '../../styles/Style';
 import { TasksFilterUI } from '../../ui_components/TasksFilterUI';
 
@@ -14,6 +15,8 @@ export const TasksFilter = (props) => {
     const [showListPropertiesForTasksFilter, setShowListPropertiesForTasksFilter] = useState(false);
 
     const switchForCloseAllListsForTasksPropertiesFilterSel = useSelector(getAppSwitchesSwitchForCloseAllListsForTasksPropertiesFilterSelector);
+    const tasksSignForTasksSortingSel = useSelector(getTasksListTasksSignForTasksSortingSelector);
+    const reverseDirectionForTasksSortinBySignSel = useSelector(getTasksListReverseDirectionForTasksSortinBySignSelector);
 
     const toggleListPropertiesForTasksFilter = () => {
         dispatch({
@@ -50,6 +53,13 @@ export const TasksFilter = (props) => {
         });
     };
 
+    const toggleDirectionForTasksSortingBySign = () => {
+        dispatch({
+            type: reverseDirectionForTasksSortinBySignAction.type,
+            payload: !reverseDirectionForTasksSortinBySignSel,
+        });
+    };
+
     useEffect(() => {
         if (props.signForTasksFilter !== switchForCloseAllListsForTasksPropertiesFilterSel) {
             setShowListPropertiesForTasksFilter(false);
@@ -57,6 +67,6 @@ export const TasksFilter = (props) => {
     }, [switchForCloseAllListsForTasksPropertiesFilterSel, props.signForTasksFilter]);
 
     return (
-        <TasksFilterUI classes={classes} propertiesForTasksFilterList={propertiesForTasksFilterList} signForTasksFilter={props.signForTasksFilter} toggleListPropertiesForTasksFilter={toggleListPropertiesForTasksFilter} showListPropertiesForTasksFilter={showListPropertiesForTasksFilter} selectSignForTasksSorting={selectSignForTasksSorting}></TasksFilterUI>
+        <TasksFilterUI classes={classes} propertiesForTasksFilterList={propertiesForTasksFilterList} signForTasksFilter={props.signForTasksFilter} toggleListPropertiesForTasksFilter={toggleListPropertiesForTasksFilter} showListPropertiesForTasksFilter={showListPropertiesForTasksFilter} selectSignForTasksSorting={selectSignForTasksSorting} toggleDirectionForTasksSortingBySign={toggleDirectionForTasksSortingBySign} tasksSignForTasksSortingSel={tasksSignForTasksSortingSel} reverseDirectionForTasksSortinBySignSel={reverseDirectionForTasksSortinBySignSel}></TasksFilterUI>
     )
 };

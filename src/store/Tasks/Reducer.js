@@ -1,4 +1,4 @@
-import { CHANGE_TASKS_LIST, dictWithListsForTasksFilterAction, tasksSignForTasksSortingAction } from "./Action";
+import { CHANGE_TASKS_LIST, dictWithListsForTasksFilterAction, reverseDirectionForTasksSortinBySignAction, tasksSignForTasksSortingAction } from "./Action";
 
 const initialState = {};
 
@@ -22,6 +22,12 @@ export const tasksListReducer = (state = initialState, action) => {
             return {
                 ...state,
                 tasksSignForTasksSortingCase: action.payload,
+            }
+        }
+        case reverseDirectionForTasksSortinBySignAction.type: {
+            return {
+                ...state,
+                reverseDirectionForTasksSortinBySignCase: action.payload,
             }
         }
         default: {

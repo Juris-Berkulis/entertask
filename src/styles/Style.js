@@ -97,6 +97,7 @@ export const useStyles = makeStyles({
     position: 'relative',
   },
   tasksFilter__btn: {
+    position: 'relative',
     width: '150px',
     cursor: 'pointer',
     border: '1px solid #006600',
@@ -108,6 +109,20 @@ export const useStyles = makeStyles({
       color: '#caffca',
       backgroundColor: '#006600',
     },
+  },
+  tasksFilter__signIsTurnOn: {
+    position: 'absolute',
+    top: '3.5px',
+    right: '1px',
+    height: '8px',
+    width: '8px',
+    borderRadius: '50rem',
+  },
+  tasksFilter__signIsTurnOn_up: {
+    backgroundColor: '#55bb55',
+  },
+  tasksFilter__signIsTurnOn_down: {
+    backgroundColor: '#bb5555',
   },
   tasksFilter__list: {
     position: 'fixed',
@@ -149,7 +164,29 @@ export const useStyles = makeStyles({
     padding: '10px',
     fontWeight: '700',
     textDecoration: 'underline',
+  },
+  tasksFilter__tasksSortingBtn: {
+    height: '20px',
+    width: '20px',
+    marginLeft: '5px',
+    fontWeight: '500',
     cursor: 'pointer',
+    fontSize: 'calc(1em / 16 * 20)',
+    backgroundColor: 'transparent',
+    border: 'none',
+    transition: 'font-weight 0 linear 0.1s',
+    '&:hover': {
+      fontWeight: '700',
+    },
+  },
+  tasksFilter__tasksSortingBtnArrow_up: {
+    color: '#55bb55',
+  },
+  tasksFilter__tasksSortingBtnArrow_down: {
+    color: '#bb5555',
+  },
+  tasksFilter__tasksSortingBtnArrow_andUpAndDown: {
+    color: '#5555bb',
   },
   tasksFilter__listItemsWrapper: {
     maxHeight: '50vh',

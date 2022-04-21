@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { allAppComponentsWithPageTitle, allSignsForTasksFilter } from '../../data/consts';
 import { editableTaskObjectAction } from '../../store/AppSwitches/Action';
 import { deleteExtraSignOfTaskFilteringWithThunkAction, deleteTaskWithThunkAction, offTrackingChangeValueInTasksListWithThunkAction, onTrackingChangeDictWithListsForTasksFilterWithThunkAction, onTrackingChangeValueInTasksListWithThunkAction } from '../../store/Tasks/Action';
-import { getTasksListDictWithListsForTasksFilterSelector, getTasksListTasksKindOfDictByUserUIDSelector, getTasksListTasksKindOfListByUserUIDSelector, getTasksListTasksSignForTasksSortingSelector } from '../../store/Tasks/Selectors';
+import { getTasksListDictWithListsForTasksFilterSelector, getTasksListReverseDirectionForTasksSortinBySignSelector, getTasksListTasksKindOfDictByUserUIDSelector, getTasksListTasksKindOfListByUserUIDSelector, getTasksListTasksSignForTasksSortingSelector } from '../../store/Tasks/Selectors';
 import { useStyles } from '../../styles/Style';
 import { AllTasksUI } from '../../ui_components/AllTasksUI';
 
@@ -19,6 +19,7 @@ export const AllTasks = () => {
     const tasksKindOfDictByUserUIDSel = useSelector(getTasksListTasksKindOfDictByUserUIDSelector('userUID'));
     const dictWithListsForTasksFilterSel = useSelector(getTasksListDictWithListsForTasksFilterSelector);
     const tasksSignForTasksSortingSel = useSelector(getTasksListTasksSignForTasksSortingSelector);
+    const reverseDirectionForTasksSortinBySignSel = useSelector(getTasksListReverseDirectionForTasksSortinBySignSelector);
 
     const changeTask = (taskObject) => {
         dispatch({
@@ -69,10 +70,15 @@ export const AllTasks = () => {
             propertyB = itemB[tasksSignForTasksSortingSel];
         }
 
+        let tasksSortingDirectionSwitch = 1;
+        if (reverseDirectionForTasksSortinBySignSel) {
+            tasksSortingDirectionSwitch = -1;
+        }
+
         if (propertyA > propertyB) {
-            return 1
+            return 1 * tasksSortingDirectionSwitch
         } else if (propertyA < propertyB) {
-            return -1
+            return -1 * tasksSortingDirectionSwitch
         } else {
             return 0
         }
