@@ -166,15 +166,15 @@ export const useStyles = makeStyles({
     textDecoration: 'underline',
   },
   tasksFilter__tasksSortingBtn: {
-    height: '20px',
-    width: '20px',
+    height: '27px',
+    width: '27px',
     marginLeft: '5px',
     fontWeight: '500',
     cursor: 'pointer',
     fontSize: 'calc(1em / 16 * 20)',
     backgroundColor: 'transparent',
     border: 'none',
-    transition: 'font-weight 0 linear 0.1s',
+    transition: 'font-weight 0.1s linear 0.1s',
     '&:hover': {
       fontWeight: '700',
     },

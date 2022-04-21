@@ -29,14 +29,14 @@ export const TasksFilterUI = (props) => {
                                     {
                                         props.reverseDirectionForTasksSortinBySignSel
                                         ? 
-                                        <span className={`${props.classes.tasksFilter__tasksSortingBtnArrow} ${props.classes.tasksFilter__tasksSortingBtnArrow_up}`}>&#11014;</span>
+                                        <span className={`${props.classes.tasksFilter__tasksSortingBtnArrow} ${props.classes.tasksFilter__tasksSortingBtnArrow_up}`}>&#8593;</span>
                                         : 
-                                        <span className={`${props.classes.tasksFilter__tasksSortingBtnArrow} ${props.classes.tasksFilter__tasksSortingBtnArrow_down}`}>&#11015;</span>
+                                        <span className={`${props.classes.tasksFilter__tasksSortingBtnArrow} ${props.classes.tasksFilter__tasksSortingBtnArrow_down}`}>&#8595;</span>
                                     }
                                 </button>
                                 : 
                                 <button className={props.classes.tasksFilter__tasksSortingBtn} onClick={() => props.selectSignForTasksSorting(allSignsForTasksFilter[props.signForTasksFilter].variable)}>
-                                    <span className={`${props.classes.tasksFilter__tasksSortingBtnArrow} ${props.classes.tasksFilter__tasksSortingBtnArrow_andUpAndDown}`}>&#11021;</span>
+                                    <span className={`${props.classes.tasksFilter__tasksSortingBtnArrow} ${props.classes.tasksFilter__tasksSortingBtnArrow_andUpAndDown}`}>&#8597;</span>
                                 </button>
                             }
                         </p>
