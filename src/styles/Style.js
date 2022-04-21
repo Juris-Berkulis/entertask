@@ -119,7 +119,7 @@ export const useStyles = makeStyles({
     backgroundColor: '#eeffee',
     border: '1px solid #000000',
     borderRadius: '10px',
-    padding: '10px 0',
+    padding: '0 0 10px',
     textAlign: 'start',
     transform: 'translate(-50%, -50%)',
     zIndex: '2',
@@ -146,9 +146,10 @@ export const useStyles = makeStyles({
   },
   tasksFilter__listTitle: {
     textAlign: 'center',
-    padding: '0 10px 10px',
+    padding: '10px',
     fontWeight: '700',
     textDecoration: 'underline',
+    cursor: 'pointer',
   },
   tasksFilter__listItemsWrapper: {
     maxHeight: '50vh',

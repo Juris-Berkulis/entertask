@@ -11,7 +11,7 @@ export const TasksFilterUI = (props) => {
                     ? 
                     <li className={props.classes.tasksFilter__list}>
                         <div className={props.classes.tasksFilter__closeListBtn} onClick={props.toggleListPropertiesForTasksFilter}>&#10006;</div>
-                        <p className={props.classes.tasksFilter__listTitle}>{allSignsForTasksFilter[props.signForTasksFilter].decodingIntoRus}</p>
+                        <p className={props.classes.tasksFilter__listTitle} onClick={() => props.selectSignForTasksSorting(allSignsForTasksFilter[props.signForTasksFilter].variable)}>{allSignsForTasksFilter[props.signForTasksFilter].decodingIntoRus}</p>
                         <div className={props.classes.tasksFilter__listItemsWrapper}>
                             {props.propertiesForTasksFilterList}
                         </div>

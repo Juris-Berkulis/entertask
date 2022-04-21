@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { switchForCloseAllListsForTasksPropertiesFilterAction } from '../../store/AppSwitches/Action';
 import { getAppSwitchesSwitchForCloseAllListsForTasksPropertiesFilterSelector } from '../../store/AppSwitches/Selectors';
-import { changeTaskPropertyShowWithThunkAction } from '../../store/Tasks/Action';
+import { changeTaskPropertyShowWithThunkAction, tasksSignForTasksSortingAction } from '../../store/Tasks/Action';
 import { useStyles } from '../../styles/Style';
 import { TasksFilterUI } from '../../ui_components/TasksFilterUI';
 
@@ -43,6 +43,13 @@ export const TasksFilter = (props) => {
         )
     });
 
+    const selectSignForTasksSorting = (sign) => {
+        dispatch({
+            type: tasksSignForTasksSortingAction.type,
+            payload: sign,
+        });
+    };
+
     useEffect(() => {
         if (props.signForTasksFilter !== switchForCloseAllListsForTasksPropertiesFilterSel) {
             setShowListPropertiesForTasksFilter(false);
@@ -50,6 +57,6 @@ export const TasksFilter = (props) => {
     }, [switchForCloseAllListsForTasksPropertiesFilterSel, props.signForTasksFilter]);
 
     return (
-        <TasksFilterUI classes={classes} propertiesForTasksFilterList={propertiesForTasksFilterList} signForTasksFilter={props.signForTasksFilter} toggleListPropertiesForTasksFilter={toggleListPropertiesForTasksFilter} showListPropertiesForTasksFilter={showListPropertiesForTasksFilter}></TasksFilterUI>
+        <TasksFilterUI classes={classes} propertiesForTasksFilterList={propertiesForTasksFilterList} signForTasksFilter={props.signForTasksFilter} toggleListPropertiesForTasksFilter={toggleListPropertiesForTasksFilter} showListPropertiesForTasksFilter={showListPropertiesForTasksFilter} selectSignForTasksSorting={selectSignForTasksSorting}></TasksFilterUI>
     )
 };

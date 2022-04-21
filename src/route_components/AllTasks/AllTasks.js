@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { allAppComponentsWithPageTitle, allSignsForTasksFilter } from '../../data/consts';
 import { editableTaskObjectAction } from '../../store/AppSwitches/Action';
 import { deleteExtraSignOfTaskFilteringWithThunkAction, deleteTaskWithThunkAction, offTrackingChangeValueInTasksListWithThunkAction, onTrackingChangeDictWithListsForTasksFilterWithThunkAction, onTrackingChangeValueInTasksListWithThunkAction } from '../../store/Tasks/Action';
-import { getTasksListDictWithListsForTasksFilterSelector, getTasksListTasksKindOfDictByUserUIDSelector, getTasksListTasksKindOfListByUserUIDSelector } from '../../store/Tasks/Selectors';
+import { getTasksListDictWithListsForTasksFilterSelector, getTasksListTasksKindOfDictByUserUIDSelector, getTasksListTasksKindOfListByUserUIDSelector, getTasksListTasksSignForTasksSortingSelector } from '../../store/Tasks/Selectors';
 import { useStyles } from '../../styles/Style';
 import { AllTasksUI } from '../../ui_components/AllTasksUI';
 
@@ -18,6 +18,7 @@ export const AllTasks = () => {
     const tasksKindOfListByUserUIDSel = useSelector(getTasksListTasksKindOfListByUserUIDSelector('userUID'));
     const tasksKindOfDictByUserUIDSel = useSelector(getTasksListTasksKindOfDictByUserUIDSelector('userUID'));
     const dictWithListsForTasksFilterSel = useSelector(getTasksListDictWithListsForTasksFilterSelector);
+    const tasksSignForTasksSortingSel = useSelector(getTasksListTasksSignForTasksSortingSelector);
 
     const changeTask = (taskObject) => {
         dispatch({
@@ -56,6 +57,27 @@ export const AllTasks = () => {
         deleteTaskWithThunkAction(taskID);
     };
 
+    const sortTasksBySign = (itemA, itemB) => {
+        let propertyA;
+        let propertyB;
+
+        if (tasksSignForTasksSortingSel === allSignsForTasksFilter.taskCreateAt || !tasksSignForTasksSortingSel) {
+            propertyA = +itemA.taskID;
+            propertyB = +itemB.taskID;
+        } else {
+            propertyA = itemA[tasksSignForTasksSortingSel];
+            propertyB = itemB[tasksSignForTasksSortingSel];
+        }
+
+        if (propertyA > propertyB) {
+            return 1
+        } else if (propertyA < propertyB) {
+            return -1
+        } else {
+            return 0
+        }
+    };
+
     const tasksListTasksKindOfListByIdSelForProps = tasksKindOfListByUserUIDSel
     .filter((item) => {
         return (
@@ -88,7 +110,8 @@ export const AllTasks = () => {
             dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskComment.variable] && dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskComment.variable][item.taskComment]
         )
     })
-    .reverse().map((item) => (
+    .sort((itemA, itemB) => sortTasksBySign(itemA, itemB))
+    .map((item) => (
         <li className={classes.allTasks__taskListItem} key={item.taskID}>
             <div className={classes.allTasks__taskListItemBtnsPannel}>
                 <button className={`${classes.allTasks__taskListItemBtn} ${classes.allTasks__taskListItemBtn_change}`} onClick={() => changeTask(item)}>&#9998;</button>

@@ -120,3 +120,9 @@ export const offTrackingChangeDictWithListsForTasksFilterWithThunkAction = (user
 export const deleteExtraSignOfTaskFilteringWithThunkAction = (sign, property) => () => {
     tasksFilterDBRef.child('userUID').child(sign).child(property).remove();
 };
+
+export const TASKS_SIGN_FOR_TASKS_SORTING_ACTION = 'TASKS_SIGN_FOR_TASKS_SORTING_ACTION';
+
+export const tasksSignForTasksSortingAction = {
+    type: TASKS_SIGN_FOR_TASKS_SORTING_ACTION,
+};
