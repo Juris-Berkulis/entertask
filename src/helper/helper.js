@@ -111,6 +111,31 @@ export const checkIsInputValueValid = (eventTargetValue, taskSignIdentifier, dis
                             return 'Только "+" или "-"'
                         }
                     }
+                    case allSignsForTasksFilter.taskDuration.variable: {
+                        const regExp = /^[0-9]+$/
+
+                        if (regExp.test(eventTargetValue)) {
+                            dispatch({
+                                type: dictWithNewTaskPropertiesErrorsAction.type,
+                                payload: {
+                                    taskPropertyError: taskSignIdentifier,
+                                    taskPropertyErrorValue: false,
+                                }
+                            });
+                            
+                            return false
+                        } else {
+                            dispatch({
+                                type: dictWithNewTaskPropertiesErrorsAction.type,
+                                payload: {
+                                    taskPropertyError: taskSignIdentifier,
+                                    taskPropertyErrorValue: 'Введите натуразльное число, равное количеству дней',
+                                }
+                            });
+                            
+                            return 'Введите натуразльное число, равное количеству дней'
+                        }
+                    }
                     default: {
                         dispatch({
                             type: dictWithNewTaskPropertiesErrorsAction.type,

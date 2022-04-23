@@ -240,9 +240,22 @@ export const useStyles = makeStyles({
     width: '50vw',
     padding: '1vh 1vw',
     borderRadius: '50em',
+    border: '2px solid #006600',
+    '&:focus': {
+      border: '2px solid #0000ff',
+      outline: 'none',
+    },
+  },
+  taskInput__input_error: {
+    border: '2px solid #ff0000',
+    '&:focus': {
+      border: '2px solid #ff0000',
+      outline: 'none',
+    },
   },
   taskInput__inputError: {
     margin: '0.2vh 1vw 0.5vh',
+    color: '#ff0000',
   },
   btnForChangeTask: {
     margin: '1vh 1vw',

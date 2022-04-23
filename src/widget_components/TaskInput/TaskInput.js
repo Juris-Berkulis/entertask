@@ -53,6 +53,6 @@ export const TaskInput = (props) => {
     }, [inputFieldsValuesInitializer, dispatch, props.actionForInputFieldsValuesForNewTaskReducer, props.initialValueInInput]);
 
     return (
-        <TaskInputUI classes={classes} onSaveValueFromInput={onSaveValueFromInput} inputValue={inputValue} labelName={props.labelName} actionForInputFieldsValuesForNewTaskReducer={props.actionForInputFieldsValuesForNewTaskReducer} inputValueIsError={dictWithNewTaskPropertiesErrorsSel[props.taskFieldIdentifier]}></TaskInputUI>
+        <TaskInputUI classes={classes} onSaveValueFromInput={onSaveValueFromInput} inputValue={inputValue} labelName={props.labelName} actionForInputFieldsValuesForNewTaskReducer={props.actionForInputFieldsValuesForNewTaskReducer} inputValueIsError={dictWithNewTaskPropertiesErrorsSel[props.taskFieldIdentifier]} obligatoryField={props.obligatoryField}></TaskInputUI>
     )
 };
