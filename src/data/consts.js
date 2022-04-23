@@ -92,3 +92,5 @@ export const allSignsForTasksFilter = {
         decodingIntoRus: 'Комментарий',
     },
 };
+
+export const characterToAutocompleteEmptyTaskSign = '<пусто>';

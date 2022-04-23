@@ -1,4 +1,4 @@
-import { allSignsForTasksFilter, mobileScreenWidth } from "../data/consts";
+import { allSignsForTasksFilter, characterToAutocompleteEmptyTaskSign, mobileScreenWidth } from "../data/consts";
 import { dictWithNewTaskPropertiesErrorsAction } from "../store/Tasks/Action";
 
 export const getWindowDimensions = () => {
@@ -19,7 +19,7 @@ export const isMobileDevice = () => {
 export const fillInEmptyTaskAttributes = (task) => {
     for (let key in task) {
         if (task[key] === '') {
-            task[key] = '<пусто>';
+            task[key] = characterToAutocompleteEmptyTaskSign;
         }
     }
     return task

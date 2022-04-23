@@ -3,7 +3,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAppSwitchesResetInputFieldsValuesInitializerSelector } from '../../store/AppSwitches/Selectors';
 import { useStyles } from '../../styles/Style';
 import { TaskInputUI } from '../../ui_components/TaskInputUI';
-import { dictWithNewTaskPropertiesErrorsAction } from '../../store/Tasks/Action';
+import { dictWithNewTaskPropertiesErrorsAction, resetDictWithNewTaskPropertiesErrorsAction } from '../../store/Tasks/Action';
 import { checkIsInputValueValid } from '../../helper/helper';
 import { getTasksListDictWithNewTaskPropertiesErrorsSelector } from '../../store/Tasks/Selectors';
 
@@ -50,6 +50,10 @@ export const TaskInput = (props) => {
                 payload: '',
             });
         }
+
+        dispatch({
+            type: resetDictWithNewTaskPropertiesErrorsAction.type,
+        });
     }, [inputFieldsValuesInitializer, dispatch, props.actionForInputFieldsValuesForNewTaskReducer, props.initialValueInInput]);
 
     return (

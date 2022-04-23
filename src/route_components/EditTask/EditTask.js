@@ -1,7 +1,7 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { allAppComponentsWithPageTitle, allSignsForTasksFilter } from '../../data/consts';
+import { allAppComponentsWithPageTitle, allSignsForTasksFilter, characterToAutocompleteEmptyTaskSign } from '../../data/consts';
 import { checkIsInputValueValid, fillInEmptyTaskAttributes } from '../../helper/helper';
 import { resetInputFieldsValuesInitializerAction } from '../../store/AppSwitches/Action';
 import { getAppSwitchesEditableTaskObjectSelector, getAppSwitchesResetInputFieldsValuesInitializerSelector } from '../../store/AppSwitches/Selectors';
@@ -36,6 +36,8 @@ export const EditTask = () => {
     const inputFieldsValuesInitializerSel = useSelector(getAppSwitchesResetInputFieldsValuesInitializerSelector);
 
     const tasksKindOfDictByUserUIDSel = useSelector(getTasksListTasksKindOfDictByUserUIDSelector('userUID'));
+
+    const [editableTaskObjectWithoutAutocomplete, setEditableTaskObjectWithoutAutocomplete] = useState({});
 
     const editForm = (event) => {
         event.preventDefault();
@@ -124,7 +126,21 @@ export const EditTask = () => {
         });
     }, [dispatch]);
 
+    useEffect(() => {
+        const dict = {};
+
+        for (let taskSign in editableTaskObject) {
+            if (editableTaskObject[taskSign] === characterToAutocompleteEmptyTaskSign) {
+                dict[taskSign] = '';
+            } else {
+                dict[taskSign] = editableTaskObject[taskSign];
+            }
+        }
+
+        setEditableTaskObjectWithoutAutocomplete(dict);
+    }, [editableTaskObject]);
+
     return (
-        <EditTaskUI classes={classes} editForm={editForm} resetInputsValuesByButton={resetInputsValuesByButton} editableTaskObject={editableTaskObject}></EditTaskUI>
+        <EditTaskUI classes={classes} editForm={editForm} resetInputsValuesByButton={resetInputsValuesByButton} editableTaskObject={editableTaskObjectWithoutAutocomplete}></EditTaskUI>
     )
 };
