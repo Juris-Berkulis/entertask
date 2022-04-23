@@ -9,7 +9,7 @@ export const EditTaskUI = (props) => {
                 <TaskInputFieldsUI classes={props.classes} editableTaskObject={props.editableTaskObject}></TaskInputFieldsUI>
                 <div classes={props.classes.changeTask__btnWrapper}>
                     <ButtonForChangeTaskUI classes={props.classes} type='button' onClick={(event) => {props.editForm(event)}}>Подтвердить и вернуться</ButtonForChangeTaskUI>
-                    <ButtonForChangeTaskUI classes={props.classes} type='reset' onClick={props.resetInputsValuesByButton}>Сбросить значения</ButtonForChangeTaskUI>
+                    <ButtonForChangeTaskUI classes={props.classes} type='reset' onClick={props.resetInputsValuesByButton}>Начальные значения</ButtonForChangeTaskUI>
                 </div>
             </form>
         </div>

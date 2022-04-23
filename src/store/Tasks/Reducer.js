@@ -1,4 +1,4 @@
-import { CHANGE_TASKS_LIST, dictWithListsForTasksFilterAction, reverseDirectionForTasksSortinBySignAction, tasksSignForTasksSortingAction } from "./Action";
+import { CHANGE_TASKS_LIST, dictWithListsForTasksFilterAction, dictWithNewTaskPropertiesErrorsAction, resetDictWithNewTaskPropertiesErrorsAction, reverseDirectionForTasksSortinBySignAction, tasksSignForTasksSortingAction } from "./Action";
 
 const initialState = {};
 
@@ -28,6 +28,21 @@ export const tasksListReducer = (state = initialState, action) => {
             return {
                 ...state,
                 reverseDirectionForTasksSortinBySignCase: action.payload,
+            }
+        }
+        case dictWithNewTaskPropertiesErrorsAction.type: {
+            return {
+                ...state,
+                dictWithNewTaskPropertiesErrorsCase: {
+                    ...state.dictWithNewTaskPropertiesErrorsCase,
+                    [action.payload.taskPropertyError]: action.payload.taskPropertyErrorValue
+                },
+            }
+        }
+        case resetDictWithNewTaskPropertiesErrorsAction.type: {
+            return {
+                ...state,
+                dictWithNewTaskPropertiesErrorsCase: {},
             }
         }
         default: {

@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { allAppComponentsWithPageTitle, allSignsForTasksFilter } from '../../data/consts';
-import { fillInEmptyTaskAttributes } from '../../helper/helper';
+import { checkIsInputValueValid, fillInEmptyTaskAttributes } from '../../helper/helper';
 import { resetInputFieldsValuesInitializerAction } from '../../store/AppSwitches/Action';
 import { getAppSwitchesEditableTaskObjectSelector, getAppSwitchesResetInputFieldsValuesInitializerSelector } from '../../store/AppSwitches/Selectors';
 import { inputFieldsValuesForNewTaskActionsList } from '../../store/InputFieldsValuesForNewTask/Action';
 import { getInputFieldsValuesForNewTaskSubtaskNameSelector, getInputFieldsValuesForNewTasktaskCategorySelector, getInputFieldsValuesForNewTaskTaskCommentSelector, getInputFieldsValuesForNewTaskTaskControlSelector, getInputFieldsValuesForNewTaskTaskDeadlineSelector, getInputFieldsValuesForNewTaskTaskDurationSelector, getInputFieldsValuesForNewTaskTaskImportanceSelector, getInputFieldsValuesForNewTaskTaskNameSelector, getInputFieldsValuesForNewTaskTaskPrioritySelector, getInputFieldsValuesForNewTaskTaskStatusSelector, getInputFieldsValuesForNewTaskTaskUrgencySelector } from '../../store/InputFieldsValuesForNewTask/Selectors';
-import { deleteExtraSignOfTaskFilteringWithThunkAction, editTaskWithThunkAction } from '../../store/Tasks/Action';
+import { deleteExtraSignOfTaskFilteringWithThunkAction, editTaskWithThunkAction, resetDictWithNewTaskPropertiesErrorsAction } from '../../store/Tasks/Action';
 import { getTasksListTasksKindOfDictByUserUIDSelector } from '../../store/Tasks/Selectors';
 import { useStyles } from '../../styles/Style';
 import { EditTaskUI } from '../../ui_components/EditTaskUI';
@@ -40,32 +40,6 @@ export const EditTask = () => {
     const editForm = (event) => {
         event.preventDefault();
 
-        const thisTaskWillBeEdited = tasksKindOfDictByUserUIDSel[editableTaskObject.taskID];
-
-        for (let editTaskSign in thisTaskWillBeEdited) {
-            if (editTaskSign !== allSignsForTasksFilter.taskCreateAt.variable && editTaskSign !== allSignsForTasksFilter.taskID.variable) {
-                let deleteTaskSignIsFind = false;
-                for (let specificTaskId in tasksKindOfDictByUserUIDSel) {
-                    if (tasksKindOfDictByUserUIDSel[specificTaskId][editTaskSign]) {
-                        if (+specificTaskId === editableTaskObject.taskID) {
-                            continue;
-                        } else if (+specificTaskId !== editableTaskObject.taskID) {
-                            if (tasksKindOfDictByUserUIDSel[specificTaskId][editTaskSign] === thisTaskWillBeEdited[editTaskSign]) {
-                                deleteTaskSignIsFind = true;
-                                break;
-                            } else if (tasksKindOfDictByUserUIDSel[specificTaskId][editTaskSign] !== thisTaskWillBeEdited[editTaskSign]) {
-                                continue;
-                            }
-                        }
-                    }
-                }
-    
-                if (!deleteTaskSignIsFind) {
-                    dispatch(deleteExtraSignOfTaskFilteringWithThunkAction(editTaskSign, thisTaskWillBeEdited[editTaskSign]));
-                }
-            }
-        }
-
         const editableTask = {
             taskCategory: taskCategory,
             taskName: taskName,
@@ -80,18 +54,54 @@ export const EditTask = () => {
             taskComment: taskComment,
         };
 
-        const fullEditableTask = fillInEmptyTaskAttributes(editableTask);
+        let errorFound = false;
 
-        const taskUTCInMilliseconds = editableTaskObject.taskID;
+        for (let key in editableTask) {
+            if (checkIsInputValueValid(editableTask[key], key, dispatch)) {
+                errorFound = true;
+            }
+        }
 
-        dispatch(editTaskWithThunkAction(taskUTCInMilliseconds, fullEditableTask));
+        if (!errorFound) {
+            const thisTaskWillBeEdited = tasksKindOfDictByUserUIDSel[editableTaskObject.taskID];
 
-        dispatch({
-            type: resetInputFieldsValuesInitializerAction.type,
-            payload: inputFieldsValuesInitializerSel + 1,
-        });
+            for (let editTaskSign in thisTaskWillBeEdited) {
+                if (editTaskSign !== allSignsForTasksFilter.taskCreateAt.variable && editTaskSign !== allSignsForTasksFilter.taskID.variable) {
+                    let deleteTaskSignIsFind = false;
+                    for (let specificTaskId in tasksKindOfDictByUserUIDSel) {
+                        if (tasksKindOfDictByUserUIDSel[specificTaskId][editTaskSign]) {
+                            if (+specificTaskId === editableTaskObject.taskID) {
+                                continue;
+                            } else if (+specificTaskId !== editableTaskObject.taskID) {
+                                if (tasksKindOfDictByUserUIDSel[specificTaskId][editTaskSign] === thisTaskWillBeEdited[editTaskSign]) {
+                                    deleteTaskSignIsFind = true;
+                                    break;
+                                } else if (tasksKindOfDictByUserUIDSel[specificTaskId][editTaskSign] !== thisTaskWillBeEdited[editTaskSign]) {
+                                    continue;
+                                }
+                            }
+                        }
+                    }
+        
+                    if (!deleteTaskSignIsFind) {
+                        dispatch(deleteExtraSignOfTaskFilteringWithThunkAction(editTaskSign, thisTaskWillBeEdited[editTaskSign]));
+                    }
+                }
+            }
 
-        history(allAppComponentsWithPageTitle.alltasks.path);
+            const fullEditableTask = fillInEmptyTaskAttributes(editableTask);
+
+            const taskUTCInMilliseconds = editableTaskObject.taskID;
+
+            dispatch(editTaskWithThunkAction(taskUTCInMilliseconds, fullEditableTask));
+
+            dispatch({
+                type: resetInputFieldsValuesInitializerAction.type,
+                payload: inputFieldsValuesInitializerSel + 1,
+            });
+
+            history(allAppComponentsWithPageTitle.alltasks.path);
+        }
     };
 
     const resetInputsValuesByButton = () => {
@@ -107,6 +117,12 @@ export const EditTask = () => {
             payload: inputFieldsValuesInitializerSel + 1,
         });
     };
+
+    useEffect(() => {
+        dispatch({
+            type: resetDictWithNewTaskPropertiesErrorsAction.type,
+        });
+    }, [dispatch]);
 
     return (
         <EditTaskUI classes={classes} editForm={editForm} resetInputsValuesByButton={resetInputsValuesByButton} editableTaskObject={editableTaskObject}></EditTaskUI>

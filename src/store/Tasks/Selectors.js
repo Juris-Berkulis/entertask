@@ -7,3 +7,4 @@ export const getTasksListTasksKindOfListByUserUIDSelector = (userUID) => (state)
 export const getTasksListDictWithListsForTasksFilterSelector = (state) => firebaseKeyEncode.deepDecode(getTasksListRootSelector(state).dictWithListsForTasksFilterCase) || {};
 export const getTasksListTasksSignForTasksSortingSelector = (state) => getTasksListRootSelector(state).tasksSignForTasksSortingCase || false;
 export const getTasksListReverseDirectionForTasksSortinBySignSelector = (state) => getTasksListRootSelector(state).reverseDirectionForTasksSortinBySignCase || false;
+export const getTasksListDictWithNewTaskPropertiesErrorsSelector = (state) => getTasksListRootSelector(state).dictWithNewTaskPropertiesErrorsCase || {};

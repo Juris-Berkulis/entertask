@@ -1,21 +1,22 @@
 import React from 'react';
+import { allSignsForTasksFilter } from '../data/consts';
 import { subtaskNameAction, taskCategoryAction, taskCommentAction, taskControlAction, taskDeadlineAction, taskDurationAction, taskImportanceAction, taskNameAction, taskPriorityAction, taskStatusAction, taskUrgencyAction } from '../store/InputFieldsValuesForNewTask/Action';
 import { TaskInput } from '../widget_components/TaskInput/TaskInput';
 
 export const TaskInputFieldsUI = (props) => {
     return (
         <div className={props.classes.taskInputFields__wrapper}>
-            <TaskInput actionForInputFieldsValuesForNewTaskReducer={taskCategoryAction.type} labelName='Категория' initialValueInInput={props.editableTaskObject && props.editableTaskObject.taskCategory}></TaskInput>
-            <TaskInput actionForInputFieldsValuesForNewTaskReducer={taskNameAction.type} labelName='Название задачи' initialValueInInput={props.editableTaskObject && props.editableTaskObject.taskName}></TaskInput>
-            <TaskInput actionForInputFieldsValuesForNewTaskReducer={subtaskNameAction.type} labelName='Подзадача' initialValueInInput={props.editableTaskObject && props.editableTaskObject.subtaskName}></TaskInput>
-            <TaskInput actionForInputFieldsValuesForNewTaskReducer={taskPriorityAction.type} labelName='Приоритет' initialValueInInput={props.editableTaskObject && props.editableTaskObject.taskPriority}></TaskInput>
-            <TaskInput actionForInputFieldsValuesForNewTaskReducer={taskControlAction.type} labelName='Контроль' initialValueInInput={props.editableTaskObject && props.editableTaskObject.taskControl}></TaskInput>
-            <TaskInput actionForInputFieldsValuesForNewTaskReducer={taskUrgencyAction.type} labelName='Срочность' initialValueInInput={props.editableTaskObject && props.editableTaskObject.taskUrgency}></TaskInput>
-            <TaskInput actionForInputFieldsValuesForNewTaskReducer={taskImportanceAction.type} labelName='Важность' initialValueInInput={props.editableTaskObject && props.editableTaskObject.taskImportance}></TaskInput>
-            <TaskInput actionForInputFieldsValuesForNewTaskReducer={taskDeadlineAction.type} labelName='Срок' initialValueInInput={props.editableTaskObject && props.editableTaskObject.taskDeadline}></TaskInput>
-            <TaskInput actionForInputFieldsValuesForNewTaskReducer={taskDurationAction.type} labelName='Продолжительность' initialValueInInput={props.editableTaskObject && props.editableTaskObject.taskDuration}></TaskInput>
-            <TaskInput actionForInputFieldsValuesForNewTaskReducer={taskStatusAction.type} labelName='Статус' initialValueInInput={props.editableTaskObject && props.editableTaskObject.taskStatus}></TaskInput>
-            <TaskInput actionForInputFieldsValuesForNewTaskReducer={taskCommentAction.type} labelName='Комментарий' initialValueInInput={props.editableTaskObject && props.editableTaskObject.taskComment}></TaskInput>
+            <TaskInput actionForInputFieldsValuesForNewTaskReducer={taskCategoryAction.type} labelName='Категория' initialValueInInput={props.editableTaskObject && props.editableTaskObject.taskCategory} taskFieldIdentifier={allSignsForTasksFilter.taskCategory.variable}></TaskInput>
+            <TaskInput actionForInputFieldsValuesForNewTaskReducer={taskNameAction.type} labelName='Название задачи' initialValueInInput={props.editableTaskObject && props.editableTaskObject.taskName} taskFieldIdentifier={allSignsForTasksFilter.taskName.variable}></TaskInput>
+            <TaskInput actionForInputFieldsValuesForNewTaskReducer={subtaskNameAction.type} labelName='Подзадача' initialValueInInput={props.editableTaskObject && props.editableTaskObject.subtaskName} taskFieldIdentifier={allSignsForTasksFilter.subtaskName.variable}></TaskInput>
+            <TaskInput actionForInputFieldsValuesForNewTaskReducer={taskPriorityAction.type} labelName='Приоритет' initialValueInInput={props.editableTaskObject && props.editableTaskObject.taskPriority} taskFieldIdentifier={allSignsForTasksFilter.taskPriority.variable}></TaskInput>
+            <TaskInput actionForInputFieldsValuesForNewTaskReducer={taskControlAction.type} labelName='Контроль' initialValueInInput={props.editableTaskObject && props.editableTaskObject.taskControl} taskFieldIdentifier={allSignsForTasksFilter.taskControl.variable}></TaskInput>
+            <TaskInput actionForInputFieldsValuesForNewTaskReducer={taskUrgencyAction.type} labelName='Срочность' initialValueInInput={props.editableTaskObject && props.editableTaskObject.taskUrgency} taskFieldIdentifier={allSignsForTasksFilter.taskUrgency.variable}></TaskInput>
+            <TaskInput actionForInputFieldsValuesForNewTaskReducer={taskImportanceAction.type} labelName='Важность' initialValueInInput={props.editableTaskObject && props.editableTaskObject.taskImportance} taskFieldIdentifier={allSignsForTasksFilter.taskImportance.variable}></TaskInput>
+            <TaskInput actionForInputFieldsValuesForNewTaskReducer={taskDeadlineAction.type} labelName='Срок' initialValueInInput={props.editableTaskObject && props.editableTaskObject.taskDeadline} taskFieldIdentifier={allSignsForTasksFilter.taskDeadline.variable}></TaskInput>
+            <TaskInput actionForInputFieldsValuesForNewTaskReducer={taskDurationAction.type} labelName='Продолжительность' initialValueInInput={props.editableTaskObject && props.editableTaskObject.taskDuration} taskFieldIdentifier={allSignsForTasksFilter.taskDuration.variable}></TaskInput>
+            <TaskInput actionForInputFieldsValuesForNewTaskReducer={taskStatusAction.type} labelName='Статус' initialValueInInput={props.editableTaskObject && props.editableTaskObject.taskStatus} taskFieldIdentifier={allSignsForTasksFilter.taskStatus.variable}></TaskInput>
+            <TaskInput actionForInputFieldsValuesForNewTaskReducer={taskCommentAction.type} labelName='Комментарий' initialValueInInput={props.editableTaskObject && props.editableTaskObject.taskComment} taskFieldIdentifier={allSignsForTasksFilter.taskComment.variable}></TaskInput>
         </div>
     )
 };

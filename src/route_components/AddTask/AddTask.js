@@ -1,13 +1,13 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { allAppComponentsWithPageTitle } from '../../data/consts';
-import { fillInEmptyTaskAttributes } from '../../helper/helper';
+import { checkIsInputValueValid, fillInEmptyTaskAttributes } from '../../helper/helper';
 import { resetInputFieldsValuesInitializerAction } from '../../store/AppSwitches/Action';
 import { getAppSwitchesResetInputFieldsValuesInitializerSelector } from '../../store/AppSwitches/Selectors';
 import { inputFieldsValuesForNewTaskActionsList } from '../../store/InputFieldsValuesForNewTask/Action';
 import { getInputFieldsValuesForNewTaskSubtaskNameSelector, getInputFieldsValuesForNewTasktaskCategorySelector, getInputFieldsValuesForNewTaskTaskCommentSelector, getInputFieldsValuesForNewTaskTaskControlSelector, getInputFieldsValuesForNewTaskTaskDeadlineSelector, getInputFieldsValuesForNewTaskTaskDurationSelector, getInputFieldsValuesForNewTaskTaskImportanceSelector, getInputFieldsValuesForNewTaskTaskNameSelector, getInputFieldsValuesForNewTaskTaskPrioritySelector, getInputFieldsValuesForNewTaskTaskStatusSelector, getInputFieldsValuesForNewTaskTaskUrgencySelector } from '../../store/InputFieldsValuesForNewTask/Selectors';
-import { addNewTaskWithThunkAction } from '../../store/Tasks/Action';
+import { addNewTaskWithThunkAction, resetDictWithNewTaskPropertiesErrorsAction } from '../../store/Tasks/Action';
 import { useStyles } from '../../styles/Style';
 import { AddTaskUI } from '../../ui_components/AddTaskUI';
 
@@ -32,7 +32,7 @@ export const AddTask = () => {
 
     const inputFieldsValuesInitializer = useSelector(getAppSwitchesResetInputFieldsValuesInitializerSelector);
 
-    const onSubmitForm = (event) => {
+    const onSubmitForm = (event, goToAllTasks) => {
         event.preventDefault();
 
         const newTask = {
@@ -49,22 +49,32 @@ export const AddTask = () => {
             taskComment: taskComment,
         };
 
-        const fullNewTask = fillInEmptyTaskAttributes(newTask);
+        let errorFound = false;
 
-        const now = new Date();
-        const taskUTCDateAndTime = now.toUTCString();
-        const taskUTCInMilliseconds = now.getTime();
+        for (let key in newTask) {
+            if (checkIsInputValueValid(newTask[key], key, dispatch)) {
+                errorFound = true;
+            }
+        }
 
-        dispatch(addNewTaskWithThunkAction(taskUTCDateAndTime, taskUTCInMilliseconds, fullNewTask));
+        if (!errorFound) {
+            const fullNewTask = fillInEmptyTaskAttributes(newTask);
+    
+            const now = new Date();
+            const taskUTCDateAndTime = now.toUTCString();
+            const taskUTCInMilliseconds = now.getTime();
+    
+            dispatch(addNewTaskWithThunkAction(taskUTCDateAndTime, taskUTCInMilliseconds, fullNewTask));
+    
+            dispatch({
+                type: resetInputFieldsValuesInitializerAction.type,
+                payload: inputFieldsValuesInitializer + 1,
+            });
 
-        dispatch({
-            type: resetInputFieldsValuesInitializerAction.type,
-            payload: inputFieldsValuesInitializer + 1,
-        });
-    };
-
-    const returnToAllTasks = () => {
-        history(allAppComponentsWithPageTitle.alltasks.path);
+            if (goToAllTasks) {
+                history(allAppComponentsWithPageTitle.alltasks.path);
+            }
+        }
     };
 
     const resetInputsValuesByButton = () => {
@@ -81,7 +91,13 @@ export const AddTask = () => {
         });
     };
 
+    useEffect(() => {
+        dispatch({
+            type: resetDictWithNewTaskPropertiesErrorsAction.type,
+        });
+    }, [dispatch]);
+
     return (
-        <AddTaskUI classes={classes} onSubmitForm={onSubmitForm} resetInputsValuesByButton={resetInputsValuesByButton} returnToAllTasks={returnToAllTasks}></AddTaskUI>
+        <AddTaskUI classes={classes} onSubmitForm={onSubmitForm} resetInputsValuesByButton={resetInputsValuesByButton}></AddTaskUI>
     )
 };

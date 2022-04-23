@@ -62,7 +62,7 @@ export const AllTasks = () => {
         let propertyA;
         let propertyB;
 
-        if (tasksSignForTasksSortingSel === allSignsForTasksFilter.taskCreateAt || !tasksSignForTasksSortingSel) {
+        if (tasksSignForTasksSortingSel === allSignsForTasksFilter.taskCreateAt.variable || !tasksSignForTasksSortingSel) {
             propertyA = +itemA.taskID;
             propertyB = +itemB.taskID;
         } else {

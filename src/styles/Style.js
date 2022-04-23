@@ -222,6 +222,7 @@ export const useStyles = makeStyles({
     overflow: 'auto',
   },
   taskInput__wrapper: {
+    margin: '0.5vh 0',
     display: 'flex',
     flexWrap: 'wrap',
     justifyContent: 'space-around',
@@ -230,14 +231,18 @@ export const useStyles = makeStyles({
   taskInput__label: {
     display: 'block',
     width: '25vw',
-    margin: '1vh 1vw',
+  },
+  taskInput__inputWrapper: {
+    width: '50vw',
   },
   taskInput__input: {
     display: 'block',
     width: '50vw',
-    margin: '1vh 1vw',
     padding: '1vh 1vw',
     borderRadius: '50em',
+  },
+  taskInput__inputError: {
+    margin: '0.2vh 1vw 0.5vh',
   },
   btnForChangeTask: {
     margin: '1vh 1vw',

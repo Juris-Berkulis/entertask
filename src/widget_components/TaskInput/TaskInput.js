@@ -3,6 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { getAppSwitchesResetInputFieldsValuesInitializerSelector } from '../../store/AppSwitches/Selectors';
 import { useStyles } from '../../styles/Style';
 import { TaskInputUI } from '../../ui_components/TaskInputUI';
+import { dictWithNewTaskPropertiesErrorsAction } from '../../store/Tasks/Action';
+import { checkIsInputValueValid } from '../../helper/helper';
+import { getTasksListDictWithNewTaskPropertiesErrorsSelector } from '../../store/Tasks/Selectors';
 
 export const TaskInput = (props) => {
     const classes = useStyles();
@@ -10,6 +13,7 @@ export const TaskInput = (props) => {
     const dispatch = useDispatch();
 
     const inputFieldsValuesInitializer = useSelector(getAppSwitchesResetInputFieldsValuesInitializerSelector);
+    const dictWithNewTaskPropertiesErrorsSel = useSelector(getTasksListDictWithNewTaskPropertiesErrorsSelector);
 
     const [inputValue, setInputValue] = useState('');
 
@@ -19,6 +23,14 @@ export const TaskInput = (props) => {
         dispatch({
             type: props.actionForInputFieldsValuesForNewTaskReducer,
             payload: event.target.value,
+        });
+
+        dispatch({
+            type: dictWithNewTaskPropertiesErrorsAction.type,
+            payload: {
+                taskPropertyError: props.taskFieldIdentifier,
+                taskPropertyErrorValue: checkIsInputValueValid(event.target.value, props.taskFieldIdentifier, dispatch),
+            }
         });
     };
 
@@ -41,6 +53,6 @@ export const TaskInput = (props) => {
     }, [inputFieldsValuesInitializer, dispatch, props.actionForInputFieldsValuesForNewTaskReducer, props.initialValueInInput]);
 
     return (
-        <TaskInputUI classes={classes} onSaveValueFromInput={onSaveValueFromInput} inputValue={inputValue} labelName={props.labelName} actionForInputFieldsValuesForNewTaskReducer={props.actionForInputFieldsValuesForNewTaskReducer}></TaskInputUI>
+        <TaskInputUI classes={classes} onSaveValueFromInput={onSaveValueFromInput} inputValue={inputValue} labelName={props.labelName} actionForInputFieldsValuesForNewTaskReducer={props.actionForInputFieldsValuesForNewTaskReducer} inputValueIsError={dictWithNewTaskPropertiesErrorsSel[props.taskFieldIdentifier]}></TaskInputUI>
     )
 };
