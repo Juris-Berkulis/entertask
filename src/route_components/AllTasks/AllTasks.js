@@ -200,7 +200,7 @@ export const AllTasks = () => {
                     && 
                     item.taskStatus !== characterToAutocompleteEmptyTaskSign 
                     && 
-                    <p className={`${classes.allTasks__taskListItemParagraph}`}>Статус: <span className={`${classes.allTasks__taskListItemParagraphValue}`}>{item.taskStatus}</span></p>
+                    <p className={`${classes.allTasks__taskListItemParagraph} ${classes.allTasks__taskListItemParagraph_status} ${(item.taskStatus === '+' && classes.allTasks__taskListItemParagraph_statusPlus) || (item.taskStatus === '-' && classes.allTasks__taskListItemParagraph_statusMinus) || null}`}>Статус: <span className={`${classes.allTasks__taskListItemParagraphValue} ${classes.allTasks__taskListItemParagraphValue_status} ${(item.taskStatus === '+' && classes.allTasks__taskListItemParagraphValue_statusPlus) || (item.taskStatus === '-' && classes.allTasks__taskListItemParagraphValue_statusMinus) || null}`}>{item.taskStatus === '-' ? <span>&#8722;</span> : item.taskStatus}</span></p>
                 }
             </div>
             <div className={`${classes.allTasks__taskListItemline}`}>

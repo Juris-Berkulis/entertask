@@ -67,8 +67,30 @@ export const useStyles = makeStyles({
     fontSize: 'calc(1rem / 16 * 24)',
     lineHeight: '100%',
   },
+  allTasks__taskListItemParagraph_statusPlus: {
+    borderBottom: '1px solid #006600',
+  },
+  allTasks__taskListItemParagraph_statusMinus: {
+    borderBottom: '1px solid #660000',
+  },
   allTasks__taskListItemParagraphValue: {
     fontWeight: '400',
+  },
+  allTasks__taskListItemParagraphValue_status: {
+    height: '17px',
+    width: '17px',
+    display: 'inline-flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+    color: '#ffffff',
+    fontWeight: '700',
+    borderRadius: '50%',
+  },
+  allTasks__taskListItemParagraphValue_statusPlus: {
+    backgroundColor: '#006600',
+  },
+  allTasks__taskListItemParagraphValue_statusMinus: {
+    backgroundColor: '#660000',
   },
   allTasks__taskListItemBtnsPannel: {
     position: 'absolute',
