@@ -1,7 +1,7 @@
 import React, { useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { allAppComponentsWithPageTitle, allSignsForTasksFilter } from '../../data/consts';
+import { allAppComponentsWithPageTitle, allSignsForTasksFilter, characterToAutocompleteEmptyTaskSign } from '../../data/consts';
 import { editableTaskObjectAction } from '../../store/AppSwitches/Action';
 import { deleteExtraSignOfTaskFilteringWithThunkAction, deleteTaskWithThunkAction, offTrackingChangeValueInTasksListWithThunkAction, onTrackingChangeDictWithListsForTasksFilterWithThunkAction, onTrackingChangeValueInTasksListWithThunkAction } from '../../store/Tasks/Action';
 import { getTasksListDictWithListsForTasksFilterSelector, getTasksListReverseDirectionForTasksSortinBySignSelector, getTasksListTasksKindOfDictByUserUIDSelector, getTasksListTasksKindOfListByUserUIDSelector, getTasksListTasksSignForTasksSortingSelector } from '../../store/Tasks/Selectors';
@@ -124,30 +124,102 @@ export const AllTasks = () => {
                 <button className={`${classes.allTasks__taskListItemBtn} ${classes.allTasks__taskListItemBtn_delete}`} onClick={() => deleteTask(item.taskID)}>&#128465;</button>
             </div>
             <div className={`${classes.allTasks__taskListItemline}`}>
-                <p className={`${classes.allTasks__taskListItemParagraph}`}>Категория: {item.taskCategory}</p>
+                {
+                    item.taskCategory 
+                    && 
+                    item.taskCategory !== characterToAutocompleteEmptyTaskSign 
+                    && 
+                    <p className={`${classes.allTasks__taskListItemParagraph}`}>Категория: <span className={`${classes.allTasks__taskListItemParagraphValue}`}>{item.taskCategory}</span></p>
+                }
             </div>
             <div className={`${classes.allTasks__taskListItemline}`}>
-                <p className={`${classes.allTasks__taskListItemParagraph} ${classes.allTasks__taskListItemParagraph_taskName}`}>Название: {item.taskName}</p>
+                {
+                    item.taskName 
+                    && 
+                    item.taskName !== characterToAutocompleteEmptyTaskSign 
+                    && 
+                    <p className={`${classes.allTasks__taskListItemParagraph} ${classes.allTasks__taskListItemParagraph_taskName}`}>Название: <span className={`${classes.allTasks__taskListItemParagraphValue}`}>{item.taskName}</span></p>
+                }
             </div>
             <div className={`${classes.allTasks__taskListItemline}`}>
-                <p className={`${classes.allTasks__taskListItemParagraph}`}>Подзадача: {item.subtaskName}</p>
+                {
+                    item.subtaskName 
+                    && 
+                    item.subtaskName !== characterToAutocompleteEmptyTaskSign 
+                    && 
+                    <p className={`${classes.allTasks__taskListItemParagraph}`}>Подзадача: <span className={`${classes.allTasks__taskListItemParagraphValue}`}>{item.subtaskName}</span></p>
+                }
             </div>
             <div className={`${classes.allTasks__taskListItemline}`}>
-                <p className={`${classes.allTasks__taskListItemParagraph}`}>Приоритет: {item.taskPriority}</p>
-                <p className={`${classes.allTasks__taskListItemParagraph}`}>Контроль: {item.taskControl}</p>
-                <p className={`${classes.allTasks__taskListItemParagraph}`}>Срочность: {item.taskUrgency}</p>
-                <p className={`${classes.allTasks__taskListItemParagraph}`}>Важность: {item.taskImportance}</p>
+                {
+                    item.taskPriority 
+                    && 
+                    item.taskPriority !== characterToAutocompleteEmptyTaskSign 
+                    && 
+                    <p className={`${classes.allTasks__taskListItemParagraph}`}>Приоритет: <span className={`${classes.allTasks__taskListItemParagraphValue}`}>{item.taskPriority}</span></p>
+                }
+                {
+                    item.taskControl 
+                    && 
+                    item.taskControl !== characterToAutocompleteEmptyTaskSign 
+                    && 
+                    <p className={`${classes.allTasks__taskListItemParagraph}`}>Контроль: <span className={`${classes.allTasks__taskListItemParagraphValue}`}>{item.taskControl}</span></p>
+                }
+                {
+                    item.taskUrgency 
+                    && 
+                    item.taskUrgency !== characterToAutocompleteEmptyTaskSign 
+                    && 
+                    <p className={`${classes.allTasks__taskListItemParagraph}`}>Срочность: <span className={`${classes.allTasks__taskListItemParagraphValue}`}>{item.taskUrgency}</span></p>
+                }
+                {
+                    item.taskImportance 
+                    && 
+                    item.taskImportance !== characterToAutocompleteEmptyTaskSign 
+                    && 
+                    <p className={`${classes.allTasks__taskListItemParagraph}`}>Важность: <span className={`${classes.allTasks__taskListItemParagraphValue}`}>{item.taskImportance}</span></p>
+                }
             </div>
             <div className={`${classes.allTasks__taskListItemline}`}>
-                <p className={`${classes.allTasks__taskListItemParagraph}`}>Срок: {item.taskDeadline}</p>
-                <p className={`${classes.allTasks__taskListItemParagraph}`}>Продолжительность: {item.taskDuration}</p>
-                <p className={`${classes.allTasks__taskListItemParagraph}`}>Статус: {item.taskStatus}</p>
+                {
+                    item.taskDeadline 
+                    && 
+                    item.taskDeadline !== characterToAutocompleteEmptyTaskSign 
+                    && 
+                    <p className={`${classes.allTasks__taskListItemParagraph}`}>Срок: <span className={`${classes.allTasks__taskListItemParagraphValue}`}>{item.taskDeadline}</span></p>
+                }
+                {
+                    item.taskDuration 
+                    && 
+                    item.taskDuration !== characterToAutocompleteEmptyTaskSign 
+                    && 
+                    <p className={`${classes.allTasks__taskListItemParagraph}`}>Продолжительность: <span className={`${classes.allTasks__taskListItemParagraphValue}`}>{item.taskDuration}</span></p>
+                }
+                {
+                    item.taskStatus 
+                    && 
+                    item.taskStatus !== characterToAutocompleteEmptyTaskSign 
+                    && 
+                    <p className={`${classes.allTasks__taskListItemParagraph}`}>Статус: <span className={`${classes.allTasks__taskListItemParagraphValue}`}>{item.taskStatus}</span></p>
+                }
             </div>
             <div className={`${classes.allTasks__taskListItemline}`}>
-                <p className={`${classes.allTasks__taskListItemParagraph}`}>Дата создания: {item.taskCreateAt}</p>
+                {
+                    item.taskCreateAt 
+                    && 
+                    item.taskCreateAt !== characterToAutocompleteEmptyTaskSign 
+                    && 
+                    <p className={`${classes.allTasks__taskListItemParagraph}`}>Дата создания: <span className={`${classes.allTasks__taskListItemParagraphValue}`}>{item.taskCreateAt}</span></p>
+                }
             </div>
             <div className={`${classes.allTasks__taskListItemline}`}>
-                <p className={`${classes.allTasks__taskListItemParagraph}`}>Комментарий: {item.taskComment}</p>
+                {
+                    item.taskComment 
+                    && 
+                    item.taskComment !== characterToAutocompleteEmptyTaskSign 
+                    && 
+                    <p className={`${classes.allTasks__taskListItemParagraph}`}>Комментарий: <span className={`${classes.allTasks__taskListItemParagraphValue}`}>{item.taskComment}</span></p>
+                }
             </div>
         </li>
     ));

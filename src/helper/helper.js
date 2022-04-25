@@ -73,6 +73,31 @@ export const checkIsInputValueValid = (eventTargetValue, taskSignIdentifier, dis
                 return 'Обязательное поле'
             } else {
                 switch(taskSignIdentifier) {
+                    case allSignsForTasksFilter.taskCategory.variable:
+                    case allSignsForTasksFilter.taskName.variable:
+                    case allSignsForTasksFilter.subtaskName.variable: {
+                        if (eventTargetValue.length < 3) {
+                            dispatch({
+                                type: dictWithNewTaskPropertiesErrorsAction.type,
+                                payload: {
+                                    taskPropertyError: taskSignIdentifier,
+                                    taskPropertyErrorValue: 'Минимум 3 символа',
+                                }
+                            });
+                            
+                            return 'Минимум 3 символа'
+                        } else {
+                            dispatch({
+                                type: dictWithNewTaskPropertiesErrorsAction.type,
+                                payload: {
+                                    taskPropertyError: taskSignIdentifier,
+                                    taskPropertyErrorValue: false,
+                                }
+                            });
+                            
+                            return false
+                        }
+                    }
                     case allSignsForTasksFilter.taskDeadline.variable: {
                         dispatch({
                             type: dictWithNewTaskPropertiesErrorsAction.type,

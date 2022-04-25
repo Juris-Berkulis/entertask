@@ -20,7 +20,13 @@ export const AllTasksUI = (props) => {
                 <TasksFilter propertiesForTasksFilter={props.dictWithListsForTasksFilterSel.taskComment || {}} signForTasksFilter={allSignsForTasksFilter.taskComment.variable}></TasksFilter>
             </div>
             <ul className={props.classes.allTasks__tasksList}>
-                {props.tasksListTasksKindOfListByIdSelForProps}
+                {
+                    props.tasksListTasksKindOfListByIdSelForProps.length
+                    ? 
+                    props.tasksListTasksKindOfListByIdSelForProps
+                    : 
+                    <p className={props.classes.allTasks__tasksEmptyListText}>Список задач пуст</p>
+                }
             </ul>
         </div>
     )
