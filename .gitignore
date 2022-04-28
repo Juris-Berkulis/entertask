@@ -31,3 +31,5 @@ src/firebase/
 
 # Local Netlify folder
 .netlify
+
+.vercel
