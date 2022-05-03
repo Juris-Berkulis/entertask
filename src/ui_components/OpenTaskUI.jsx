@@ -7,8 +7,8 @@ export const OpenTaskUI = (props) => {
         <div className={props.classes.openTask__wrapper}>
             <div className={props.classes.openTask__controlPanel}>
                 <div className={props.classes.openTask__taskListItemBtnsPannel}>
-                    <button className={`${props.classes.allTasks__taskListItemBtn} ${props.classes.allTasks__taskListItemBtn_change}`} onClick={() => {props.changeTask(props.tasksListOpenTaskSel); props.closeTheTask()}}>&#9998;</button>
-                    <button className={`${props.classes.allTasks__taskListItemBtn} ${props.classes.allTasks__taskListItemBtn_delete}`} onClick={() => {props.deleteTask(props.tasksListOpenTaskSel.taskID); props.closeTheTask()}}>&#128465;</button>
+                    <button className={`${props.classes.allTasks__taskListItemBtn} ${props.classes.allTasks__taskListItemBtn_change}`} onClick={() => {props.changeTask(props.tasksListOpenTaskSel, props.dispatch, props.history); props.closeTheTask()}}>&#9998;</button>
+                    <button className={`${props.classes.allTasks__taskListItemBtn} ${props.classes.allTasks__taskListItemBtn_delete}`} onClick={() => {props.deleteTask(props.tasksListOpenTaskSel.taskID, props.dispatch, props.tasksKindOfDictByUserUIDSel); props.closeTheTask()}}>&#128465;</button>
                     <button className={`${props.classes.allTasks__taskListItemBtn} ${props.classes.openTask__taskListItemBtn_close}`} onClick={props.closeTheTask}>&#10006;</button>
                 </div>
             </div>

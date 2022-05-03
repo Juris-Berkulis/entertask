@@ -38,6 +38,6 @@ export const OpenTask = (props) => {
     }, [tasksListOpenTaskSel]);
     
     return (
-        <OpenTaskUI classes={classes} closeTheTask={closeTheTask} tasksListOpenTaskSel={tasksListOpenTaskSel} someTaskIsOpen={someTaskIsOpen} changeTask={props.changeTask} deleteTask={props.deleteTask} characterToAutocompleteEmptyTaskSign={characterToAutocompleteEmptyTaskSign}></OpenTaskUI>
+        <OpenTaskUI classes={classes} closeTheTask={closeTheTask} tasksListOpenTaskSel={tasksListOpenTaskSel} someTaskIsOpen={someTaskIsOpen} changeTask={props.changeTask} deleteTask={props.deleteTask} characterToAutocompleteEmptyTaskSign={characterToAutocompleteEmptyTaskSign} dispatch={props.dispatch} tasksKindOfDictByUserUIDSel={props.tasksKindOfDictByUserUIDSel} history={props.history}></OpenTaskUI>
     )
 };

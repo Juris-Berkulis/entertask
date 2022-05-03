@@ -5,16 +5,16 @@ export const TaskInTasksListUI = (props) => {
         <li className={props.classes.allTasks__taskListItem}>
             <div className={`${props.classes.allTasks__taskListItemLinePannel}`}>
                 <div className={props.classes.allTasks__taskListItemBtnsPannel}>
-                    <button className={`${props.classes.allTasks__taskListItemBtn} ${props.classes.allTasks__taskListItemBtn_open}`} onClick={() => props.openTheTask(props.item)}>Открыть</button>
+                    <button className={`${props.classes.allTasks__taskListItemBtn} ${props.classes.allTasks__taskListItemBtn_open}`} onClick={() => props.openTheTask(props.item, props.dispatch)}>Открыть</button>
                     {
                         props.item.taskForToday
                         ? 
-                        <button className={`${props.classes.allTasks__taskListItemBtn} ${props.classes.allTasks__taskListItemBtn_today}`} onClick={() => props.deleteTheTaskFromListWithTasksForToday(props.item.taskID)}>Не сегодня</button>
+                        <button className={`${props.classes.allTasks__taskListItemBtn} ${props.classes.allTasks__taskListItemBtn_today}`} onClick={() => props.deleteTheTaskFromListWithTasksForToday(props.item.taskID, props.dispatch)}>Не сегодня</button>
                         : 
-                        <button className={`${props.classes.allTasks__taskListItemBtn} ${props.classes.allTasks__taskListItemBtn_notToday}`} onClick={() => props.addTheTaskInListWithTasksForToday(props.item.taskID)}>На сегодня</button>
+                        <button className={`${props.classes.allTasks__taskListItemBtn} ${props.classes.allTasks__taskListItemBtn_notToday}`} onClick={() => props.addTheTaskInListWithTasksForToday(props.item.taskID, props.dispatch)}>На сегодня</button>
                     }
-                    <button className={`${props.classes.allTasks__taskListItemBtn} ${props.classes.allTasks__taskListItemBtn_change}`} onClick={() => props.changeTask(props.item)}>&#9998;</button>
-                    <button className={`${props.classes.allTasks__taskListItemBtn} ${props.classes.allTasks__taskListItemBtn_delete}`} onClick={() => props.deleteTask(props.item.taskID)}>&#128465;</button>
+                    <button className={`${props.classes.allTasks__taskListItemBtn} ${props.classes.allTasks__taskListItemBtn_change}`} onClick={() => props.changeTask(props.item, props.dispatch, props.history)}>&#9998;</button>
+                    <button className={`${props.classes.allTasks__taskListItemBtn} ${props.classes.allTasks__taskListItemBtn_delete}`} onClick={() => props.deleteTask(props.item.taskID, props.dispatch, props.tasksKindOfDictByUserUIDSel)}>&#128465;</button>
                 </div>
             </div>
             <div className={`${props.classes.allTasks__taskListItemLineInfo}`}>

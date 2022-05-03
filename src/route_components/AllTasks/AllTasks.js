@@ -2,14 +2,13 @@ import React, { useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { allAppComponentsWithPageTitle, allSignsForTasksFilter } from '../../data/consts';
-import { editableTaskObjectAction } from '../../store/AppSwitches/Action';
-import { addTheTaskInListWithTasksForTodayWithThunkAction, deleteExtraSignOfTaskFilteringWithThunkAction, deleteTaskWithThunkAction, deleteTheTaskFromListWithTasksForTodayWithThunkAction, offTrackingChangeValueInTasksListWithThunkAction, onTrackingChangeDictWithListsForTasksFilterWithThunkAction, onTrackingChangeValueInTasksListWithThunkAction, openTaskAction } from '../../store/Tasks/Action';
+import { addTheTaskInListWithTasksForToday, changeTask, deleteTask, deleteTheTaskFromListWithTasksForToday, openTheTask, sortTasksBySign, tasksFiltering } from '../../helper/helper';
+import { offTrackingChangeValueInTasksListWithThunkAction, onTrackingChangeDictWithListsForTasksFilterWithThunkAction, onTrackingChangeValueInTasksListWithThunkAction } from '../../store/Tasks/Action';
 import { getTasksListDictWithListsForTasksFilterSelector, getTasksListReverseDirectionForTasksSortinBySignSelector, getTasksListTasksKindOfDictByUserUIDSelector, getTasksListTasksKindOfListByUserUIDSelector, getTasksListTasksSignForTasksSortingSelector } from '../../store/Tasks/Selectors';
 import { useStyles } from '../../styles/Style';
 import { AllTasksUI } from '../../ui_components/AllTasksUI';
 import { TaskInTasksList } from '../TaskInTasksList/TaskInTasksList';
 
-//! TODO: Объединить общий код с компонентом "TasksForToday":
 export const AllTasks = () => {
     const classes = useStyles();
 
@@ -23,119 +22,120 @@ export const AllTasks = () => {
     const tasksSignForTasksSortingSel = useSelector(getTasksListTasksSignForTasksSortingSelector);
     const reverseDirectionForTasksSortinBySignSel = useSelector(getTasksListReverseDirectionForTasksSortinBySignSelector);
 
-    const changeTask = (taskObject) => {
-        dispatch({
-            type: editableTaskObjectAction.type,
-            payload: taskObject,
-        });
+    // const changeTask = (taskObject) => {
+    //     dispatch({
+    //         type: editableTaskObjectAction.type,
+    //         payload: taskObject,
+    //     });
 
-        history(allAppComponentsWithPageTitle.edittask.path);
-    };
+    //     history(allAppComponentsWithPageTitle.edittask.path);
+    // };
 
-    const deleteTask = (taskID) => {
-        const thisTaskWillBeDeleted = tasksKindOfDictByUserUIDSel[taskID];
+    // const deleteTask = (taskID) => {
+    //     const thisTaskWillBeDeleted = tasksKindOfDictByUserUIDSel[taskID];
 
-        for (let deleteTaskSign in thisTaskWillBeDeleted) {
-            let deleteTaskSignIsFind = false;
-            for (let specificTaskId in tasksKindOfDictByUserUIDSel) {
-                if (tasksKindOfDictByUserUIDSel[specificTaskId][deleteTaskSign]) {
-                    if (+specificTaskId === taskID) {
-                        continue;
-                    } else if (+specificTaskId !== taskID) {
-                        if (tasksKindOfDictByUserUIDSel[specificTaskId][deleteTaskSign] === thisTaskWillBeDeleted[deleteTaskSign]) {
-                            deleteTaskSignIsFind = true;
-                            break;
-                        } else if (tasksKindOfDictByUserUIDSel[specificTaskId][deleteTaskSign] !== thisTaskWillBeDeleted[deleteTaskSign]) {
-                            continue;
-                        }
-                    }
-                }
-            }
+    //     for (let deleteTaskSign in thisTaskWillBeDeleted) {
+    //         let deleteTaskSignIsFind = false;
+    //         for (let specificTaskId in tasksKindOfDictByUserUIDSel) {
+    //             if (tasksKindOfDictByUserUIDSel[specificTaskId][deleteTaskSign]) {
+    //                 if (+specificTaskId === taskID) {
+    //                     continue;
+    //                 } else if (+specificTaskId !== taskID) {
+    //                     if (tasksKindOfDictByUserUIDSel[specificTaskId][deleteTaskSign] === thisTaskWillBeDeleted[deleteTaskSign]) {
+    //                         deleteTaskSignIsFind = true;
+    //                         break;
+    //                     } else if (tasksKindOfDictByUserUIDSel[specificTaskId][deleteTaskSign] !== thisTaskWillBeDeleted[deleteTaskSign]) {
+    //                         continue;
+    //                     }
+    //                 }
+    //             }
+    //         }
 
-            if (!deleteTaskSignIsFind) {
-                dispatch(deleteExtraSignOfTaskFilteringWithThunkAction(deleteTaskSign, thisTaskWillBeDeleted[deleteTaskSign]));
-            }
-        }
+    //         if (!deleteTaskSignIsFind) {
+    //             dispatch(deleteExtraSignOfTaskFilteringWithThunkAction(deleteTaskSign, thisTaskWillBeDeleted[deleteTaskSign]));
+    //         }
+    //     }
 
-        deleteTaskWithThunkAction(taskID);
-    };
+    //     deleteTaskWithThunkAction(taskID);
+    // };
 
-    const sortTasksBySign = (itemA, itemB) => {
-        let propertyA;
-        let propertyB;
+    // const sortTasksBySign = (itemA, itemB) => {
+    //     let propertyA;
+    //     let propertyB;
 
-        if (tasksSignForTasksSortingSel === allSignsForTasksFilter.taskCreateAt.variable || !tasksSignForTasksSortingSel) {
-            propertyA = +itemA.taskID;
-            propertyB = +itemB.taskID;
-        } else {
-            propertyA = itemA[tasksSignForTasksSortingSel];
-            propertyB = itemB[tasksSignForTasksSortingSel];
-        }
+    //     if (tasksSignForTasksSortingSel === allSignsForTasksFilter.taskCreateAt.variable || !tasksSignForTasksSortingSel) {
+    //         propertyA = +itemA.taskID;
+    //         propertyB = +itemB.taskID;
+    //     } else {
+    //         propertyA = itemA[tasksSignForTasksSortingSel];
+    //         propertyB = itemB[tasksSignForTasksSortingSel];
+    //     }
 
-        let tasksSortingDirectionSwitch = 1;
-        if (reverseDirectionForTasksSortinBySignSel) {
-            tasksSortingDirectionSwitch = -1;
-        }
+    //     let tasksSortingDirectionSwitch = 1;
+    //     if (reverseDirectionForTasksSortinBySignSel) {
+    //         tasksSortingDirectionSwitch = -1;
+    //     }
 
-        if (propertyA > propertyB) {
-            return 1 * tasksSortingDirectionSwitch
-        } else if (propertyA < propertyB) {
-            return -1 * tasksSortingDirectionSwitch
-        } else {
-            return 0
-        }
-    };
+    //     if (propertyA > propertyB) {
+    //         return 1 * tasksSortingDirectionSwitch
+    //     } else if (propertyA < propertyB) {
+    //         return -1 * tasksSortingDirectionSwitch
+    //     } else {
+    //         return 0
+    //     }
+    // };
 
-    const openTheTask = (item) => {
-        dispatch({
-            type: openTaskAction.type,
-            payload: item,
-        });
-    };
+    // const openTheTask = (item) => {
+    //     dispatch({
+    //         type: openTaskAction.type,
+    //         payload: item,
+    //     });
+    // };
 
-    const addTheTaskInListWithTasksForToday = (taskID) => {
-        dispatch(addTheTaskInListWithTasksForTodayWithThunkAction(taskID));
-    };
+    // const addTheTaskInListWithTasksForToday = (taskID) => {
+    //     dispatch(addTheTaskInListWithTasksForTodayWithThunkAction(taskID));
+    // };
 
-    const deleteTheTaskFromListWithTasksForToday = (taskID) => {
-        dispatch(deleteTheTaskFromListWithTasksForTodayWithThunkAction(taskID));
-    };
+    // const deleteTheTaskFromListWithTasksForToday = (taskID) => {
+    //     dispatch(deleteTheTaskFromListWithTasksForTodayWithThunkAction(taskID));
+    // };
 
     const tasksListTasksKindOfListByIdSelForProps = tasksKindOfListByUserUIDSel
     .filter((item) => {
         return (
-            dictWithListsForTasksFilterSel
-            && 
-            dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskID.variable] && dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskID.variable][item.taskID]
-            && 
-            dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskCreateAt.variable] && dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskCreateAt.variable][item.taskCreateAt]
-            && 
-            dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskCategory.variable] && dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskCategory.variable][item.taskCategory]
-            && 
-            dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskName.variable] && dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskName.variable][item.taskName]
-            && 
-            dictWithListsForTasksFilterSel[allSignsForTasksFilter.subtaskName.variable] && dictWithListsForTasksFilterSel[allSignsForTasksFilter.subtaskName.variable][item.subtaskName]
-            && 
-            dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskControl.variable] && dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskControl.variable][item.taskControl]
-            && 
-            dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskDeadline.variable] && dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskDeadline.variable][item.taskDeadline]
-            && 
-            dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskDuration.variable] && dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskDuration.variable][item.taskDuration]
-            && 
-            dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskImportance.variable] && dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskImportance.variable][item.taskImportance]
-            && 
-            dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskPriority.variable] && dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskPriority.variable][item.taskPriority]
-            && 
-            dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskStatus.variable] && dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskStatus.variable][item.taskStatus]
-            && 
-            dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskUrgency.variable] && dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskUrgency.variable][item.taskUrgency]
-            && 
-            dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskComment.variable] && dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskComment.variable][item.taskComment]
+            tasksFiltering(item, dictWithListsForTasksFilterSel, allSignsForTasksFilter)
+            // dictWithListsForTasksFilterSel
+            // && 
+            // dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskID.variable] && dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskID.variable][item.taskID]
+            // && 
+            // dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskCreateAt.variable] && dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskCreateAt.variable][item.taskCreateAt]
+            // && 
+            // dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskCategory.variable] && dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskCategory.variable][item.taskCategory]
+            // && 
+            // dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskName.variable] && dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskName.variable][item.taskName]
+            // && 
+            // dictWithListsForTasksFilterSel[allSignsForTasksFilter.subtaskName.variable] && dictWithListsForTasksFilterSel[allSignsForTasksFilter.subtaskName.variable][item.subtaskName]
+            // && 
+            // dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskControl.variable] && dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskControl.variable][item.taskControl]
+            // && 
+            // dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskDeadline.variable] && dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskDeadline.variable][item.taskDeadline]
+            // && 
+            // dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskDuration.variable] && dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskDuration.variable][item.taskDuration]
+            // && 
+            // dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskImportance.variable] && dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskImportance.variable][item.taskImportance]
+            // && 
+            // dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskPriority.variable] && dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskPriority.variable][item.taskPriority]
+            // && 
+            // dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskStatus.variable] && dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskStatus.variable][item.taskStatus]
+            // && 
+            // dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskUrgency.variable] && dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskUrgency.variable][item.taskUrgency]
+            // && 
+            // dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskComment.variable] && dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskComment.variable][item.taskComment]
         )
     })
-    .sort((itemA, itemB) => sortTasksBySign(itemA, itemB))
+    .sort((itemA, itemB) => sortTasksBySign(itemA, itemB, tasksSignForTasksSortingSel, reverseDirectionForTasksSortinBySignSel))
     .map((item) => (
-        <TaskInTasksList key={item.taskID} item={item} changeTask={changeTask} deleteTask={deleteTask} openTheTask={openTheTask} addTheTaskInListWithTasksForToday={addTheTaskInListWithTasksForToday} deleteTheTaskFromListWithTasksForToday={deleteTheTaskFromListWithTasksForToday}></TaskInTasksList>
+        <TaskInTasksList key={item.taskID} item={item} changeTask={changeTask} deleteTask={deleteTask} openTheTask={openTheTask} addTheTaskInListWithTasksForToday={addTheTaskInListWithTasksForToday} deleteTheTaskFromListWithTasksForToday={deleteTheTaskFromListWithTasksForToday} dispatch={dispatch} tasksKindOfDictByUserUIDSel={tasksKindOfDictByUserUIDSel} history={history}></TaskInTasksList>
     ));
 
     useLayoutEffect(() => {
@@ -155,6 +155,6 @@ export const AllTasks = () => {
     }, [dispatch]);
     
     return (
-        <AllTasksUI classes={classes} allAppComponentsWithPageTitle={allAppComponentsWithPageTitle} tasksListTasksKindOfListByIdSelForProps={tasksListTasksKindOfListByIdSelForProps} dictWithListsForTasksFilterSel={dictWithListsForTasksFilterSel} changeTask={changeTask} deleteTask={deleteTask}></AllTasksUI>
+        <AllTasksUI classes={classes} allAppComponentsWithPageTitle={allAppComponentsWithPageTitle} tasksListTasksKindOfListByIdSelForProps={tasksListTasksKindOfListByIdSelForProps} dictWithListsForTasksFilterSel={dictWithListsForTasksFilterSel} changeTask={changeTask} deleteTask={deleteTask} dispatch={dispatch} tasksKindOfDictByUserUIDSel={tasksKindOfDictByUserUIDSel} history={history}></AllTasksUI>
     )
 };

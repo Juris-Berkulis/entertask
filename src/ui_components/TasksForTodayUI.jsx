@@ -7,7 +7,7 @@ import { TasksFilter } from '../widget_components/TasksFilter/TasksFilter';
 export const TasksForTodayUI = (props) => {
     return (
         <div className={props.classes.allTasks}>
-            <OpenTask changeTask={props.changeTask} deleteTask={props.deleteTask}></OpenTask>
+            <OpenTask changeTask={props.changeTask} deleteTask={props.deleteTask} dispatch={props.dispatch} tasksKindOfDictByUserUIDSel={props.tasksKindOfDictByUserUIDSel} history={props.history}></OpenTask>
             <div className={props.classes.allTasks__filterWrapper}>
                 <TasksFilter propertiesForTasksFilter={props.dictWithListsForTasksFilterSel.taskCategory || {}} signForTasksFilter={allSignsForTasksFilter.taskCategory.variable}></TasksFilter>
                 <TasksFilter propertiesForTasksFilter={props.dictWithListsForTasksFilterSel.taskName || {}} signForTasksFilter={allSignsForTasksFilter.taskName.variable}></TasksFilter>
