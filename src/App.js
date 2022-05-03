@@ -7,6 +7,7 @@ import { AddTask } from './route_components/AddTask/AddTask';
 import { AllTasks } from './route_components/AllTasks/AllTasks';
 import { EditTask } from './route_components/EditTask/EditTask';
 import { Header } from './route_components/Header/Header';
+import { TasksForToday } from './route_components/TasksForToday/TasksForToday';
 import { persistor } from './store/Store';
 import { useStyles } from './styles/Style';
 
@@ -21,6 +22,7 @@ export const App = () => {
         <Header></Header>
         <div className={`${classes.field} ${isMobileDeviceBoolean ? classes.field_mobileDevice : null}`}>
           <Routes>
+            <Route exact path={allAppComponentsWithPageTitle.tasksfortoday.path} element={<TasksForToday />} />
             <Route exact path={allAppComponentsWithPageTitle.alltasks.path} element={<AllTasks />} />
             <Route exact path={allAppComponentsWithPageTitle.addtask.path} element={<AddTask />} />
             <Route exact path={allAppComponentsWithPageTitle.edittask.path} element={<EditTask />} />

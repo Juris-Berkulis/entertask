@@ -3,8 +3,8 @@ import { allSignsForTasksFilter } from '../data/consts';
 import { OpenTask } from '../route_components/OpenTask/OpenTask';
 import { TasksFilter } from '../widget_components/TasksFilter/TasksFilter';
 
-//! TODO: Объединить общий код с компонентом "TasksForTodayUI":
-export const AllTasksUI = (props) => {
+//! TODO: Объединить общий код с компонентом "AllTasksUI":
+export const TasksForTodayUI = (props) => {
     return (
         <div className={props.classes.allTasks}>
             <OpenTask changeTask={props.changeTask} deleteTask={props.deleteTask}></OpenTask>

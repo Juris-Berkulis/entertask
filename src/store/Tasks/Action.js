@@ -157,3 +157,15 @@ const CLOSE_TASK_ACTION = 'CLOSE_TASK_ACTION';
 export const closeTaskAction = {
     type: CLOSE_TASK_ACTION,
 };
+
+export const addTheTaskInListWithTasksForTodayWithThunkAction = (taskUTCInMilliseconds) => () => {
+    tasksDBRef.child('userUID').child(taskUTCInMilliseconds).update({
+        [allSignsForTasksFilter.taskForToday.variable]: true,
+    });
+}
+
+export const deleteTheTaskFromListWithTasksForTodayWithThunkAction = (taskUTCInMilliseconds) => () => {
+    tasksDBRef.child('userUID').child(taskUTCInMilliseconds).update({
+        [allSignsForTasksFilter.taskForToday.variable]: false,
+    });
+}

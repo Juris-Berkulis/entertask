@@ -2,10 +2,17 @@ import React from 'react';
 
 export const TaskInTasksListUI = (props) => {
     return (
-        <li className={props.classes.allTasks__taskListItem} key={props.item.taskID}>
+        <li className={props.classes.allTasks__taskListItem}>
             <div className={`${props.classes.allTasks__taskListItemLinePannel}`}>
                 <div className={props.classes.allTasks__taskListItemBtnsPannel}>
                     <button className={`${props.classes.allTasks__taskListItemBtn} ${props.classes.allTasks__taskListItemBtn_open}`} onClick={() => props.openTheTask(props.item)}>Открыть</button>
+                    {
+                        props.item.taskForToday
+                        ? 
+                        <button className={`${props.classes.allTasks__taskListItemBtn} ${props.classes.allTasks__taskListItemBtn_today}`} onClick={() => props.deleteTheTaskFromListWithTasksForToday(props.item.taskID)}>Не сегодня</button>
+                        : 
+                        <button className={`${props.classes.allTasks__taskListItemBtn} ${props.classes.allTasks__taskListItemBtn_notToday}`} onClick={() => props.addTheTaskInListWithTasksForToday(props.item.taskID)}>На сегодня</button>
+                    }
                     <button className={`${props.classes.allTasks__taskListItemBtn} ${props.classes.allTasks__taskListItemBtn_change}`} onClick={() => props.changeTask(props.item)}>&#9998;</button>
                     <button className={`${props.classes.allTasks__taskListItemBtn} ${props.classes.allTasks__taskListItemBtn_delete}`} onClick={() => props.deleteTask(props.item.taskID)}>&#128465;</button>
                 </div>

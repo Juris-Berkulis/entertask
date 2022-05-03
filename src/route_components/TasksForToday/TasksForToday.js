@@ -3,14 +3,14 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { allAppComponentsWithPageTitle, allSignsForTasksFilter } from '../../data/consts';
 import { editableTaskObjectAction } from '../../store/AppSwitches/Action';
-import { addTheTaskInListWithTasksForTodayWithThunkAction, deleteExtraSignOfTaskFilteringWithThunkAction, deleteTaskWithThunkAction, deleteTheTaskFromListWithTasksForTodayWithThunkAction, offTrackingChangeValueInTasksListWithThunkAction, onTrackingChangeDictWithListsForTasksFilterWithThunkAction, onTrackingChangeValueInTasksListWithThunkAction, openTaskAction } from '../../store/Tasks/Action';
+import { deleteExtraSignOfTaskFilteringWithThunkAction, deleteTaskWithThunkAction, deleteTheTaskFromListWithTasksForTodayWithThunkAction, offTrackingChangeValueInTasksListWithThunkAction, onTrackingChangeDictWithListsForTasksFilterWithThunkAction, onTrackingChangeValueInTasksListWithThunkAction, openTaskAction } from '../../store/Tasks/Action';
 import { getTasksListDictWithListsForTasksFilterSelector, getTasksListReverseDirectionForTasksSortinBySignSelector, getTasksListTasksKindOfDictByUserUIDSelector, getTasksListTasksKindOfListByUserUIDSelector, getTasksListTasksSignForTasksSortingSelector } from '../../store/Tasks/Selectors';
 import { useStyles } from '../../styles/Style';
-import { AllTasksUI } from '../../ui_components/AllTasksUI';
+import { TasksForTodayUI } from '../../ui_components/TasksForTodayUI';
 import { TaskInTasksList } from '../TaskInTasksList/TaskInTasksList';
 
-//! TODO: Объединить общий код с компонентом "TasksForToday":
-export const AllTasks = () => {
+//! TODO: Объединить общий код с компонентом "AllTasks":
+export const TasksForToday = () => {
     const classes = useStyles();
 
     const history = useNavigate();
@@ -93,15 +93,16 @@ export const AllTasks = () => {
         });
     };
 
-    const addTheTaskInListWithTasksForToday = (taskID) => {
-        dispatch(addTheTaskInListWithTasksForTodayWithThunkAction(taskID));
-    };
-
     const deleteTheTaskFromListWithTasksForToday = (taskID) => {
         dispatch(deleteTheTaskFromListWithTasksForTodayWithThunkAction(taskID));
     };
 
     const tasksListTasksKindOfListByIdSelForProps = tasksKindOfListByUserUIDSel
+    .filter((item) => {
+        return (
+            item[allSignsForTasksFilter.taskForToday.variable]
+        )
+    })
     .filter((item) => {
         return (
             dictWithListsForTasksFilterSel
@@ -135,7 +136,7 @@ export const AllTasks = () => {
     })
     .sort((itemA, itemB) => sortTasksBySign(itemA, itemB))
     .map((item) => (
-        <TaskInTasksList key={item.taskID} item={item} changeTask={changeTask} deleteTask={deleteTask} openTheTask={openTheTask} addTheTaskInListWithTasksForToday={addTheTaskInListWithTasksForToday} deleteTheTaskFromListWithTasksForToday={deleteTheTaskFromListWithTasksForToday}></TaskInTasksList>
+        <TaskInTasksList key={item.taskID} item={item} changeTask={changeTask} deleteTask={deleteTask} openTheTask={openTheTask} deleteTheTaskFromListWithTasksForToday={deleteTheTaskFromListWithTasksForToday}></TaskInTasksList>
     ));
 
     useLayoutEffect(() => {
@@ -155,6 +156,6 @@ export const AllTasks = () => {
     }, [dispatch]);
     
     return (
-        <AllTasksUI classes={classes} allAppComponentsWithPageTitle={allAppComponentsWithPageTitle} tasksListTasksKindOfListByIdSelForProps={tasksListTasksKindOfListByIdSelForProps} dictWithListsForTasksFilterSel={dictWithListsForTasksFilterSel} changeTask={changeTask} deleteTask={deleteTask}></AllTasksUI>
+        <TasksForTodayUI classes={classes} allAppComponentsWithPageTitle={allAppComponentsWithPageTitle} tasksListTasksKindOfListByIdSelForProps={tasksListTasksKindOfListByIdSelForProps} dictWithListsForTasksFilterSel={dictWithListsForTasksFilterSel} changeTask={changeTask} deleteTask={deleteTask}></TasksForTodayUI>
     )
 };

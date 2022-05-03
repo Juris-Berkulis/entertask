@@ -108,6 +108,12 @@ export const useStyles = makeStyles({
       backgroundColor: '#000044',
     },
   },
+  allTasks__taskListItemBtn_today: {
+    backgroundColor: '#ee7700',
+    '&:hover': {
+      backgroundColor: '#ee4400',
+    },
+  },
   allTasks__taskListItemBtn_change: {
     transform: 'RotateY(180deg)',
   },

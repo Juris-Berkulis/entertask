@@ -91,6 +91,10 @@ export const allSignsForTasksFilter = {
         variable: 'taskComment',
         decodingIntoRus: 'Комментарий',
     },
+    taskForToday: {
+        variable: 'taskForToday',
+        decodingIntoRus: 'Задача на сегодня',
+    },
 };
 
 export const characterToAutocompleteEmptyTaskSign = '<пусто>';
