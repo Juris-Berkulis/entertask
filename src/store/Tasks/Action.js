@@ -145,3 +145,15 @@ const RESET_DICT_WITH_NEW_TASK_PROPERTIES_ERRORS_ACTION = 'RESET_DICT_WITH_NEW_T
 export const resetDictWithNewTaskPropertiesErrorsAction = {
     type: RESET_DICT_WITH_NEW_TASK_PROPERTIES_ERRORS_ACTION,
 };
+
+const OPEN_TASK_ACTION = 'OPEN_TASK_ACTION';
+
+export const openTaskAction = {
+    type: OPEN_TASK_ACTION,
+};
+
+const CLOSE_TASK_ACTION = 'CLOSE_TASK_ACTION';
+
+export const closeTaskAction = {
+    type: CLOSE_TASK_ACTION,
+};

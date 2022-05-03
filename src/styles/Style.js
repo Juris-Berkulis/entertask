@@ -12,7 +12,7 @@ export const useStyles = makeStyles({
   },
   field: {
     height: '90vh !important',
-    padding: '5vh 10vw !important',
+    padding: '5vh 2vw 1vh !important',
     overflow: 'hidden !important',
   },
   field_mobileDevice: {
@@ -43,16 +43,24 @@ export const useStyles = makeStyles({
   allTasks__filterWrapper: {
     textAlign: 'center',
     maxHeight: '18%',
+    maxWidth: '1000px',
     overflow: 'auto',
-    marginBottom: '2%',
+    margin: '0 auto 2%',
   },
   allTasks__tasksList: {
     height: '80%',
     overflow: 'auto',
+    '&::-webkit-scrollbar': {
+      width: '10px', //* - ширина полосы прокрутки.
+      height: '10px', //* - высота полосы прокрутки.
+    }
   },
   allTasks__taskListItem: {
     position: 'relative',
+    display: 'flex',
     padding: '1vh 1vw',
+    whiteSpace: 'nowrap',
+    width: 'fit-content',
     '&:hover': {
       backgroundColor: '#99ff99',
     },
@@ -62,16 +70,11 @@ export const useStyles = makeStyles({
     lineHeight: '100%',
     textAlign: 'center',
     fontWeight: '700',
+    whiteSpace: 'pre-line',
   },
   allTasks__taskListItemParagraph_taskName: {
     fontSize: 'calc(1rem / 16 * 24)',
     lineHeight: '100%',
-  },
-  allTasks__taskListItemParagraph_statusPlus: {
-    borderBottom: '1px solid #006600',
-  },
-  allTasks__taskListItemParagraph_statusMinus: {
-    borderBottom: '1px solid #660000',
   },
   allTasks__taskListItemParagraphValue: {
     fontWeight: '400',
@@ -92,10 +95,8 @@ export const useStyles = makeStyles({
   allTasks__taskListItemParagraphValue_statusMinus: {
     backgroundColor: '#660000',
   },
-  allTasks__taskListItemBtnsPannel: {
-    position: 'absolute',
-    top: '5px',
-    right: '5px',
+  allTasks__taskListItemLinePannel: {
+    position: 'relative',
   },
   allTasks__taskListItemBtn: {
     marginLeft: '0.5vw',
@@ -103,17 +104,28 @@ export const useStyles = makeStyles({
     color: '#ffffff',
     backgroundColor: '#000066',
     cursor: 'pointer',
+    '&:hover': {
+      backgroundColor: '#000044',
+    },
   },
   allTasks__taskListItemBtn_change: {
     transform: 'RotateY(180deg)',
   },
   allTasks__taskListItemBtn_delete: {
     backgroundColor: '#cc0000',
+    '&:hover': {
+      backgroundColor: '#990000',
+    },
   },
-  allTasks__taskListItemline: {
+  allTasks__taskListItemLineInfo: {
     display: 'flex',
-    flexWrap: 'wrap',
-    justifyContent: 'space-around',
+    alignItems: 'stretch',
+  },
+  allTasks__taskListItemCell: {
+    display: 'inline-block',
+    width: '150px',
+    maxHeight: '150px',
+    overflow: 'auto',
   },
   allTasks__tasksEmptyListText: {
     textAlign: 'center',
@@ -298,6 +310,42 @@ export const useStyles = makeStyles({
     transition: 'background-color 0.1s linear 0.1s',
     '&:hover': {
       backgroundColor: '#007700',
+    },
+  },
+  openTask__wrapper: {
+    position: 'fixed',
+    top: '15vh',
+    left: '15vw',
+    width: '70vw',
+    border: '2px solid #000000',
+    borderRadius: '15px',
+    padding: '15px',
+    backgroundColor: '#006600',
+    zIndex: '3',
+  },
+  openTask__controlPanel: {
+    marginBottom: '1vh',
+  },
+  openTask__taskListItemBtnsPannel: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+  },
+  openTask__taskListItemBtn_close: {
+    backgroundColor: '#cc0000',
+    '&:hover': {
+      backgroundColor: '#990000',
+    },
+  },
+  openTask__taskInfo: {
+    overflow: 'auto',
+    color: '#ffffff',
+  },
+  openTask__taskListItemParagraph: {
+    textAlign: 'start',
+    padding: '0.5vh 0',
+    '&:hover': {
+      color: '#006600',
+      backgroundColor: '#99ff99',
     },
   },
 });

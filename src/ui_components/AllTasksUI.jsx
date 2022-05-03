@@ -1,10 +1,12 @@
 import React from 'react';
 import { allSignsForTasksFilter } from '../data/consts';
+import { OpenTask } from '../route_components/OpenTask/OpenTask';
 import { TasksFilter } from '../widget_components/TasksFilter/TasksFilter';
 
 export const AllTasksUI = (props) => {
     return (
         <div className={props.classes.allTasks}>
+            <OpenTask changeTask={props.changeTask} deleteTask={props.deleteTask}></OpenTask>
             <div className={props.classes.allTasks__filterWrapper}>
                 <TasksFilter propertiesForTasksFilter={props.dictWithListsForTasksFilterSel.taskCategory || {}} signForTasksFilter={allSignsForTasksFilter.taskCategory.variable}></TasksFilter>
                 <TasksFilter propertiesForTasksFilter={props.dictWithListsForTasksFilterSel.taskName || {}} signForTasksFilter={allSignsForTasksFilter.taskName.variable}></TasksFilter>

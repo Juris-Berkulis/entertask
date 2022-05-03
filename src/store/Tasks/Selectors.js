@@ -8,3 +8,4 @@ export const getTasksListDictWithListsForTasksFilterSelector = (state) => fireba
 export const getTasksListTasksSignForTasksSortingSelector = (state) => getTasksListRootSelector(state).tasksSignForTasksSortingCase || false;
 export const getTasksListReverseDirectionForTasksSortinBySignSelector = (state) => getTasksListRootSelector(state).reverseDirectionForTasksSortinBySignCase || false;
 export const getTasksListDictWithNewTaskPropertiesErrorsSelector = (state) => getTasksListRootSelector(state).dictWithNewTaskPropertiesErrorsCase || {};
+export const getTasksListOpenTaskSelector = (state) => getTasksListRootSelector(state).openTaskCase || {};
