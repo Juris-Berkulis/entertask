@@ -97,7 +97,7 @@ export const allSignsForTasksFilter = {
     },
     taskEisenhowerMatrixValue: {
         variable: 'taskEisenhowerMatrixValue',
-        decodingIntoRus: 'Матрица эйзенхауэра',
+        decodingIntoRus: 'Матрица Эйзенхауэра',
     },
 };
 

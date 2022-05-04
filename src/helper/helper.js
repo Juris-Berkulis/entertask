@@ -59,6 +59,8 @@ export const checkIsInputValueValid = (eventTargetValue, taskSignIdentifier, dis
         case allSignsForTasksFilter.taskCategory.variable:
         case allSignsForTasksFilter.taskName.variable:
         case allSignsForTasksFilter.subtaskName.variable:
+        case allSignsForTasksFilter.taskUrgency.variable:
+        case allSignsForTasksFilter.taskImportance.variable:
         case allSignsForTasksFilter.taskDeadline.variable:
         case allSignsForTasksFilter.taskDuration.variable:
         case allSignsForTasksFilter.taskStatus.variable: {
@@ -160,6 +162,32 @@ export const checkIsInputValueValid = (eventTargetValue, taskSignIdentifier, dis
                             });
                             
                             return 'Введите натуразльное число, равное количеству дней'
+                        }
+                    }
+                    case allSignsForTasksFilter.taskUrgency.variable:
+                    case allSignsForTasksFilter.taskImportance.variable: {
+                        const regExp = /^[1-3]$/
+
+                        if (regExp.test(eventTargetValue)) {
+                            dispatch({
+                                type: dictWithNewTaskPropertiesErrorsAction.type,
+                                payload: {
+                                    taskPropertyError: taskSignIdentifier,
+                                    taskPropertyErrorValue: false,
+                                }
+                            });
+                            
+                            return false
+                        } else {
+                            dispatch({
+                                type: dictWithNewTaskPropertiesErrorsAction.type,
+                                payload: {
+                                    taskPropertyError: taskSignIdentifier,
+                                    taskPropertyErrorValue: 'Только "1", "2" или "3"',
+                                }
+                            });
+                            
+                            return 'Только "1", "2" или "3"'
                         }
                     }
                     default: {
@@ -295,32 +323,32 @@ export const tasksFiltering = (item, dictWithListsForTasksFilterSel, allSignsFor
 };
 
 export const getEisenhowerMatrixValue = (taskUrgency, taskImportance) => {
-    if (taskUrgency[0] === '1') {
-        if (taskImportance[0] === '1') {
+    if (taskUrgency === '1') {
+        if (taskImportance === '1') {
             return eisenhowerMatrix["1_1"].briefly
-        } else if (taskImportance[0] === '2') {
+        } else if (taskImportance === '2') {
             return eisenhowerMatrix["1_2"].briefly
-        } else if (taskImportance[0] === '3') {
+        } else if (taskImportance === '3') {
             return eisenhowerMatrix["1_3"].briefly
         } else {
             return eisenhowerMatrix["0_0"].briefly
         }
-    } else if (taskUrgency[0] === '2') {
-        if (taskImportance[0] === '1') {
+    } else if (taskUrgency === '2') {
+        if (taskImportance === '1') {
             return eisenhowerMatrix["2_1"].briefly
-        } else if (taskImportance[0] === '2') {
+        } else if (taskImportance === '2') {
             return eisenhowerMatrix["2_2"].briefly
-        } else if (taskImportance[0] === '3') {
+        } else if (taskImportance === '3') {
             return eisenhowerMatrix["2_3"].briefly
         } else {
             return eisenhowerMatrix["0_0"].briefly
         }
-    } else if (taskUrgency[0] === '3') {
-        if (taskImportance[0] === '1') {
+    } else if (taskUrgency === '3') {
+        if (taskImportance === '1') {
             return eisenhowerMatrix["3_1"].briefly
-        } else if (taskImportance[0] === '2') {
+        } else if (taskImportance === '2') {
             return eisenhowerMatrix["3_2"].briefly
-        } else if (taskImportance[0] === '3') {
+        } else if (taskImportance === '3') {
             return eisenhowerMatrix["3_3"].briefly
         } else {
             return eisenhowerMatrix["0_0"].briefly
