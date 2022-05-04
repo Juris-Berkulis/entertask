@@ -261,7 +261,6 @@ export const useStyles = makeStyles({
   changeTask__btnWrapper: {
     display: 'flex',
     flexWrap: 'wrap',
-    justifyContent: 'space-around',
     alignItems: 'center',
     height: '10vh',
     overflow: 'auto',
