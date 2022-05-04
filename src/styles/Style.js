@@ -369,4 +369,37 @@ export const useStyles = makeStyles({
       backgroundColor: '#99ff99',
     },
   },
+  taskEisenhowerMatrixValue__color_: {
+    borderBottom: '5px solid #000000',
+  },
+  taskEisenhowerMatrixValue__color_0_0: {
+    borderBottom: '5px solid #000000',
+  },
+  taskEisenhowerMatrixValue__color_1_1: {
+    borderBottom: '5px solid #aa00aa',
+  },
+  taskEisenhowerMatrixValue__color_1_2: {
+    borderBottom: '5px solid blue',
+  },
+  taskEisenhowerMatrixValue__color_1_3: {
+    borderBottom: '5px solid cyan',
+  },
+  taskEisenhowerMatrixValue__color_2_1: {
+    borderBottom: '5px solid green',
+  },
+  taskEisenhowerMatrixValue__color_2_2: {
+    borderBottom: '5px solid lightgreen',
+  },
+  taskEisenhowerMatrixValue__color_2_3: {
+    borderBottom: '5px solid yellow',
+  },
+  taskEisenhowerMatrixValue__color_3_1: {
+    borderBottom: '5px solid orange',
+  },
+  taskEisenhowerMatrixValue__color_3_2: {
+    borderBottom: '5px solid pink',
+  },
+  taskEisenhowerMatrixValue__color_3_3: {
+    borderBottom: '5px solid red',
+  },
 });

@@ -63,7 +63,7 @@ export const TaskInTasksListUI = (props) => {
                         <p className={`${props.classes.allTasks__taskListItemParagraph}`}>Важность: <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.replaceBrieflyValueToDetailValueOfTheTaskSign(props.allSignsForTasksFilter.taskImportance.variable, props.item.taskImportance)}</span></p>
                     }
                 </div>
-                <div className={`${props.classes.allTasks__taskListItemCell}`}>
+                <div className={`${props.classes.allTasks__taskListItemCell} ${props.classes.taskEisenhowerMatrixValue__color_} ${props.classes['taskEisenhowerMatrixValue__color_' + props.item.taskEisenhowerMatrixValue]}`}>
                     {
                         props.item.taskEisenhowerMatrixValue 
                         && 
