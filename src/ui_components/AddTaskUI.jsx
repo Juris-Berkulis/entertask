@@ -6,7 +6,7 @@ export const AddTaskUI = (props) => {
     return (
         <div className={props.classes.changeTask__wrapper}>
             <form className={props.classes.changeTask__form} onSubmit={props.onSubmitForm}>
-                <TaskInputFieldsUI classes={props.classes}></TaskInputFieldsUI>
+                <TaskInputFieldsUI classes={props.classes} taskEisenhowerMatrixValue={props.taskEisenhowerMatrixValue}></TaskInputFieldsUI>
                 <div className={props.classes.changeTask__btnWrapper}>
                     <ButtonForChangeTaskUI classes={props.classes} type='submit'>Добавить задачу</ButtonForChangeTaskUI>
                     <ButtonForChangeTaskUI classes={props.classes} type='button' onClick={(event) => {props.onSubmitForm(event, true)}}>Добавить и вернуться</ButtonForChangeTaskUI>

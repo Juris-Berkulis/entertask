@@ -2,11 +2,11 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { allAppComponentsWithPageTitle, allSignsForTasksFilter, characterToAutocompleteEmptyTaskSign } from '../../data/consts';
-import { checkIsInputValueValid, fillInEmptyTaskAttributes } from '../../helper/helper';
+import { checkIsInputValueValid, fillInEmptyTaskAttributes, getEisenhowerMatrixValue } from '../../helper/helper';
 import { resetInputFieldsValuesInitializerAction } from '../../store/AppSwitches/Action';
 import { getAppSwitchesEditableTaskObjectSelector, getAppSwitchesResetInputFieldsValuesInitializerSelector } from '../../store/AppSwitches/Selectors';
-import { inputFieldsValuesForNewTaskActionsList } from '../../store/InputFieldsValuesForNewTask/Action';
-import { getInputFieldsValuesForNewTaskSubtaskNameSelector, getInputFieldsValuesForNewTasktaskCategorySelector, getInputFieldsValuesForNewTaskTaskCommentSelector, getInputFieldsValuesForNewTaskTaskControlSelector, getInputFieldsValuesForNewTaskTaskDeadlineSelector, getInputFieldsValuesForNewTaskTaskDurationSelector, getInputFieldsValuesForNewTaskTaskImportanceSelector, getInputFieldsValuesForNewTaskTaskNameSelector, getInputFieldsValuesForNewTaskTaskPrioritySelector, getInputFieldsValuesForNewTaskTaskStatusSelector, getInputFieldsValuesForNewTaskTaskUrgencySelector } from '../../store/InputFieldsValuesForNewTask/Selectors';
+import { inputFieldsValuesForNewTaskActionsList, taskEisenhowerMatrixValueAction } from '../../store/InputFieldsValuesForNewTask/Action';
+import { getInputFieldsValuesForNewTaskSubtaskNameSelector, getInputFieldsValuesForNewTasktaskCategorySelector, getInputFieldsValuesForNewTaskTaskCommentSelector, getInputFieldsValuesForNewTaskTaskControlSelector, getInputFieldsValuesForNewTaskTaskDeadlineSelector, getInputFieldsValuesForNewTaskTaskDurationSelector, getInputFieldsValuesForNewTaskTaskEisenhowerMatrixValueSelector, getInputFieldsValuesForNewTaskTaskImportanceSelector, getInputFieldsValuesForNewTaskTaskNameSelector, getInputFieldsValuesForNewTaskTaskPrioritySelector, getInputFieldsValuesForNewTaskTaskStatusSelector, getInputFieldsValuesForNewTaskTaskUrgencySelector } from '../../store/InputFieldsValuesForNewTask/Selectors';
 import { deleteExtraSignOfTaskFilteringWithThunkAction, editTaskWithThunkAction, resetDictWithNewTaskPropertiesErrorsAction } from '../../store/Tasks/Action';
 import { getTasksListTasksKindOfDictByUserUIDSelector } from '../../store/Tasks/Selectors';
 import { useStyles } from '../../styles/Style';
@@ -30,6 +30,7 @@ export const EditTask = () => {
     const taskDuration = useSelector(getInputFieldsValuesForNewTaskTaskDurationSelector);
     const taskStatus = useSelector(getInputFieldsValuesForNewTaskTaskStatusSelector);
     const taskComment = useSelector(getInputFieldsValuesForNewTaskTaskCommentSelector);
+    const taskEisenhowerMatrixValue = useSelector(getInputFieldsValuesForNewTaskTaskEisenhowerMatrixValueSelector);
 
     const editableTaskObject = useSelector(getAppSwitchesEditableTaskObjectSelector);
 
@@ -54,6 +55,7 @@ export const EditTask = () => {
             taskDuration: taskDuration,
             taskStatus: taskStatus,
             taskComment: taskComment,
+            taskEisenhowerMatrixValue: taskEisenhowerMatrixValue,
         };
 
         let errorFound = false;
@@ -140,7 +142,14 @@ export const EditTask = () => {
         setEditableTaskObjectWithoutAutocomplete(dict);
     }, [editableTaskObject]);
 
+    useEffect(() => {
+        dispatch({
+            type: taskEisenhowerMatrixValueAction.type,
+            payload: getEisenhowerMatrixValue(taskUrgency, taskImportance),
+        })
+    }, [taskUrgency, taskImportance, dispatch]);
+
     return (
-        <EditTaskUI classes={classes} editForm={editForm} resetInputsValuesByButton={resetInputsValuesByButton} editableTaskObject={editableTaskObjectWithoutAutocomplete}></EditTaskUI>
+        <EditTaskUI classes={classes} editForm={editForm} resetInputsValuesByButton={resetInputsValuesByButton} editableTaskObject={editableTaskObjectWithoutAutocomplete} taskEisenhowerMatrixValue={taskEisenhowerMatrixValue}></EditTaskUI>
     )
 };

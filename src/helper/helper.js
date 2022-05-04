@@ -1,4 +1,4 @@
-import { allAppComponentsWithPageTitle, allSignsForTasksFilter, characterToAutocompleteEmptyTaskSign, mobileScreenWidth } from "../data/consts";
+import { allAppComponentsWithPageTitle, allSignsForTasksFilter, characterToAutocompleteEmptyTaskSign, eisenhowerMatrix, mobileScreenWidth } from "../data/consts";
 import { editableTaskObjectAction } from "../store/AppSwitches/Action";
 import { addTheTaskInListWithTasksForTodayWithThunkAction, deleteExtraSignOfTaskFilteringWithThunkAction, deleteTaskWithThunkAction, deleteTheTaskFromListWithTasksForTodayWithThunkAction, dictWithNewTaskPropertiesErrorsAction, openTaskAction } from "../store/Tasks/Action";
 
@@ -289,5 +289,43 @@ export const tasksFiltering = (item, dictWithListsForTasksFilterSel, allSignsFor
         dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskUrgency.variable] && dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskUrgency.variable][item.taskUrgency]
         && 
         dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskComment.variable] && dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskComment.variable][item.taskComment]
+        && 
+        dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskEisenhowerMatrixValue.variable] && dictWithListsForTasksFilterSel[allSignsForTasksFilter.taskEisenhowerMatrixValue.variable][item.taskEisenhowerMatrixValue]
     )
+};
+
+export const getEisenhowerMatrixValue = (taskUrgency, taskImportance) => {
+    if (taskUrgency[0] === '1') {
+        if (taskImportance[0] === '1') {
+            return eisenhowerMatrix["1_1"]
+        } else if (taskImportance[0] === '2') {
+            return eisenhowerMatrix["1_2"]
+        } else if (taskImportance[0] === '3') {
+            return eisenhowerMatrix["1_3"]
+        } else {
+            return eisenhowerMatrix["0_0"]
+        }
+    } else if (taskUrgency[0] === '2') {
+        if (taskImportance[0] === '1') {
+            return eisenhowerMatrix["2_1"]
+        } else if (taskImportance[0] === '2') {
+            return eisenhowerMatrix["2_2"]
+        } else if (taskImportance[0] === '3') {
+            return eisenhowerMatrix["2_3"]
+        } else {
+            return eisenhowerMatrix["0_0"]
+        }
+    } else if (taskUrgency[0] === '3') {
+        if (taskImportance[0] === '1') {
+            return eisenhowerMatrix["3_1"]
+        } else if (taskImportance[0] === '2') {
+            return eisenhowerMatrix["3_2"]
+        } else if (taskImportance[0] === '3') {
+            return eisenhowerMatrix["3_3"]
+        } else {
+            return eisenhowerMatrix["0_0"]
+        }
+    } else {
+        return eisenhowerMatrix["0_0"]
+    }
 };

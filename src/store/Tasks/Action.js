@@ -20,6 +20,7 @@ export const addNewTaskWithThunkAction = (taskUTCDateAndTime, taskUTCInMilliseco
     tasksDBRef.child('userUID').child(taskUTCInMilliseconds).child(allSignsForTasksFilter.taskDuration.variable).set(newTask.taskDuration);
     tasksDBRef.child('userUID').child(taskUTCInMilliseconds).child(allSignsForTasksFilter.taskStatus.variable).set(newTask.taskStatus);
     tasksDBRef.child('userUID').child(taskUTCInMilliseconds).child(allSignsForTasksFilter.taskComment.variable).set(newTask.taskComment);
+    tasksDBRef.child('userUID').child(taskUTCInMilliseconds).child(allSignsForTasksFilter.taskEisenhowerMatrixValue.variable).set(newTask.taskEisenhowerMatrixValue);
 
     tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskCreateAt.variable).update({[firebaseKeyEncode.encode(taskUTCDateAndTime)]: true,});
     tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskID.variable).update({[firebaseKeyEncode.encode(taskUTCInMilliseconds)]: true,});
@@ -34,6 +35,7 @@ export const addNewTaskWithThunkAction = (taskUTCDateAndTime, taskUTCInMilliseco
     tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskDuration.variable).update({[firebaseKeyEncode.encode(newTask.taskDuration)]: true,});
     tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskStatus.variable).update({[firebaseKeyEncode.encode(newTask.taskStatus)]: true,});
     tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskComment.variable).update({[firebaseKeyEncode.encode(newTask.taskComment)]: true,});
+    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskEisenhowerMatrixValue.variable).update({[firebaseKeyEncode.encode(newTask.taskEisenhowerMatrixValue)]: true,});
 };
 
 export const changeTaskPropertyShowWithThunkAction = (sign, property, value) => () => {
@@ -53,6 +55,7 @@ export const editTaskWithThunkAction = (taskUTCInMilliseconds, editableTask) => 
     tasksDBRef.child('userUID').child(taskUTCInMilliseconds).child(allSignsForTasksFilter.taskDuration.variable).set(editableTask.taskDuration);
     tasksDBRef.child('userUID').child(taskUTCInMilliseconds).child(allSignsForTasksFilter.taskStatus.variable).set(editableTask.taskStatus);
     tasksDBRef.child('userUID').child(taskUTCInMilliseconds).child(allSignsForTasksFilter.taskComment.variable).set(editableTask.taskComment);
+    tasksDBRef.child('userUID').child(taskUTCInMilliseconds).child(allSignsForTasksFilter.taskEisenhowerMatrixValue.variable).set(editableTask.taskEisenhowerMatrixValue);
 
     tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskCategory.variable).update({[firebaseKeyEncode.encode(editableTask.taskCategory)]: true,});
     tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskName.variable).update({[firebaseKeyEncode.encode(editableTask.taskName)]: true,});
@@ -65,6 +68,7 @@ export const editTaskWithThunkAction = (taskUTCInMilliseconds, editableTask) => 
     tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskDuration.variable).update({[firebaseKeyEncode.encode(editableTask.taskDuration)]: true,});
     tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskStatus.variable).update({[firebaseKeyEncode.encode(editableTask.taskStatus)]: true,});
     tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskComment.variable).update({[firebaseKeyEncode.encode(editableTask.taskComment)]: true,});
+    tasksFilterDBRef.child('userUID').child(allSignsForTasksFilter.taskEisenhowerMatrixValue.variable).update({[firebaseKeyEncode.encode(editableTask.taskEisenhowerMatrixValue)]: true,});
 };
 
 export const deleteTaskWithThunkAction = (taskUTCInMilliseconds) => {
@@ -162,10 +166,10 @@ export const addTheTaskInListWithTasksForTodayWithThunkAction = (taskUTCInMillis
     tasksDBRef.child('userUID').child(taskUTCInMilliseconds).update({
         [allSignsForTasksFilter.taskForToday.variable]: true,
     });
-}
+};
 
 export const deleteTheTaskFromListWithTasksForTodayWithThunkAction = (taskUTCInMilliseconds) => () => {
     tasksDBRef.child('userUID').child(taskUTCInMilliseconds).update({
         [allSignsForTasksFilter.taskForToday.variable]: false,
     });
-}
+};

@@ -2,11 +2,11 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { allAppComponentsWithPageTitle } from '../../data/consts';
-import { checkIsInputValueValid, fillInEmptyTaskAttributes } from '../../helper/helper';
+import { checkIsInputValueValid, fillInEmptyTaskAttributes, getEisenhowerMatrixValue } from '../../helper/helper';
 import { resetInputFieldsValuesInitializerAction } from '../../store/AppSwitches/Action';
 import { getAppSwitchesResetInputFieldsValuesInitializerSelector } from '../../store/AppSwitches/Selectors';
-import { inputFieldsValuesForNewTaskActionsList } from '../../store/InputFieldsValuesForNewTask/Action';
-import { getInputFieldsValuesForNewTaskSubtaskNameSelector, getInputFieldsValuesForNewTasktaskCategorySelector, getInputFieldsValuesForNewTaskTaskCommentSelector, getInputFieldsValuesForNewTaskTaskControlSelector, getInputFieldsValuesForNewTaskTaskDeadlineSelector, getInputFieldsValuesForNewTaskTaskDurationSelector, getInputFieldsValuesForNewTaskTaskImportanceSelector, getInputFieldsValuesForNewTaskTaskNameSelector, getInputFieldsValuesForNewTaskTaskPrioritySelector, getInputFieldsValuesForNewTaskTaskStatusSelector, getInputFieldsValuesForNewTaskTaskUrgencySelector } from '../../store/InputFieldsValuesForNewTask/Selectors';
+import { inputFieldsValuesForNewTaskActionsList, taskEisenhowerMatrixValueAction } from '../../store/InputFieldsValuesForNewTask/Action';
+import { getInputFieldsValuesForNewTaskSubtaskNameSelector, getInputFieldsValuesForNewTasktaskCategorySelector, getInputFieldsValuesForNewTaskTaskCommentSelector, getInputFieldsValuesForNewTaskTaskControlSelector, getInputFieldsValuesForNewTaskTaskDeadlineSelector, getInputFieldsValuesForNewTaskTaskDurationSelector, getInputFieldsValuesForNewTaskTaskEisenhowerMatrixValueSelector, getInputFieldsValuesForNewTaskTaskImportanceSelector, getInputFieldsValuesForNewTaskTaskNameSelector, getInputFieldsValuesForNewTaskTaskPrioritySelector, getInputFieldsValuesForNewTaskTaskStatusSelector, getInputFieldsValuesForNewTaskTaskUrgencySelector } from '../../store/InputFieldsValuesForNewTask/Selectors';
 import { addNewTaskWithThunkAction, resetDictWithNewTaskPropertiesErrorsAction } from '../../store/Tasks/Action';
 import { useStyles } from '../../styles/Style';
 import { AddTaskUI } from '../../ui_components/AddTaskUI';
@@ -29,6 +29,7 @@ export const AddTask = () => {
     const taskDuration = useSelector(getInputFieldsValuesForNewTaskTaskDurationSelector);
     const taskStatus = useSelector(getInputFieldsValuesForNewTaskTaskStatusSelector);
     const taskComment = useSelector(getInputFieldsValuesForNewTaskTaskCommentSelector);
+    const taskEisenhowerMatrixValue = useSelector(getInputFieldsValuesForNewTaskTaskEisenhowerMatrixValueSelector);
 
     const inputFieldsValuesInitializer = useSelector(getAppSwitchesResetInputFieldsValuesInitializerSelector);
 
@@ -47,6 +48,7 @@ export const AddTask = () => {
             taskDuration: taskDuration,
             taskStatus: taskStatus,
             taskComment: taskComment,
+            taskEisenhowerMatrixValue: taskEisenhowerMatrixValue,
         };
 
         let errorFound = false;
@@ -97,7 +99,14 @@ export const AddTask = () => {
         });
     }, [dispatch]);
 
+    useEffect(() => {
+        dispatch({
+            type: taskEisenhowerMatrixValueAction.type,
+            payload: getEisenhowerMatrixValue(taskUrgency, taskImportance),
+        })
+    }, [taskUrgency, taskImportance, dispatch]);
+
     return (
-        <AddTaskUI classes={classes} onSubmitForm={onSubmitForm} resetInputsValuesByButton={resetInputsValuesByButton}></AddTaskUI>
+        <AddTaskUI classes={classes} onSubmitForm={onSubmitForm} resetInputsValuesByButton={resetInputsValuesByButton} taskEisenhowerMatrixValue={taskEisenhowerMatrixValue}></AddTaskUI>
     )
 };

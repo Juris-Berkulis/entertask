@@ -95,6 +95,23 @@ export const allSignsForTasksFilter = {
         variable: 'taskForToday',
         decodingIntoRus: 'Задача на сегодня',
     },
+    taskEisenhowerMatrixValue: {
+        variable: 'taskEisenhowerMatrixValue',
+        decodingIntoRus: 'Матрица эйзенхауэра',
+    },
 };
 
 export const characterToAutocompleteEmptyTaskSign = '<пусто>';
+
+export const eisenhowerMatrix = {
+    '1_1': '1-1. Игнорировать',
+    '1_2': '1-2. Игнорировать-Запланировать',
+    '1_3': '1-3. Запланировать',
+    '2_1': '2-1. Игнорировать-Делегировать',
+    '2_2': '2-2. Распределить',
+    '2_3': '2-3. Запланировать-Сделать',
+    '3_1': '3-1. Делегировать',
+    '3_2': '3-2. Делегировать-Сделать',
+    '3_3': '3-3. Сделать',
+    '0_0': 'Не распределено',
+};

@@ -1,3 +1,5 @@
+import { eisenhowerMatrix } from "../../data/consts";
+
 export const getInputFieldsValuesForNewTaskRootSelector = (state) => state.inputFieldsValuesForNewTaskStore;
 export const getInputFieldsValuesForNewTasktaskCategorySelector = (state) => getInputFieldsValuesForNewTaskRootSelector(state).taskCategoryCase || '';
 export const getInputFieldsValuesForNewTaskTaskNameSelector = (state) => getInputFieldsValuesForNewTaskRootSelector(state).taskNameCase || '';
@@ -10,3 +12,4 @@ export const getInputFieldsValuesForNewTaskTaskDeadlineSelector = (state) => get
 export const getInputFieldsValuesForNewTaskTaskDurationSelector = (state) => getInputFieldsValuesForNewTaskRootSelector(state).taskDurationCase || '';
 export const getInputFieldsValuesForNewTaskTaskStatusSelector = (state) => getInputFieldsValuesForNewTaskRootSelector(state).taskStatusCase || '';
 export const getInputFieldsValuesForNewTaskTaskCommentSelector = (state) => getInputFieldsValuesForNewTaskRootSelector(state).taskCommentCase || '';
+export const getInputFieldsValuesForNewTaskTaskEisenhowerMatrixValueSelector = (state) => getInputFieldsValuesForNewTaskRootSelector(state).taskEisenhowerMatrixValueCase || eisenhowerMatrix["0_0"];

@@ -83,6 +83,15 @@ export const TaskInTasksListUI = (props) => {
                 </div>
                 <div className={`${props.classes.allTasks__taskListItemCell}`}>
                     {
+                        props.item.taskEisenhowerMatrixValue 
+                        && 
+                        props.item.taskEisenhowerMatrixValue !== props.characterToAutocompleteEmptyTaskSign 
+                        && 
+                        <p className={`${props.classes.allTasks__taskListItemParagraph}`}>Эйзенхауэр: <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.item.taskEisenhowerMatrixValue}</span></p>
+                    }
+                </div>
+                <div className={`${props.classes.allTasks__taskListItemCell}`}>
+                    {
                         props.item.taskDeadline 
                         && 
                         props.item.taskDeadline !== props.characterToAutocompleteEmptyTaskSign 

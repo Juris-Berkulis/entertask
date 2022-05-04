@@ -9,6 +9,7 @@ const TASK_DEADLINE_ACTION = 'TASK_DEADLINE_ACTION';
 const TASK_DURATION_ACTION = 'TASK_DURATION_ACTION';
 const TASK_STATUS_ACTION = 'TASK_STATUS_ACTION';
 const TASK_COMMENT_ACTION = 'TASK_COMMENT_ACTION';
+const TASK_EISENHOWER_MATRIX_VALUE_ACTION = 'TASK_EISENHOWER_MATRIX_VALUE_ACTION';
 
 export const taskCategoryAction = {
     type: TASK_CATEGORY_ACTION,
@@ -54,6 +55,10 @@ export const taskCommentAction = {
     type: TASK_COMMENT_ACTION,
 };
 
+export const taskEisenhowerMatrixValueAction = {
+    type: TASK_EISENHOWER_MATRIX_VALUE_ACTION,
+};
+
 export const inputFieldsValuesForNewTaskActionsList = [
     taskCategoryAction,
     taskNameAction,
@@ -66,4 +71,5 @@ export const inputFieldsValuesForNewTaskActionsList = [
     taskDurationAction,
     taskStatusAction,
     taskCommentAction,
+    taskEisenhowerMatrixValueAction,
 ];

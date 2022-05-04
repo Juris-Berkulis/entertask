@@ -270,6 +270,22 @@ export const useStyles = makeStyles({
     height: '70vh',
     overflow: 'auto',
   },
+  taskInputFields__taskEisenhowerMatrixWrapper: {
+    margin: '0.5vh 0',
+    display: 'flex',
+    flexWrap: 'wrap',
+    alignItems: 'center',
+    justifyContent: 'space-around',
+  },
+  taskInputFields__taskEisenhowerMatrixLabel: {
+    width: '25vw',
+    display: 'block',
+  },
+  taskInputFields__taskEisenhowerMatrixValue: {
+    width: '50vw',
+    display: 'block',
+    padding: '1vh 1vw',
+  },
   taskInput__wrapper: {
     margin: '0.5vh 0',
     display: 'flex',
