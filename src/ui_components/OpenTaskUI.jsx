@@ -35,20 +35,6 @@ export const OpenTaskUI = (props) => {
                     <p className={`${props.classes.openTask__taskListItemParagraph} ${props.classes.allTasks__taskListItemParagraph}`}>Подзадача: <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.tasksListOpenTaskSel.subtaskName}</span></p>
                 }
                 {
-                    props.tasksListOpenTaskSel.taskPriority 
-                    && 
-                    props.tasksListOpenTaskSel.taskPriority !== props.characterToAutocompleteEmptyTaskSign 
-                    && 
-                    <p className={`${props.classes.openTask__taskListItemParagraph} ${props.classes.allTasks__taskListItemParagraph}`}>Приоритет: <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.tasksListOpenTaskSel.taskPriority}</span></p>
-                }
-                {
-                    props.tasksListOpenTaskSel.taskControl 
-                    && 
-                    props.tasksListOpenTaskSel.taskControl !== props.characterToAutocompleteEmptyTaskSign 
-                    && 
-                    <p className={`${props.classes.openTask__taskListItemParagraph} ${props.classes.allTasks__taskListItemParagraph}`}>Контроль: <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.tasksListOpenTaskSel.taskControl}</span></p>
-                }
-                {
                     props.tasksListOpenTaskSel.taskUrgency 
                     && 
                     props.tasksListOpenTaskSel.taskUrgency !== props.characterToAutocompleteEmptyTaskSign 
@@ -68,6 +54,20 @@ export const OpenTaskUI = (props) => {
                     props.tasksListOpenTaskSel.taskEisenhowerMatrixValue !== props.characterToAutocompleteEmptyTaskSign 
                     && 
                     <p className={`${props.classes.openTask__taskListItemParagraph} ${props.classes.allTasks__taskListItemParagraph}`}>Матрица Эйзенхауэра: <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.replaceBrieflyValueToDetailValueOfTheTaskSign(props.allSignsForTasksFilter.taskEisenhowerMatrixValue.variable, props.tasksListOpenTaskSel.taskEisenhowerMatrixValue)}</span></p>
+                }
+                {
+                    props.tasksListOpenTaskSel.taskPriority 
+                    && 
+                    props.tasksListOpenTaskSel.taskPriority !== props.characterToAutocompleteEmptyTaskSign 
+                    && 
+                    <p className={`${props.classes.openTask__taskListItemParagraph} ${props.classes.allTasks__taskListItemParagraph}`}>Приоритет: <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.tasksListOpenTaskSel.taskPriority}</span></p>
+                }
+                {
+                    props.tasksListOpenTaskSel.taskControl 
+                    && 
+                    props.tasksListOpenTaskSel.taskControl !== props.characterToAutocompleteEmptyTaskSign 
+                    && 
+                    <p className={`${props.classes.openTask__taskListItemParagraph} ${props.classes.allTasks__taskListItemParagraph}`}>Контроль: <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.tasksListOpenTaskSel.taskControl}</span></p>
                 }
                 {
                     props.tasksListOpenTaskSel.taskDeadline 

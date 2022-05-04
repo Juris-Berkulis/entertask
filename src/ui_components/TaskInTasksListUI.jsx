@@ -47,24 +47,6 @@ export const TaskInTasksListUI = (props) => {
                 </div>
                 <div className={`${props.classes.allTasks__taskListItemCell}`}>
                     {
-                        props.item.taskPriority 
-                        && 
-                        props.item.taskPriority !== props.characterToAutocompleteEmptyTaskSign 
-                        && 
-                        <p className={`${props.classes.allTasks__taskListItemParagraph}`}>Приоритет: <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.item.taskPriority}</span></p>
-                    }
-                </div>
-                <div className={`${props.classes.allTasks__taskListItemCell}`}>
-                    {
-                        props.item.taskControl 
-                        && 
-                        props.item.taskControl !== props.characterToAutocompleteEmptyTaskSign 
-                        && 
-                        <p className={`${props.classes.allTasks__taskListItemParagraph}`}>Контроль: <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.item.taskControl}</span></p>
-                    }
-                </div>
-                <div className={`${props.classes.allTasks__taskListItemCell}`}>
-                    {
                         props.item.taskUrgency 
                         && 
                         props.item.taskUrgency !== props.characterToAutocompleteEmptyTaskSign 
@@ -88,6 +70,24 @@ export const TaskInTasksListUI = (props) => {
                         props.item.taskEisenhowerMatrixValue !== props.characterToAutocompleteEmptyTaskSign 
                         && 
                         <p className={`${props.classes.allTasks__taskListItemParagraph}`}>Эйзенхауэр: <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.replaceBrieflyValueToDetailValueOfTheTaskSign(props.allSignsForTasksFilter.taskEisenhowerMatrixValue.variable, props.item.taskEisenhowerMatrixValue)}</span></p>
+                    }
+                </div>
+                <div className={`${props.classes.allTasks__taskListItemCell}`}>
+                    {
+                        props.item.taskPriority 
+                        && 
+                        props.item.taskPriority !== props.characterToAutocompleteEmptyTaskSign 
+                        && 
+                        <p className={`${props.classes.allTasks__taskListItemParagraph}`}>Приоритет: <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.item.taskPriority}</span></p>
+                    }
+                </div>
+                <div className={`${props.classes.allTasks__taskListItemCell}`}>
+                    {
+                        props.item.taskControl 
+                        && 
+                        props.item.taskControl !== props.characterToAutocompleteEmptyTaskSign 
+                        && 
+                        <p className={`${props.classes.allTasks__taskListItemParagraph}`}>Контроль: <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.item.taskControl}</span></p>
                     }
                 </div>
                 <div className={`${props.classes.allTasks__taskListItemCell}`}>
