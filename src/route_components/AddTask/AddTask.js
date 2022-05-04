@@ -2,7 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { allAppComponentsWithPageTitle } from '../../data/consts';
-import { checkIsInputValueValid, fillInEmptyTaskAttributes, getEisenhowerMatrixValue } from '../../helper/helper';
+import { checkIsInputValueValid, fillInEmptyTaskAttributes, getEisenhowerMatrixValue, replaceBrieflyValueToDetailValueOfTheEisenhowerMatrix } from '../../helper/helper';
 import { resetInputFieldsValuesInitializerAction } from '../../store/AppSwitches/Action';
 import { getAppSwitchesResetInputFieldsValuesInitializerSelector } from '../../store/AppSwitches/Selectors';
 import { inputFieldsValuesForNewTaskActionsList, taskEisenhowerMatrixValueAction } from '../../store/InputFieldsValuesForNewTask/Action';
@@ -107,6 +107,6 @@ export const AddTask = () => {
     }, [taskUrgency, taskImportance, dispatch]);
 
     return (
-        <AddTaskUI classes={classes} onSubmitForm={onSubmitForm} resetInputsValuesByButton={resetInputsValuesByButton} taskEisenhowerMatrixValue={taskEisenhowerMatrixValue}></AddTaskUI>
+        <AddTaskUI classes={classes} onSubmitForm={onSubmitForm} resetInputsValuesByButton={resetInputsValuesByButton} taskEisenhowerMatrixValue={replaceBrieflyValueToDetailValueOfTheEisenhowerMatrix(taskEisenhowerMatrixValue)}></AddTaskUI>
     )
 };

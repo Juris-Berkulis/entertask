@@ -297,35 +297,39 @@ export const tasksFiltering = (item, dictWithListsForTasksFilterSel, allSignsFor
 export const getEisenhowerMatrixValue = (taskUrgency, taskImportance) => {
     if (taskUrgency[0] === '1') {
         if (taskImportance[0] === '1') {
-            return eisenhowerMatrix["1_1"]
+            return eisenhowerMatrix["1_1"].briefly
         } else if (taskImportance[0] === '2') {
-            return eisenhowerMatrix["1_2"]
+            return eisenhowerMatrix["1_2"].briefly
         } else if (taskImportance[0] === '3') {
-            return eisenhowerMatrix["1_3"]
+            return eisenhowerMatrix["1_3"].briefly
         } else {
-            return eisenhowerMatrix["0_0"]
+            return eisenhowerMatrix["0_0"].briefly
         }
     } else if (taskUrgency[0] === '2') {
         if (taskImportance[0] === '1') {
-            return eisenhowerMatrix["2_1"]
+            return eisenhowerMatrix["2_1"].briefly
         } else if (taskImportance[0] === '2') {
-            return eisenhowerMatrix["2_2"]
+            return eisenhowerMatrix["2_2"].briefly
         } else if (taskImportance[0] === '3') {
-            return eisenhowerMatrix["2_3"]
+            return eisenhowerMatrix["2_3"].briefly
         } else {
-            return eisenhowerMatrix["0_0"]
+            return eisenhowerMatrix["0_0"].briefly
         }
     } else if (taskUrgency[0] === '3') {
         if (taskImportance[0] === '1') {
-            return eisenhowerMatrix["3_1"]
+            return eisenhowerMatrix["3_1"].briefly
         } else if (taskImportance[0] === '2') {
-            return eisenhowerMatrix["3_2"]
+            return eisenhowerMatrix["3_2"].briefly
         } else if (taskImportance[0] === '3') {
-            return eisenhowerMatrix["3_3"]
+            return eisenhowerMatrix["3_3"].briefly
         } else {
-            return eisenhowerMatrix["0_0"]
+            return eisenhowerMatrix["0_0"].briefly
         }
     } else {
-        return eisenhowerMatrix["0_0"]
+        return eisenhowerMatrix["0_0"].briefly
     }
+};
+
+export const replaceBrieflyValueToDetailValueOfTheEisenhowerMatrix = (taskEisenhowerMatrixValue) => {
+    return eisenhowerMatrix[taskEisenhowerMatrixValue].detail
 };

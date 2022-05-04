@@ -12,4 +12,4 @@ export const getInputFieldsValuesForNewTaskTaskDeadlineSelector = (state) => get
 export const getInputFieldsValuesForNewTaskTaskDurationSelector = (state) => getInputFieldsValuesForNewTaskRootSelector(state).taskDurationCase || '';
 export const getInputFieldsValuesForNewTaskTaskStatusSelector = (state) => getInputFieldsValuesForNewTaskRootSelector(state).taskStatusCase || '';
 export const getInputFieldsValuesForNewTaskTaskCommentSelector = (state) => getInputFieldsValuesForNewTaskRootSelector(state).taskCommentCase || '';
-export const getInputFieldsValuesForNewTaskTaskEisenhowerMatrixValueSelector = (state) => getInputFieldsValuesForNewTaskRootSelector(state).taskEisenhowerMatrixValueCase || eisenhowerMatrix["0_0"];
+export const getInputFieldsValuesForNewTaskTaskEisenhowerMatrixValueSelector = (state) => (eisenhowerMatrix[getInputFieldsValuesForNewTaskRootSelector(state).taskEisenhowerMatrixValueCase] && eisenhowerMatrix[getInputFieldsValuesForNewTaskRootSelector(state).taskEisenhowerMatrixValueCase].briefly) || eisenhowerMatrix["0_0"].briefly;

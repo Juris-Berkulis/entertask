@@ -1,5 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { allSignsForTasksFilter, eisenhowerMatrix } from '../../data/consts';
 import { switchForCloseAllListsForTasksPropertiesFilterAction } from '../../store/AppSwitches/Action';
 import { getAppSwitchesSwitchForCloseAllListsForTasksPropertiesFilterSelector } from '../../store/AppSwitches/Selectors';
 import { changeTaskPropertyShowWithThunkAction, reverseDirectionForTasksSortinBySignAction, tasksSignForTasksSortingAction } from '../../store/Tasks/Action';
@@ -41,7 +42,15 @@ export const TasksFilter = (props) => {
                     : 
                         <span>&#10060; </span>
                 }
-                <span>{item}</span>
+                <span>
+                    {
+                        props.signForTasksFilter === allSignsForTasksFilter.taskEisenhowerMatrixValue.variable 
+                        ? 
+                        eisenhowerMatrix[item].detail 
+                        : 
+                        item
+                    }
+                </span>
             </p>
         )
     });

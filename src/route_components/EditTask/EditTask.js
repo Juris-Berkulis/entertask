@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { allAppComponentsWithPageTitle, allSignsForTasksFilter, characterToAutocompleteEmptyTaskSign } from '../../data/consts';
-import { checkIsInputValueValid, fillInEmptyTaskAttributes, getEisenhowerMatrixValue } from '../../helper/helper';
+import { checkIsInputValueValid, fillInEmptyTaskAttributes, getEisenhowerMatrixValue, replaceBrieflyValueToDetailValueOfTheEisenhowerMatrix } from '../../helper/helper';
 import { resetInputFieldsValuesInitializerAction } from '../../store/AppSwitches/Action';
 import { getAppSwitchesEditableTaskObjectSelector, getAppSwitchesResetInputFieldsValuesInitializerSelector } from '../../store/AppSwitches/Selectors';
 import { inputFieldsValuesForNewTaskActionsList, taskEisenhowerMatrixValueAction } from '../../store/InputFieldsValuesForNewTask/Action';
@@ -150,6 +150,6 @@ export const EditTask = () => {
     }, [taskUrgency, taskImportance, dispatch]);
 
     return (
-        <EditTaskUI classes={classes} editForm={editForm} resetInputsValuesByButton={resetInputsValuesByButton} editableTaskObject={editableTaskObjectWithoutAutocomplete} taskEisenhowerMatrixValue={taskEisenhowerMatrixValue}></EditTaskUI>
+        <EditTaskUI classes={classes} editForm={editForm} resetInputsValuesByButton={resetInputsValuesByButton} editableTaskObject={editableTaskObjectWithoutAutocomplete} taskEisenhowerMatrixValue={replaceBrieflyValueToDetailValueOfTheEisenhowerMatrix(taskEisenhowerMatrixValue)}></EditTaskUI>
     )
 };
