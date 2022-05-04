@@ -53,21 +53,21 @@ export const OpenTaskUI = (props) => {
                     && 
                     props.tasksListOpenTaskSel.taskUrgency !== props.characterToAutocompleteEmptyTaskSign 
                     && 
-                    <p className={`${props.classes.openTask__taskListItemParagraph} ${props.classes.allTasks__taskListItemParagraph}`}>Срочность: <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.tasksListOpenTaskSel.taskUrgency}</span></p>
+                    <p className={`${props.classes.openTask__taskListItemParagraph} ${props.classes.allTasks__taskListItemParagraph}`}>Срочность: <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.replaceBrieflyValueToDetailValueOfTheTaskSign(props.allSignsForTasksFilter.taskUrgency.variable, props.tasksListOpenTaskSel.taskUrgency)}</span></p>
                 }
                 {
                     props.tasksListOpenTaskSel.taskImportance 
                     && 
                     props.tasksListOpenTaskSel.taskImportance !== props.characterToAutocompleteEmptyTaskSign 
                     && 
-                    <p className={`${props.classes.openTask__taskListItemParagraph} ${props.classes.allTasks__taskListItemParagraph}`}>Важность: <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.tasksListOpenTaskSel.taskImportance}</span></p>
+                    <p className={`${props.classes.openTask__taskListItemParagraph} ${props.classes.allTasks__taskListItemParagraph}`}>Важность: <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.replaceBrieflyValueToDetailValueOfTheTaskSign(props.allSignsForTasksFilter.taskImportance.variable, props.tasksListOpenTaskSel.taskImportance)}</span></p>
                 }
                 {
                     props.tasksListOpenTaskSel.taskEisenhowerMatrixValue 
                     && 
                     props.tasksListOpenTaskSel.taskEisenhowerMatrixValue !== props.characterToAutocompleteEmptyTaskSign 
                     && 
-                    <p className={`${props.classes.openTask__taskListItemParagraph} ${props.classes.allTasks__taskListItemParagraph}`}>Матрица Эйзенхауэра: <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.replaceBrieflyValueToDetailValueOfTheEisenhowerMatrix(props.tasksListOpenTaskSel.taskEisenhowerMatrixValue)}</span></p>
+                    <p className={`${props.classes.openTask__taskListItemParagraph} ${props.classes.allTasks__taskListItemParagraph}`}>Матрица Эйзенхауэра: <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.replaceBrieflyValueToDetailValueOfTheTaskSign(props.allSignsForTasksFilter.taskEisenhowerMatrixValue.variable, props.tasksListOpenTaskSel.taskEisenhowerMatrixValue)}</span></p>
                 }
                 {
                     props.tasksListOpenTaskSel.taskDeadline 

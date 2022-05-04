@@ -145,3 +145,33 @@ export const eisenhowerMatrix = {
         detail: 'Не распределено',
     },
 };
+
+export const urgency = {
+    '1': {
+        briefly: '1',
+        detail: '1. Низкая',
+    },
+    '2': {
+        briefly: '2',
+        detail: '2. Средняя',
+    },
+    '3': {
+        briefly: '3',
+        detail: '3. Высокая',
+    },
+};
+
+export const importance = {
+    '1': {
+        briefly: '1',
+        detail: '1. Низкая',
+    },
+    '2': {
+        briefly: '2',
+        detail: '2. Средняя',
+    },
+    '3': {
+        briefly: '3',
+        detail: '3. Высокая',
+    },
+};

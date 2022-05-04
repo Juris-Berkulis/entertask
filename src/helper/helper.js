@@ -1,4 +1,4 @@
-import { allAppComponentsWithPageTitle, allSignsForTasksFilter, characterToAutocompleteEmptyTaskSign, eisenhowerMatrix, mobileScreenWidth } from "../data/consts";
+import { allAppComponentsWithPageTitle, allSignsForTasksFilter, characterToAutocompleteEmptyTaskSign, eisenhowerMatrix, importance, mobileScreenWidth, urgency } from "../data/consts";
 import { editableTaskObjectAction } from "../store/AppSwitches/Action";
 import { addTheTaskInListWithTasksForTodayWithThunkAction, deleteExtraSignOfTaskFilteringWithThunkAction, deleteTaskWithThunkAction, deleteTheTaskFromListWithTasksForTodayWithThunkAction, dictWithNewTaskPropertiesErrorsAction, openTaskAction } from "../store/Tasks/Action";
 
@@ -360,4 +360,16 @@ export const getEisenhowerMatrixValue = (taskUrgency, taskImportance) => {
 
 export const replaceBrieflyValueToDetailValueOfTheEisenhowerMatrix = (taskEisenhowerMatrixValue) => {
     return eisenhowerMatrix[taskEisenhowerMatrixValue].detail
+};
+
+export const replaceBrieflyValueToDetailValueOfTheTaskSign = (sign, property) => {
+    if (sign === allSignsForTasksFilter.taskUrgency.variable) {
+        return urgency[property] && urgency[property].detail
+    } else if (sign === allSignsForTasksFilter.taskImportance.variable) {
+        return importance[property] && importance[property].detail
+    } else if (sign === allSignsForTasksFilter.taskEisenhowerMatrixValue.variable) {
+        return replaceBrieflyValueToDetailValueOfTheEisenhowerMatrix(property)
+    } else {
+        return property
+    }
 };

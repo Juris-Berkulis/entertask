@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { characterToAutocompleteEmptyTaskSign } from '../../data/consts';
-import { replaceBrieflyValueToDetailValueOfTheEisenhowerMatrix } from '../../helper/helper';
+import { allSignsForTasksFilter, characterToAutocompleteEmptyTaskSign } from '../../data/consts';
+import { replaceBrieflyValueToDetailValueOfTheTaskSign } from '../../helper/helper';
 import { closeTaskAction } from '../../store/Tasks/Action';
 import { getTasksListOpenTaskSelector } from '../../store/Tasks/Selectors';
 import { useStyles } from '../../styles/Style';
@@ -39,6 +39,6 @@ export const OpenTask = (props) => {
     }, [tasksListOpenTaskSel]);
     
     return (
-        <OpenTaskUI classes={classes} closeTheTask={closeTheTask} tasksListOpenTaskSel={tasksListOpenTaskSel} someTaskIsOpen={someTaskIsOpen} changeTask={props.changeTask} deleteTask={props.deleteTask} characterToAutocompleteEmptyTaskSign={characterToAutocompleteEmptyTaskSign} dispatch={props.dispatch} tasksKindOfDictByUserUIDSel={props.tasksKindOfDictByUserUIDSel} history={props.history} replaceBrieflyValueToDetailValueOfTheEisenhowerMatrix={replaceBrieflyValueToDetailValueOfTheEisenhowerMatrix}></OpenTaskUI>
+        <OpenTaskUI classes={classes} closeTheTask={closeTheTask} tasksListOpenTaskSel={tasksListOpenTaskSel} someTaskIsOpen={someTaskIsOpen} changeTask={props.changeTask} deleteTask={props.deleteTask} characterToAutocompleteEmptyTaskSign={characterToAutocompleteEmptyTaskSign} dispatch={props.dispatch} tasksKindOfDictByUserUIDSel={props.tasksKindOfDictByUserUIDSel} history={props.history} replaceBrieflyValueToDetailValueOfTheTaskSign={replaceBrieflyValueToDetailValueOfTheTaskSign} allSignsForTasksFilter={allSignsForTasksFilter}></OpenTaskUI>
     )
 };

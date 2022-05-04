@@ -69,7 +69,7 @@ export const TaskInTasksListUI = (props) => {
                         && 
                         props.item.taskUrgency !== props.characterToAutocompleteEmptyTaskSign 
                         && 
-                        <p className={`${props.classes.allTasks__taskListItemParagraph}`}>Срочность: <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.item.taskUrgency}</span></p>
+                        <p className={`${props.classes.allTasks__taskListItemParagraph}`}>Срочность: <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.replaceBrieflyValueToDetailValueOfTheTaskSign(props.allSignsForTasksFilter.taskUrgency.variable, props.item.taskUrgency)}</span></p>
                     }
                 </div>
                 <div className={`${props.classes.allTasks__taskListItemCell}`}>
@@ -78,7 +78,7 @@ export const TaskInTasksListUI = (props) => {
                         && 
                         props.item.taskImportance !== props.characterToAutocompleteEmptyTaskSign 
                         && 
-                        <p className={`${props.classes.allTasks__taskListItemParagraph}`}>Важность: <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.item.taskImportance}</span></p>
+                        <p className={`${props.classes.allTasks__taskListItemParagraph}`}>Важность: <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.replaceBrieflyValueToDetailValueOfTheTaskSign(props.allSignsForTasksFilter.taskImportance.variable, props.item.taskImportance)}</span></p>
                     }
                 </div>
                 <div className={`${props.classes.allTasks__taskListItemCell}`}>
@@ -87,7 +87,7 @@ export const TaskInTasksListUI = (props) => {
                         && 
                         props.item.taskEisenhowerMatrixValue !== props.characterToAutocompleteEmptyTaskSign 
                         && 
-                        <p className={`${props.classes.allTasks__taskListItemParagraph}`}>Эйзенхауэр: <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.replaceBrieflyValueToDetailValueOfTheEisenhowerMatrix(props.item.taskEisenhowerMatrixValue)}</span></p>
+                        <p className={`${props.classes.allTasks__taskListItemParagraph}`}>Эйзенхауэр: <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.replaceBrieflyValueToDetailValueOfTheTaskSign(props.allSignsForTasksFilter.taskEisenhowerMatrixValue.variable, props.item.taskEisenhowerMatrixValue)}</span></p>
                     }
                 </div>
                 <div className={`${props.classes.allTasks__taskListItemCell}`}>
