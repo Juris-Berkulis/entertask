@@ -24,7 +24,9 @@ export const TaskInTasksListUI = (props) => {
                         && 
                         props.item.taskCategory !== props.characterToAutocompleteEmptyTaskSign 
                         && 
-                        <p className={`${props.classes.allTasks__taskListItemParagraph}`}><span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.item.taskCategory}</span></p>
+                        <p className={`${props.classes.allTasks__taskListItemParagraph}`}>
+                            <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.item.taskCategory}</span>
+                        </p>
                     }
                 </div>
                 <div className={`${props.classes.allTasks__taskListItemCell}`}>
@@ -33,7 +35,9 @@ export const TaskInTasksListUI = (props) => {
                         && 
                         props.item.taskName !== props.characterToAutocompleteEmptyTaskSign 
                         && 
-                        <p className={`${props.classes.allTasks__taskListItemParagraph} ${props.classes.allTasks__taskListItemParagraph_taskName}`}><span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.item.taskName}</span></p>
+                        <p className={`${props.classes.allTasks__taskListItemParagraph} ${props.classes.allTasks__taskListItemParagraph_taskName}`}>
+                            <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.item.taskName}</span>
+                        </p>
                     }
                 </div>
                 <div className={`${props.classes.allTasks__taskListItemCell}`}>
@@ -42,7 +46,9 @@ export const TaskInTasksListUI = (props) => {
                         && 
                         props.item.subtaskName !== props.characterToAutocompleteEmptyTaskSign 
                         && 
-                        <p className={`${props.classes.allTasks__taskListItemParagraph}`}><span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.item.subtaskName}</span></p>
+                        <p className={`${props.classes.allTasks__taskListItemParagraph}`}>
+                            <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.item.subtaskName}</span>
+                        </p>
                     }
                 </div>
                 <div className={`${props.classes.allTasks__taskListItemCell}`}>
@@ -51,7 +57,9 @@ export const TaskInTasksListUI = (props) => {
                         && 
                         props.item.taskUrgency !== props.characterToAutocompleteEmptyTaskSign 
                         && 
-                        <p className={`${props.classes.allTasks__taskListItemParagraph}`}><span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.replaceBrieflyValueToDetailValueOfTheTaskSign(props.allSignsForTasksFilter.taskUrgency.variable, props.item.taskUrgency)}</span></p>
+                        <p className={`${props.classes.allTasks__taskListItemParagraph}`}>
+                            <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.replaceBrieflyValueToDetailValueOfTheTaskSign(props.allSignsForTasksFilter.taskUrgency.variable, props.item.taskUrgency)}</span>
+                        </p>
                     }
                 </div>
                 <div className={`${props.classes.allTasks__taskListItemCell}`}>
@@ -60,7 +68,9 @@ export const TaskInTasksListUI = (props) => {
                         && 
                         props.item.taskImportance !== props.characterToAutocompleteEmptyTaskSign 
                         && 
-                        <p className={`${props.classes.allTasks__taskListItemParagraph}`}><span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.replaceBrieflyValueToDetailValueOfTheTaskSign(props.allSignsForTasksFilter.taskImportance.variable, props.item.taskImportance)}</span></p>
+                        <p className={`${props.classes.allTasks__taskListItemParagraph}`}>
+                            <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.replaceBrieflyValueToDetailValueOfTheTaskSign(props.allSignsForTasksFilter.taskImportance.variable, props.item.taskImportance)}</span>
+                        </p>
                     }
                 </div>
                 <div className={`${props.classes.allTasks__taskListItemCell} ${props.classes.taskEisenhowerMatrixValue__color_} ${props.classes['taskEisenhowerMatrixValue__color_' + props.item.taskEisenhowerMatrixValue]}`}>
@@ -69,7 +79,9 @@ export const TaskInTasksListUI = (props) => {
                         && 
                         props.item.taskEisenhowerMatrixValue !== props.characterToAutocompleteEmptyTaskSign 
                         && 
-                        <p className={`${props.classes.allTasks__taskListItemParagraph}`}><span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.replaceBrieflyValueToDetailValueOfTheTaskSign(props.allSignsForTasksFilter.taskEisenhowerMatrixValue.variable, props.item.taskEisenhowerMatrixValue)}</span></p>
+                        <p className={`${props.classes.allTasks__taskListItemParagraph}`}>
+                            <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.replaceBrieflyValueToDetailValueOfTheTaskSign(props.allSignsForTasksFilter.taskEisenhowerMatrixValue.variable, props.item.taskEisenhowerMatrixValue)}</span>
+                        </p>
                     }
                 </div>
                 <div className={`${props.classes.allTasks__taskListItemCell}`}>
@@ -78,7 +90,9 @@ export const TaskInTasksListUI = (props) => {
                         && 
                         props.item.taskPriority !== props.characterToAutocompleteEmptyTaskSign 
                         && 
-                        <p className={`${props.classes.allTasks__taskListItemParagraph}`}><span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.item.taskPriority}</span></p>
+                        <p className={`${props.classes.allTasks__taskListItemParagraph}`}>
+                            <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.item.taskPriority}</span>
+                        </p>
                     }
                 </div>
                 <div className={`${props.classes.allTasks__taskListItemCell}`}>
@@ -87,7 +101,9 @@ export const TaskInTasksListUI = (props) => {
                         && 
                         props.item.taskControl !== props.characterToAutocompleteEmptyTaskSign 
                         && 
-                        <p className={`${props.classes.allTasks__taskListItemParagraph}`}><span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.item.taskControl}</span></p>
+                        <p className={`${props.classes.allTasks__taskListItemParagraph}`}>
+                            <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.item.taskControl}</span>
+                        </p>
                     }
                 </div>
                 <div className={`${props.classes.allTasks__taskListItemCell}`}>
@@ -96,7 +112,9 @@ export const TaskInTasksListUI = (props) => {
                         && 
                         props.item.taskDeadline !== props.characterToAutocompleteEmptyTaskSign 
                         && 
-                        <p className={`${props.classes.allTasks__taskListItemParagraph}`}><span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.item.taskDeadline}</span></p>
+                        <p className={`${props.classes.allTasks__taskListItemParagraph}`}>
+                            <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.item.taskDeadline}</span>
+                        </p>
                     }
                 </div>
                 <div className={`${props.classes.allTasks__taskListItemCell}`}>
@@ -105,7 +123,9 @@ export const TaskInTasksListUI = (props) => {
                         && 
                         props.item.taskDuration !== props.characterToAutocompleteEmptyTaskSign 
                         && 
-                        <p className={`${props.classes.allTasks__taskListItemParagraph}`}><span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.item.taskDuration}</span></p>
+                        <p className={`${props.classes.allTasks__taskListItemParagraph}`}>
+                            <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.item.taskDuration}</span>
+                        </p>
                     }
                 </div>
                 <div className={`${props.classes.allTasks__taskListItemCell}`}>
@@ -114,7 +134,9 @@ export const TaskInTasksListUI = (props) => {
                         && 
                         props.item.taskStatus !== props.characterToAutocompleteEmptyTaskSign 
                         && 
-                        <p className={`${props.classes.allTasks__taskListItemParagraph} ${props.classes.allTasks__taskListItemParagraph_status} ${(props.item.taskStatus === '+' && props.classes.allTasks__taskListItemParagraph_statusPlus) || (props.item.taskStatus === '-' && props.classes.allTasks__taskListItemParagraph_statusMinus) || null}`}><span className={`${props.classes.allTasks__taskListItemParagraphValue} ${props.classes.allTasks__taskListItemParagraphValue_status} ${(props.item.taskStatus === '+' && props.classes.allTasks__taskListItemParagraphValue_statusPlus) || (props.item.taskStatus === '-' && props.classes.allTasks__taskListItemParagraphValue_statusMinus) || null}`}>{props.item.taskStatus === '-' ? <span>&#8722;</span> : props.item.taskStatus}</span></p>
+                        <p className={`${props.classes.allTasks__taskListItemParagraph} ${props.classes.allTasks__taskListItemParagraph_status} ${(props.item.taskStatus === '+' && props.classes.allTasks__taskListItemParagraph_statusPlus) || (props.item.taskStatus === '-' && props.classes.allTasks__taskListItemParagraph_statusMinus) || null}`}>
+                            <span className={`${props.classes.allTasks__taskListItemParagraphValue} ${props.classes.allTasks__taskListItemParagraphValue_status} ${(props.item.taskStatus === '+' && props.classes.allTasks__taskListItemParagraphValue_statusPlus) || (props.item.taskStatus === '-' && props.classes.allTasks__taskListItemParagraphValue_statusMinus) || null}`}>{props.item.taskStatus === '-' ? <span>&#8722;</span> : props.item.taskStatus}</span>
+                        </p>
                     }
                 </div>
                 <div className={`${props.classes.allTasks__taskListItemCell}`}>
@@ -123,7 +145,9 @@ export const TaskInTasksListUI = (props) => {
                         && 
                         props.item.taskCreateAt !== props.characterToAutocompleteEmptyTaskSign 
                         && 
-                        <p className={`${props.classes.allTasks__taskListItemParagraph}`}><span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.item.taskCreateAt}</span></p>
+                        <p className={`${props.classes.allTasks__taskListItemParagraph}`}>
+                            <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.item.taskCreateAt}</span>
+                        </p>
                     }
                 </div>
                 <div className={`${props.classes.allTasks__taskListItemCell}`}>
@@ -132,7 +156,9 @@ export const TaskInTasksListUI = (props) => {
                         && 
                         props.item.taskComment !== props.characterToAutocompleteEmptyTaskSign 
                         && 
-                        <p className={`${props.classes.allTasks__taskListItemParagraph}`}><span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.item.taskComment}</span></p>
+                        <p className={`${props.classes.allTasks__taskListItemParagraph}`}>
+                            <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.item.taskComment}</span>
+                        </p>
                     }
                 </div>
             </div>

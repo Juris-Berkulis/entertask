@@ -42,62 +42,77 @@ export const allSignsForTasksFilter = {
     taskCreateAt: {
         variable: 'taskCreateAt',
         decodingIntoRus: 'Дата создания',
+        decodingIntoRusShort: 'Создано',
     },
     taskID: {
         variable: 'taskID',
         decodingIntoRus: 'id',
+        decodingIntoRusShort: 'id',
     },
     taskCategory: {
         variable: 'taskCategory',
         decodingIntoRus: 'Категория',
+        decodingIntoRusShort: 'Категория',
     },
     taskName: {
         variable: 'taskName',
         decodingIntoRus: 'Задача',
+        decodingIntoRusShort: 'Задача',
     },
     subtaskName: {
         variable: 'subtaskName',
         decodingIntoRus: 'Подзадача',
+        decodingIntoRusShort: 'Подзадача',
     },
     taskPriority: {
         variable: 'taskPriority',
         decodingIntoRus: 'Приоритет',
+        decodingIntoRusShort: 'Приоритет',
     },
     taskControl: {
         variable: 'taskControl',
         decodingIntoRus: 'Контроль',
+        decodingIntoRusShort: 'Контроль',
     },
     taskUrgency: {
         variable: 'taskUrgency',
         decodingIntoRus: 'Срочность',
+        decodingIntoRusShort: 'Срочность',
     },
     taskImportance: {
         variable: 'taskImportance',
         decodingIntoRus: 'Важность',
+        decodingIntoRusShort: 'Важность',
     },
     taskDeadline: {
         variable: 'taskDeadline',
         decodingIntoRus: 'Срок',
+        decodingIntoRusShort: 'Срок',
     },
     taskDuration: {
         variable: 'taskDuration',
         decodingIntoRus: 'Продолжительность',
+        decodingIntoRusShort: 'Продолжительность',
     },
     taskStatus: {
         variable: 'taskStatus',
         decodingIntoRus: 'Статус',
+        decodingIntoRusShort: 'Статус',
     },
     taskComment: {
         variable: 'taskComment',
         decodingIntoRus: 'Комментарий',
+        decodingIntoRusShort: 'Комментарий',
     },
     taskForToday: {
         variable: 'taskForToday',
         decodingIntoRus: 'Задача на сегодня',
+        decodingIntoRusShort: 'Задача на сегодня',
     },
     taskEisenhowerMatrixValue: {
         variable: 'taskEisenhowerMatrixValue',
         decodingIntoRus: 'Матрица Эйзенхауэра',
+        decodingIntoRusShort: 'Эйзенхауэр',
     },
 };
 

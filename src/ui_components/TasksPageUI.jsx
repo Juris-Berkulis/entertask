@@ -26,19 +26,19 @@ export const TasksPageUI = (props) => {
                 <div className={props.classes.allTasks__table}>
                     <div className={props.classes.allTasks__tableTitleWrapper}>
                         <div className={props.classes.allTasks__tableTitle}>
-                            <p className={props.classes.allTasks__tableColumnTitle}>Категория</p>
-                            <p className={props.classes.allTasks__tableColumnTitle}>Задача</p>
-                            <p className={props.classes.allTasks__tableColumnTitle}>Подзадача</p>
-                            <p className={props.classes.allTasks__tableColumnTitle}>Срочность</p>
-                            <p className={props.classes.allTasks__tableColumnTitle}>Важность</p>
-                            <p className={props.classes.allTasks__tableColumnTitle}>Эйзенхауэр</p>
-                            <p className={props.classes.allTasks__tableColumnTitle}>Приоритет</p>
-                            <p className={props.classes.allTasks__tableColumnTitle}>Контроль</p>
-                            <p className={props.classes.allTasks__tableColumnTitle}>Срок</p>
-                            <p className={props.classes.allTasks__tableColumnTitle}>Продолжительность</p>
-                            <p className={props.classes.allTasks__tableColumnTitle}>Статус</p>
-                            <p className={props.classes.allTasks__tableColumnTitle}>Дата создания</p>
-                            <p className={props.classes.allTasks__tableColumnTitle}>Комментарий</p>
+                            <p className={props.classes.allTasks__tableColumnTitle}>{allSignsForTasksFilter.taskCategory.decodingIntoRusShort}</p>
+                            <p className={props.classes.allTasks__tableColumnTitle}>{allSignsForTasksFilter.taskName.decodingIntoRusShort}</p>
+                            <p className={props.classes.allTasks__tableColumnTitle}>{allSignsForTasksFilter.subtaskName.decodingIntoRusShort}</p>
+                            <p className={props.classes.allTasks__tableColumnTitle}>{allSignsForTasksFilter.taskUrgency.decodingIntoRusShort}</p>
+                            <p className={props.classes.allTasks__tableColumnTitle}>{allSignsForTasksFilter.taskImportance.decodingIntoRusShort}</p>
+                            <p className={props.classes.allTasks__tableColumnTitle}>{allSignsForTasksFilter.taskEisenhowerMatrixValue.decodingIntoRusShort}</p>
+                            <p className={props.classes.allTasks__tableColumnTitle}>{allSignsForTasksFilter.taskPriority.decodingIntoRusShort}</p>
+                            <p className={props.classes.allTasks__tableColumnTitle}>{allSignsForTasksFilter.taskControl.decodingIntoRusShort}</p>
+                            <p className={props.classes.allTasks__tableColumnTitle}>{allSignsForTasksFilter.taskDeadline.decodingIntoRusShort}</p>
+                            <p className={props.classes.allTasks__tableColumnTitle}>{allSignsForTasksFilter.taskDuration.decodingIntoRusShort}</p>
+                            <p className={props.classes.allTasks__tableColumnTitle}>{allSignsForTasksFilter.taskStatus.decodingIntoRusShort}</p>
+                            <p className={props.classes.allTasks__tableColumnTitle}>{allSignsForTasksFilter.taskCreateAt.decodingIntoRusShort}</p>
+                            <p className={props.classes.allTasks__tableColumnTitle}>{allSignsForTasksFilter.taskComment.decodingIntoRusShort}</p>
                         </div>
                     </div>
                     <ul className={props.classes.allTasks__tasksList}>
