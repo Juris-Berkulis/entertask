@@ -47,18 +47,62 @@ export const useStyles = makeStyles({
     overflow: 'auto',
     margin: '0 auto 2%',
   },
-  allTasks__tasksList: {
+  allTasks__tableWrapper: {
+    width: '100%',
     height: '80%',
     overflow: 'auto',
     '&::-webkit-scrollbar': {
       width: '10px', //* - ширина полосы прокрутки.
       height: '10px', //* - высота полосы прокрутки.
-    }
+    },
+  },
+  allTasks__table: {
+    height: '100%',
+    width: 'fit-content',
+    overflowX: 'auto',
+  },
+  allTasks__tableTitleWrapper: {
+    height: '30px',
+    width: '100%',
+    paddingRight: '15px',
+  },
+  allTasks__tableTitle: {
+    display: 'flex',
+    justifyContent: 'flex-end',
+  },
+  allTasks__tableColumnTitle: {
+    width: '150px',
+    fontSize: 'calc(1rem / 16 * 18)',
+    lineHeight: '100%',
+    fontWeight: '700',
+    textAlign: 'center',
+    overflowX: 'auto',
+    '&::-webkit-scrollbar': {
+      width: '0', //* - ширина полосы прокрутки.
+      height: '7px', //* - высота полосы прокрутки.
+    },
+    //* Дальнейшая стилизация навигационных кнопок:
+    '&::-webkit-scrollbar-button:single-button': {
+      height: '7px',
+      width: '7px',
+    },
+    //* Стилизация левой навигационной кнопки:
+    '&::-webkit-scrollbar-button:single-button:horizontal:decrement': {
+      borderWidth: '3.5px 7px 3.5px 0',
+    },
+    //* Стилизация правой навигационной кнопки:
+    '&::-webkit-scrollbar-button:single-button:horizontal:increment': {
+      borderWidth: '3.5px 0 3.5px 7px',
+    },
+  },
+  allTasks__tasksList: {
+    height: 'calc(100% - 30px)',
+    overflowY: 'scroll',
   },
   allTasks__taskListItem: {
     position: 'relative',
     display: 'flex',
-    padding: '1vh 1vw',
+    padding: '1vh 5px',
     whiteSpace: 'nowrap',
     width: 'fit-content',
     '&:hover': {
@@ -132,6 +176,31 @@ export const useStyles = makeStyles({
     width: '150px',
     maxHeight: '150px',
     overflow: 'auto',
+    '&::-webkit-scrollbar': {
+      width: '7px', //* - ширина полосы прокрутки.
+      height: '7px', //* - высота полосы прокрутки.
+    },
+    //* Дальнейшая стилизация навигационных кнопок:
+    '&::-webkit-scrollbar-button:single-button': {
+      height: '7px',
+      width: '7px',
+    },
+    //* Стилизация верхней навигационной кнопки:
+    '&::-webkit-scrollbar-button:single-button:vertical:decrement': {
+      borderWidth: '0 3.5px 7px 3.5px',
+    },
+    //* Стилизация нижней навигационной кнопки:
+    '&::-webkit-scrollbar-button:single-button:vertical:increment': {
+      borderWidth: '7px 3.5px 0 3.5px',
+    },
+    //* Стилизация левой навигационной кнопки:
+    '&::-webkit-scrollbar-button:single-button:horizontal:decrement': {
+      borderWidth: '3.5px 7px 3.5px 0',
+    },
+    //* Стилизация правой навигационной кнопки:
+    '&::-webkit-scrollbar-button:single-button:horizontal:increment': {
+      borderWidth: '3.5px 0 3.5px 7px',
+    },
   },
   allTasks__tasksEmptyListText: {
     textAlign: 'center',

@@ -22,15 +22,36 @@ export const TasksPageUI = (props) => {
                 <TasksFilter propertiesForTasksFilter={props.dictWithListsForTasksFilterSel.taskCreateAt || {}} signForTasksFilter={allSignsForTasksFilter.taskCreateAt.variable}></TasksFilter>
                 <TasksFilter propertiesForTasksFilter={props.dictWithListsForTasksFilterSel.taskComment || {}} signForTasksFilter={allSignsForTasksFilter.taskComment.variable}></TasksFilter>
             </div>
-            <ul className={props.classes.allTasks__tasksList}>
-                {
-                    props.tasksListTasksKindOfListByIdSelForProps.length
-                    ? 
-                    props.tasksListTasksKindOfListByIdSelForProps
-                    : 
-                    <p className={props.classes.allTasks__tasksEmptyListText}>Список задач пуст</p>
-                }
-            </ul>
+            <div className={props.classes.allTasks__tableWrapper}>
+                <div className={props.classes.allTasks__table}>
+                    <div className={props.classes.allTasks__tableTitleWrapper}>
+                        <div className={props.classes.allTasks__tableTitle}>
+                            <p className={props.classes.allTasks__tableColumnTitle}>Категория</p>
+                            <p className={props.classes.allTasks__tableColumnTitle}>Задача</p>
+                            <p className={props.classes.allTasks__tableColumnTitle}>Подзадача</p>
+                            <p className={props.classes.allTasks__tableColumnTitle}>Срочность</p>
+                            <p className={props.classes.allTasks__tableColumnTitle}>Важность</p>
+                            <p className={props.classes.allTasks__tableColumnTitle}>Эйзенхауэр</p>
+                            <p className={props.classes.allTasks__tableColumnTitle}>Приоритет</p>
+                            <p className={props.classes.allTasks__tableColumnTitle}>Контроль</p>
+                            <p className={props.classes.allTasks__tableColumnTitle}>Срок</p>
+                            <p className={props.classes.allTasks__tableColumnTitle}>Продолжительность</p>
+                            <p className={props.classes.allTasks__tableColumnTitle}>Статус</p>
+                            <p className={props.classes.allTasks__tableColumnTitle}>Дата создания</p>
+                            <p className={props.classes.allTasks__tableColumnTitle}>Комментарий</p>
+                        </div>
+                    </div>
+                    <ul className={props.classes.allTasks__tasksList}>
+                        {
+                            props.tasksListTasksKindOfListByIdSelForProps.length
+                            ? 
+                            props.tasksListTasksKindOfListByIdSelForProps
+                            : 
+                            <p className={props.classes.allTasks__tasksEmptyListText}>Список задач пуст</p>
+                        }
+                    </ul>
+                </div>
+            </div>
         </div>
     )
 };
