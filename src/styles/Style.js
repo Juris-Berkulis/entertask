@@ -72,7 +72,7 @@ export const useStyles = makeStyles({
   },
   allTasks__tableColumnTitle: {
     width: '150px',
-    fontSize: 'calc(1rem / 16 * 18)',
+    fontSize: 'calc(1rem / 16 * 16)',
     lineHeight: '100%',
     fontWeight: '700',
     textAlign: 'center',
@@ -110,14 +110,14 @@ export const useStyles = makeStyles({
     },
   },
   allTasks__taskListItemParagraph: {
-    fontSize: 'calc(1rem / 16 * 18)',
+    fontSize: 'calc(1rem / 16 * 16)',
     lineHeight: '100%',
     textAlign: 'center',
     fontWeight: '700',
     whiteSpace: 'pre-line',
   },
   allTasks__taskListItemParagraph_taskName: {
-    fontSize: 'calc(1rem / 16 * 24)',
+    fontSize: 'calc(1rem / 16 * 20)',
     lineHeight: '100%',
   },
   allTasks__taskListItemParagraphValue: {
@@ -145,6 +145,7 @@ export const useStyles = makeStyles({
   allTasks__taskListItemBtn: {
     marginLeft: '0.5vw',
     padding: '0.5vh 0.5vw',
+    fontSize: 'calc(1rem / 16 * 13)',
     color: '#ffffff',
     backgroundColor: '#000066',
     cursor: 'pointer',
@@ -217,6 +218,7 @@ export const useStyles = makeStyles({
   tasksFilter__btn: {
     position: 'relative',
     width: '150px',
+    fontSize: 'calc(1rem / 16 * 13)',
     cursor: 'pointer',
     border: '1px solid #006600',
     borderRadius: '0',
