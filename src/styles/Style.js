@@ -102,8 +102,11 @@ export const useStyles = makeStyles({
     width: styleConsts.width.tableCellMobileDevice,
   },
   allTasks__tasksList: {
-    height: 'calc(100% - 30px)',
+    height: `calc(100% - ${2 * styleConsts.fontSize.html.substring(0, styleConsts.fontSize.html.length - 2)}px)`,
     overflowY: 'scroll',
+  },
+  allTasks__tasksList_mobileDevice: {
+    height: `calc(100% - ${2 * styleConsts.fontSize.htmlMobileDevice.substring(0, styleConsts.fontSize.htmlMobileDevice.length - 2)}px)`,
   },
   allTasks__taskListItem: {
     position: 'relative',

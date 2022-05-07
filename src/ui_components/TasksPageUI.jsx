@@ -41,7 +41,7 @@ export const TasksPageUI = (props) => {
                             <p className={`${props.classes.allTasks__tableColumnTitle} ${props.isMobileDeviceBoolean ? props.classes.allTasks__tableColumnTitle_mobileDevice : null}`}>{allSignsForTasksFilter.taskComment.decodingIntoRusShort}</p>
                         </div>
                     </div>
-                    <ul className={props.classes.allTasks__tasksList}>
+                    <ul className={`${props.classes.allTasks__tasksList} ${props.isMobileDeviceBoolean ? props.classes.allTasks__tasksList_mobileDevice : null}`}>
                         {
                             props.tasksListTasksKindOfListByIdSelForProps.length
                             ? 
