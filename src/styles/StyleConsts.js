@@ -35,4 +35,12 @@ export const styleConsts = {
         html: '16px',
         htmlMobileDevice: '8px',
     },
+    height: {
+        tableCell: '150px',
+        tableCellMobileDevice: '75px',
+    },
+    width: {
+        tableCell: '150px',
+        tableCellMobileDevice: '75px',
+    },
 };

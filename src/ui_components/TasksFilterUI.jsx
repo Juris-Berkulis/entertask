@@ -4,7 +4,7 @@ import { allSignsForTasksFilter } from '../data/consts';
 export const TasksFilterUI = (props) => {
     return (
         <div className={props.classes.tasksFilter}>
-            <button className={props.classes.tasksFilter__btn} onClick={props.toggleListPropertiesForTasksFilter}>
+            <button className={`${props.classes.tasksFilter__btn} ${props.isMobileDeviceBoolean ? props.classes.tasksFilter__btn_mobileDevice : null}`} onClick={props.toggleListPropertiesForTasksFilter}>
                 <span className={props.classes.tasksFilter__btnText}>{allSignsForTasksFilter[props.signForTasksFilter].decodingIntoRus}</span>
                 {
                     props.tasksSignForTasksSortingSel === allSignsForTasksFilter[props.signForTasksFilter].variable

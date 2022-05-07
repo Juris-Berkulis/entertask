@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { replaceBrieflyValueToDetailValueOfTheTaskSign } from '../../helper/helper';
+import { isMobileDevice, replaceBrieflyValueToDetailValueOfTheTaskSign } from '../../helper/helper';
 import { switchForCloseAllListsForTasksPropertiesFilterAction } from '../../store/AppSwitches/Action';
 import { getAppSwitchesSwitchForCloseAllListsForTasksPropertiesFilterSelector } from '../../store/AppSwitches/Selectors';
 import { changeTaskPropertyShowWithThunkAction, reverseDirectionForTasksSortinBySignAction, tasksSignForTasksSortingAction } from '../../store/Tasks/Action';
@@ -10,6 +10,8 @@ import { TasksFilterUI } from '../../ui_components/TasksFilterUI';
 
 export const TasksFilter = (props) => {
     const classes = useStyles();
+
+    const isMobileDeviceBoolean = isMobileDevice();
 
     const dispatch = useDispatch();
 
@@ -72,6 +74,6 @@ export const TasksFilter = (props) => {
     }, [switchForCloseAllListsForTasksPropertiesFilterSel, props.signForTasksFilter]);
 
     return (
-        <TasksFilterUI classes={classes} propertiesForTasksFilterList={propertiesForTasksFilterList} signForTasksFilter={props.signForTasksFilter} toggleListPropertiesForTasksFilter={toggleListPropertiesForTasksFilter} showListPropertiesForTasksFilter={showListPropertiesForTasksFilter} selectSignForTasksSorting={selectSignForTasksSorting} toggleDirectionForTasksSortingBySign={toggleDirectionForTasksSortingBySign} tasksSignForTasksSortingSel={tasksSignForTasksSortingSel} reverseDirectionForTasksSortinBySignSel={reverseDirectionForTasksSortinBySignSel}></TasksFilterUI>
+        <TasksFilterUI classes={classes} propertiesForTasksFilterList={propertiesForTasksFilterList} signForTasksFilter={props.signForTasksFilter} toggleListPropertiesForTasksFilter={toggleListPropertiesForTasksFilter} showListPropertiesForTasksFilter={showListPropertiesForTasksFilter} selectSignForTasksSorting={selectSignForTasksSorting} toggleDirectionForTasksSortingBySign={toggleDirectionForTasksSortingBySign} tasksSignForTasksSortingSel={tasksSignForTasksSortingSel} reverseDirectionForTasksSortinBySignSel={reverseDirectionForTasksSortinBySignSel} isMobileDeviceBoolean={isMobileDeviceBoolean}></TasksFilterUI>
     )
 };

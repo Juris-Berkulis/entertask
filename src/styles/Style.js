@@ -1,5 +1,5 @@
 import { makeStyles } from '@material-ui/styles';
-// import { styleConsts } from './StyleConsts';
+import { styleConsts } from './StyleConsts';
 
 export const useStyles = makeStyles({
   center: {
@@ -62,16 +62,19 @@ export const useStyles = makeStyles({
     overflowX: 'auto',
   },
   allTasks__tableTitleWrapper: {
-    height: '30px',
+    height: 2 * styleConsts.fontSize.html.substring(0, styleConsts.fontSize.html.length - 2) + 'px',
     width: '100%',
     paddingRight: '15px',
+  },
+  allTasks__tableTitleWrapper_mobileDevice: {
+    height: 2 * styleConsts.fontSize.htmlMobileDevice.substring(0, styleConsts.fontSize.htmlMobileDevice.length - 2) + 'px',
   },
   allTasks__tableTitle: {
     display: 'flex',
     justifyContent: 'flex-end',
   },
   allTasks__tableColumnTitle: {
-    width: '150px',
+    width: styleConsts.width.tableCell,
     fontSize: 'calc(1rem / 16 * 16)',
     lineHeight: '100%',
     fontWeight: '700',
@@ -94,6 +97,9 @@ export const useStyles = makeStyles({
     '&::-webkit-scrollbar-button:single-button:horizontal:increment': {
       borderWidth: '3.5px 0 3.5px 7px',
     },
+  },
+  allTasks__tableColumnTitle_mobileDevice: {
+    width: styleConsts.width.tableCellMobileDevice,
   },
   allTasks__tasksList: {
     height: 'calc(100% - 30px)',
@@ -132,6 +138,9 @@ export const useStyles = makeStyles({
     color: '#ffffff',
     fontWeight: '700',
     borderRadius: '50%',
+  },
+  allTasks__taskListItemParagraphValue_status_mobileDevice: {
+    fontWeight: '400',
   },
   allTasks__taskListItemParagraphValue_statusPlus: {
     backgroundColor: '#006600',
@@ -174,8 +183,8 @@ export const useStyles = makeStyles({
   },
   allTasks__taskListItemCell: {
     display: 'inline-block',
-    width: '150px',
-    maxHeight: '150px',
+    width: styleConsts.width.tableCell,
+    maxHeight: styleConsts.height.tableCell,
     overflow: 'auto',
     '&::-webkit-scrollbar': {
       width: '7px', //* - ширина полосы прокрутки.
@@ -203,6 +212,10 @@ export const useStyles = makeStyles({
       borderWidth: '3.5px 0 3.5px 7px',
     },
   },
+  allTasks__taskListItemCell_mobileDevice: {
+    width: styleConsts.width.tableCellMobileDevice,
+    maxHeight: styleConsts.height.tableCellMobileDevice,
+  },
   allTasks__tasksEmptyListText: {
     textAlign: 'center',
     fontSize: 'calc(1em / 16 * 50)',
@@ -217,7 +230,8 @@ export const useStyles = makeStyles({
   },
   tasksFilter__btn: {
     position: 'relative',
-    width: '150px',
+    width: styleConsts.width.tableCell,
+    height: '17px',
     fontSize: 'calc(1rem / 16 * 13)',
     cursor: 'pointer',
     border: '1px solid #006600',
@@ -229,6 +243,9 @@ export const useStyles = makeStyles({
       color: '#caffca',
       backgroundColor: '#006600',
     },
+  },
+  tasksFilter__btn_mobileDevice: {
+    width: styleConsts.width.tableCellMobileDevice,
   },
   tasksFilter__signIsTurnOn: {
     position: 'absolute',
@@ -398,6 +415,7 @@ export const useStyles = makeStyles({
     borderRadius: '50em',
     color: '#ffffff',
     backgroundColor: '#006600',
+    fontSize: 'calc(1rem / 16 * 13)',
     cursor: 'pointer',
     transition: 'background-color 0.1s linear 0.1s',
     '&:hover': {

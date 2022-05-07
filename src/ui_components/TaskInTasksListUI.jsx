@@ -18,7 +18,7 @@ export const TaskInTasksListUI = (props) => {
                 </div>
             </div>
             <div className={`${props.classes.allTasks__taskListItemLineInfo}`}>
-                <div className={`${props.classes.allTasks__taskListItemCell}`}>
+                <div className={`${props.classes.allTasks__taskListItemCell} ${props.isMobileDeviceBoolean ? props.classes.allTasks__taskListItemCell_mobileDevice : null}`}>
                     {
                         props.item.taskCategory 
                         && 
@@ -29,7 +29,7 @@ export const TaskInTasksListUI = (props) => {
                         </p>
                     }
                 </div>
-                <div className={`${props.classes.allTasks__taskListItemCell}`}>
+                <div className={`${props.classes.allTasks__taskListItemCell} ${props.isMobileDeviceBoolean ? props.classes.allTasks__taskListItemCell_mobileDevice : null}`}>
                     {
                         props.item.taskName 
                         && 
@@ -40,7 +40,7 @@ export const TaskInTasksListUI = (props) => {
                         </p>
                     }
                 </div>
-                <div className={`${props.classes.allTasks__taskListItemCell}`}>
+                <div className={`${props.classes.allTasks__taskListItemCell} ${props.isMobileDeviceBoolean ? props.classes.allTasks__taskListItemCell_mobileDevice : null}`}>
                     {
                         props.item.subtaskName 
                         && 
@@ -51,7 +51,7 @@ export const TaskInTasksListUI = (props) => {
                         </p>
                     }
                 </div>
-                <div className={`${props.classes.allTasks__taskListItemCell}`}>
+                <div className={`${props.classes.allTasks__taskListItemCell} ${props.isMobileDeviceBoolean ? props.classes.allTasks__taskListItemCell_mobileDevice : null}`}>
                     {
                         props.item.taskUrgency 
                         && 
@@ -62,7 +62,7 @@ export const TaskInTasksListUI = (props) => {
                         </p>
                     }
                 </div>
-                <div className={`${props.classes.allTasks__taskListItemCell}`}>
+                <div className={`${props.classes.allTasks__taskListItemCell} ${props.isMobileDeviceBoolean ? props.classes.allTasks__taskListItemCell_mobileDevice : null}`}>
                     {
                         props.item.taskImportance 
                         && 
@@ -73,7 +73,7 @@ export const TaskInTasksListUI = (props) => {
                         </p>
                     }
                 </div>
-                <div className={`${props.classes.allTasks__taskListItemCell} ${props.classes.taskEisenhowerMatrixValue__color_} ${props.classes['taskEisenhowerMatrixValue__color_' + props.item.taskEisenhowerMatrixValue]}`}>
+                <div className={`${props.classes.allTasks__taskListItemCell} ${props.isMobileDeviceBoolean ? props.classes.allTasks__taskListItemCell_mobileDevice : null} ${props.classes.taskEisenhowerMatrixValue__color_} ${props.classes['taskEisenhowerMatrixValue__color_' + props.item.taskEisenhowerMatrixValue]}`}>
                     {
                         props.item.taskEisenhowerMatrixValue 
                         && 
@@ -84,7 +84,7 @@ export const TaskInTasksListUI = (props) => {
                         </p>
                     }
                 </div>
-                <div className={`${props.classes.allTasks__taskListItemCell}`}>
+                <div className={`${props.classes.allTasks__taskListItemCell} ${props.isMobileDeviceBoolean ? props.classes.allTasks__taskListItemCell_mobileDevice : null}`}>
                     {
                         props.item.taskPriority 
                         && 
@@ -95,7 +95,7 @@ export const TaskInTasksListUI = (props) => {
                         </p>
                     }
                 </div>
-                <div className={`${props.classes.allTasks__taskListItemCell}`}>
+                <div className={`${props.classes.allTasks__taskListItemCell} ${props.isMobileDeviceBoolean ? props.classes.allTasks__taskListItemCell_mobileDevice : null}`}>
                     {
                         props.item.taskControl 
                         && 
@@ -106,7 +106,7 @@ export const TaskInTasksListUI = (props) => {
                         </p>
                     }
                 </div>
-                <div className={`${props.classes.allTasks__taskListItemCell}`}>
+                <div className={`${props.classes.allTasks__taskListItemCell} ${props.isMobileDeviceBoolean ? props.classes.allTasks__taskListItemCell_mobileDevice : null}`}>
                     {
                         props.item.taskDeadline 
                         && 
@@ -117,7 +117,7 @@ export const TaskInTasksListUI = (props) => {
                         </p>
                     }
                 </div>
-                <div className={`${props.classes.allTasks__taskListItemCell}`}>
+                <div className={`${props.classes.allTasks__taskListItemCell} ${props.isMobileDeviceBoolean ? props.classes.allTasks__taskListItemCell_mobileDevice : null}`}>
                     {
                         props.item.taskDuration 
                         && 
@@ -128,18 +128,18 @@ export const TaskInTasksListUI = (props) => {
                         </p>
                     }
                 </div>
-                <div className={`${props.classes.allTasks__taskListItemCell}`}>
+                <div className={`${props.classes.allTasks__taskListItemCell} ${props.isMobileDeviceBoolean ? props.classes.allTasks__taskListItemCell_mobileDevice : null}`}>
                     {
                         props.item.taskStatus 
                         && 
                         props.item.taskStatus !== props.characterToAutocompleteEmptyTaskSign 
                         && 
                         <p className={`${props.classes.allTasks__taskListItemParagraph} ${props.classes.allTasks__taskListItemParagraph_status} ${(props.item.taskStatus === '+' && props.classes.allTasks__taskListItemParagraph_statusPlus) || (props.item.taskStatus === '-' && props.classes.allTasks__taskListItemParagraph_statusMinus) || null}`}>
-                            <span className={`${props.classes.allTasks__taskListItemParagraphValue} ${props.classes.allTasks__taskListItemParagraphValue_status} ${(props.item.taskStatus === '+' && props.classes.allTasks__taskListItemParagraphValue_statusPlus) || (props.item.taskStatus === '-' && props.classes.allTasks__taskListItemParagraphValue_statusMinus) || null}`}>{props.item.taskStatus === '-' ? <span>&#8722;</span> : props.item.taskStatus}</span>
+                            <span className={`${props.classes.allTasks__taskListItemParagraphValue} ${props.classes.allTasks__taskListItemParagraphValue_status} ${props.isMobileDeviceBoolean ? props.classes.allTasks__taskListItemParagraphValue_status_mobileDevice : null} ${(props.item.taskStatus === '+' && props.classes.allTasks__taskListItemParagraphValue_statusPlus) || (props.item.taskStatus === '-' && props.classes.allTasks__taskListItemParagraphValue_statusMinus) || null}`}>{props.item.taskStatus === '-' ? <span>&#8722;</span> : props.item.taskStatus}</span>
                         </p>
                     }
                 </div>
-                <div className={`${props.classes.allTasks__taskListItemCell}`}>
+                <div className={`${props.classes.allTasks__taskListItemCell} ${props.isMobileDeviceBoolean ? props.classes.allTasks__taskListItemCell_mobileDevice : null}`}>
                     {
                         props.item.taskCreateAt 
                         && 
@@ -150,7 +150,7 @@ export const TaskInTasksListUI = (props) => {
                         </p>
                     }
                 </div>
-                <div className={`${props.classes.allTasks__taskListItemCell}`}>
+                <div className={`${props.classes.allTasks__taskListItemCell} ${props.isMobileDeviceBoolean ? props.classes.allTasks__taskListItemCell_mobileDevice : null}`}>
                     {
                         props.item.taskComment 
                         && 

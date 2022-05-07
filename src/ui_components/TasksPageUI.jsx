@@ -24,21 +24,21 @@ export const TasksPageUI = (props) => {
             </div>
             <div className={props.classes.allTasks__tableWrapper}>
                 <div className={props.classes.allTasks__table}>
-                    <div className={props.classes.allTasks__tableTitleWrapper}>
+                    <div className={`${props.classes.allTasks__tableTitleWrapper} ${props.isMobileDeviceBoolean ? props.classes.allTasks__tableTitleWrapper_mobileDevice : null}`}>
                         <div className={props.classes.allTasks__tableTitle}>
-                            <p className={props.classes.allTasks__tableColumnTitle}>{allSignsForTasksFilter.taskCategory.decodingIntoRusShort}</p>
-                            <p className={props.classes.allTasks__tableColumnTitle}>{allSignsForTasksFilter.taskName.decodingIntoRusShort}</p>
-                            <p className={props.classes.allTasks__tableColumnTitle}>{allSignsForTasksFilter.subtaskName.decodingIntoRusShort}</p>
-                            <p className={props.classes.allTasks__tableColumnTitle}>{allSignsForTasksFilter.taskUrgency.decodingIntoRusShort}</p>
-                            <p className={props.classes.allTasks__tableColumnTitle}>{allSignsForTasksFilter.taskImportance.decodingIntoRusShort}</p>
-                            <p className={props.classes.allTasks__tableColumnTitle}>{allSignsForTasksFilter.taskEisenhowerMatrixValue.decodingIntoRusShort}</p>
-                            <p className={props.classes.allTasks__tableColumnTitle}>{allSignsForTasksFilter.taskPriority.decodingIntoRusShort}</p>
-                            <p className={props.classes.allTasks__tableColumnTitle}>{allSignsForTasksFilter.taskControl.decodingIntoRusShort}</p>
-                            <p className={props.classes.allTasks__tableColumnTitle}>{allSignsForTasksFilter.taskDeadline.decodingIntoRusShort}</p>
-                            <p className={props.classes.allTasks__tableColumnTitle}>{allSignsForTasksFilter.taskDuration.decodingIntoRusShort}</p>
-                            <p className={props.classes.allTasks__tableColumnTitle}>{allSignsForTasksFilter.taskStatus.decodingIntoRusShort}</p>
-                            <p className={props.classes.allTasks__tableColumnTitle}>{allSignsForTasksFilter.taskCreateAt.decodingIntoRusShort}</p>
-                            <p className={props.classes.allTasks__tableColumnTitle}>{allSignsForTasksFilter.taskComment.decodingIntoRusShort}</p>
+                            <p className={`${props.classes.allTasks__tableColumnTitle} ${props.isMobileDeviceBoolean ? props.classes.allTasks__tableColumnTitle_mobileDevice : null}`}>{allSignsForTasksFilter.taskCategory.decodingIntoRusShort}</p>
+                            <p className={`${props.classes.allTasks__tableColumnTitle} ${props.isMobileDeviceBoolean ? props.classes.allTasks__tableColumnTitle_mobileDevice : null}`}>{allSignsForTasksFilter.taskName.decodingIntoRusShort}</p>
+                            <p className={`${props.classes.allTasks__tableColumnTitle} ${props.isMobileDeviceBoolean ? props.classes.allTasks__tableColumnTitle_mobileDevice : null}`}>{allSignsForTasksFilter.subtaskName.decodingIntoRusShort}</p>
+                            <p className={`${props.classes.allTasks__tableColumnTitle} ${props.isMobileDeviceBoolean ? props.classes.allTasks__tableColumnTitle_mobileDevice : null}`}>{allSignsForTasksFilter.taskUrgency.decodingIntoRusShort}</p>
+                            <p className={`${props.classes.allTasks__tableColumnTitle} ${props.isMobileDeviceBoolean ? props.classes.allTasks__tableColumnTitle_mobileDevice : null}`}>{allSignsForTasksFilter.taskImportance.decodingIntoRusShort}</p>
+                            <p className={`${props.classes.allTasks__tableColumnTitle} ${props.isMobileDeviceBoolean ? props.classes.allTasks__tableColumnTitle_mobileDevice : null}`}>{allSignsForTasksFilter.taskEisenhowerMatrixValue.decodingIntoRusShort}</p>
+                            <p className={`${props.classes.allTasks__tableColumnTitle} ${props.isMobileDeviceBoolean ? props.classes.allTasks__tableColumnTitle_mobileDevice : null}`}>{allSignsForTasksFilter.taskPriority.decodingIntoRusShort}</p>
+                            <p className={`${props.classes.allTasks__tableColumnTitle} ${props.isMobileDeviceBoolean ? props.classes.allTasks__tableColumnTitle_mobileDevice : null}`}>{allSignsForTasksFilter.taskControl.decodingIntoRusShort}</p>
+                            <p className={`${props.classes.allTasks__tableColumnTitle} ${props.isMobileDeviceBoolean ? props.classes.allTasks__tableColumnTitle_mobileDevice : null}`}>{allSignsForTasksFilter.taskDeadline.decodingIntoRusShort}</p>
+                            <p className={`${props.classes.allTasks__tableColumnTitle} ${props.isMobileDeviceBoolean ? props.classes.allTasks__tableColumnTitle_mobileDevice : null}`}>{allSignsForTasksFilter.taskDuration.decodingIntoRusShort}</p>
+                            <p className={`${props.classes.allTasks__tableColumnTitle} ${props.isMobileDeviceBoolean ? props.classes.allTasks__tableColumnTitle_mobileDevice : null}`}>{allSignsForTasksFilter.taskStatus.decodingIntoRusShort}</p>
+                            <p className={`${props.classes.allTasks__tableColumnTitle} ${props.isMobileDeviceBoolean ? props.classes.allTasks__tableColumnTitle_mobileDevice : null}`}>{allSignsForTasksFilter.taskCreateAt.decodingIntoRusShort}</p>
+                            <p className={`${props.classes.allTasks__tableColumnTitle} ${props.isMobileDeviceBoolean ? props.classes.allTasks__tableColumnTitle_mobileDevice : null}`}>{allSignsForTasksFilter.taskComment.decodingIntoRusShort}</p>
                         </div>
                     </div>
                     <ul className={props.classes.allTasks__tasksList}>
