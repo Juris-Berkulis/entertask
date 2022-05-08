@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
-import { isMobileDevice, replaceBrieflyValueToDetailValueOfTheTaskSign } from '../../helper/helper';
+import { isMobileDevice, replaceAllowedCharactersFromFirebaseDatabaseKeys, replaceBrieflyValueToDetailValueOfTheTaskSign } from '../../helper/helper';
 import { switchForCloseAllListsForTasksPropertiesFilterAction } from '../../store/AppSwitches/Action';
 import { getAppSwitchesSwitchForCloseAllListsForTasksPropertiesFilterSelector } from '../../store/AppSwitches/Selectors';
 import { changeTaskPropertyShowWithThunkAction, reverseDirectionForTasksSortinBySignAction, tasksSignForTasksSortingAction } from '../../store/Tasks/Action';
@@ -46,7 +46,7 @@ export const TasksFilter = (props) => {
                 }
                 <span>
                     {
-                        replaceBrieflyValueToDetailValueOfTheTaskSign(props.signForTasksFilter, item)
+                        replaceBrieflyValueToDetailValueOfTheTaskSign(props.signForTasksFilter, replaceAllowedCharactersFromFirebaseDatabaseKeys(item))
                     }
                 </span>
             </p>

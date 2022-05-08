@@ -1,4 +1,4 @@
-import { allAppComponentsWithPageTitle, allSignsForTasksFilter, characterToAutocompleteEmptyTaskSign, eisenhowerMatrix, importance, mobileScreenWidth, urgency } from "../data/consts";
+import { allAppComponentsWithPageTitle, allSignsForTasksFilter, characterToAutocompleteEmptyTaskSign, eisenhowerMatrix, importance, mobileScreenWidth, objectWithForbiddenCharactersForFirebaseDatabaseKeys, urgency } from "../data/consts";
 import { editableTaskObjectAction } from "../store/AppSwitches/Action";
 import { addTheTaskInListWithTasksForTodayWithThunkAction, deleteExtraSignOfTaskFilteringWithThunkAction, deleteTaskWithThunkAction, deleteTheTaskFromListWithTasksForTodayWithThunkAction, dictWithNewTaskPropertiesErrorsAction, openTaskAction } from "../store/Tasks/Action";
 
@@ -15,6 +15,44 @@ export const isMobileDevice = () => {
     } else {
         return false
     };
+};
+
+export const replaceForbiddenCharactersForFirebaseDatabaseKeys = (property) => {
+    if (typeof(property) === 'string') {
+        for (let character in objectWithForbiddenCharactersForFirebaseDatabaseKeys) {
+            property = property
+            .split(objectWithForbiddenCharactersForFirebaseDatabaseKeys[character].forbiddenCharacter)
+            .join(objectWithForbiddenCharactersForFirebaseDatabaseKeys[character].allowedCharacter);
+        }
+    }
+
+    return property
+};
+
+export const replaceAllowedCharactersFromFirebaseDatabaseKeys = (property) => {
+    if (typeof(property) === 'string') {
+        for (let character in objectWithForbiddenCharactersForFirebaseDatabaseKeys) {
+            property = property
+            .split(objectWithForbiddenCharactersForFirebaseDatabaseKeys[character].allowedCharacter)
+            .join(objectWithForbiddenCharactersForFirebaseDatabaseKeys[character].forbiddenCharacter);
+        }
+    }
+
+    return property
+};
+
+export const replaceInTaskAllowedCharactersFromFirebaseDatabaseKeys = (task) => {
+    const newDictWithTask = {};
+
+    for (let sign in task) {
+        if (typeof(task[sign]) === 'string') {
+            newDictWithTask[sign] = replaceAllowedCharactersFromFirebaseDatabaseKeys(task[sign]);
+        } else {
+            newDictWithTask[sign] = task[sign]
+        }
+    }
+
+    return newDictWithTask
 };
 
 export const fillInEmptyTaskAttributes = (task) => {
