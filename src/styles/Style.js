@@ -26,6 +26,8 @@ export const useStyles = makeStyles({
     display: 'flex',
     justifyContent: 'center',
     alignItems: 'center',
+    userSelect: 'none',
+    boxShadow: 'inset 0px 4.194vh 4.194vh -2.097vh #caffca, inset 0px -4.194vh 4.194vh -2.097vh #225522, 0px 0.483vh 0.483vh #339933',
   },
   header__link: {
     height: '100%',
@@ -33,8 +35,16 @@ export const useStyles = makeStyles({
     textDecoration: 'none',
     color: '#ffffff',
     lineHeight: '10vh',
+    backgroundColor: 'transparent',
+    boxShadow: '1px 0px 1px #004400, -1px 0px 1px #004400, inset 0px 6.291vh 6.291vh -3.1455vh #caffca, inset 0px -6.291vh 6.291vh -3.1455vh #225522, 0px 0.805vh 0.805vh #339933',
+    textShadow: '#393939 1px 1px 1px',
     '&:hover': {
-      backgroundColor: '#007700',
+      backgroundColor: 'transparent',
+      boxShadow: '1px 0px 1px #004400, -1px 0px 1px #004400, inset 0px 5.4522vh 5.4522vh -2.7261vh #caffca, inset 0px -5.4522vh 5.4522vh -2.7261vh #225522, 0px 0.6279vh 0.6279vh #339933',
+    },
+    '&:active': {
+      backgroundColor: '#006600',
+      boxShadow: '1px 0px 1px #004400, -1px 0px 1px #004400, inset 0px 4.194vh 4.194vh -2.097vh #caffca, inset 0px -4.194vh 4.194vh -2.097vh #225522, 0px 0.483vh 0.483vh #339933',
     },
   },
   allTasks: {
@@ -46,6 +56,7 @@ export const useStyles = makeStyles({
     maxWidth: '1000px',
     overflow: 'auto',
     margin: '0 auto 2%',
+    userSelect: 'none',
   },
   allTasks__tableWrapper: {
     width: '100%',
@@ -153,6 +164,7 @@ export const useStyles = makeStyles({
   },
   allTasks__taskListItemLinePannel: {
     position: 'relative',
+    userSelect: 'none',
   },
   allTasks__taskListItemBtn: {
     marginLeft: '0.5vw',
@@ -438,6 +450,7 @@ export const useStyles = makeStyles({
   },
   openTask__controlPanel: {
     marginBottom: '1vh',
+    userSelect: 'none',
   },
   openTask__taskListItemBtnsPannel: {
     display: 'flex',
