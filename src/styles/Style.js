@@ -431,10 +431,14 @@ export const useStyles = makeStyles({
     color: '#ffffff',
     backgroundColor: '#006600',
     fontSize: 'calc(1rem / 16 * 13)',
+    boxShadow: 'inset 0px 15px 15px -7.5px #caffca, inset 0px -15px 15px -7.5px #225522, 0px 3px 3px #337733, 1.5px 3px 3px #337733, -1.5px 3px 3px #337733',
     cursor: 'pointer',
     transition: 'background-color 0.1s linear 0.1s',
     '&:hover': {
       backgroundColor: '#007700',
+    },
+    '&:active': {
+      boxShadow: 'inset 0px 15px 15px -7.5px #caffca, inset 0px -15px 15px -7.5px #225522, 0px 1px 1px #337733, 0px 1px 1px #337733, 0px 1px 1px #337733',
     },
   },
   openTask__wrapper: {
@@ -446,6 +450,7 @@ export const useStyles = makeStyles({
     borderRadius: '15px',
     padding: '15px',
     backgroundColor: '#006600',
+    boxShadow: '1px 0px 1px #004400, -1px 0px 1px #004400, inset 0px 6.291vh 6.291vh -3.1455vh #caffca, inset 0px -6.291vh 6.291vh -3.1455vh #225522, 0px 0.805vh 0.805vh #337733, 0.4025vh 0.805vh 0.805vh #337733, -0.4025vh 0.805vh 0.805vh #337733',
     zIndex: '3',
   },
   openTask__controlPanel: {
