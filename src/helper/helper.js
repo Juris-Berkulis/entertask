@@ -128,44 +128,34 @@ export const checkIsInputValueValid = (eventTargetValue, taskSignIdentifier, dis
                             
                             return 'Минимум 3 символа'
                         } else {
-                            dispatch({
-                                type: dictWithNewTaskPropertiesErrorsAction.type,
-                                payload: {
-                                    taskPropertyError: taskSignIdentifier,
-                                    taskPropertyErrorValue: false,
-                                }
-                            });
-                            
-                            return false
+                            break;
                         }
                     }
                     case allSignsForTasksFilter.taskDeadline.variable: {
-                        dispatch({
-                            type: dictWithNewTaskPropertiesErrorsAction.type,
-                            payload: {
-                                taskPropertyError: taskSignIdentifier,
-                                taskPropertyErrorValue: dateIsError(eventTargetValue),
-                            }
-                        });
+                        const dateError = dateIsError(eventTargetValue);
 
-                        return dateIsError(eventTargetValue)
-                    }
-                    case allSignsForTasksFilter.taskStatus.variable: {
-                        if (
-                            eventTargetValue === '+' 
-                            || 
-                            eventTargetValue === '-'
-                        ) {
+                        if (dateError) {
                             dispatch({
                                 type: dictWithNewTaskPropertiesErrorsAction.type,
                                 payload: {
                                     taskPropertyError: taskSignIdentifier,
-                                    taskPropertyErrorValue: false,
+                                    taskPropertyErrorValue: dateIsError(eventTargetValue),
                                 }
                             });
-                            
-                            return false
+    
+                            return dateIsError(eventTargetValue)
                         } else {
+                            break;
+                        }
+                    }
+                    case allSignsForTasksFilter.taskStatus.variable: {
+                        if (
+                            !(
+                                eventTargetValue === '+' 
+                                || 
+                                eventTargetValue === '-'
+                            )
+                        ) {
                             dispatch({
                                 type: dictWithNewTaskPropertiesErrorsAction.type,
                                 payload: {
@@ -175,22 +165,14 @@ export const checkIsInputValueValid = (eventTargetValue, taskSignIdentifier, dis
                             });
                             
                             return 'Только "+" или "-"'
+                        } else {
+                            break;
                         }
                     }
                     case allSignsForTasksFilter.taskDuration.variable: {
                         const regExp = /^[0-9]+$/
 
-                        if (regExp.test(eventTargetValue)) {
-                            dispatch({
-                                type: dictWithNewTaskPropertiesErrorsAction.type,
-                                payload: {
-                                    taskPropertyError: taskSignIdentifier,
-                                    taskPropertyErrorValue: false,
-                                }
-                            });
-                            
-                            return false
-                        } else {
+                        if (!regExp.test(eventTargetValue)) {
                             dispatch({
                                 type: dictWithNewTaskPropertiesErrorsAction.type,
                                 payload: {
@@ -200,23 +182,15 @@ export const checkIsInputValueValid = (eventTargetValue, taskSignIdentifier, dis
                             });
                             
                             return 'Введите натуразльное число, равное количеству дней'
+                        } else {
+                            break;
                         }
                     }
                     case allSignsForTasksFilter.taskUrgency.variable:
                     case allSignsForTasksFilter.taskImportance.variable: {
                         const regExp = /^[1-3]$/
 
-                        if (regExp.test(eventTargetValue)) {
-                            dispatch({
-                                type: dictWithNewTaskPropertiesErrorsAction.type,
-                                payload: {
-                                    taskPropertyError: taskSignIdentifier,
-                                    taskPropertyErrorValue: false,
-                                }
-                            });
-                            
-                            return false
-                        } else {
+                        if (!regExp.test(eventTargetValue)) {
                             dispatch({
                                 type: dictWithNewTaskPropertiesErrorsAction.type,
                                 payload: {
@@ -226,25 +200,42 @@ export const checkIsInputValueValid = (eventTargetValue, taskSignIdentifier, dis
                             });
                             
                             return 'Только "1", "2" или "3"'
+                        } else {
+                            break;
                         }
                     }
                     default: {
-                        dispatch({
-                            type: dictWithNewTaskPropertiesErrorsAction.type,
-                            payload: {
-                                taskPropertyError: taskSignIdentifier,
-                                taskPropertyErrorValue: false,
-                            }
-                        });
-
-                        return false;
+                        //* No default.
                     }
                 }
             }
+            break;
         }
         default: {
             //* No default.
         }
+    }
+
+    if (eventTargetValue.length > 120) {
+        dispatch({
+            type: dictWithNewTaskPropertiesErrorsAction.type,
+            payload: {
+                taskPropertyError: taskSignIdentifier,
+                taskPropertyErrorValue: 'Максимум 120 символов',
+            }
+        });
+        
+        return 'Максимум 120 символов'
+    } else {
+        dispatch({
+            type: dictWithNewTaskPropertiesErrorsAction.type,
+            payload: {
+                taskPropertyError: taskSignIdentifier,
+                taskPropertyErrorValue: false,
+            }
+        });
+        
+        return false
     }
 };
 
