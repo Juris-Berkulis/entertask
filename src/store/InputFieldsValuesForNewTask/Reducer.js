@@ -5,6 +5,7 @@ import {
     taskControlAction, 
     taskDeadlineAction, 
     taskDurationAction, 
+    taskEisenhowerMatrixValueAction, 
     taskImportanceAction, 
     taskNameAction, 
     taskPriorityAction, 
@@ -80,6 +81,12 @@ export const inputFieldsValuesForNewTaskReducer = (state = initialState, action)
             return {
                 ...state,
                 taskCommentCase: action.payload,
+            }
+        }
+        case taskEisenhowerMatrixValueAction.type: {
+            return {
+                ...state,
+                taskEisenhowerMatrixValueCase: action.payload,
             }
         }
         default: {

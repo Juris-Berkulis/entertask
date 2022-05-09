@@ -28,3 +28,8 @@ info/
 archive/
 src/TECHNICAL/
 src/firebase/
+
+# Local Netlify folder
+.netlify
+
+.vercel

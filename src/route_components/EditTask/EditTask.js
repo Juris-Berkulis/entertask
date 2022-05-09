@@ -1,17 +1,18 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
-import { allAppComponentsWithPageTitle } from '../../data/consts';
+import { allAppComponentsWithPageTitle, allSignsForTasksFilter, characterToAutocompleteEmptyTaskSign } from '../../data/consts';
 import { checkIsInputValueValid, fillInEmptyTaskAttributes, getEisenhowerMatrixValue, replaceBrieflyValueToDetailValueOfTheEisenhowerMatrix } from '../../helper/helper';
 import { resetInputFieldsValuesInitializerAction } from '../../store/AppSwitches/Action';
-import { getAppSwitchesResetInputFieldsValuesInitializerSelector } from '../../store/AppSwitches/Selectors';
+import { getAppSwitchesEditableTaskObjectSelector, getAppSwitchesResetInputFieldsValuesInitializerSelector } from '../../store/AppSwitches/Selectors';
 import { inputFieldsValuesForNewTaskActionsList, taskEisenhowerMatrixValueAction } from '../../store/InputFieldsValuesForNewTask/Action';
 import { getInputFieldsValuesForNewTaskSubtaskNameSelector, getInputFieldsValuesForNewTasktaskCategorySelector, getInputFieldsValuesForNewTaskTaskCommentSelector, getInputFieldsValuesForNewTaskTaskControlSelector, getInputFieldsValuesForNewTaskTaskDeadlineSelector, getInputFieldsValuesForNewTaskTaskDurationSelector, getInputFieldsValuesForNewTaskTaskEisenhowerMatrixValueSelector, getInputFieldsValuesForNewTaskTaskImportanceSelector, getInputFieldsValuesForNewTaskTaskNameSelector, getInputFieldsValuesForNewTaskTaskPrioritySelector, getInputFieldsValuesForNewTaskTaskStatusSelector, getInputFieldsValuesForNewTaskTaskUrgencySelector } from '../../store/InputFieldsValuesForNewTask/Selectors';
-import { addNewTaskWithThunkAction, resetDictWithNewTaskPropertiesErrorsAction } from '../../store/Tasks/Action';
+import { deleteExtraSignOfTaskFilteringWithThunkAction, editTaskWithThunkAction, resetDictWithNewTaskPropertiesErrorsAction } from '../../store/Tasks/Action';
+import { getTasksListTasksKindOfDictByUserUIDSelector } from '../../store/Tasks/Selectors';
 import { useStyles } from '../../styles/Style';
-import { AddTaskUI } from '../../ui_components/AddTaskUI';
+import { EditTaskUI } from '../../ui_components/EditTaskUI';
 
-export const AddTask = () => {
+export const EditTask = () => {
     const classes = useStyles();
 
     const dispatch = useDispatch();
@@ -31,12 +32,18 @@ export const AddTask = () => {
     const taskComment = useSelector(getInputFieldsValuesForNewTaskTaskCommentSelector);
     const taskEisenhowerMatrixValue = useSelector(getInputFieldsValuesForNewTaskTaskEisenhowerMatrixValueSelector);
 
-    const inputFieldsValuesInitializer = useSelector(getAppSwitchesResetInputFieldsValuesInitializerSelector);
+    const editableTaskObject = useSelector(getAppSwitchesEditableTaskObjectSelector);
 
-    const onSubmitForm = (event, goToAllTasks) => {
+    const inputFieldsValuesInitializerSel = useSelector(getAppSwitchesResetInputFieldsValuesInitializerSelector);
+
+    const tasksKindOfDictByUserUIDSel = useSelector(getTasksListTasksKindOfDictByUserUIDSelector('userUID'));
+
+    const [editableTaskObjectWithoutAutocomplete, setEditableTaskObjectWithoutAutocomplete] = useState({});
+
+    const editForm = (event) => {
         event.preventDefault();
 
-        const newTask = {
+        const editableTask = {
             taskCategory: taskCategory,
             taskName: taskName,
             subtaskName: subtaskName,
@@ -53,29 +60,51 @@ export const AddTask = () => {
 
         let errorFound = false;
 
-        for (let key in newTask) {
-            if (checkIsInputValueValid(newTask[key], key, dispatch)) {
+        for (let key in editableTask) {
+            if (checkIsInputValueValid(editableTask[key], key, dispatch)) {
                 errorFound = true;
             }
         }
 
         if (!errorFound) {
-            const fullNewTask = fillInEmptyTaskAttributes(newTask);
-    
-            const now = new Date();
-            const taskUTCDateAndTime = now.toUTCString();
-            const taskUTCInMilliseconds = now.getTime();
-    
-            dispatch(addNewTaskWithThunkAction(taskUTCDateAndTime, taskUTCInMilliseconds, fullNewTask));
-    
+            const thisTaskWillBeEdited = tasksKindOfDictByUserUIDSel[editableTaskObject.taskID];
+
+            for (let editTaskSign in thisTaskWillBeEdited) {
+                if (editTaskSign !== allSignsForTasksFilter.taskCreateAt.variable && editTaskSign !== allSignsForTasksFilter.taskID.variable) {
+                    let deleteTaskSignIsFind = false;
+                    for (let specificTaskId in tasksKindOfDictByUserUIDSel) {
+                        if (tasksKindOfDictByUserUIDSel[specificTaskId][editTaskSign]) {
+                            if (+specificTaskId === editableTaskObject.taskID) {
+                                continue;
+                            } else if (+specificTaskId !== editableTaskObject.taskID) {
+                                if (tasksKindOfDictByUserUIDSel[specificTaskId][editTaskSign] === thisTaskWillBeEdited[editTaskSign]) {
+                                    deleteTaskSignIsFind = true;
+                                    break;
+                                } else if (tasksKindOfDictByUserUIDSel[specificTaskId][editTaskSign] !== thisTaskWillBeEdited[editTaskSign]) {
+                                    continue;
+                                }
+                            }
+                        }
+                    }
+        
+                    if (!deleteTaskSignIsFind) {
+                        dispatch(deleteExtraSignOfTaskFilteringWithThunkAction(editTaskSign, thisTaskWillBeEdited[editTaskSign]));
+                    }
+                }
+            }
+
+            const fullEditableTask = fillInEmptyTaskAttributes(editableTask);
+
+            const taskUTCInMilliseconds = editableTaskObject.taskID;
+
+            dispatch(editTaskWithThunkAction(taskUTCInMilliseconds, fullEditableTask));
+
             dispatch({
                 type: resetInputFieldsValuesInitializerAction.type,
-                payload: inputFieldsValuesInitializer + 1,
+                payload: inputFieldsValuesInitializerSel + 1,
             });
 
-            if (goToAllTasks) {
-                history(allAppComponentsWithPageTitle.alltasks.path);
-            }
+            history(allAppComponentsWithPageTitle.alltasks.path);
         }
     };
 
@@ -89,7 +118,7 @@ export const AddTask = () => {
 
         dispatch({
             type: resetInputFieldsValuesInitializerAction.type,
-            payload: inputFieldsValuesInitializer + 1,
+            payload: inputFieldsValuesInitializerSel + 1,
         });
     };
 
@@ -100,6 +129,20 @@ export const AddTask = () => {
     }, [dispatch]);
 
     useEffect(() => {
+        const dict = {};
+
+        for (let taskSign in editableTaskObject) {
+            if (editableTaskObject[taskSign] === characterToAutocompleteEmptyTaskSign) {
+                dict[taskSign] = '';
+            } else {
+                dict[taskSign] = editableTaskObject[taskSign];
+            }
+        }
+
+        setEditableTaskObjectWithoutAutocomplete(dict);
+    }, [editableTaskObject]);
+
+    useEffect(() => {
         dispatch({
             type: taskEisenhowerMatrixValueAction.type,
             payload: getEisenhowerMatrixValue(taskUrgency, taskImportance),
@@ -107,6 +150,6 @@ export const AddTask = () => {
     }, [taskUrgency, taskImportance, dispatch]);
 
     return (
-        <AddTaskUI classes={classes} onSubmitForm={onSubmitForm} resetInputsValuesByButton={resetInputsValuesByButton} taskEisenhowerMatrixValue={replaceBrieflyValueToDetailValueOfTheEisenhowerMatrix(taskEisenhowerMatrixValue)}></AddTaskUI>
+        <EditTaskUI classes={classes} editForm={editForm} resetInputsValuesByButton={resetInputsValuesByButton} editableTaskObject={editableTaskObjectWithoutAutocomplete} taskEisenhowerMatrixValue={replaceBrieflyValueToDetailValueOfTheEisenhowerMatrix(taskEisenhowerMatrixValue)}></EditTaskUI>
     )
 };

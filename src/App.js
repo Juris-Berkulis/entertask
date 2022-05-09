@@ -1,45 +1,46 @@
-import React from 'react';
-import { Route, Switch } from 'react-router-dom';
+import React, { useEffect } from 'react';
+import { Route, Routes } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 import { allAppComponentsWithPageTitle } from './data/consts';
 import { isMobileDevice } from './helper/helper';
+import { useWindowDimensions } from './hooks/hooks';
 import { AddTask } from './route_components/AddTask/AddTask';
 import { AllTasks } from './route_components/AllTasks/AllTasks';
+import { EditTask } from './route_components/EditTask/EditTask';
 import { Header } from './route_components/Header/Header';
+import { TasksForToday } from './route_components/TasksForToday/TasksForToday';
 import { persistor } from './store/Store';
 import { useStyles } from './styles/Style';
+import { styleConsts } from './styles/StyleConsts';
 
 export const App = () => {
   const classes = useStyles();
 
+  useWindowDimensions();
+
   const isMobileDeviceBoolean = isMobileDevice();
+
+  useEffect(() => {
+    if (isMobileDeviceBoolean) {
+      document.getElementById('html').style.fontSize = styleConsts.fontSize.htmlMobileDevice;
+    } else {
+      document.getElementById('html').style.fontSize = styleConsts.fontSize.html;
+    }
+  }, [isMobileDeviceBoolean]);
 
   return (
     <PersistGate persistor={persistor}>
-    <div className={`${classes.main}`}>
-    <Switch>
-    <>
-      <Header></Header>
-      <div className={`${classes.field} ${isMobileDeviceBoolean ? classes.field_mobileDevice : null}`}>
-        <Route exact path={allAppComponentsWithPageTitle.home.path}>
-          {/* <Home></Home> */}
-        </Route>
-        <Route exact path={allAppComponentsWithPageTitle.profile.path}>
-          {/* <Home></Home> */}
-        </Route>
-        <Route exact path={allAppComponentsWithPageTitle.alltasks.path}>
-          <AllTasks></AllTasks>
-        </Route>
-        <Route exact path={allAppComponentsWithPageTitle.tasksfortoday.path}>
-          {/* <Home></Home> */}
-        </Route>
-        <Route exact path={allAppComponentsWithPageTitle.addtask.path}>
-          <AddTask></AddTask>
-        </Route>
+      <div className={`${classes.main}`}>
+        <Header></Header>
+        <div className={`${classes.field} ${isMobileDeviceBoolean ? classes.field_mobileDevice : null}`}>
+          <Routes>
+            <Route exact path={allAppComponentsWithPageTitle.tasksfortoday.path} element={<TasksForToday />} />
+            <Route exact path={allAppComponentsWithPageTitle.alltasks.path} element={<AllTasks />} />
+            <Route exact path={allAppComponentsWithPageTitle.addtask.path} element={<AddTask />} />
+            <Route exact path={allAppComponentsWithPageTitle.edittask.path} element={<EditTask />} />
+          </Routes>
+        </div>
       </div>
-    </>
-    </Switch>
-    </div>
     </PersistGate>
   );
 };

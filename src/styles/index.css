@@ -5,33 +5,38 @@
           box-sizing: border-box;
 }
 
+html {
+  font-size: 16px;
+  line-height: 16px;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
   height: 0;
 }
 
 ::-webkit-scrollbar-track {
-  background: #cdcdf5;
+  background: #99dd99;
   -webkit-box-shadow: 0 0 2px rgba(0, 0, 0, 0.2) inset;
           box-shadow: 0 0 2px rgba(0, 0, 0, 0.2) inset;
 }
 
 ::-webkit-scrollbar-thumb {
-  background: #7e7ee4;
+  background: #aaffaa;
   border-radius: 8px;
-  border: 3px solid #cdcdf5;
+  border: 3px solid #99dd99;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: #1414b9;
+  background: #77aa77;
 }
 
 ::-webkit-scrollbar-button {
-  background-color: #cdcdf5;
+  background-color: #99dd99;
 }
 
 ::-webkit-scrollbar-button:hover {
-  background-color: #aaaadd;
+  background-color: #aaeeaa;
 }
 
 ::-webkit-scrollbar-button:single-button {
@@ -42,37 +47,37 @@
 
 ::-webkit-scrollbar-button:single-button:vertical:decrement {
   border-width: 0 5px 10px 5px;
-  border-color: transparent transparent #7e7ee4 transparent;
+  border-color: transparent transparent #aaffaa transparent;
 }
 
 ::-webkit-scrollbar-button:single-button:vertical:decrement:hover {
-  border-color: transparent transparent #1414b9 transparent;
+  border-color: transparent transparent #77aa77 transparent;
 }
 
 ::-webkit-scrollbar-button:single-button:vertical:increment {
   border-width: 10px 5px 0 5px;
-  border-color: #7e7ee4 transparent transparent transparent;
+  border-color: #aaffaa transparent transparent transparent;
 }
 
 ::-webkit-scrollbar-button:vertical:single-button:increment:hover {
-  border-color: #1414b9 transparent transparent transparent;
+  border-color: #77aa77 transparent transparent transparent;
 }
 
 ::-webkit-scrollbar-button:single-button:horizontal:decrement {
   border-width: 5px 10px 5px 0;
-  border-color: transparent #7e7ee4 transparent transparent;
+  border-color: transparent #aaffaa transparent transparent;
 }
 
 ::-webkit-scrollbar-button:single-button:horizontal:decrement:hover {
-  border-color: transparent #1414b9 transparent transparent;
+  border-color: transparent #77aa77 transparent transparent;
 }
 
 ::-webkit-scrollbar-button:single-button:horizontal:increment {
   border-width: 5px 0 5px 10px;
-  border-color: transparent transparent transparent #7e7ee4;
+  border-color: transparent transparent transparent #aaffaa;
 }
 
 ::-webkit-scrollbar-button:horizontal:single-button:increment:hover {
-  border-color: transparent transparent transparent #1414b9;
+  border-color: transparent transparent transparent #77aa77;
 }
 /*# sourceMappingURL=index.css.map */
