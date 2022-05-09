@@ -27,7 +27,7 @@ export const useStyles = makeStyles({
     justifyContent: 'center',
     alignItems: 'center',
     userSelect: 'none',
-    boxShadow: 'inset 0px 4.194vh 4.194vh -2.097vh #caffca, inset 0px -4.194vh 4.194vh -2.097vh #225522, 0px 0.483vh 0.483vh #339933',
+    boxShadow: 'inset 0px 4.194vh 4.194vh -2.097vh #caffca, inset 0px -4.194vh 4.194vh -2.097vh #225522, 0px 0.483vh 0.483vh #337733',
   },
   header__link: {
     height: '100%',
@@ -36,15 +36,15 @@ export const useStyles = makeStyles({
     color: '#ffffff',
     lineHeight: '10vh',
     backgroundColor: 'transparent',
-    boxShadow: '1px 0px 1px #004400, -1px 0px 1px #004400, inset 0px 6.291vh 6.291vh -3.1455vh #caffca, inset 0px -6.291vh 6.291vh -3.1455vh #225522, 0px 0.805vh 0.805vh #339933',
+    boxShadow: '1px 0px 1px #004400, -1px 0px 1px #004400, inset 0px 6.291vh 6.291vh -3.1455vh #caffca, inset 0px -6.291vh 6.291vh -3.1455vh #225522, 0px 0.805vh 0.805vh #337733',
     textShadow: '#393939 1px 1px 1px',
     '&:hover': {
       backgroundColor: 'transparent',
-      boxShadow: '1px 0px 1px #004400, -1px 0px 1px #004400, inset 0px 5.4522vh 5.4522vh -2.7261vh #caffca, inset 0px -5.4522vh 5.4522vh -2.7261vh #225522, 0px 0.6279vh 0.6279vh #339933',
+      boxShadow: '1px 0px 1px #004400, -1px 0px 1px #004400, inset 0px 5.4522vh 5.4522vh -2.7261vh #caffca, inset 0px -5.4522vh 5.4522vh -2.7261vh #225522, 0px 0.6279vh 0.6279vh #337733',
     },
     '&:active': {
       backgroundColor: '#006600',
-      boxShadow: '1px 0px 1px #004400, -1px 0px 1px #004400, inset 0px 4.194vh 4.194vh -2.097vh #caffca, inset 0px -4.194vh 4.194vh -2.097vh #225522, 0px 0.483vh 0.483vh #339933',
+      boxShadow: '1px 0px 1px #004400, -1px 0px 1px #004400, inset 0px 4.194vh 4.194vh -2.097vh #caffca, inset 0px -4.194vh 4.194vh -2.097vh #225522, 0px 0.483vh 0.483vh #337733',
     },
   },
   allTasks: {
