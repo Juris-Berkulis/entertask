@@ -216,16 +216,18 @@ export const checkIsInputValueValid = (eventTargetValue, taskSignIdentifier, dis
         }
     }
 
-    if (eventTargetValue.length > 120) {
+    const maximumNumberOfCharactersForTaskSignsValues = 180;
+
+    if (eventTargetValue.length > maximumNumberOfCharactersForTaskSignsValues) {
         dispatch({
             type: dictWithNewTaskPropertiesErrorsAction.type,
             payload: {
                 taskPropertyError: taskSignIdentifier,
-                taskPropertyErrorValue: 'Максимум 120 символов',
+                taskPropertyErrorValue: `Максимум ${maximumNumberOfCharactersForTaskSignsValues} символов`,
             }
         });
         
-        return 'Максимум 120 символов'
+        return `Максимум ${maximumNumberOfCharactersForTaskSignsValues} символов`
     } else {
         dispatch({
             type: dictWithNewTaskPropertiesErrorsAction.type,
