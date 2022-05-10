@@ -192,8 +192,28 @@ export const importance = {
 };
 
 export const objectWithForbiddenCharactersForFirebaseDatabaseKeys = {
-    '%': {
-        forbiddenCharacter: '%',
-        allowedCharacter: '&&hereIsThePercentSign&&'
+    '.': {
+        forbiddenCharacter: '.',
+        allowedCharacter: '🎴'
+    },
+    '#': {
+        forbiddenCharacter: '#',
+        allowedCharacter: '🎭'
+    },
+    '$': {
+        forbiddenCharacter: '$',
+        allowedCharacter: '🖼'
+    },
+    '/': {
+        forbiddenCharacter: '/',
+        allowedCharacter: '🎨'
+    },
+    '[': {
+        forbiddenCharacter: '[',
+        allowedCharacter: '🧵'
+    },
+    ']': {
+        forbiddenCharacter: ']',
+        allowedCharacter: '🧶'
     },
 };
