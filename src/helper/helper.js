@@ -216,6 +216,7 @@ export const checkIsInputValueValid = (eventTargetValue, taskSignIdentifier, dis
         }
     }
 
+    //* Ключи в базе данных "firebase" не могут превышать по весу 768 байт (это примерно 183 символа, если использовать одни только тяжеловесные символы):
     const maximumNumberOfCharactersForTaskSignsValues = 180;
 
     if (eventTargetValue.length > maximumNumberOfCharactersForTaskSignsValues) {
