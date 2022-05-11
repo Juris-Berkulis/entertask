@@ -112,6 +112,12 @@ export const useStyles = makeStyles({
   allTasks__tableColumnTitle_mobileDevice: {
     width: styleConsts.width.tableCellMobileDevice,
   },
+  allTasks__tableColumnTitle_subtaskName: {
+    width: 2 * styleConsts.width.tableCell.substring(0, styleConsts.width.tableCell.length - 2) + 'px',
+  },
+  allTasks__tableColumnTitle_subtaskName_mobileDevice: {
+    width: 2 * styleConsts.width.tableCellMobileDevice.substring(0, styleConsts.width.tableCellMobileDevice.length - 2) + 'px',
+  },
   allTasks__tasksList: {
     height: `calc(100% - ${2 * styleConsts.fontSize.html.substring(0, styleConsts.fontSize.html.length - 2)}px)`,
     overflowY: 'scroll',
@@ -132,12 +138,12 @@ export const useStyles = makeStyles({
   allTasks__taskListItemParagraph: {
     fontSize: 'calc(1rem / 16 * 16)',
     lineHeight: '100%',
-    textAlign: 'center',
+    textAlign: 'start',
     fontWeight: '700',
     whiteSpace: 'pre-line',
   },
   allTasks__taskListItemParagraph_taskName: {
-    fontSize: 'calc(1rem / 16 * 20)',
+    fontSize: 'calc(1rem / 16 * 16)',
     lineHeight: '100%',
   },
   allTasks__taskListItemParagraphValue: {
@@ -165,6 +171,7 @@ export const useStyles = makeStyles({
   allTasks__taskListItemLinePannel: {
     position: 'relative',
     userSelect: 'none',
+    paddingRight: '1vw',
   },
   allTasks__taskListItemBtn: {
     marginLeft: '0.5vw',
@@ -201,6 +208,7 @@ export const useStyles = makeStyles({
     width: styleConsts.width.tableCell,
     maxHeight: styleConsts.height.tableCell,
     overflow: 'auto',
+    padding: '0 3px',
     '&::-webkit-scrollbar': {
       width: '7px', //* - ширина полосы прокрутки.
       height: '7px', //* - высота полосы прокрутки.
@@ -230,6 +238,12 @@ export const useStyles = makeStyles({
   allTasks__taskListItemCell_mobileDevice: {
     width: styleConsts.width.tableCellMobileDevice,
     maxHeight: styleConsts.height.tableCellMobileDevice,
+  },
+  allTasks__taskListItemCell_subtaskName: {
+    width: 2 * styleConsts.width.tableCell.substring(0, styleConsts.width.tableCell.length - 2) + 'px',
+  },
+  allTasks__taskListItemCell_subtaskName_mobileDevice: {
+    width: 2 * styleConsts.width.tableCellMobileDevice.substring(0, styleConsts.width.tableCellMobileDevice.length - 2) + 'px',
   },
   allTasks__tasksEmptyListText: {
     textAlign: 'center',
@@ -511,5 +525,8 @@ export const useStyles = makeStyles({
   },
   taskEisenhowerMatrixValue__color_3_3: {
     borderBottom: '5px solid red',
+  },
+  textAlign_center: {
+    textAlign: 'center',
   },
 });
