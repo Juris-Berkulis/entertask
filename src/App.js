@@ -1,8 +1,8 @@
 import React, { useEffect } from 'react';
-import { Route, Routes } from 'react-router-dom';
+import { Route, Routes, useLocation } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 import { allAppComponentsWithPageTitle } from './data/consts';
-import { isMobileDevice } from './helper/helper';
+import { getPageTitle, giveTitleForPage, isMobileDevice, makeFullPageTitle } from './helper/helper';
 import { useWindowDimensions } from './hooks/hooks';
 import { AddTask } from './route_components/AddTask/AddTask';
 import { AllTasks } from './route_components/AllTasks/AllTasks';
@@ -17,6 +17,12 @@ export const App = () => {
   const classes = useStyles();
 
   useWindowDimensions();
+
+  const location = useLocation();
+
+  const pageTitle = getPageTitle(location);
+  const fullPageTitle = makeFullPageTitle(pageTitle);
+  giveTitleForPage(fullPageTitle);
 
   const isMobileDeviceBoolean = isMobileDevice();
 

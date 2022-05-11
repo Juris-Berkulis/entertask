@@ -1,4 +1,4 @@
-import { allAppComponentsWithPageTitle, allSignsForTasksFilter, characterToAutocompleteEmptyTaskSign, eisenhowerMatrix, importance, mobileScreenWidth, objectWithForbiddenCharactersForFirebaseDatabaseKeys, urgency } from "../data/consts";
+import { allAppComponentsWithPageTitle, allSignsForTasksFilter, appTitle, characterToAutocompleteEmptyTaskSign, eisenhowerMatrix, importance, mobileScreenWidth, objectWithForbiddenCharactersForFirebaseDatabaseKeys, urgency } from "../data/consts";
 import { editableTaskObjectAction } from "../store/AppSwitches/Action";
 import { addTheTaskInListWithTasksForTodayWithThunkAction, deleteExtraSignOfTaskFilteringWithThunkAction, deleteTaskWithThunkAction, deleteTheTaskFromListWithTasksForTodayWithThunkAction, dictWithNewTaskPropertiesErrorsAction, openTaskAction } from "../store/Tasks/Action";
 
@@ -404,4 +404,26 @@ export const replaceBrieflyValueToDetailValueOfTheTaskSign = (sign, property) =>
     } else {
         return property
     }
+};
+
+export const getPageTitle = (location) => {
+    for (let key in allAppComponentsWithPageTitle) {
+        if (allAppComponentsWithPageTitle[key].path === location.pathname) {
+        return allAppComponentsWithPageTitle[key].pageTitle
+        } else {
+            const objectRegExp = location.pathname.match(allAppComponentsWithPageTitle[key].pathCheck);
+
+            if (objectRegExp !== null && objectRegExp.input === location.pathname) {
+                return allAppComponentsWithPageTitle[key].pageTitle(location.pathname.split('/')[2])
+            };
+        };
+    };
+};
+
+export const makeFullPageTitle = (pageTitle) => {
+    return `${appTitle.name}${appTitle.delimiter}${pageTitle}`
+};
+
+export const giveTitleForPage = (title) => {
+    return title ? (document.title = title) : (document.title = appTitle.name);
 };
