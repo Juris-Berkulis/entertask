@@ -150,7 +150,7 @@ export const TaskInTasksListUI = (props) => {
                         </p>
                     }
                 </div>
-                <div className={`${props.classes.allTasks__taskListItemCell} ${props.isMobileDeviceBoolean ? props.classes.allTasks__taskListItemCell_mobileDevice : null}`}>
+                <div className={`${props.classes.allTasks__taskListItemCell} ${props.isMobileDeviceBoolean ? props.classes.allTasks__taskListItemCell_mobileDevice : null} ${props.isMobileDeviceBoolean ? props.classes.allTasks__taskListItemCell_taskComment_mobileDevice : props.classes.allTasks__taskListItemCell_taskComment}`}>
                     {
                         props.item.taskComment 
                         && 

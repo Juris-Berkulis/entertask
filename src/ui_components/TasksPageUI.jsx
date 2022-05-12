@@ -38,7 +38,7 @@ export const TasksPageUI = (props) => {
                             <p className={`${props.classes.allTasks__tableColumnTitle} ${props.isMobileDeviceBoolean ? props.classes.allTasks__tableColumnTitle_mobileDevice : null}`}>{allSignsForTasksFilter.taskDuration.decodingIntoRusShort}</p>
                             <p className={`${props.classes.allTasks__tableColumnTitle} ${props.isMobileDeviceBoolean ? props.classes.allTasks__tableColumnTitle_mobileDevice : null}`}>{allSignsForTasksFilter.taskStatus.decodingIntoRusShort}</p>
                             <p className={`${props.classes.allTasks__tableColumnTitle} ${props.isMobileDeviceBoolean ? props.classes.allTasks__tableColumnTitle_mobileDevice : null}`}>{allSignsForTasksFilter.taskCreateAt.decodingIntoRusShort}</p>
-                            <p className={`${props.classes.allTasks__tableColumnTitle} ${props.isMobileDeviceBoolean ? props.classes.allTasks__tableColumnTitle_mobileDevice : null}`}>{allSignsForTasksFilter.taskComment.decodingIntoRusShort}</p>
+                            <p className={`${props.classes.allTasks__tableColumnTitle} ${props.isMobileDeviceBoolean ? props.classes.allTasks__tableColumnTitle_mobileDevice : null} ${props.isMobileDeviceBoolean ? props.classes.allTasks__tableColumnTitle_taskComment_mobileDevice : props.classes.allTasks__tableColumnTitle_taskComment}`}>{allSignsForTasksFilter.taskComment.decodingIntoRusShort}</p>
                         </div>
                     </div>
                     <ul className={`${props.classes.allTasks__tasksList} ${props.isMobileDeviceBoolean ? props.classes.allTasks__tasksList_mobileDevice : null}`}>
