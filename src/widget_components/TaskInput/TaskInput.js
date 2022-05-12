@@ -43,18 +43,27 @@ export const TaskInput = (props) => {
                 payload: props.initialValueInInput,
             });
         } else {
-            setInputValue('');
+            if (props.initialSignPropertyValueForNewTask) {
+                setInputValue(props.initialSignPropertyValueForNewTask);
+    
+                dispatch({
+                    type: props.actionForInputFieldsValuesForNewTaskReducer,
+                    payload: props.initialSignPropertyValueForNewTask,
+                });
+            } else {
+                setInputValue('');
 
-            dispatch({
-                type: props.actionForInputFieldsValuesForNewTaskReducer,
-                payload: '',
-            });
+                dispatch({
+                    type: props.actionForInputFieldsValuesForNewTaskReducer,
+                    payload: '',
+                });
+            }
         }
 
         dispatch({
             type: resetDictWithNewTaskPropertiesErrorsAction.type,
         });
-    }, [inputFieldsValuesInitializer, dispatch, props.actionForInputFieldsValuesForNewTaskReducer, props.initialValueInInput]);
+    }, [inputFieldsValuesInitializer, dispatch, props.actionForInputFieldsValuesForNewTaskReducer, props.initialValueInInput, props.initialSignPropertyValueForNewTask]);
 
     return (
         <TaskInputUI classes={classes} onSaveValueFromInput={onSaveValueFromInput} inputValue={inputValue} labelName={props.labelName} actionForInputFieldsValuesForNewTaskReducer={props.actionForInputFieldsValuesForNewTaskReducer} inputValueIsError={dictWithNewTaskPropertiesErrorsSel[props.taskFieldIdentifier]} obligatoryField={props.obligatoryField}></TaskInputUI>

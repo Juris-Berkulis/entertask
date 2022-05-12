@@ -47,13 +47,26 @@ export const useStyles = makeStyles({
       boxShadow: '1px 0px 1px #004400, -1px 0px 1px #004400, inset 0px 4.194vh 4.194vh -2.097vh #caffca, inset 0px -4.194vh 4.194vh -2.097vh #225522, 0px 0.483vh 0.483vh #337733',
     },
   },
+  header__link_activePage: {
+    cursor: 'default',
+    backgroundColor: '#006600',
+    boxShadow: '1px 0px 1px #004400, -1px 0px 1px #004400, inset 0px 4.194vh 4.194vh -2.097vh #caffca, inset 0px -4.194vh 4.194vh -2.097vh #225522, 0px 0.483vh 0.483vh #337733',
+    '&:hover': {
+      backgroundColor: '#006600',
+      boxShadow: '1px 0px 1px #004400, -1px 0px 1px #004400, inset 0px 4.194vh 4.194vh -2.097vh #caffca, inset 0px -4.194vh 4.194vh -2.097vh #225522, 0px 0.483vh 0.483vh #337733',
+    },
+    '&:active': {
+      backgroundColor: '#006600',
+      boxShadow: '1px 0px 1px #004400, -1px 0px 1px #004400, inset 0px 4.194vh 4.194vh -2.097vh #caffca, inset 0px -4.194vh 4.194vh -2.097vh #225522, 0px 0.483vh 0.483vh #337733',
+    },
+  },
   allTasks: {
     height: '100%',
   },
   allTasks__filterWrapper: {
     textAlign: 'center',
     maxHeight: '18%',
-    maxWidth: '1000px',
+    maxWidth: '1100px',
     overflow: 'auto',
     margin: '0 auto 2%',
     userSelect: 'none',
@@ -112,6 +125,18 @@ export const useStyles = makeStyles({
   allTasks__tableColumnTitle_mobileDevice: {
     width: styleConsts.width.tableCellMobileDevice,
   },
+  allTasks__tableColumnTitle_subtaskName: {
+    width: 2 * styleConsts.width.tableCell.substring(0, styleConsts.width.tableCell.length - 2) + 'px',
+  },
+  allTasks__tableColumnTitle_subtaskName_mobileDevice: {
+    width: 2 * styleConsts.width.tableCellMobileDevice.substring(0, styleConsts.width.tableCellMobileDevice.length - 2) + 'px',
+  },
+  allTasks__tableColumnTitle_taskComment: {
+    width: 2 * styleConsts.width.tableCell.substring(0, styleConsts.width.tableCell.length - 2) + 'px',
+  },
+  allTasks__tableColumnTitle_taskComment_mobileDevice: {
+    width: 2 * styleConsts.width.tableCellMobileDevice.substring(0, styleConsts.width.tableCellMobileDevice.length - 2) + 'px',
+  },
   allTasks__tasksList: {
     height: `calc(100% - ${2 * styleConsts.fontSize.html.substring(0, styleConsts.fontSize.html.length - 2)}px)`,
     overflowY: 'scroll',
@@ -132,12 +157,12 @@ export const useStyles = makeStyles({
   allTasks__taskListItemParagraph: {
     fontSize: 'calc(1rem / 16 * 16)',
     lineHeight: '100%',
-    textAlign: 'center',
+    textAlign: 'start',
     fontWeight: '700',
     whiteSpace: 'pre-line',
   },
   allTasks__taskListItemParagraph_taskName: {
-    fontSize: 'calc(1rem / 16 * 20)',
+    fontSize: 'calc(1rem / 16 * 16)',
     lineHeight: '100%',
   },
   allTasks__taskListItemParagraphValue: {
@@ -165,6 +190,7 @@ export const useStyles = makeStyles({
   allTasks__taskListItemLinePannel: {
     position: 'relative',
     userSelect: 'none',
+    paddingRight: '1vw',
   },
   allTasks__taskListItemBtn: {
     marginLeft: '0.5vw',
@@ -201,6 +227,7 @@ export const useStyles = makeStyles({
     width: styleConsts.width.tableCell,
     maxHeight: styleConsts.height.tableCell,
     overflow: 'auto',
+    padding: '0 3px',
     '&::-webkit-scrollbar': {
       width: '7px', //* - ширина полосы прокрутки.
       height: '7px', //* - высота полосы прокрутки.
@@ -230,6 +257,18 @@ export const useStyles = makeStyles({
   allTasks__taskListItemCell_mobileDevice: {
     width: styleConsts.width.tableCellMobileDevice,
     maxHeight: styleConsts.height.tableCellMobileDevice,
+  },
+  allTasks__taskListItemCell_subtaskName: {
+    width: 2 * styleConsts.width.tableCell.substring(0, styleConsts.width.tableCell.length - 2) + 'px',
+  },
+  allTasks__taskListItemCell_subtaskName_mobileDevice: {
+    width: 2 * styleConsts.width.tableCellMobileDevice.substring(0, styleConsts.width.tableCellMobileDevice.length - 2) + 'px',
+  },
+  allTasks__taskListItemCell_taskComment: {
+    width: 2 * styleConsts.width.tableCell.substring(0, styleConsts.width.tableCell.length - 2) + 'px',
+  },
+  allTasks__taskListItemCell_taskComment_mobileDevice: {
+    width: 2 * styleConsts.width.tableCellMobileDevice.substring(0, styleConsts.width.tableCellMobileDevice.length - 2) + 'px',
   },
   allTasks__tasksEmptyListText: {
     textAlign: 'center',
@@ -342,17 +381,49 @@ export const useStyles = makeStyles({
   },
   tasksFilter__listItemsWrapper: {
     maxHeight: '50vh',
-    overflow: 'auto',
     borderTop: '1px solid #000000',
     borderBottom: '1px solid #000000',
   },
   tasksFilter__listItem: {
+    display: 'flex',
     borderTop: '1px solid #000000',
     borderBottom: '1px solid #000000',
     padding: '0 10px',
     cursor: 'pointer',
     '&:hover': {
       backgroundColor: '#aaffaa',
+    },
+  },
+  tasksFilter__listItemIcon: {
+    marginRight: '5px',
+  },
+  tasksFilter__listItemText: {
+    display: 'block',
+    overflow: 'auto',
+    '&::-webkit-scrollbar': {
+      width: '7px', //* - ширина полосы прокрутки.
+      height: '7px', //* - высота полосы прокрутки.
+    },
+    //* Дальнейшая стилизация навигационных кнопок:
+    '&::-webkit-scrollbar-button:single-button': {
+      height: '7px',
+      width: '7px',
+    },
+    //* Стилизация верхней навигационной кнопки:
+    '&::-webkit-scrollbar-button:single-button:vertical:decrement': {
+      borderWidth: '0 3.5px 7px 3.5px',
+    },
+    //* Стилизация нижней навигационной кнопки:
+    '&::-webkit-scrollbar-button:single-button:vertical:increment': {
+      borderWidth: '7px 3.5px 0 3.5px',
+    },
+    //* Стилизация левой навигационной кнопки:
+    '&::-webkit-scrollbar-button:single-button:horizontal:decrement': {
+      borderWidth: '3.5px 7px 3.5px 0',
+    },
+    //* Стилизация правой навигационной кнопки:
+    '&::-webkit-scrollbar-button:single-button:horizontal:increment': {
+      borderWidth: '3.5px 0 3.5px 7px',
     },
   },
   changeTask__wrapper: {
@@ -431,10 +502,14 @@ export const useStyles = makeStyles({
     color: '#ffffff',
     backgroundColor: '#006600',
     fontSize: 'calc(1rem / 16 * 13)',
+    boxShadow: 'inset 0px 15px 15px -7.5px #caffca, inset 0px -15px 15px -7.5px #225522, 0px 3px 3px #337733, 1.5px 3px 3px #337733, -1.5px 3px 3px #337733',
     cursor: 'pointer',
     transition: 'background-color 0.1s linear 0.1s',
     '&:hover': {
       backgroundColor: '#007700',
+    },
+    '&:active': {
+      boxShadow: 'inset 0px 15px 15px -7.5px #caffca, inset 0px -15px 15px -7.5px #225522, 0px 1px 1px #337733, 0px 1px 1px #337733, 0px 1px 1px #337733',
     },
   },
   openTask__wrapper: {
@@ -446,6 +521,7 @@ export const useStyles = makeStyles({
     borderRadius: '15px',
     padding: '15px',
     backgroundColor: '#006600',
+    boxShadow: '1px 0px 1px #004400, -1px 0px 1px #004400, inset 0px 6.291vh 6.291vh -3.1455vh #caffca, inset 0px -6.291vh 6.291vh -3.1455vh #225522, 0px 0.805vh 0.805vh #337733, 0.4025vh 0.805vh 0.805vh #337733, -0.4025vh 0.805vh 0.805vh #337733',
     zIndex: '3',
   },
   openTask__controlPanel: {
@@ -506,5 +582,8 @@ export const useStyles = makeStyles({
   },
   taskEisenhowerMatrixValue__color_3_3: {
     borderBottom: '5px solid red',
+  },
+  textAlign_center: {
+    textAlign: 'center',
   },
 });

@@ -28,7 +28,7 @@ export const TasksPageUI = (props) => {
                         <div className={props.classes.allTasks__tableTitle}>
                             <p className={`${props.classes.allTasks__tableColumnTitle} ${props.isMobileDeviceBoolean ? props.classes.allTasks__tableColumnTitle_mobileDevice : null}`}>{allSignsForTasksFilter.taskCategory.decodingIntoRusShort}</p>
                             <p className={`${props.classes.allTasks__tableColumnTitle} ${props.isMobileDeviceBoolean ? props.classes.allTasks__tableColumnTitle_mobileDevice : null}`}>{allSignsForTasksFilter.taskName.decodingIntoRusShort}</p>
-                            <p className={`${props.classes.allTasks__tableColumnTitle} ${props.isMobileDeviceBoolean ? props.classes.allTasks__tableColumnTitle_mobileDevice : null}`}>{allSignsForTasksFilter.subtaskName.decodingIntoRusShort}</p>
+                            <p className={`${props.classes.allTasks__tableColumnTitle} ${props.isMobileDeviceBoolean ? props.classes.allTasks__tableColumnTitle_mobileDevice : null} ${props.isMobileDeviceBoolean ? props.classes.allTasks__tableColumnTitle_subtaskName_mobileDevice : props.classes.allTasks__tableColumnTitle_subtaskName}`}>{allSignsForTasksFilter.subtaskName.decodingIntoRusShort}</p>
                             <p className={`${props.classes.allTasks__tableColumnTitle} ${props.isMobileDeviceBoolean ? props.classes.allTasks__tableColumnTitle_mobileDevice : null}`}>{allSignsForTasksFilter.taskUrgency.decodingIntoRusShort}</p>
                             <p className={`${props.classes.allTasks__tableColumnTitle} ${props.isMobileDeviceBoolean ? props.classes.allTasks__tableColumnTitle_mobileDevice : null}`}>{allSignsForTasksFilter.taskImportance.decodingIntoRusShort}</p>
                             <p className={`${props.classes.allTasks__tableColumnTitle} ${props.isMobileDeviceBoolean ? props.classes.allTasks__tableColumnTitle_mobileDevice : null}`}>{allSignsForTasksFilter.taskEisenhowerMatrixValue.decodingIntoRusShort}</p>
@@ -38,7 +38,7 @@ export const TasksPageUI = (props) => {
                             <p className={`${props.classes.allTasks__tableColumnTitle} ${props.isMobileDeviceBoolean ? props.classes.allTasks__tableColumnTitle_mobileDevice : null}`}>{allSignsForTasksFilter.taskDuration.decodingIntoRusShort}</p>
                             <p className={`${props.classes.allTasks__tableColumnTitle} ${props.isMobileDeviceBoolean ? props.classes.allTasks__tableColumnTitle_mobileDevice : null}`}>{allSignsForTasksFilter.taskStatus.decodingIntoRusShort}</p>
                             <p className={`${props.classes.allTasks__tableColumnTitle} ${props.isMobileDeviceBoolean ? props.classes.allTasks__tableColumnTitle_mobileDevice : null}`}>{allSignsForTasksFilter.taskCreateAt.decodingIntoRusShort}</p>
-                            <p className={`${props.classes.allTasks__tableColumnTitle} ${props.isMobileDeviceBoolean ? props.classes.allTasks__tableColumnTitle_mobileDevice : null}`}>{allSignsForTasksFilter.taskComment.decodingIntoRusShort}</p>
+                            <p className={`${props.classes.allTasks__tableColumnTitle} ${props.isMobileDeviceBoolean ? props.classes.allTasks__tableColumnTitle_mobileDevice : null} ${props.isMobileDeviceBoolean ? props.classes.allTasks__tableColumnTitle_taskComment_mobileDevice : props.classes.allTasks__tableColumnTitle_taskComment}`}>{allSignsForTasksFilter.taskComment.decodingIntoRusShort}</p>
                         </div>
                     </div>
                     <ul className={`${props.classes.allTasks__tasksList} ${props.isMobileDeviceBoolean ? props.classes.allTasks__tasksList_mobileDevice : null}`}>
@@ -47,7 +47,7 @@ export const TasksPageUI = (props) => {
                             ? 
                             props.tasksListTasksKindOfListByIdSelForProps
                             : 
-                            <p className={props.classes.allTasks__tasksEmptyListText}>Список задач пуст</p>
+                            <li className={props.classes.allTasks__tasksEmptyListText}>Список задач пуст</li>
                         }
                     </ul>
                 </div>

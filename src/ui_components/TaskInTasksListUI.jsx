@@ -40,7 +40,7 @@ export const TaskInTasksListUI = (props) => {
                         </p>
                     }
                 </div>
-                <div className={`${props.classes.allTasks__taskListItemCell} ${props.isMobileDeviceBoolean ? props.classes.allTasks__taskListItemCell_mobileDevice : null}`}>
+                <div className={`${props.classes.allTasks__taskListItemCell} ${props.isMobileDeviceBoolean ? props.classes.allTasks__taskListItemCell_mobileDevice : null} ${props.isMobileDeviceBoolean ? props.classes.allTasks__taskListItemCell_subtaskName_mobileDevice : props.classes.allTasks__taskListItemCell_subtaskName}`}>
                     {
                         props.item.subtaskName 
                         && 
@@ -112,7 +112,7 @@ export const TaskInTasksListUI = (props) => {
                         && 
                         props.item.taskDeadline !== props.characterToAutocompleteEmptyTaskSign 
                         && 
-                        <p className={`${props.classes.allTasks__taskListItemParagraph}`}>
+                        <p className={`${props.classes.allTasks__taskListItemParagraph} ${props.classes.textAlign_center}`}>
                             <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.item.taskDeadline}</span>
                         </p>
                     }
@@ -123,7 +123,7 @@ export const TaskInTasksListUI = (props) => {
                         && 
                         props.item.taskDuration !== props.characterToAutocompleteEmptyTaskSign 
                         && 
-                        <p className={`${props.classes.allTasks__taskListItemParagraph}`}>
+                        <p className={`${props.classes.allTasks__taskListItemParagraph} ${props.classes.textAlign_center}`}>
                             <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.item.taskDuration}</span>
                         </p>
                     }
@@ -134,7 +134,7 @@ export const TaskInTasksListUI = (props) => {
                         && 
                         props.item.taskStatus !== props.characterToAutocompleteEmptyTaskSign 
                         && 
-                        <p className={`${props.classes.allTasks__taskListItemParagraph} ${props.classes.allTasks__taskListItemParagraph_status} ${(props.item.taskStatus === '+' && props.classes.allTasks__taskListItemParagraph_statusPlus) || (props.item.taskStatus === '-' && props.classes.allTasks__taskListItemParagraph_statusMinus) || null}`}>
+                        <p className={`${props.classes.allTasks__taskListItemParagraph} ${props.classes.allTasks__taskListItemParagraph_status} ${(props.item.taskStatus === '+' && props.classes.allTasks__taskListItemParagraph_statusPlus) || (props.item.taskStatus === '-' && props.classes.allTasks__taskListItemParagraph_statusMinus) || null} ${props.classes.textAlign_center}`}>
                             <span className={`${props.classes.allTasks__taskListItemParagraphValue} ${props.classes.allTasks__taskListItemParagraphValue_status} ${props.isMobileDeviceBoolean ? props.classes.allTasks__taskListItemParagraphValue_status_mobileDevice : null} ${(props.item.taskStatus === '+' && props.classes.allTasks__taskListItemParagraphValue_statusPlus) || (props.item.taskStatus === '-' && props.classes.allTasks__taskListItemParagraphValue_statusMinus) || null}`}>{props.item.taskStatus === '-' ? <span>&#8722;</span> : props.item.taskStatus}</span>
                         </p>
                     }
@@ -150,7 +150,7 @@ export const TaskInTasksListUI = (props) => {
                         </p>
                     }
                 </div>
-                <div className={`${props.classes.allTasks__taskListItemCell} ${props.isMobileDeviceBoolean ? props.classes.allTasks__taskListItemCell_mobileDevice : null}`}>
+                <div className={`${props.classes.allTasks__taskListItemCell} ${props.isMobileDeviceBoolean ? props.classes.allTasks__taskListItemCell_mobileDevice : null} ${props.isMobileDeviceBoolean ? props.classes.allTasks__taskListItemCell_taskComment_mobileDevice : props.classes.allTasks__taskListItemCell_taskComment}`}>
                     {
                         props.item.taskComment 
                         && 

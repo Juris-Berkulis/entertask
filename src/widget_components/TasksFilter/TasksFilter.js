@@ -40,11 +40,11 @@ export const TasksFilter = (props) => {
                 {
                     props.propertiesForTasksFilter[item]
                     ? 
-                        <span>&#9989; </span>
+                        <span className={classes.tasksFilter__listItemIcon}>&#9989;</span>
                     : 
-                        <span>&#10060; </span>
+                        <span className={classes.tasksFilter__listItemIcon}>&#10060;</span>
                 }
-                <span>
+                <span className={classes.tasksFilter__listItemText}>
                     {
                         replaceBrieflyValueToDetailValueOfTheTaskSign(props.signForTasksFilter, replaceAllowedCharactersFromFirebaseDatabaseKeys(item))
                     }
