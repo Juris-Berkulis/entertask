@@ -36,6 +36,24 @@ export const allAppComponentsWithPageTitle = {
         path: '/edittask',
         pathCheck: /^$/,
     },
+    signup: {
+        pageTitle: 'Регистрация',
+        displayTitle: 'Регистрация',
+        path: '/signup',
+        pathCheck: /^$/,
+    },
+    login: {
+        pageTitle: 'Вход',
+        displayTitle: 'Вход',
+        path: '/login',
+        pathCheck: /^$/,
+    },
+    logout: {
+        pageTitle: '',
+        displayTitle: 'Выход',
+        path: '',
+        pathCheck: /^$/,
+    },
 };
 
 export const allSignsForTasksFilter = {
@@ -217,3 +235,5 @@ export const objectWithForbiddenCharactersForFirebaseDatabaseKeys = {
         allowedCharacter: '🧶'
     },
 };
+
+export const startValueForTimer = 91;
