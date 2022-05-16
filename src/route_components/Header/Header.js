@@ -12,8 +12,6 @@ export const Header = () => {
 
     const location = useLocation();
 
-    // const navigationForProps = NAVIGATION.map((item) => <Link className={`${classes.header__link} ${item.href === location.pathname ? classes.header__link_activePage : null}`} to={item.href} key={item.name}>{item.name}</Link>);
-
     const emailVerificationStatus = useChangeEmailVerificationStatus(location.pathname);
 
     const navigationForProps = (
@@ -27,7 +25,6 @@ export const Header = () => {
     const logoutUser = async () => {
         auth.signOut();
         if (auth.currentUser) {
-            // await functionsForMocks.userReload();
             await auth.currentUser.reload();
         }
     };

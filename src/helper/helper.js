@@ -439,11 +439,9 @@ export const giveTitleForPage = (title) => {
 export const userVerificationWaiting = (verificationWaitingBoolean, push) => {
     const timerId = setInterval(async () => {
         if (auth.currentUser) {
-            // await functionsForMocks.userReload();
             await auth.currentUser.reload();
 
             if (auth.currentUser && auth.currentUser.emailVerified) {
-                // push(allAppComponentsWithPageTitle.profile.path);
                 push(allAppComponentsWithPageTitle.tasksfortoday.path);
                 verificationWaitingBoolean = false;
 
@@ -459,7 +457,6 @@ export const userVerificationWaiting = (verificationWaitingBoolean, push) => {
 
 export const requestTheLetter = async (myEmail) => {
     if (auth.currentUser) {
-        // await functionsForMocks.checkEmail();
         await auth.currentUser.sendEmailVerification();
         const infoMessage = confirmSendingOfTheVerificationLetter(myEmail).success;
 
@@ -501,10 +498,8 @@ export const countdownForLetterRequestWithLink = (dispatch, startValueForTimer) 
 export const instantUserVerificationChecking = async (verificationWaitingBoolean, push) => {
     if (auth.currentUser) {
         verificationWaitingBoolean = false;
-        // await functionsForMocks.userReload();
         await auth.currentUser.reload();
         if (auth.currentUser && auth.currentUser.emailVerified) {
-            // push(allAppComponentsWithPageTitle.profile.path);
             push(allAppComponentsWithPageTitle.tasksfortoday.path);
 
             return verificationWaitingBoolean

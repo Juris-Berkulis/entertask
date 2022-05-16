@@ -38,7 +38,6 @@ export const Signup = () => {
 
   const myEmail = (email ? email : (auth.currentUser !== null ? auth.currentUser.email : null));
 
-  // const {push} = useHistory();
   const history = useNavigate();
 
   const handlePassChange = (e) => {
@@ -61,7 +60,6 @@ export const Signup = () => {
     });
 
     try {
-      // await functionsForMocks.registration(email, password);
       await auth.createUserWithEmailAndPassword(email, password);
       dispatch({
         type: emailVerificationConfirmationWaitingIsTrue.type,

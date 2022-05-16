@@ -28,7 +28,6 @@ export const Login = () => {
 
   const myEmail = (email ? email : (auth.currentUser !== null ? auth.currentUser.email : null));
 
-  // const {push} = useHistory();
   const history = useNavigate();
 
   const handlePassChange = (e) => {
@@ -51,7 +50,6 @@ export const Login = () => {
     });
 
     try {
-      // await functionsForMocks.login(email, password);
       await auth.signInWithEmailAndPassword(email, password);
       dispatch({
         type: emailVerificationConfirmationWaitingIsTrue.type,
