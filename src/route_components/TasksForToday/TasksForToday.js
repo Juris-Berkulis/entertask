@@ -2,6 +2,7 @@ import React, { useLayoutEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { allAppComponentsWithPageTitle, allSignsForTasksFilter } from '../../data/consts';
+import { auth } from '../../firebase/firebase';
 import { changeTask, deleteTask, deleteTheTaskFromListWithTasksForToday, openTheTask, sortTasksBySign, tasksFiltering } from '../../helper/helper';
 import { offTrackingChangeValueInTasksListWithThunkAction, onTrackingChangeDictWithListsForTasksFilterWithThunkAction, onTrackingChangeValueInTasksListWithThunkAction } from '../../store/Tasks/Action';
 import { getTasksListDictWithListsForTasksFilterSelector, getTasksListReverseDirectionForTasksSortinBySignSelector, getTasksListTasksKindOfDictByUserUIDSelector, getTasksListTasksKindOfListByUserUIDSelector, getTasksListTasksSignForTasksSortingSelector } from '../../store/Tasks/Selectors';
@@ -12,12 +13,14 @@ import { TaskInTasksList } from '../TaskInTasksList/TaskInTasksList';
 export const TasksForToday = () => {
     const classes = useStyles();
 
+    const userUID = auth.currentUser && auth.currentUser.uid ? auth.currentUser.uid : null;
+
     const history = useNavigate();
 
     const dispatch = useDispatch();
 
-    const tasksKindOfListByUserUIDSel = useSelector(getTasksListTasksKindOfListByUserUIDSelector('userUID'));
-    const tasksKindOfDictByUserUIDSel = useSelector(getTasksListTasksKindOfDictByUserUIDSelector('userUID'));
+    const tasksKindOfListByUserUIDSel = useSelector(getTasksListTasksKindOfListByUserUIDSelector(userUID));
+    const tasksKindOfDictByUserUIDSel = useSelector(getTasksListTasksKindOfDictByUserUIDSelector(userUID));
     const dictWithListsForTasksFilterSel = useSelector(getTasksListDictWithListsForTasksFilterSelector);
     const tasksSignForTasksSortingSel = useSelector(getTasksListTasksSignForTasksSortingSelector);
     const reverseDirectionForTasksSortinBySignSel = useSelector(getTasksListReverseDirectionForTasksSortinBySignSelector);
@@ -39,20 +42,20 @@ export const TasksForToday = () => {
     ));
 
     useLayoutEffect(() => {
-        dispatch(onTrackingChangeValueInTasksListWithThunkAction('userUID'));
+        dispatch(onTrackingChangeValueInTasksListWithThunkAction(userUID));
 
         return () => {
-            dispatch(offTrackingChangeValueInTasksListWithThunkAction('userUID'));
+            dispatch(offTrackingChangeValueInTasksListWithThunkAction(userUID));
         }
-    }, [dispatch]);
+    }, [dispatch, userUID]);
 
     useLayoutEffect(() => {
-        dispatch(onTrackingChangeDictWithListsForTasksFilterWithThunkAction('userUID'));
+        dispatch(onTrackingChangeDictWithListsForTasksFilterWithThunkAction(userUID));
 
         return () => {
-            dispatch(onTrackingChangeDictWithListsForTasksFilterWithThunkAction('userUID'));
+            dispatch(onTrackingChangeDictWithListsForTasksFilterWithThunkAction(userUID));
         }
-    }, [dispatch]);
+    }, [dispatch, userUID]);
     
     return (
         <TasksForTodayUI classes={classes} allAppComponentsWithPageTitle={allAppComponentsWithPageTitle} tasksListTasksKindOfListByIdSelForProps={tasksListTasksKindOfListByIdSelForProps} dictWithListsForTasksFilterSel={dictWithListsForTasksFilterSel} changeTask={changeTask} deleteTask={deleteTask} dispatch={dispatch} tasksKindOfDictByUserUIDSel={tasksKindOfDictByUserUIDSel} history={history}></TasksForTodayUI>

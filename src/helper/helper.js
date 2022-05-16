@@ -259,7 +259,7 @@ export const changeTask = (taskObject, dispatch, history) => {
     history(allAppComponentsWithPageTitle.edittask.path);
 };
 
-export const deleteTask = (taskID, dispatch, tasksKindOfDictByUserUIDSel) => {
+export const deleteTask = (userUID, taskID, dispatch, tasksKindOfDictByUserUIDSel) => {
     const thisTaskWillBeDeleted = tasksKindOfDictByUserUIDSel[taskID];
 
     for (let deleteTaskSign in thisTaskWillBeDeleted) {
@@ -280,11 +280,11 @@ export const deleteTask = (taskID, dispatch, tasksKindOfDictByUserUIDSel) => {
         }
 
         if (!deleteTaskSignIsFind) {
-            dispatch(deleteExtraSignOfTaskFilteringWithThunkAction(deleteTaskSign, thisTaskWillBeDeleted[deleteTaskSign]));
+            dispatch(deleteExtraSignOfTaskFilteringWithThunkAction(userUID, deleteTaskSign, thisTaskWillBeDeleted[deleteTaskSign]));
         }
     }
 
-    deleteTaskWithThunkAction(taskID);
+    deleteTaskWithThunkAction(userUID, taskID);
 };
 
 export const sortTasksBySign = (itemA, itemB, tasksSignForTasksSortingSel, reverseDirectionForTasksSortinBySignSel) => {
@@ -320,12 +320,12 @@ export const openTheTask = (item, dispatch) => {
     });
 };
 
-export const addTheTaskInListWithTasksForToday = (taskID, dispatch) => {
-    dispatch(addTheTaskInListWithTasksForTodayWithThunkAction(taskID));
+export const addTheTaskInListWithTasksForToday = (userUID, taskID, dispatch) => {
+    dispatch(addTheTaskInListWithTasksForTodayWithThunkAction(userUID, taskID));
 };
 
-export const deleteTheTaskFromListWithTasksForToday = (taskID, dispatch) => {
-    dispatch(deleteTheTaskFromListWithTasksForTodayWithThunkAction(taskID));
+export const deleteTheTaskFromListWithTasksForToday = (userUID, taskID, dispatch) => {
+    dispatch(deleteTheTaskFromListWithTasksForTodayWithThunkAction(userUID, taskID));
 };
 
 export const tasksFiltering = (item, dictWithListsForTasksFilterSel, allSignsForTasksFilter) => {
