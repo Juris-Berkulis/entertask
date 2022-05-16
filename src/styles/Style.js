@@ -559,11 +559,10 @@ export const useStyles = makeStyles({
   SigLogWrapper: {
     height: '100%',
     width: '100%',
-    backgroundColor: '#006600',
-    border: '3px solid #cccccc',
+    backgroundColor: 'transparent',
     borderRadius: '20px',
     padding: '0 20px',
-    color: '#eeeeee',
+    color: '#000000',
     fontSize: '16px',
   },
   SigLogField: {
@@ -592,10 +591,14 @@ export const useStyles = makeStyles({
   SigLogInput: {
     width: '40%',
     marginBottom: '3vh',
-    border: '1px solid #cccccc',
-    borderRadius: '0.8em',
     padding: '0.3em 0.6em',
     fontSize: '1em',
+    borderRadius: '50em',
+    border: '2px solid #006600',
+    '&:focus': {
+      border: '2px solid #0000ff',
+      outline: 'none',
+    },
   },
   SigLogInputMobileDevice: {
     width: '100%',
@@ -625,11 +628,18 @@ export const useStyles = makeStyles({
     fontSize: '1em',
     margin: '0 10px 1vh',
     padding: '0.3em 0.6em',
-    borderRadius: '0.8em',
-    border: '1.5px solid #cccccc',
-    backgroundColor: '#2b6d2b',
-    color: '#eeeeee',
+    borderRadius: '50em',
+    color: '#ffffff',
+    backgroundColor: '#006600',
+    boxShadow: 'inset 0px 15px 15px -7.5px #caffca, inset 0px -15px 15px -7.5px #225522, 0px 3px 3px #337733',
     cursor: 'pointer',
+    transition: 'background-color 0.1s linear 0.1s',
+    '&:hover': {
+      backgroundColor: '#007700',
+    },
+    '&:active': {
+      boxShadow: 'inset 0px 15px 15px -7.5px #caffca, inset 0px -15px 15px -7.5px #225522, 0px 1px 1px #337733',
+    },
   },
   SigLogActionWaiting: {
     display: 'flex',
@@ -657,7 +667,12 @@ export const useStyles = makeStyles({
     fontSize: '0.9em',
   },
   SigLogInfoLink: {
-    color: '#88ff88',
+    color: '#006600',
+    textDecoration: 'underline',
+    '&:hover': {
+      color: '#007700',
+      textDecoration: 'none',
+    },
   },
   taskEisenhowerMatrixValue__color_: {
     borderBottom: '5px solid #000000',
