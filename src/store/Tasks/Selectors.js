@@ -5,5 +5,7 @@ export const getTasksListTasksKindOfListByUserUIDSelector = (userUID) => (state)
 export const getTasksListDictWithListsForTasksFilterSelector = (state) => getTasksListRootSelector(state).dictWithListsForTasksFilterCase || {};
 export const getTasksListTasksSignForTasksSortingSelector = (state) => getTasksListRootSelector(state).tasksSignForTasksSortingCase || false;
 export const getTasksListReverseDirectionForTasksSortinBySignSelector = (state) => getTasksListRootSelector(state).reverseDirectionForTasksSortinBySignCase || false;
+export const getTasksListTasksSignForTodayTasksSortingSelector = (state) => getTasksListRootSelector(state).tasksSignForTodayTasksSortingCase || false;
+export const getTasksListReverseDirectionForTodayTasksSortinBySignSelector = (state) => getTasksListRootSelector(state).reverseDirectionForTodayTasksSortinBySignCase || false;
 export const getTasksListDictWithNewTaskPropertiesErrorsSelector = (state) => getTasksListRootSelector(state).dictWithNewTaskPropertiesErrorsCase || {};
 export const getTasksListOpenTaskSelector = (state) => getTasksListRootSelector(state).openTaskCase || {};

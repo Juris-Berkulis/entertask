@@ -5,7 +5,7 @@ import { allAppComponentsWithPageTitle, allSignsForTasksFilter } from '../../dat
 import { auth } from '../../firebase/firebase';
 import { changeTask, deleteTask, deleteTheTaskFromListWithTasksForToday, openTheTask, sortTasksBySign, tasksFiltering } from '../../helper/helper';
 import { offTrackingChangeValueInTasksListWithThunkAction, onTrackingChangeDictWithListsForTasksFilterWithThunkAction, onTrackingChangeValueInTasksListWithThunkAction } from '../../store/Tasks/Action';
-import { getTasksListDictWithListsForTasksFilterSelector, getTasksListReverseDirectionForTasksSortinBySignSelector, getTasksListTasksKindOfDictByUserUIDSelector, getTasksListTasksKindOfListByUserUIDSelector, getTasksListTasksSignForTasksSortingSelector } from '../../store/Tasks/Selectors';
+import { getTasksListDictWithListsForTasksFilterSelector, getTasksListReverseDirectionForTodayTasksSortinBySignSelector, getTasksListTasksKindOfDictByUserUIDSelector, getTasksListTasksKindOfListByUserUIDSelector, getTasksListTasksSignForTodayTasksSortingSelector } from '../../store/Tasks/Selectors';
 import { useStyles } from '../../styles/Style';
 import { TasksForTodayUI } from '../../ui_components/TasksForTodayUI';
 import { TaskInTasksList } from '../TaskInTasksList/TaskInTasksList';
@@ -22,8 +22,8 @@ export const TasksForToday = () => {
     const tasksKindOfListByUserUIDSel = useSelector(getTasksListTasksKindOfListByUserUIDSelector(userUID));
     const tasksKindOfDictByUserUIDSel = useSelector(getTasksListTasksKindOfDictByUserUIDSelector(userUID));
     const dictWithListsForTasksFilterSel = useSelector(getTasksListDictWithListsForTasksFilterSelector);
-    const tasksSignForTasksSortingSel = useSelector(getTasksListTasksSignForTasksSortingSelector);
-    const reverseDirectionForTasksSortinBySignSel = useSelector(getTasksListReverseDirectionForTasksSortinBySignSelector);
+    const tasksSignForTodayTasksSortingSel = useSelector(getTasksListTasksSignForTodayTasksSortingSelector);
+    const reverseDirectionForTodayTasksSortinBySignSel = useSelector(getTasksListReverseDirectionForTodayTasksSortinBySignSelector);
 
     const tasksListTasksKindOfListByIdSelForProps = tasksKindOfListByUserUIDSel
     .filter((item) => {
@@ -36,7 +36,7 @@ export const TasksForToday = () => {
             tasksFiltering(item, dictWithListsForTasksFilterSel, allSignsForTasksFilter)
         )
     })
-    .sort((itemA, itemB) => sortTasksBySign(itemA, itemB, tasksSignForTasksSortingSel, reverseDirectionForTasksSortinBySignSel))
+    .sort((itemA, itemB) => sortTasksBySign(itemA, itemB, tasksSignForTodayTasksSortingSel, reverseDirectionForTodayTasksSortinBySignSel))
     .map((item) => (
         <TaskInTasksList key={item.taskID} item={item} changeTask={changeTask} deleteTask={deleteTask} openTheTask={openTheTask} deleteTheTaskFromListWithTasksForToday={deleteTheTaskFromListWithTasksForToday} dispatch={dispatch} tasksKindOfDictByUserUIDSel={tasksKindOfDictByUserUIDSel} history={history}></TaskInTasksList>
     ));

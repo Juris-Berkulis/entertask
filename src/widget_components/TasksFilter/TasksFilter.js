@@ -1,10 +1,12 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { useLocation } from 'react-router-dom';
+import { allAppComponentsWithPageTitle } from '../../data/consts';
 import { isMobileDevice, replaceAllowedCharactersFromFirebaseDatabaseKeys, replaceBrieflyValueToDetailValueOfTheTaskSign } from '../../helper/helper';
 import { switchForCloseAllListsForTasksPropertiesFilterAction } from '../../store/AppSwitches/Action';
 import { getAppSwitchesSwitchForCloseAllListsForTasksPropertiesFilterSelector } from '../../store/AppSwitches/Selectors';
-import { changeTaskPropertyShowWithThunkAction, reverseDirectionForTasksSortinBySignAction, tasksSignForTasksSortingAction } from '../../store/Tasks/Action';
-import { getTasksListReverseDirectionForTasksSortinBySignSelector, getTasksListTasksSignForTasksSortingSelector } from '../../store/Tasks/Selectors';
+import { changeTaskPropertyShowWithThunkAction, reverseDirectionForTasksSortinBySignAction, reverseDirectionForTodayTasksSortinBySignAction, tasksSignForTasksSortingAction, tasksSignForTodayTasksSortingAction } from '../../store/Tasks/Action';
+import { getTasksListReverseDirectionForTasksSortinBySignSelector, getTasksListReverseDirectionForTodayTasksSortinBySignSelector, getTasksListTasksSignForTasksSortingSelector, getTasksListTasksSignForTodayTasksSortingSelector } from '../../store/Tasks/Selectors';
 import { useStyles } from '../../styles/Style';
 import { TasksFilterUI } from '../../ui_components/TasksFilterUI';
 
@@ -13,6 +15,8 @@ export const TasksFilter = (props) => {
 
     const isMobileDeviceBoolean = isMobileDevice();
 
+    const location = useLocation();
+
     const dispatch = useDispatch();
 
     const [showListPropertiesForTasksFilter, setShowListPropertiesForTasksFilter] = useState(false);
@@ -20,6 +24,8 @@ export const TasksFilter = (props) => {
     const switchForCloseAllListsForTasksPropertiesFilterSel = useSelector(getAppSwitchesSwitchForCloseAllListsForTasksPropertiesFilterSelector);
     const tasksSignForTasksSortingSel = useSelector(getTasksListTasksSignForTasksSortingSelector);
     const reverseDirectionForTasksSortinBySignSel = useSelector(getTasksListReverseDirectionForTasksSortinBySignSelector);
+    const tasksSignForTodayTasksSortingSel = useSelector(getTasksListTasksSignForTodayTasksSortingSelector);
+    const reverseDirectionForTodayTasksSortinBySignSel = useSelector(getTasksListReverseDirectionForTodayTasksSortinBySignSelector);
 
     const toggleListPropertiesForTasksFilter = () => {
         dispatch({
@@ -54,17 +60,31 @@ export const TasksFilter = (props) => {
     });
 
     const selectSignForTasksSorting = (sign) => {
-        dispatch({
-            type: tasksSignForTasksSortingAction.type,
-            payload: sign,
-        });
+        if (location.pathname === allAppComponentsWithPageTitle.alltasks.path) {
+            dispatch({
+                type: tasksSignForTasksSortingAction.type,
+                payload: sign,
+            });
+        } else if (location.pathname === allAppComponentsWithPageTitle.tasksfortoday.path) {
+            dispatch({
+                type: tasksSignForTodayTasksSortingAction.type,
+                payload: sign,
+            });
+        }
     };
 
     const toggleDirectionForTasksSortingBySign = () => {
-        dispatch({
-            type: reverseDirectionForTasksSortinBySignAction.type,
-            payload: !reverseDirectionForTasksSortinBySignSel,
-        });
+        if (location.pathname === allAppComponentsWithPageTitle.alltasks.path) {
+            dispatch({
+                type: reverseDirectionForTasksSortinBySignAction.type,
+                payload: !reverseDirectionForTasksSortinBySignSel,
+            });
+        } else if (location.pathname === allAppComponentsWithPageTitle.tasksfortoday.path) {
+            dispatch({
+                type: reverseDirectionForTodayTasksSortinBySignAction.type,
+                payload: !reverseDirectionForTodayTasksSortinBySignSel,
+            });
+        }
     };
 
     useEffect(() => {
@@ -74,6 +94,6 @@ export const TasksFilter = (props) => {
     }, [switchForCloseAllListsForTasksPropertiesFilterSel, props.signForTasksFilter]);
 
     return (
-        <TasksFilterUI classes={classes} propertiesForTasksFilterList={propertiesForTasksFilterList} signForTasksFilter={props.signForTasksFilter} toggleListPropertiesForTasksFilter={toggleListPropertiesForTasksFilter} showListPropertiesForTasksFilter={showListPropertiesForTasksFilter} selectSignForTasksSorting={selectSignForTasksSorting} toggleDirectionForTasksSortingBySign={toggleDirectionForTasksSortingBySign} tasksSignForTasksSortingSel={tasksSignForTasksSortingSel} reverseDirectionForTasksSortinBySignSel={reverseDirectionForTasksSortinBySignSel} isMobileDeviceBoolean={isMobileDeviceBoolean}></TasksFilterUI>
+        <TasksFilterUI classes={classes} propertiesForTasksFilterList={propertiesForTasksFilterList} signForTasksFilter={props.signForTasksFilter} toggleListPropertiesForTasksFilter={toggleListPropertiesForTasksFilter} showListPropertiesForTasksFilter={showListPropertiesForTasksFilter} selectSignForTasksSorting={selectSignForTasksSorting} toggleDirectionForTasksSortingBySign={toggleDirectionForTasksSortingBySign} tasksSignForTasksSortingSel={tasksSignForTasksSortingSel} reverseDirectionForTasksSortinBySignSel={reverseDirectionForTasksSortinBySignSel} isMobileDeviceBoolean={isMobileDeviceBoolean} tasksSignForTodayTasksSortingSel={tasksSignForTodayTasksSortingSel} reverseDirectionForTodayTasksSortinBySignSel={reverseDirectionForTodayTasksSortinBySignSel} location={location} allAppComponentsWithPageTitle={allAppComponentsWithPageTitle}></TasksFilterUI>
     )
 };

@@ -7,9 +7,13 @@ export const TasksFilterUI = (props) => {
             <button className={`${props.classes.tasksFilter__btn} ${props.isMobileDeviceBoolean ? props.classes.tasksFilter__btn_mobileDevice : null}`} onClick={props.toggleListPropertiesForTasksFilter}>
                 <span className={props.classes.tasksFilter__btnText}>{allSignsForTasksFilter[props.signForTasksFilter].decodingIntoRus}</span>
                 {
-                    props.tasksSignForTasksSortingSel === allSignsForTasksFilter[props.signForTasksFilter].variable
+                    (
+                        (props.location.pathname === props.allAppComponentsWithPageTitle.alltasks.path && props.tasksSignForTasksSortingSel === allSignsForTasksFilter[props.signForTasksFilter].variable) 
+                        || 
+                        (props.location.pathname === props.allAppComponentsWithPageTitle.tasksfortoday.path && props.tasksSignForTodayTasksSortingSel === allSignsForTasksFilter[props.signForTasksFilter].variable)
+                    )
                     ?
-                    <div className={`${props.classes.tasksFilter__signIsTurnOn} ${props.reverseDirectionForTasksSortinBySignSel ? props.classes.tasksFilter__signIsTurnOn_up : props.classes.tasksFilter__signIsTurnOn_down}`}></div>
+                    <div className={`${props.classes.tasksFilter__signIsTurnOn} ${(props.location.pathname === props.allAppComponentsWithPageTitle.alltasks.path && props.reverseDirectionForTasksSortinBySignSel) || (props.location.pathname === props.allAppComponentsWithPageTitle.tasksfortoday.path && props.reverseDirectionForTodayTasksSortinBySignSel) ? props.classes.tasksFilter__signIsTurnOn_up : props.classes.tasksFilter__signIsTurnOn_down}`}></div>
                     :
                     null
                 }
@@ -23,11 +27,19 @@ export const TasksFilterUI = (props) => {
                         <p className={props.classes.tasksFilter__listTitle}>
                             <span className={props.classes.tasksFilter__listTitleText}>{allSignsForTasksFilter[props.signForTasksFilter].decodingIntoRus}</span>
                             {
-                                props.tasksSignForTasksSortingSel === allSignsForTasksFilter[props.signForTasksFilter].variable
+                                (
+                                    (props.location.pathname === props.allAppComponentsWithPageTitle.alltasks.path && props.tasksSignForTasksSortingSel === allSignsForTasksFilter[props.signForTasksFilter].variable) 
+                                    || 
+                                    (props.location.pathname === props.allAppComponentsWithPageTitle.tasksfortoday.path && props.tasksSignForTodayTasksSortingSel === allSignsForTasksFilter[props.signForTasksFilter].variable)
+                                )
                                 ? 
                                 <button className={props.classes.tasksFilter__tasksSortingBtn} onClick={props.toggleDirectionForTasksSortingBySign}>
                                     {
-                                        props.reverseDirectionForTasksSortinBySignSel
+                                        (
+                                            (props.location.pathname === props.allAppComponentsWithPageTitle.alltasks.path && props.reverseDirectionForTasksSortinBySignSel) 
+                                            ||
+                                            (props.location.pathname === props.allAppComponentsWithPageTitle.tasksfortoday.path && props.reverseDirectionForTodayTasksSortinBySignSel)
+                                        )
                                         ? 
                                         <span className={`${props.classes.tasksFilter__tasksSortingBtnArrow} ${props.classes.tasksFilter__tasksSortingBtnArrow_up}`}>&#8593;</span>
                                         : 
