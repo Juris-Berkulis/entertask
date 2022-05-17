@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
 import { allAppComponentsWithPageTitle } from '../../data/consts';
+import { auth } from '../../firebase/firebase';
 import { isMobileDevice, replaceAllowedCharactersFromFirebaseDatabaseKeys, replaceBrieflyValueToDetailValueOfTheTaskSign } from '../../helper/helper';
 import { switchForCloseAllListsForTasksPropertiesFilterAction } from '../../store/AppSwitches/Action';
 import { getAppSwitchesSwitchForCloseAllListsForTasksPropertiesFilterSelector } from '../../store/AppSwitches/Selectors';
@@ -18,6 +19,8 @@ export const TasksFilter = (props) => {
     const location = useLocation();
 
     const dispatch = useDispatch();
+
+    const userUID = auth.currentUser && auth.currentUser.uid ? auth.currentUser.uid : null;
 
     const [showListPropertiesForTasksFilter, setShowListPropertiesForTasksFilter] = useState(false);
 
@@ -37,7 +40,7 @@ export const TasksFilter = (props) => {
     };
 
     const togglePropertyShow = (item) => {
-        dispatch(changeTaskPropertyShowWithThunkAction(props.signForTasksFilter, item, props.propertiesForTasksFilter[item]));
+        dispatch(changeTaskPropertyShowWithThunkAction(userUID, props.signForTasksFilter, item, props.propertiesForTasksFilter[item]));
     };
 
     const propertiesForTasksFilterList = Object.keys(props.propertiesForTasksFilter).map((item) => {
