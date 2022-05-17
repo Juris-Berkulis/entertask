@@ -35,6 +35,20 @@ export const OpenTaskUI = (props) => {
                     <p className={`${props.classes.openTask__taskListItemParagraph} ${props.classes.allTasks__taskListItemParagraph}`}>{props.allSignsForTasksFilter.subtaskName.decodingIntoRus}: <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.tasksListOpenTaskSel.subtaskName}</span></p>
                 }
                 {
+                    props.tasksListOpenTaskSel.taskStatus 
+                    && 
+                    props.tasksListOpenTaskSel.taskStatus !== props.characterToAutocompleteEmptyTaskSign 
+                    && 
+                    <p className={`${props.classes.openTask__taskListItemParagraph} ${props.classes.allTasks__taskListItemParagraph} ${props.classes.allTasks__taskListItemParagraph_status}`}>{props.allSignsForTasksFilter.taskStatus.decodingIntoRus}: <span className={`${props.classes.allTasks__taskListItemParagraphValue} ${props.classes.allTasks__taskListItemParagraphValue_status} ${(props.tasksListOpenTaskSel.taskStatus === '+' && props.classes.allTasks__taskListItemParagraphValue_statusPlus) || (props.tasksListOpenTaskSel.taskStatus === '-' && props.classes.allTasks__taskListItemParagraphValue_statusMinus) || null}`}>{props.tasksListOpenTaskSel.taskStatus === '-' ? <span>&#8722;</span> : props.tasksListOpenTaskSel.taskStatus}</span></p>
+                }
+                {
+                    props.tasksListOpenTaskSel.taskEisenhowerMatrixValue 
+                    && 
+                    props.tasksListOpenTaskSel.taskEisenhowerMatrixValue !== props.characterToAutocompleteEmptyTaskSign 
+                    && 
+                    <p className={`${props.classes.openTask__taskListItemParagraph} ${props.classes.allTasks__taskListItemParagraph}`}>{props.allSignsForTasksFilter.taskEisenhowerMatrixValue.decodingIntoRus}: <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.replaceBrieflyValueToDetailValueOfTheTaskSign(props.allSignsForTasksFilter.taskEisenhowerMatrixValue.variable, props.tasksListOpenTaskSel.taskEisenhowerMatrixValue)}</span></p>
+                }
+                {
                     props.tasksListOpenTaskSel.taskUrgency 
                     && 
                     props.tasksListOpenTaskSel.taskUrgency !== props.characterToAutocompleteEmptyTaskSign 
@@ -82,13 +96,6 @@ export const OpenTaskUI = (props) => {
                     props.tasksListOpenTaskSel.taskDuration !== props.characterToAutocompleteEmptyTaskSign 
                     && 
                     <p className={`${props.classes.openTask__taskListItemParagraph} ${props.classes.allTasks__taskListItemParagraph}`}>{props.allSignsForTasksFilter.taskDuration.decodingIntoRus}: <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.tasksListOpenTaskSel.taskDuration}</span></p>
-                }
-                {
-                    props.tasksListOpenTaskSel.taskStatus 
-                    && 
-                    props.tasksListOpenTaskSel.taskStatus !== props.characterToAutocompleteEmptyTaskSign 
-                    && 
-                    <p className={`${props.classes.openTask__taskListItemParagraph} ${props.classes.allTasks__taskListItemParagraph} ${props.classes.allTasks__taskListItemParagraph_status}`}>{props.allSignsForTasksFilter.taskStatus.decodingIntoRus}: <span className={`${props.classes.allTasks__taskListItemParagraphValue} ${props.classes.allTasks__taskListItemParagraphValue_status} ${(props.tasksListOpenTaskSel.taskStatus === '+' && props.classes.allTasks__taskListItemParagraphValue_statusPlus) || (props.tasksListOpenTaskSel.taskStatus === '-' && props.classes.allTasks__taskListItemParagraphValue_statusMinus) || null}`}>{props.tasksListOpenTaskSel.taskStatus === '-' ? <span>&#8722;</span> : props.tasksListOpenTaskSel.taskStatus}</span></p>
                 }
                 {
                     props.tasksListOpenTaskSel.taskCreateAt 
