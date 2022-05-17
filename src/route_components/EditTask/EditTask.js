@@ -2,6 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { allAppComponentsWithPageTitle, allSignsForTasksFilter, characterToAutocompleteEmptyTaskSign } from '../../data/consts';
+import { auth } from '../../firebase/firebase';
 import { checkIsInputValueValid, fillInEmptyTaskAttributes, getEisenhowerMatrixValue, replaceBrieflyValueToDetailValueOfTheEisenhowerMatrix } from '../../helper/helper';
 import { resetInputFieldsValuesInitializerAction } from '../../store/AppSwitches/Action';
 import { getAppSwitchesEditableTaskObjectSelector, getAppSwitchesResetInputFieldsValuesInitializerSelector } from '../../store/AppSwitches/Selectors';
@@ -16,6 +17,8 @@ export const EditTask = () => {
     const classes = useStyles();
 
     const dispatch = useDispatch();
+
+    const userUID = auth.currentUser && auth.currentUser.uid ? auth.currentUser.uid : null;
 
     const history = useNavigate();
 
@@ -36,7 +39,7 @@ export const EditTask = () => {
 
     const inputFieldsValuesInitializerSel = useSelector(getAppSwitchesResetInputFieldsValuesInitializerSelector);
 
-    const tasksKindOfDictByUserUIDSel = useSelector(getTasksListTasksKindOfDictByUserUIDSelector('userUID'));
+    const tasksKindOfDictByUserUIDSel = useSelector(getTasksListTasksKindOfDictByUserUIDSelector(userUID));
 
     const [editableTaskObjectWithoutAutocomplete, setEditableTaskObjectWithoutAutocomplete] = useState({});
 
@@ -88,7 +91,7 @@ export const EditTask = () => {
                     }
         
                     if (!deleteTaskSignIsFind) {
-                        dispatch(deleteExtraSignOfTaskFilteringWithThunkAction(editTaskSign, thisTaskWillBeEdited[editTaskSign]));
+                        dispatch(deleteExtraSignOfTaskFilteringWithThunkAction(userUID, editTaskSign, thisTaskWillBeEdited[editTaskSign]));
                     }
                 }
             }
@@ -97,7 +100,7 @@ export const EditTask = () => {
 
             const taskUTCInMilliseconds = editableTaskObject.taskID;
 
-            dispatch(editTaskWithThunkAction(taskUTCInMilliseconds, fullEditableTask));
+            dispatch(editTaskWithThunkAction(userUID, taskUTCInMilliseconds, fullEditableTask));
 
             dispatch({
                 type: resetInputFieldsValuesInitializerAction.type,

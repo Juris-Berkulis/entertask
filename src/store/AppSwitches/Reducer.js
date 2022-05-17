@@ -1,5 +1,9 @@
 import { 
+    countdownForLetterRequest,
     editableTaskObjectAction,
+    emailVerificationConfirmationWaitingIsFalse,
+    emailVerificationConfirmationWaitingIsTrue,
+    lastAuthorization,
     resetInputFieldsValuesInitializerAction, 
     switchForCloseAllListsForTasksPropertiesFilterAction
 } from './Action.js';
@@ -24,6 +28,30 @@ export const appSwitchesReducer = (state = initialState, action) => {
             return {
                 ...state,
                 switchForCloseAllListsForTasksPropertiesFilterCase: action.payload,
+            }
+        }
+        case emailVerificationConfirmationWaitingIsTrue.type: {
+            return {
+                ...state, 
+                isEmailVerificationConfirmationWaiting: true,
+            }
+        }
+        case emailVerificationConfirmationWaitingIsFalse.type: {
+            return {
+                ...state, 
+                isEmailVerificationConfirmationWaiting: false,
+            }
+        }
+        case countdownForLetterRequest.type: {
+            return {
+                ...state, 
+                countdownForLetterRequestIsNumber: action.payload,
+            }
+        }
+        case lastAuthorization.type: {
+            return {
+                ...state,
+                lastAuthorizationDateAndTime: action.payload,
             }
         }
         default: {

@@ -2,6 +2,7 @@ import React, { useEffect } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { allAppComponentsWithPageTitle } from '../../data/consts';
+import { auth } from '../../firebase/firebase';
 import { checkIsInputValueValid, fillInEmptyTaskAttributes, getEisenhowerMatrixValue, replaceBrieflyValueToDetailValueOfTheEisenhowerMatrix } from '../../helper/helper';
 import { resetInputFieldsValuesInitializerAction } from '../../store/AppSwitches/Action';
 import { getAppSwitchesResetInputFieldsValuesInitializerSelector } from '../../store/AppSwitches/Selectors';
@@ -13,6 +14,8 @@ import { AddTaskUI } from '../../ui_components/AddTaskUI';
 
 export const AddTask = () => {
     const classes = useStyles();
+
+    const userUID = auth.currentUser && auth.currentUser.uid ? auth.currentUser.uid : null;
 
     const dispatch = useDispatch();
 
@@ -66,7 +69,7 @@ export const AddTask = () => {
             const taskUTCDateAndTime = now.toUTCString();
             const taskUTCInMilliseconds = now.getTime();
     
-            dispatch(addNewTaskWithThunkAction(taskUTCDateAndTime, taskUTCInMilliseconds, fullNewTask));
+            dispatch(addNewTaskWithThunkAction(userUID, taskUTCDateAndTime, taskUTCInMilliseconds, fullNewTask));
     
             dispatch({
                 type: resetInputFieldsValuesInitializerAction.type,

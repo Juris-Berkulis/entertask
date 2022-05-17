@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { allSignsForTasksFilter, characterToAutocompleteEmptyTaskSign } from '../../data/consts';
+import { auth } from '../../firebase/firebase';
 import { replaceBrieflyValueToDetailValueOfTheTaskSign } from '../../helper/helper';
 import { closeTaskAction } from '../../store/Tasks/Action';
 import { getTasksListOpenTaskSelector } from '../../store/Tasks/Selectors';
@@ -9,6 +10,8 @@ import { OpenTaskUI } from '../../ui_components/OpenTaskUI';
 
 export const OpenTask = (props) => {
     const classes = useStyles();
+
+    const userUID = auth.currentUser && auth.currentUser.uid ? auth.currentUser.uid : null;
 
     const dispatch = useDispatch();
 
@@ -39,6 +42,6 @@ export const OpenTask = (props) => {
     }, [tasksListOpenTaskSel]);
     
     return (
-        <OpenTaskUI classes={classes} closeTheTask={closeTheTask} tasksListOpenTaskSel={tasksListOpenTaskSel} someTaskIsOpen={someTaskIsOpen} changeTask={props.changeTask} deleteTask={props.deleteTask} characterToAutocompleteEmptyTaskSign={characterToAutocompleteEmptyTaskSign} dispatch={props.dispatch} tasksKindOfDictByUserUIDSel={props.tasksKindOfDictByUserUIDSel} history={props.history} replaceBrieflyValueToDetailValueOfTheTaskSign={replaceBrieflyValueToDetailValueOfTheTaskSign} allSignsForTasksFilter={allSignsForTasksFilter}></OpenTaskUI>
+        <OpenTaskUI classes={classes} closeTheTask={closeTheTask} tasksListOpenTaskSel={tasksListOpenTaskSel} someTaskIsOpen={someTaskIsOpen} changeTask={props.changeTask} deleteTask={props.deleteTask} characterToAutocompleteEmptyTaskSign={characterToAutocompleteEmptyTaskSign} dispatch={props.dispatch} tasksKindOfDictByUserUIDSel={props.tasksKindOfDictByUserUIDSel} history={props.history} replaceBrieflyValueToDetailValueOfTheTaskSign={replaceBrieflyValueToDetailValueOfTheTaskSign} allSignsForTasksFilter={allSignsForTasksFilter} userUID={userUID}></OpenTaskUI>
     )
 };

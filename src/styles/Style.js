@@ -34,6 +34,7 @@ export const useStyles = makeStyles({
     padding: '0 2vw',
     textDecoration: 'none',
     color: '#ffffff',
+    fontSize: 'calc(1rem / 16 * 16)',
     lineHeight: '10vh',
     backgroundColor: 'transparent',
     boxShadow: '1px 0px 1px #004400, -1px 0px 1px #004400, inset 0px 6.291vh 6.291vh -3.1455vh #caffca, inset 0px -6.291vh 6.291vh -3.1455vh #225522, 0px 0.805vh 0.805vh #337733',
@@ -59,6 +60,11 @@ export const useStyles = makeStyles({
       backgroundColor: '#006600',
       boxShadow: '1px 0px 1px #004400, -1px 0px 1px #004400, inset 0px 4.194vh 4.194vh -2.097vh #caffca, inset 0px -4.194vh 4.194vh -2.097vh #225522, 0px 0.483vh 0.483vh #337733',
     },
+  },
+  header__link_logoutBtn: {
+    border: 'none',
+    cursor: 'pointer',
+    fontSize: 'calc(1rem / 16 * 16)',
   },
   allTasks: {
     height: '100%',
@@ -548,6 +554,124 @@ export const useStyles = makeStyles({
     '&:hover': {
       color: '#006600',
       backgroundColor: '#99ff99',
+    },
+  },
+  SigLogWrapper: {
+    height: '100%',
+    width: '100%',
+    backgroundColor: 'transparent',
+    borderRadius: '20px',
+    padding: '0 20px',
+    color: '#000000',
+    fontSize: '16px',
+  },
+  SigLogField: {
+    height: '100%',
+    width: '100%',
+    padding: '5vh 5vw',
+    overflow: 'auto',
+  },
+  SigLogForm: {
+    margin: '0 auto',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  SigLogDescription: {
+    fontSize: '1em',
+    marginBottom: '3vh',
+    textAlign: 'center',
+  },
+  SigLogArea: {
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  SigLogInput: {
+    width: '40%',
+    marginBottom: '3vh',
+    padding: '0.3em 0.6em',
+    fontSize: '1em',
+    borderRadius: '50em',
+    border: '2px solid #006600',
+    '&:focus': {
+      border: '2px solid #0000ff',
+      outline: 'none',
+    },
+  },
+  SigLogInputMobileDevice: {
+    width: '100%',
+  },
+  SigLogEmailInput: {
+    marginBottom: '1.5vh',
+  },
+  SigLogActionErrorArea: {
+    width: '80%',
+    backgroundColor: '#ffcccc',
+    padding: '1em',
+    marginBottom: '3vh',
+    borderRadius: '1.5em',
+  },
+  SigLogActionErrorText: {
+    textAlign: 'center',
+    color: '#ff0000',
+    fontSize: '1em',
+  },
+  SigLogActionButtons: {
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+  SigLogActionBtn: {
+    fontSize: '1em',
+    margin: '0 10px 1vh',
+    padding: '0.3em 0.6em',
+    borderRadius: '50em',
+    color: '#ffffff',
+    backgroundColor: '#006600',
+    boxShadow: 'inset 0px 15px 15px -7.5px #caffca, inset 0px -15px 15px -7.5px #225522, 0px 3px 3px #337733',
+    cursor: 'pointer',
+    transition: 'background-color 0.1s linear 0.1s',
+    '&:hover': {
+      backgroundColor: '#007700',
+    },
+    '&:active': {
+      boxShadow: 'inset 0px 15px 15px -7.5px #caffca, inset 0px -15px 15px -7.5px #225522, 0px 1px 1px #337733',
+    },
+  },
+  SigLogActionWaiting: {
+    display: 'flex',
+    flexDirection: 'column',
+    alignItems: 'center',
+  },
+  SigLogTitle: {
+    fontSize: '1.5em',
+    marginBottom: '1vh',
+    textAlign: 'center',
+  },
+  SigLogActionWaitingText: {
+    fontSize: '1em',
+    marginBottom: '3vh',
+    textAlign: 'center',
+  },
+  SigLogActionWaitingText_countdown: {
+    marginBottom: '1vh',
+  },
+  SigLogActionPreloader: {
+    width: '25vw',
+    marginBottom: '3vh',
+  },
+  SigLogInfoDescription: {
+    fontSize: '0.9em',
+  },
+  SigLogInfoLink: {
+    color: '#006600',
+    textDecoration: 'underline',
+    '&:hover': {
+      color: '#007700',
+      textDecoration: 'none',
     },
   },
   taskEisenhowerMatrixValue__color_: {
