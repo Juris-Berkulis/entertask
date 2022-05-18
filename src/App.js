@@ -19,6 +19,7 @@ import { styleConsts } from './styles/StyleConsts';
 import { getStatusesInTheAppLastAuthorizationDateAndTimeSelector } from './store/AppSwitches/Selectors';
 import { useSelector } from 'react-redux';
 import { auth } from './firebase/firebase';
+import { StartingScreensaver } from './widget_components/StartingScreensaver/StartingScreensaver';
 
 export const App = () => {
   const classes = useStyles();
@@ -62,29 +63,37 @@ export const App = () => {
   return (
     <PersistGate persistor={persistor}>
       <div className={`${classes.main}`}>
-        <Header></Header>
-        <div className={`${classes.field} ${isMobileDeviceBoolean ? classes.field_mobileDevice : null}`}>
-          <Routes>
-            <Route element={<PrivateRoute authenticated={emailVerificationStatus}/>}>
-              <Route exact path={allAppComponentsWithPageTitle.tasksfortoday.path} element={<TasksForToday />} />
-            </Route>
-            <Route element={<PrivateRoute authenticated={emailVerificationStatus}/>}>
-              <Route exact path={allAppComponentsWithPageTitle.alltasks.path} element={<AllTasks />} />
-            </Route>
-            <Route element={<PrivateRoute authenticated={emailVerificationStatus}/>}>
-              <Route exact path={allAppComponentsWithPageTitle.addtask.path} element={<AddTask />} />
-            </Route>
-            <Route element={<PrivateRoute authenticated={emailVerificationStatus}/>}>
-              <Route exact path={allAppComponentsWithPageTitle.edittask.path} element={<EditTask />} />
-            </Route>
-            <Route element={<PublicRoute authenticated={emailVerificationStatus}/>}>
-              <Route exact path={allAppComponentsWithPageTitle.signup.path} element={<Signup />} />
-            </Route>
-            <Route element={<PublicRoute authenticated={emailVerificationStatus}/>}>
-              <Route exact path={allAppComponentsWithPageTitle.login.path} element={<Login />} />
-            </Route>
-          </Routes>
-        </div>
+        {
+          emailVerificationStatus !== null 
+          ? 
+          <>
+            <Header></Header>
+            <div className={`${classes.field} ${isMobileDeviceBoolean ? classes.field_mobileDevice : null}`}>
+              <Routes>
+                <Route element={<PrivateRoute authenticated={emailVerificationStatus}/>}>
+                  <Route exact path={allAppComponentsWithPageTitle.tasksfortoday.path} element={<TasksForToday />} />
+                </Route>
+                <Route element={<PrivateRoute authenticated={emailVerificationStatus}/>}>
+                  <Route exact path={allAppComponentsWithPageTitle.alltasks.path} element={<AllTasks />} />
+                </Route>
+                <Route element={<PrivateRoute authenticated={emailVerificationStatus}/>}>
+                  <Route exact path={allAppComponentsWithPageTitle.addtask.path} element={<AddTask />} />
+                </Route>
+                <Route element={<PrivateRoute authenticated={emailVerificationStatus}/>}>
+                  <Route exact path={allAppComponentsWithPageTitle.edittask.path} element={<EditTask />} />
+                </Route>
+                <Route element={<PublicRoute authenticated={emailVerificationStatus}/>}>
+                  <Route exact path={allAppComponentsWithPageTitle.signup.path} element={<Signup />} />
+                </Route>
+                <Route element={<PublicRoute authenticated={emailVerificationStatus}/>}>
+                  <Route exact path={allAppComponentsWithPageTitle.login.path} element={<Login />} />
+                </Route>
+              </Routes>
+            </div>
+          </>
+          :
+          <StartingScreensaver></StartingScreensaver>
+        }
       </div>
     </PersistGate>
   );
