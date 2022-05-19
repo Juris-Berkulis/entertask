@@ -5,3 +5,4 @@ export const getAppSwitchesSwitchForCloseAllListsForTasksPropertiesFilterSelecto
 export const getStatusesInTheAppIsEmailVerificationConfirmationWaitingSelector = (state) => getAppSwitchesRootSelector(state).isEmailVerificationConfirmationWaiting || null;
 export const getStatusesInTheAppCountdownForLetterRequestIsNumberSelector = (state) => getAppSwitchesRootSelector(state).countdownForLetterRequestIsNumber || null;
 export const getStatusesInTheAppLastAuthorizationDateAndTimeSelector = (state) => getAppSwitchesRootSelector(state).lastAuthorizationDateAndTime || null;
+export const getStatusesInTheAppEventForPWAInstallationSelector = (state) => getAppSwitchesRootSelector(state).eventForPWAInstallationCase || null;

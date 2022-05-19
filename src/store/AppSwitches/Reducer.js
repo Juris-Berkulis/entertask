@@ -3,6 +3,7 @@ import {
     editableTaskObjectAction,
     emailVerificationConfirmationWaitingIsFalse,
     emailVerificationConfirmationWaitingIsTrue,
+    eventForPWAInstallation,
     lastAuthorization,
     resetInputFieldsValuesInitializerAction, 
     switchForCloseAllListsForTasksPropertiesFilterAction
@@ -52,6 +53,12 @@ export const appSwitchesReducer = (state = initialState, action) => {
             return {
                 ...state,
                 lastAuthorizationDateAndTime: action.payload,
+            }
+        }
+        case eventForPWAInstallation.type: {
+            return {
+                ...state,
+                eventForPWAInstallationCase: action.payload,
             }
         }
         default: {

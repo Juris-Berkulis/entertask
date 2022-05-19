@@ -674,6 +674,44 @@ export const useStyles = makeStyles({
       textDecoration: 'none',
     },
   },
+  profile_pageTitle: {
+    fontSize: 'calc(1rem / 16 * 48)',
+    lineHeight: '100%',
+    textAlign: 'center',
+    marginBottom: '0.5rem',
+  },
+  profile_userEmail: {
+    fontSize: 'calc(1rem / 16 * 14)',
+    lineHeight: '100%',
+    textAlign: 'center',
+    marginBottom: '1rem',
+  },
+  profile_pageInfo: {
+    fontSize: 'calc(1rem / 16 * 16)',
+    lineHeight: '100%',
+  },
+  profile_installWraper: {
+    textAlign: 'center',
+    marginBottom: '1rem',
+  },
+  profile_installInfo: {
+    marginBottom: '0.5rem',
+  },
+  profile_installBtn: {
+    padding: '0.3em 0.6em',
+    borderRadius: '50em',
+    color: '#ffffff',
+    backgroundColor: '#006600',
+    boxShadow: 'inset 0px 15px 15px -7.5px #caffca, inset 0px -15px 15px -7.5px #225522, 0px 3px 3px #337733',
+    cursor: 'pointer',
+    transition: 'background-color 0.1s linear 0.1s',
+    '&:hover': {
+      backgroundColor: '#007700',
+    },
+    '&:active': {
+      boxShadow: 'inset 0px 15px 15px -7.5px #caffca, inset 0px -15px 15px -7.5px #225522, 0px 1px 1px #337733',
+    },
+  },
   taskEisenhowerMatrixValue__color_: {
     borderBottom: '5px solid #000000',
   },
