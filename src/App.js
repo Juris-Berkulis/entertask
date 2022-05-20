@@ -18,10 +18,11 @@ import { useStyles } from './styles/Style';
 import { styleConsts } from './styles/StyleConsts';
 import { getStatusesInTheAppLastAuthorizationDateAndTimeSelector } from './store/AppSwitches/Selectors';
 import { useDispatch, useSelector } from 'react-redux';
-import { auth } from './firebase/firebase';
+import { auth, connectedDBRef } from './firebase/firebase';
 import { StartingScreensaver } from './widget_components/StartingScreensaver/StartingScreensaver';
 import { Profile } from './route_components/Profile/Profile';
-import { eventForPWAInstallation } from './store/AppSwitches/Action';
+import { deviceOnTheNetworkAction, eventForPWAInstallation } from './store/AppSwitches/Action';
+import { DeviceOnTheNetwork } from './widget_components/DeviceOnTheNetwork/DeviceOnTheNetwork';
 
 export const App = () => {
   const classes = useStyles();
@@ -104,6 +105,22 @@ export const App = () => {
       }
     }, [dispatch]);
 
+    useEffect(() => {
+      connectedDBRef.on("value", (snapshot) => {
+        if (snapshot.val() === true) {
+          dispatch({
+            type: deviceOnTheNetworkAction.type,
+            payload: true,
+          });
+        } else {
+          dispatch({
+            type: deviceOnTheNetworkAction.type,
+            payload: false,
+          });
+        }
+      });
+    }, [dispatch]);
+
   return (
     <PersistGate persistor={persistor}>
       <div className={`${classes.main}`}>
@@ -111,6 +128,7 @@ export const App = () => {
           emailVerificationStatus !== null 
           ? 
           <>
+            <DeviceOnTheNetwork></DeviceOnTheNetwork>
             <Header></Header>
             <div className={`${classes.field} ${isMobileDeviceBoolean ? classes.field_mobileDevice : null}`}>
               <Routes>

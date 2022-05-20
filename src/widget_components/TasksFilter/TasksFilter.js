@@ -5,7 +5,7 @@ import { allAppComponentsWithPageTitle } from '../../data/consts';
 import { auth } from '../../firebase/firebase';
 import { isMobileDevice, replaceAllowedCharactersFromFirebaseDatabaseKeys, replaceBrieflyValueToDetailValueOfTheTaskSign } from '../../helper/helper';
 import { switchForCloseAllListsForTasksPropertiesFilterAction } from '../../store/AppSwitches/Action';
-import { getAppSwitchesSwitchForCloseAllListsForTasksPropertiesFilterSelector } from '../../store/AppSwitches/Selectors';
+import { getAppSwitchesDeviceOnTheNetworkSelector, getAppSwitchesSwitchForCloseAllListsForTasksPropertiesFilterSelector } from '../../store/AppSwitches/Selectors';
 import { changeTaskPropertyShowWithThunkAction, reverseDirectionForTasksSortinBySignAction, reverseDirectionForTodayTasksSortinBySignAction, tasksSignForTasksSortingAction, tasksSignForTodayTasksSortingAction } from '../../store/Tasks/Action';
 import { getTasksListReverseDirectionForTasksSortinBySignSelector, getTasksListReverseDirectionForTodayTasksSortinBySignSelector, getTasksListTasksSignForTasksSortingSelector, getTasksListTasksSignForTodayTasksSortingSelector } from '../../store/Tasks/Selectors';
 import { useStyles } from '../../styles/Style';
@@ -29,6 +29,7 @@ export const TasksFilter = (props) => {
     const reverseDirectionForTasksSortinBySignSel = useSelector(getTasksListReverseDirectionForTasksSortinBySignSelector);
     const tasksSignForTodayTasksSortingSel = useSelector(getTasksListTasksSignForTodayTasksSortingSelector);
     const reverseDirectionForTodayTasksSortinBySignSel = useSelector(getTasksListReverseDirectionForTodayTasksSortinBySignSelector);
+    const deviceOnTheNetworkSel = useSelector(getAppSwitchesDeviceOnTheNetworkSelector);
 
     const toggleListPropertiesForTasksFilter = () => {
         dispatch({
@@ -40,6 +41,10 @@ export const TasksFilter = (props) => {
     };
 
     const togglePropertyShow = (item) => {
+        if (!deviceOnTheNetworkSel) {
+            return
+        }
+
         dispatch(changeTaskPropertyShowWithThunkAction(userUID, props.signForTasksFilter, item, props.propertiesForTasksFilter[item]));
     };
 

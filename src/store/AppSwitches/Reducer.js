@@ -1,5 +1,6 @@
 import { 
     countdownForLetterRequest,
+    deviceOnTheNetworkAction,
     editableTaskObjectAction,
     emailVerificationConfirmationWaitingIsFalse,
     emailVerificationConfirmationWaitingIsTrue,
@@ -59,6 +60,12 @@ export const appSwitchesReducer = (state = initialState, action) => {
             return {
                 ...state,
                 eventForPWAInstallationCase: action.payload,
+            }
+        }
+        case deviceOnTheNetworkAction.type: {
+            return {
+                ...state,
+                deviceOnTheNetworkCase: action.payload,
             }
         }
         default: {

@@ -259,7 +259,11 @@ export const changeTask = (taskObject, dispatch, history) => {
     history(allAppComponentsWithPageTitle.edittask.path);
 };
 
-export const deleteTask = (userUID, taskID, dispatch, tasksKindOfDictByUserUIDSel) => {
+export const deleteTask = (userUID, taskID, dispatch, tasksKindOfDictByUserUIDSel, deviceOnTheNetworkSel) => {
+    if (!deviceOnTheNetworkSel) {
+        return
+    }
+
     const thisTaskWillBeDeleted = tasksKindOfDictByUserUIDSel[taskID];
 
     for (let deleteTaskSign in thisTaskWillBeDeleted) {
@@ -320,11 +324,19 @@ export const openTheTask = (item, dispatch) => {
     });
 };
 
-export const addTheTaskInListWithTasksForToday = (userUID, taskID, dispatch) => {
+export const addTheTaskInListWithTasksForToday = (userUID, taskID, dispatch, deviceOnTheNetworkSel) => {
+    if (!deviceOnTheNetworkSel) {
+        return
+    }
+
     dispatch(addTheTaskInListWithTasksForTodayWithThunkAction(userUID, taskID));
 };
 
-export const deleteTheTaskFromListWithTasksForToday = (userUID, taskID, dispatch) => {
+export const deleteTheTaskFromListWithTasksForToday = (userUID, taskID, dispatch, deviceOnTheNetworkSel) => {
+    if (!deviceOnTheNetworkSel) {
+        return
+    }
+
     dispatch(deleteTheTaskFromListWithTasksForTodayWithThunkAction(userUID, taskID));
 };
 

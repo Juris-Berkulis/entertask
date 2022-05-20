@@ -9,12 +9,12 @@ export const TaskInTasksListUI = (props) => {
                     {
                         props.item.taskForToday
                         ? 
-                        <button className={`${props.classes.allTasks__taskListItemBtn} ${props.classes.allTasks__taskListItemBtn_today}`} onClick={() => props.deleteTheTaskFromListWithTasksForToday(props.userUID, props.item.taskID, props.dispatch)}>Не сегодня</button>
+                        <button className={`${props.classes.allTasks__taskListItemBtn} ${props.classes.allTasks__taskListItemBtn_today}`} onClick={() => props.deleteTheTaskFromListWithTasksForToday(props.userUID, props.item.taskID, props.dispatch, props.deviceOnTheNetworkSel)}>Не сегодня</button>
                         : 
-                        <button className={`${props.classes.allTasks__taskListItemBtn} ${props.classes.allTasks__taskListItemBtn_notToday}`} onClick={() => props.addTheTaskInListWithTasksForToday(props.userUID, props.item.taskID, props.dispatch)}>На сегодня</button>
+                        <button className={`${props.classes.allTasks__taskListItemBtn} ${props.classes.allTasks__taskListItemBtn_notToday}`} onClick={() => props.addTheTaskInListWithTasksForToday(props.userUID, props.item.taskID, props.dispatch, props.deviceOnTheNetworkSel)}>На сегодня</button>
                     }
                     <button className={`${props.classes.allTasks__taskListItemBtn} ${props.classes.allTasks__taskListItemBtn_change}`} onClick={() => props.changeTask(props.item, props.dispatch, props.history)}>&#9998;</button>
-                    <button className={`${props.classes.allTasks__taskListItemBtn} ${props.classes.allTasks__taskListItemBtn_delete}`} onClick={() => props.deleteTask(props.userUID, props.item.taskID, props.dispatch, props.tasksKindOfDictByUserUIDSel)}>&#128465;</button>
+                    <button className={`${props.classes.allTasks__taskListItemBtn} ${props.classes.allTasks__taskListItemBtn_delete}`} onClick={() => props.deleteTask(props.userUID, props.item.taskID, props.dispatch, props.tasksKindOfDictByUserUIDSel, props.deviceOnTheNetworkSel)}>&#128465;</button>
                 </div>
             </div>
             <div className={`${props.classes.allTasks__taskListItemLineInfo}`}>
