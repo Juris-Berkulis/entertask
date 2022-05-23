@@ -731,13 +731,13 @@ export const useStyles = makeStyles({
     backgroundColor: '#cccccc',
   },
   deviceOnTheNetwork__lamp_connectNetwork_1: {
-    animation: "$pulseConnectNetwork 5s linear infinite 2s"
+    animation: "$pulseConnectNetwork 5s linear infinite 0.1s"
   },
   deviceOnTheNetwork__lamp_connectNetwork_2: {
-    animation: "$pulseConnectNetwork 5s linear infinite 2.25s"
+    animation: "$pulseConnectNetwork 5s linear infinite 0.35s"
   },
   deviceOnTheNetwork__lamp_connectNetwork_3: {
-    animation: "$pulseConnectNetwork 5s linear infinite 2.5s"
+    animation: "$pulseConnectNetwork 5s linear infinite 0.6s"
   },
   "@keyframes pulseConnectNetwork": {
     "0%": {
@@ -760,7 +760,7 @@ export const useStyles = makeStyles({
     },
   },
   deviceOnTheNetwork__lamp_disconnectNetwork: {
-    animation: "$pulseDisconnectNetwork 1s linear infinite 2s"
+    animation: "$pulseDisconnectNetwork 1s linear infinite 0.1s"
   },
   "@keyframes pulseDisconnectNetwork": {
     "0%": {

@@ -482,7 +482,7 @@ export const requestTheLetter = async (myEmail) => {
 
 export const confirmSendingOfTheVerificationLetter = (myEmail) => {
     return {
-        success: `Письмо отправлено${myEmail ? ` на ${myEmail}` : null}. Перейдите по ссылке в письме, чтобы завершить процесс регистрации.`, 
+        success: `Письмо отправлено${myEmail ? (' на ' + myEmail) : null}. Перейдите по ссылке в письме, чтобы завершить процесс регистрации.`,
         error: `Выполните вход!`,
     }
 };
