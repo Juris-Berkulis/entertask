@@ -277,6 +277,10 @@ export const useStyles = makeStyles({
     width: 2 * styleConsts.width.tableCellMobileDevice.substring(0, styleConsts.width.tableCellMobileDevice.length - 2) + 'px',
   },
   allTasks__tasksEmptyListText: {
+    position: 'fixed',
+    left: '50vw',
+    transform: 'translateX(-50%)',
+    listStyle: 'none',
     textAlign: 'center',
     fontSize: 'calc(1em / 16 * 50)',
     lineHeight: '100%',
