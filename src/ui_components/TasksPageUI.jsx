@@ -25,6 +25,17 @@ export const TasksPageUI = (props) => {
             <div className={props.classes.allTasks__tableWrapper}>
                 <div className={props.classes.allTasks__table}>
                     <div className={`${props.classes.allTasks__tableTitleWrapper} ${props.isMobileDeviceBoolean ? props.classes.allTasks__tableTitleWrapper_mobileDevice : null}`}>
+                        {
+                            (
+                                props.location.pathname === props.allAppComponentsWithPageTitle.tasksfortoday.path 
+                                && 
+                                props.tasksListTasksKindOfListByIdSelForProps.length
+                            ) 
+                            ? 
+                            <button className={`${props.classes.allTasks__taskListItemBtn} ${props.classes.allTasks__taskListItemBtn_today}`} onClick={props.deleteAllTaskFromListWithTasksForToday}>Очистить</button>
+                            : 
+                            null
+                        }
                         <div className={props.classes.allTasks__tableTitle}>
                             <p className={`${props.classes.allTasks__tableColumnTitle} ${props.isMobileDeviceBoolean ? props.classes.allTasks__tableColumnTitle_mobileDevice : null}`}>{allSignsForTasksFilter.taskCategory.decodingIntoRusShort}</p>
                             <p className={`${props.classes.allTasks__tableColumnTitle} ${props.isMobileDeviceBoolean ? props.classes.allTasks__tableColumnTitle_mobileDevice : null}`}>{allSignsForTasksFilter.taskName.decodingIntoRusShort}</p>

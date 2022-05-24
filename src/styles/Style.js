@@ -94,7 +94,10 @@ export const useStyles = makeStyles({
   allTasks__tableTitleWrapper: {
     height: 2 * styleConsts.fontSize.html.substring(0, styleConsts.fontSize.html.length - 2) + 'px',
     width: '100%',
-    paddingRight: '15px',
+    padding: '0 15px 0 5px',
+    display: 'flex',
+    justifyContent: 'space-between',
+    alignItems: 'center',
   },
   allTasks__tableTitleWrapper_mobileDevice: {
     height: 2 * styleConsts.fontSize.htmlMobileDevice.substring(0, styleConsts.fontSize.htmlMobileDevice.length - 2) + 'px',
