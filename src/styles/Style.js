@@ -96,7 +96,7 @@ export const useStyles = makeStyles({
     width: '100%',
     padding: '0 15px 0 5px',
     display: 'flex',
-    justifyContent: 'space-between',
+    justifyContent: 'flex-end',
     alignItems: 'center',
   },
   allTasks__tableTitleWrapper_mobileDevice: {

@@ -32,7 +32,9 @@ export const TasksPageUI = (props) => {
                                 props.tasksListTasksKindOfListByIdSelForProps.length
                             ) 
                             ? 
-                            <button className={`${props.classes.allTasks__taskListItemBtn} ${props.classes.allTasks__taskListItemBtn_today}`} onClick={props.deleteAllTaskFromListWithTasksForToday}>Очистить</button>
+                            <div className={props.classes.allTasks__taskListItemLinePannel}>
+                                <button className={`${props.classes.allTasks__taskListItemBtn} ${props.classes.allTasks__taskListItemBtn_today}`} onClick={props.deleteAllTaskFromListWithTasksForToday}>Очистить</button>
+                            </div>
                             : 
                             null
                         }
