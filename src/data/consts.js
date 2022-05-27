@@ -237,3 +237,7 @@ export const objectWithForbiddenCharactersForFirebaseDatabaseKeys = {
 };
 
 export const startValueForTimer = 91;
+
+export const condition = {
+    success: 'success',
+};

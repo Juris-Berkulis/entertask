@@ -8,7 +8,7 @@ export const OpenTaskUI = (props) => {
             <div className={props.classes.openTask__controlPanel}>
                 <div className={props.classes.openTask__taskListItemBtnsPannel}>
                     <button className={`${props.classes.allTasks__taskListItemBtn} ${props.classes.allTasks__taskListItemBtn_change}`} onClick={() => {props.changeTask(props.tasksListOpenTaskSel, props.dispatch, props.history); props.closeTheTask()}}>&#9998;</button>
-                    <button className={`${props.classes.allTasks__taskListItemBtn} ${props.classes.allTasks__taskListItemBtn_delete}`} onClick={() => {props.deleteTask(props.userUID, props.tasksListOpenTaskSel.taskID, props.dispatch, props.tasksKindOfDictByUserUIDSel); props.closeTheTask()}}>&#128465;</button>
+                    <button className={`${props.classes.allTasks__taskListItemBtn} ${props.classes.allTasks__taskListItemBtn_delete}`} onClick={() => {props.deleteTask(props.userUID, props.tasksListOpenTaskSel.taskID, props.dispatch, props.tasksKindOfDictByUserUIDSel, props.deviceOnTheNetworkSel); props.closeTheTask()}}>&#128465;</button>
                     <button className={`${props.classes.allTasks__taskListItemBtn} ${props.classes.openTask__taskListItemBtn_close}`} onClick={props.closeTheTask}>&#10006;</button>
                 </div>
             </div>
@@ -33,6 +33,20 @@ export const OpenTaskUI = (props) => {
                     props.tasksListOpenTaskSel.subtaskName !== props.characterToAutocompleteEmptyTaskSign 
                     && 
                     <p className={`${props.classes.openTask__taskListItemParagraph} ${props.classes.allTasks__taskListItemParagraph}`}>{props.allSignsForTasksFilter.subtaskName.decodingIntoRus}: <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.tasksListOpenTaskSel.subtaskName}</span></p>
+                }
+                {
+                    props.tasksListOpenTaskSel.taskStatus 
+                    && 
+                    props.tasksListOpenTaskSel.taskStatus !== props.characterToAutocompleteEmptyTaskSign 
+                    && 
+                    <p className={`${props.classes.openTask__taskListItemParagraph} ${props.classes.allTasks__taskListItemParagraph} ${props.classes.allTasks__taskListItemParagraph_status}`}>{props.allSignsForTasksFilter.taskStatus.decodingIntoRus}: <span className={`${props.classes.allTasks__taskListItemParagraphValue} ${props.classes.allTasks__taskListItemParagraphValue_status} ${(props.tasksListOpenTaskSel.taskStatus === '+' && props.classes.allTasks__taskListItemParagraphValue_statusPlus) || (props.tasksListOpenTaskSel.taskStatus === '-' && props.classes.allTasks__taskListItemParagraphValue_statusMinus) || null}`}>{props.tasksListOpenTaskSel.taskStatus === '-' ? <span>&#8722;</span> : props.tasksListOpenTaskSel.taskStatus}</span></p>
+                }
+                {
+                    props.tasksListOpenTaskSel.taskEisenhowerMatrixValue 
+                    && 
+                    props.tasksListOpenTaskSel.taskEisenhowerMatrixValue !== props.characterToAutocompleteEmptyTaskSign 
+                    && 
+                    <p className={`${props.classes.openTask__taskListItemParagraph} ${props.classes.allTasks__taskListItemParagraph}`}>{props.allSignsForTasksFilter.taskEisenhowerMatrixValue.decodingIntoRus}: <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.replaceBrieflyValueToDetailValueOfTheTaskSign(props.allSignsForTasksFilter.taskEisenhowerMatrixValue.variable, props.tasksListOpenTaskSel.taskEisenhowerMatrixValue)}</span></p>
                 }
                 {
                     props.tasksListOpenTaskSel.taskUrgency 
@@ -82,13 +96,6 @@ export const OpenTaskUI = (props) => {
                     props.tasksListOpenTaskSel.taskDuration !== props.characterToAutocompleteEmptyTaskSign 
                     && 
                     <p className={`${props.classes.openTask__taskListItemParagraph} ${props.classes.allTasks__taskListItemParagraph}`}>{props.allSignsForTasksFilter.taskDuration.decodingIntoRus}: <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.tasksListOpenTaskSel.taskDuration}</span></p>
-                }
-                {
-                    props.tasksListOpenTaskSel.taskStatus 
-                    && 
-                    props.tasksListOpenTaskSel.taskStatus !== props.characterToAutocompleteEmptyTaskSign 
-                    && 
-                    <p className={`${props.classes.openTask__taskListItemParagraph} ${props.classes.allTasks__taskListItemParagraph} ${props.classes.allTasks__taskListItemParagraph_status}`}>{props.allSignsForTasksFilter.taskStatus.decodingIntoRus}: <span className={`${props.classes.allTasks__taskListItemParagraphValue} ${props.classes.allTasks__taskListItemParagraphValue_status} ${(props.tasksListOpenTaskSel.taskStatus === '+' && props.classes.allTasks__taskListItemParagraphValue_statusPlus) || (props.tasksListOpenTaskSel.taskStatus === '-' && props.classes.allTasks__taskListItemParagraphValue_statusMinus) || null}`}>{props.tasksListOpenTaskSel.taskStatus === '-' ? <span>&#8722;</span> : props.tasksListOpenTaskSel.taskStatus}</span></p>
                 }
                 {
                     props.tasksListOpenTaskSel.taskCreateAt 

@@ -94,7 +94,10 @@ export const useStyles = makeStyles({
   allTasks__tableTitleWrapper: {
     height: 2 * styleConsts.fontSize.html.substring(0, styleConsts.fontSize.html.length - 2) + 'px',
     width: '100%',
-    paddingRight: '15px',
+    padding: '0 15px 0 5px',
+    display: 'flex',
+    justifyContent: 'flex-end',
+    alignItems: 'center',
   },
   allTasks__tableTitleWrapper_mobileDevice: {
     height: 2 * styleConsts.fontSize.htmlMobileDevice.substring(0, styleConsts.fontSize.htmlMobileDevice.length - 2) + 'px',
@@ -277,6 +280,10 @@ export const useStyles = makeStyles({
     width: 2 * styleConsts.width.tableCellMobileDevice.substring(0, styleConsts.width.tableCellMobileDevice.length - 2) + 'px',
   },
   allTasks__tasksEmptyListText: {
+    position: 'fixed',
+    left: '50vw',
+    transform: 'translateX(-50%)',
+    listStyle: 'none',
     textAlign: 'center',
     fontSize: 'calc(1em / 16 * 50)',
     lineHeight: '100%',
@@ -672,6 +679,114 @@ export const useStyles = makeStyles({
     '&:hover': {
       color: '#007700',
       textDecoration: 'none',
+    },
+  },
+  profile_pageTitle: {
+    fontSize: 'calc(1rem / 16 * 48)',
+    lineHeight: '100%',
+    textAlign: 'center',
+    marginBottom: '0.5rem',
+  },
+  profile_userEmail: {
+    fontSize: 'calc(1rem / 16 * 14)',
+    lineHeight: '100%',
+    textAlign: 'center',
+    marginBottom: '1rem',
+  },
+  profile_pageInfo: {
+    fontSize: 'calc(1rem / 16 * 16)',
+    lineHeight: '100%',
+  },
+  profile_installWraper: {
+    textAlign: 'center',
+    marginBottom: '1rem',
+  },
+  profile_installInfo: {
+    marginBottom: '0.5rem',
+  },
+  profile_installBtn: {
+    padding: '0.3em 0.6em',
+    borderRadius: '50em',
+    color: '#ffffff',
+    backgroundColor: '#006600',
+    boxShadow: 'inset 0px 15px 15px -7.5px #caffca, inset 0px -15px 15px -7.5px #225522, 0px 3px 3px #337733',
+    cursor: 'pointer',
+    transition: 'background-color 0.1s linear 0.1s',
+    '&:hover': {
+      backgroundColor: '#007700',
+    },
+    '&:active': {
+      boxShadow: 'inset 0px 15px 15px -7.5px #caffca, inset 0px -15px 15px -7.5px #225522, 0px 1px 1px #337733',
+    },
+  },
+  deviceOnTheNetwork__wrapper: {
+    position: 'fixed',
+    top: '2vh',
+    right: '2vw',
+    height: '6vh',
+    width: '6vh',
+    display: 'flex',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+    cursor: 'help',
+  },
+  deviceOnTheNetwork__lamp: {
+    height: '1vh',
+    width: '1vh',
+    border: 'solid 0.2vh #111111',
+    borderRadius: '50%',
+    backgroundColor: '#cccccc',
+  },
+  deviceOnTheNetwork__lamp_connectNetwork_1: {
+    animation: "$pulseConnectNetwork 5s linear infinite 0.1s"
+  },
+  deviceOnTheNetwork__lamp_connectNetwork_2: {
+    animation: "$pulseConnectNetwork 5s linear infinite 0.35s"
+  },
+  deviceOnTheNetwork__lamp_connectNetwork_3: {
+    animation: "$pulseConnectNetwork 5s linear infinite 0.6s"
+  },
+  "@keyframes pulseConnectNetwork": {
+    "0%": {
+      backgroundColor: '#cccccc',
+    },
+    "47%": {
+      backgroundColor: '#cccccc',
+    },
+    "47.5%": {
+      backgroundColor: '#00cc00',
+    },
+    "52.5%": {
+      backgroundColor: '#00cc00',
+    },
+    "53%": {
+      backgroundColor: '#cccccc',
+    },
+    "100%": {
+      backgroundColor: '#cccccc',
+    },
+  },
+  deviceOnTheNetwork__lamp_disconnectNetwork: {
+    animation: "$pulseDisconnectNetwork 1s linear infinite 0.1s"
+  },
+  "@keyframes pulseDisconnectNetwork": {
+    "0%": {
+      backgroundColor: '#cccccc',
+    },
+    "24%": {
+      backgroundColor: '#cccccc',
+    },
+    "25%": {
+      backgroundColor: '#cc0000',
+    },
+    "74%": {
+      backgroundColor: '#cc0000',
+    },
+    "75%": {
+      backgroundColor: '#cccccc',
+    },
+    "100%": {
+      backgroundColor: '#cccccc',
     },
   },
   taskEisenhowerMatrixValue__color_: {
