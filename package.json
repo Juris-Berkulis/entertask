@@ -33,6 +33,7 @@
   },
   "scripts": {
     "deploy": "npm run build && firebase deploy && netlify deploy --dir=build --prod && vercel --prod && vercel list && npm run copy_index_as_200 && surge --project ./build --domain https://entertask.surge.sh && surge list",
+    "deploy_for_development": "npm run build && npm run copy_index_as_200 && surge --project ./build --domain https://entertask-dev.surge.sh && surge list",
     "copy_index_as_200": "copy build\\index.html build\\200.html",
     "start": "react-scripts start",
     "build": "react-scripts build",

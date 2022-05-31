@@ -92,11 +92,15 @@ const changeTasksList = (dispatch, userUID) => {
 };
 
 export const onTrackingChangeValueInTasksListWithThunkAction = (userUID) => (dispatch) => {
-    tasksDBRef.child(userUID).on('value', changeTasksList(dispatch, userUID));
+    if (userUID !== null) {
+        tasksDBRef.child(userUID).on('value', changeTasksList(dispatch, userUID));
+    }
 };
 
 export const offTrackingChangeValueInTasksListWithThunkAction = (userUID) => (dispatch) => {
-    tasksDBRef.child(userUID).off('value', changeTasksList(dispatch, userUID));
+    if (userUID !== null) {
+        tasksDBRef.child(userUID).off('value', changeTasksList(dispatch, userUID));
+    }
 };
 
 export const DICT_WITH_LISTS_FOR_TASKS_FILTER_ACTION = 'DICT_WITH_LISTS_FOR_TASKS_FILTER_ACTION';
@@ -115,11 +119,15 @@ const changeTasksFilter = (dispatch) => {
 };
 
 export const onTrackingChangeDictWithListsForTasksFilterWithThunkAction = (userUID) => (dispatch) => {
-    tasksFilterDBRef.child(userUID).on('value', changeTasksFilter(dispatch));
+    if (userUID !== null) {
+        tasksFilterDBRef.child(userUID).on('value', changeTasksFilter(dispatch));
+    }
 };
 
 export const offTrackingChangeDictWithListsForTasksFilterWithThunkAction = (userUID) => (dispatch) => {
-    tasksFilterDBRef.child(userUID).off('value', changeTasksFilter(dispatch));
+    if (userUID !== null) {
+        tasksFilterDBRef.child(userUID).off('value', changeTasksFilter(dispatch));
+    }
 };
 
 export const deleteExtraSignOfTaskFilteringWithThunkAction = (userUID, sign, property) => () => {
