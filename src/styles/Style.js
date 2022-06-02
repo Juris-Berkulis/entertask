@@ -396,13 +396,33 @@ export const useStyles = makeStyles({
     maxHeight: '50vh',
     borderTop: '1px solid #000000',
     borderBottom: '1px solid #000000',
+    overflow: 'auto',
   },
   tasksFilter__listItem: {
     display: 'flex',
     borderTop: '1px solid #000000',
     borderBottom: '1px solid #000000',
     padding: '0 10px',
+    overflow: 'auto',
+    whiteSpace: 'pre',
     cursor: 'pointer',
+    '&::-webkit-scrollbar': {
+      width: '0', //* - ширина полосы прокрутки.
+      height: '7px', //* - высота полосы прокрутки.
+    },
+    //* Дальнейшая стилизация навигационных кнопок:
+    '&::-webkit-scrollbar-button:single-button': {
+      height: '7px',
+      width: '7px',
+    },
+    //* Стилизация левой навигационной кнопки:
+    '&::-webkit-scrollbar-button:single-button:horizontal:decrement': {
+      borderWidth: '3.5px 7px 3.5px 0',
+    },
+    //* Стилизация правой навигационной кнопки:
+    '&::-webkit-scrollbar-button:single-button:horizontal:increment': {
+      borderWidth: '3.5px 0 3.5px 7px',
+    },
     '&:hover': {
       backgroundColor: '#aaffaa',
     },

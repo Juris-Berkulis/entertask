@@ -9,6 +9,10 @@ html {
   line-height: 16px;
 }
 
+button, a, input {
+  font-family: Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
+}
+
 //* Контейнер полосы прокрутки:
 ::-webkit-scrollbar {
   width: 10px; //* - ширина полосы прокрутки.
