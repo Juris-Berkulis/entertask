@@ -66,7 +66,7 @@ export const tasksListReducer = (state = initialState, action) => {
         case closeTaskAction.type: {
             return {
                 ...state,
-                openTaskCase: {},
+                openTaskCase: false,
             }
         }
         default: {

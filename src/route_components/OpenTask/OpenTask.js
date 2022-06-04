@@ -2,10 +2,10 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { allSignsForTasksFilter, characterToAutocompleteEmptyTaskSign } from '../../data/consts';
 import { auth } from '../../firebase/firebase';
-import { replaceBrieflyValueToDetailValueOfTheTaskSign } from '../../helper/helper';
+import { changeTaskSignValue, replaceBrieflyValueToDetailValueOfTheTaskSign } from '../../helper/helper';
 import { getAppSwitchesDeviceOnTheNetworkSelector } from '../../store/AppSwitches/Selectors';
 import { closeTaskAction } from '../../store/Tasks/Action';
-import { getTasksListOpenTaskSelector } from '../../store/Tasks/Selectors';
+import { getTasksListOpenTaskSelector, getTasksListTasksKindOfDictByUserUIDSelector } from '../../store/Tasks/Selectors';
 import { useStyles } from '../../styles/Style';
 import { OpenTaskUI } from '../../ui_components/OpenTaskUI';
 
@@ -16,9 +16,11 @@ export const OpenTask = (props) => {
 
     const dispatch = useDispatch();
 
-    const tasksListOpenTaskSel = useSelector(getTasksListOpenTaskSelector);
-
+    const tasksListOpenTaskIDSel = useSelector(getTasksListOpenTaskSelector);
+    const tasksKindOfDictByUserUIDSel = useSelector(getTasksListTasksKindOfDictByUserUIDSelector(userUID));
     const deviceOnTheNetworkSel = useSelector(getAppSwitchesDeviceOnTheNetworkSelector);
+
+    const tasksListOpenTaskSel = tasksKindOfDictByUserUIDSel[tasksListOpenTaskIDSel] || false;
 
     const [someTaskIsOpen, setSomeTaskIsOpen] = useState(false);
 
@@ -45,6 +47,6 @@ export const OpenTask = (props) => {
     }, [tasksListOpenTaskSel]);
     
     return (
-        <OpenTaskUI classes={classes} closeTheTask={closeTheTask} tasksListOpenTaskSel={tasksListOpenTaskSel} someTaskIsOpen={someTaskIsOpen} changeTask={props.changeTask} deleteTask={props.deleteTask} characterToAutocompleteEmptyTaskSign={characterToAutocompleteEmptyTaskSign} dispatch={props.dispatch} tasksKindOfDictByUserUIDSel={props.tasksKindOfDictByUserUIDSel} history={props.history} replaceBrieflyValueToDetailValueOfTheTaskSign={replaceBrieflyValueToDetailValueOfTheTaskSign} allSignsForTasksFilter={allSignsForTasksFilter} userUID={userUID} deviceOnTheNetworkSel={deviceOnTheNetworkSel}></OpenTaskUI>
+        <OpenTaskUI classes={classes} closeTheTask={closeTheTask} tasksListOpenTaskSel={tasksListOpenTaskSel} someTaskIsOpen={someTaskIsOpen} changeTask={props.changeTask} deleteTask={props.deleteTask} characterToAutocompleteEmptyTaskSign={characterToAutocompleteEmptyTaskSign} dispatch={props.dispatch} tasksKindOfDictByUserUIDSel={props.tasksKindOfDictByUserUIDSel} history={props.history} replaceBrieflyValueToDetailValueOfTheTaskSign={replaceBrieflyValueToDetailValueOfTheTaskSign} allSignsForTasksFilter={allSignsForTasksFilter} userUID={userUID} deviceOnTheNetworkSel={deviceOnTheNetworkSel} changeTaskSignValue={changeTaskSignValue}></OpenTaskUI>
     )
 };
