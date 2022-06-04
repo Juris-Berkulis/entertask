@@ -186,15 +186,23 @@ export const useStyles = makeStyles({
     color: '#ffffff',
     fontWeight: '700',
     borderRadius: '50%',
+    userSelect: 'none',
+    cursor: 'pointer',
   },
   allTasks__taskListItemParagraphValue_status_mobileDevice: {
     fontWeight: '400',
   },
   allTasks__taskListItemParagraphValue_statusPlus: {
     backgroundColor: '#006600',
+    '&:hover': {
+      backgroundColor: '#008800',
+    },
   },
   allTasks__taskListItemParagraphValue_statusMinus: {
     backgroundColor: '#660000',
+    '&:hover': {
+      backgroundColor: '#880000',
+    },
   },
   allTasks__taskListItemLinePannel: {
     position: 'relative',
