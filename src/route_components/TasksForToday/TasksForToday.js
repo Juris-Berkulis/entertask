@@ -38,7 +38,7 @@ export const TasksForToday = () => {
     })
     .sort((itemA, itemB) => sortTasksBySign(itemA, itemB, tasksSignForTodayTasksSortingSel, reverseDirectionForTodayTasksSortinBySignSel))
     .map((item) => (
-        <TaskInTasksList key={item.taskID} item={item} changeTask={changeTask} deleteTask={deleteTask} openTheTask={openTheTask} deleteTheTaskFromListWithTasksForToday={deleteTheTaskFromListWithTasksForToday} dispatch={dispatch} tasksKindOfDictByUserUIDSel={tasksKindOfDictByUserUIDSel} history={history}></TaskInTasksList>
+        <TaskInTasksList key={item.taskID} item={item} changeTask={changeTask} deleteTask={deleteTask} openTheTask={openTheTask} deleteTheTaskFromListWithTasksForToday={deleteTheTaskFromListWithTasksForToday} history={history}></TaskInTasksList>
     ));
 
     useLayoutEffect(() => {

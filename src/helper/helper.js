@@ -1,7 +1,7 @@
 import { allAppComponentsWithPageTitle, allSignsForTasksFilter, appTitle, characterToAutocompleteEmptyTaskSign, eisenhowerMatrix, importance, mobileScreenWidth, objectWithForbiddenCharactersForFirebaseDatabaseKeys, urgency } from "../data/consts";
 import { auth } from "../firebase/firebase";
 import { countdownForLetterRequest, editableTaskObjectAction } from "../store/AppSwitches/Action";
-import { addTheTaskInListWithTasksForTodayWithThunkAction, deleteExtraSignOfTaskFilteringWithThunkAction, deleteTaskWithThunkAction, deleteTheTaskFromListWithTasksForTodayWithThunkAction, dictWithNewTaskPropertiesErrorsAction, openTaskAction } from "../store/Tasks/Action";
+import { addTheTaskInListWithTasksForTodayWithThunkAction, changeTaskSignValueWithThunkAction, deleteExtraSignOfTaskFilteringWithThunkAction, deleteTaskWithThunkAction, deleteTheTaskFromListWithTasksForTodayWithThunkAction, dictWithNewTaskPropertiesErrorsAction, openTaskAction } from "../store/Tasks/Action";
 
 export const getWindowDimensions = () => {
     const { innerWidth: width, innerHeight: height } = window;
@@ -552,4 +552,37 @@ export const allowedPeriodInsideTheApp = (
     );
 
     return period
+};
+
+export const isDeleteTaskSignValueFindInOtherTasks = (tasksKindOfDictByUserUIDSel, taskUTCInMilliseconds, editTaskSign, thisTaskWillBeEdited) => {
+    let deleteTaskSignIsFind = false;
+    
+    for (let specificTaskId in tasksKindOfDictByUserUIDSel) {
+        if (tasksKindOfDictByUserUIDSel[specificTaskId][editTaskSign]) {
+            if (+specificTaskId === taskUTCInMilliseconds) {
+                continue;
+            } else if (+specificTaskId !== taskUTCInMilliseconds) {
+                if (tasksKindOfDictByUserUIDSel[specificTaskId][editTaskSign] === thisTaskWillBeEdited[editTaskSign]) {
+                    deleteTaskSignIsFind = true;
+                    break;
+                } else if (tasksKindOfDictByUserUIDSel[specificTaskId][editTaskSign] !== thisTaskWillBeEdited[editTaskSign]) {
+                    continue;
+                }
+            }
+        }
+    }
+
+    return deleteTaskSignIsFind
+};
+
+export const changeTaskSignValue = (userUID, taskUTCInMilliseconds, editTaskSign, editTaskSignValue, tasksKindOfDictByUserUIDSel, dispatch) => {
+    const thisTaskWillBeEdited = tasksKindOfDictByUserUIDSel[taskUTCInMilliseconds];
+
+    const deleteTaskSignIsFind = isDeleteTaskSignValueFindInOtherTasks(tasksKindOfDictByUserUIDSel, taskUTCInMilliseconds, editTaskSign, thisTaskWillBeEdited);
+
+    if (!deleteTaskSignIsFind) {
+        dispatch(deleteExtraSignOfTaskFilteringWithThunkAction(userUID, editTaskSign, thisTaskWillBeEdited[editTaskSign]));
+    }
+
+    dispatch(changeTaskSignValueWithThunkAction(userUID, taskUTCInMilliseconds, editTaskSign, editTaskSignValue))
 };
