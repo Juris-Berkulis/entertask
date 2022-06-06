@@ -2,7 +2,7 @@ import React from 'react';
 
 export const TaskInTasksListUI = (props) => {
     return (
-        <li className={props.classes.allTasks__taskListItem}>
+        <li className={props.classes.allTasks__taskListItem} onClick={() => props.selectTask(props.item)}>
             <div className={`${props.classes.allTasks__taskListItemLinePannel}`}>
                 <div className={props.classes.allTasks__taskListItemBtnsPannel}>
                     <button className={`${props.classes.allTasks__taskListItemBtn} ${props.classes.allTasks__taskListItemBtn_open}`} onClick={() => props.openTheTask(props.item.taskID, props.dispatch)}>Открыть</button>

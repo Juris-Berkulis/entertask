@@ -7,3 +7,4 @@ export const getStatusesInTheAppCountdownForLetterRequestIsNumberSelector = (sta
 export const getStatusesInTheAppLastAuthorizationDateAndTimeSelector = (state) => getAppSwitchesRootSelector(state).lastAuthorizationDateAndTime || null;
 export const getStatusesInTheAppEventForPWAInstallationSelector = (state) => getAppSwitchesRootSelector(state).eventForPWAInstallationCase || null;
 export const getAppSwitchesDeviceOnTheNetworkSelector = (state) => getAppSwitchesRootSelector(state).deviceOnTheNetworkCase || false;
+export const getAppSwitchesSelectTodayTaskIDSelector = (state) => getAppSwitchesRootSelector(state).selectTodayTaskIDCase || false;

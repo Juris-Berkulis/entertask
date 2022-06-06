@@ -7,6 +7,7 @@ import {
     eventForPWAInstallation,
     lastAuthorization,
     resetInputFieldsValuesInitializerAction, 
+    selectTodayTaskIDAction, 
     switchForCloseAllListsForTasksPropertiesFilterAction
 } from './Action.js';
 
@@ -66,6 +67,12 @@ export const appSwitchesReducer = (state = initialState, action) => {
             return {
                 ...state,
                 deviceOnTheNetworkCase: action.payload,
+            }
+        }
+        case selectTodayTaskIDAction.type: {
+            return {
+                ...state,
+                selectTodayTaskIDCase: action.payload,
             }
         }
         default: {

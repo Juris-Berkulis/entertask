@@ -132,6 +132,16 @@ export const allSignsForTasksFilter = {
         decodingIntoRus: 'Матрица Эйзенхауэра',
         decodingIntoRusShort: 'Эйзенхауэр',
     },
+    todayTaskNumber: {
+        variable: 'todayTaskNumber',
+        decodingIntoRus: '№',
+        decodingIntoRusShort: '№',
+    },
+    taskNumber: {
+        variable: 'taskNumber',
+        decodingIntoRus: '№',
+        decodingIntoRusShort: '№',
+    },
 };
 
 export const characterToAutocompleteEmptyTaskSign = '<пусто>';

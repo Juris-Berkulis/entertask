@@ -42,10 +42,12 @@ export const changeTaskPropertyShowWithThunkAction = (userUID, sign, property, v
     tasksFilterDBRef.child(userUID).child(sign).update({[property]: !value,});
 };
 
-export const changeTaskSignValueWithThunkAction = (userUID, taskUTCInMilliseconds, sign, value) => () => {
+export const changeTaskSignValueWithThunkAction = (userUID, taskUTCInMilliseconds, sign, value, addInFilter=true) => () => {
     tasksDBRef.child(userUID).child(taskUTCInMilliseconds).child(sign).set(replaceForbiddenCharactersForFirebaseDatabaseKeys(value));
 
-    tasksFilterDBRef.child(userUID).child(sign).update({[replaceForbiddenCharactersForFirebaseDatabaseKeys(value)]: true,});
+    if (addInFilter) {
+        tasksFilterDBRef.child(userUID).child(sign).update({[replaceForbiddenCharactersForFirebaseDatabaseKeys(value)]: true,});
+    }
 };
 
 //! TODO: Объединить общий код с "addNewTaskWithThunkAction":
