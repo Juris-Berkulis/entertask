@@ -124,8 +124,10 @@ export const TasksForToday = () => {
                         }
                     }
     
-                    dispatch(changeTaskSignValueWithThunkAction(userUID, tasksKindOfDictByUserUIDSel[selectTodayTaskIDSel].taskID, allSignsForTasksFilter.todayTaskNumber.variable, tasksKindOfDictByUserUIDSel[selectTodayTaskIDSel][allSignsForTasksFilter.todayTaskNumber.variable]-1, false));
-                    dispatch(changeTaskSignValueWithThunkAction(userUID, tasksKindOfDictByUserUIDSel[previousTaskID].taskID, allSignsForTasksFilter.todayTaskNumber.variable, tasksKindOfDictByUserUIDSel[previousTaskID][allSignsForTasksFilter.todayTaskNumber.variable]+1, false));
+                    if (previousTaskID) {
+                        dispatch(changeTaskSignValueWithThunkAction(userUID, tasksKindOfDictByUserUIDSel[selectTodayTaskIDSel].taskID, allSignsForTasksFilter.todayTaskNumber.variable, tasksKindOfDictByUserUIDSel[selectTodayTaskIDSel][allSignsForTasksFilter.todayTaskNumber.variable]-1, false));
+                        dispatch(changeTaskSignValueWithThunkAction(userUID, tasksKindOfDictByUserUIDSel[previousTaskID].taskID, allSignsForTasksFilter.todayTaskNumber.variable, tasksKindOfDictByUserUIDSel[previousTaskID][allSignsForTasksFilter.todayTaskNumber.variable]+1, false));
+                    }
                 }
     
                 if (
@@ -145,11 +147,15 @@ export const TasksForToday = () => {
                         }
                     }
     
-                    dispatch(changeTaskSignValueWithThunkAction(userUID, tasksKindOfDictByUserUIDSel[selectTodayTaskIDSel].taskID, allSignsForTasksFilter.todayTaskNumber.variable, tasksKindOfDictByUserUIDSel[selectTodayTaskIDSel][allSignsForTasksFilter.todayTaskNumber.variable]+1, false));
-                    dispatch(changeTaskSignValueWithThunkAction(userUID, tasksKindOfDictByUserUIDSel[nextTaskID].taskID, allSignsForTasksFilter.todayTaskNumber.variable, tasksKindOfDictByUserUIDSel[nextTaskID][allSignsForTasksFilter.todayTaskNumber.variable]-1, false));
+                    if (nextTaskID) {
+                        dispatch(changeTaskSignValueWithThunkAction(userUID, tasksKindOfDictByUserUIDSel[selectTodayTaskIDSel].taskID, allSignsForTasksFilter.todayTaskNumber.variable, tasksKindOfDictByUserUIDSel[selectTodayTaskIDSel][allSignsForTasksFilter.todayTaskNumber.variable]+1, false));
+                        dispatch(changeTaskSignValueWithThunkAction(userUID, tasksKindOfDictByUserUIDSel[nextTaskID].taskID, allSignsForTasksFilter.todayTaskNumber.variable, tasksKindOfDictByUserUIDSel[nextTaskID][allSignsForTasksFilter.todayTaskNumber.variable]-1, false));
+                    }
                 }
 
-                selectTodayTaskRef.current.scrollIntoView({block: "center", behavior: "smooth"});
+                if (selectTodayTaskRef && selectTodayTaskRef.current) {
+                    selectTodayTaskRef.current.scrollIntoView({block: "center", behavior: "smooth"});
+                }
             }
         };
 
