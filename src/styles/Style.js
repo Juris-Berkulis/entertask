@@ -163,6 +163,9 @@ export const useStyles = makeStyles({
       backgroundColor: '#99ff99',
     },
   },
+  allTasks__taskListItem_select: {
+    boxShadow: 'inset 0 0 2px 2px #006600'
+  },
   allTasks__taskListItemParagraph: {
     fontSize: 'calc(1rem / 16 * 16)',
     lineHeight: '100%',
