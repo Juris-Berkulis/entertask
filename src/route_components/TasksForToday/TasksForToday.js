@@ -1,4 +1,4 @@
-import React, { useLayoutEffect, useEffect } from 'react';
+import React, { useLayoutEffect, useEffect, useRef } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { allAppComponentsWithPageTitle, allSignsForTasksFilter } from '../../data/consts';
@@ -20,6 +20,9 @@ export const TasksForToday = () => {
 
     const dispatch = useDispatch();
 
+    const selectTodayTaskRef = useRef(null);
+    const unselectTodayTaskRef = useRef(null);
+
     const tasksKindOfListByUserUIDSel = useSelector(getTasksListTasksKindOfListByUserUIDSelector(userUID));
     const tasksKindOfDictByUserUIDSel = useSelector(getTasksListTasksKindOfDictByUserUIDSelector(userUID));
     const dictWithListsForTasksFilterSel = useSelector(getTasksListDictWithListsForTasksFilterSelector);
@@ -40,7 +43,7 @@ export const TasksForToday = () => {
     })
     .sort((itemA, itemB) => sortTasksBySign(itemA, itemB, tasksSignForTodayTasksSortingSel, reverseDirectionForTodayTasksSortinBySignSel))
     .map((item) => (
-        <TaskInTasksList key={item.taskID} item={item} changeTask={changeTask} deleteTask={deleteTask} openTheTask={openTheTask} deleteTheTaskFromListWithTasksForToday={deleteTheTaskFromListWithTasksForToday} history={history}></TaskInTasksList>
+        <TaskInTasksList key={item.taskID} item={item} changeTask={changeTask} deleteTask={deleteTask} openTheTask={openTheTask} deleteTheTaskFromListWithTasksForToday={deleteTheTaskFromListWithTasksForToday} history={history} selectTodayTaskRef={selectTodayTaskRef} unselectTodayTaskRef={unselectTodayTaskRef}></TaskInTasksList>
     ));
 
     useEffect(() => {
@@ -67,25 +70,31 @@ export const TasksForToday = () => {
     
     useEffect(() => {
         const moveTask = (event) => {
+            event.preventDefault();
+
             if (
+                tasksKindOfDictByUserUIDSel[selectTodayTaskIDSel] 
+                && 
                 (
                     (
-                        event.code === 'KeyW' 
-                        || 
-                        event.code === 'ArrowUp'
+                        (
+                            event.code === 'KeyW' 
+                            || 
+                            event.code === 'ArrowUp'
+                        ) 
+                        && 
+                        tasksKindOfDictByUserUIDSel[selectTodayTaskIDSel][allSignsForTasksFilter.todayTaskNumber.variable] > 0
                     ) 
-                    && 
-                    tasksKindOfDictByUserUIDSel[selectTodayTaskIDSel][allSignsForTasksFilter.todayTaskNumber.variable] > 0
-                ) 
-                || 
-                (
+                    || 
                     (
-                        event.code === 'KeyS' 
-                        || 
-                        event.code === 'ArrowDown'
-                    ) 
-                    && 
-                    tasksKindOfDictByUserUIDSel[selectTodayTaskIDSel][allSignsForTasksFilter.todayTaskNumber.variable] < tasksListTasksKindOfListByIdSelForProps.length - 1
+                        (
+                            event.code === 'KeyS' 
+                            || 
+                            event.code === 'ArrowDown'
+                        ) 
+                        && 
+                        tasksKindOfDictByUserUIDSel[selectTodayTaskIDSel][allSignsForTasksFilter.todayTaskNumber.variable] < tasksListTasksKindOfListByIdSelForProps.length - 1
+                    )
                 )
             ) {
                 dispatch({
@@ -139,6 +148,8 @@ export const TasksForToday = () => {
                     dispatch(changeTaskSignValueWithThunkAction(userUID, tasksKindOfDictByUserUIDSel[selectTodayTaskIDSel].taskID, allSignsForTasksFilter.todayTaskNumber.variable, tasksKindOfDictByUserUIDSel[selectTodayTaskIDSel][allSignsForTasksFilter.todayTaskNumber.variable]+1, false));
                     dispatch(changeTaskSignValueWithThunkAction(userUID, tasksKindOfDictByUserUIDSel[nextTaskID].taskID, allSignsForTasksFilter.todayTaskNumber.variable, tasksKindOfDictByUserUIDSel[nextTaskID][allSignsForTasksFilter.todayTaskNumber.variable]-1, false));
                 }
+
+                selectTodayTaskRef.current.scrollIntoView({block: "center", behavior: "smooth"});
             }
         };
 
