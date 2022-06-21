@@ -827,31 +827,31 @@ export const useStyles = makeStyles({
     borderBottom: '5px solid #000000',
   },
   taskEisenhowerMatrixValue__color_1_1: {
-    borderBottom: '5px solid #aa00aa',
+    borderBottom: '5px solid #a5c2f2',
   },
   taskEisenhowerMatrixValue__color_1_2: {
-    borderBottom: '5px solid blue',
+    borderBottom: '5px solid #3c79d2',
   },
   taskEisenhowerMatrixValue__color_1_3: {
-    borderBottom: '5px solid cyan',
+    borderBottom: '5px solid #0101ff',
   },
   taskEisenhowerMatrixValue__color_2_1: {
-    borderBottom: '5px solid green',
+    borderBottom: '5px solid #fcdb63',
   },
   taskEisenhowerMatrixValue__color_2_2: {
-    borderBottom: '5px solid lightgreen',
+    borderBottom: '5px solid #f0c22e',
   },
   taskEisenhowerMatrixValue__color_2_3: {
-    borderBottom: '5px solid yellow',
+    borderBottom: '5px solid #fefe00',
   },
   taskEisenhowerMatrixValue__color_3_1: {
-    borderBottom: '5px solid orange',
+    borderBottom: '5px solid #ea9998',
   },
   taskEisenhowerMatrixValue__color_3_2: {
-    borderBottom: '5px solid pink',
+    borderBottom: '5px solid #de6665',
   },
   taskEisenhowerMatrixValue__color_3_3: {
-    borderBottom: '5px solid red',
+    borderBottom: '5px solid #f80200',
   },
   textAlign_center: {
     textAlign: 'center',
