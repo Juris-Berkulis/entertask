@@ -2,7 +2,7 @@ import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { allSignsForTasksFilter, characterToAutocompleteEmptyTaskSign } from '../../data/consts';
 import { auth } from '../../firebase/firebase';
-import { changeTaskSignValue, replaceBrieflyValueToDetailValueOfTheTaskSign } from '../../helper/helper';
+import { changeTaskSignValue, replaceBrieflyValueToDetailValueOfTheTaskSign, replaceInTaskAllowedCharactersFromFirebaseDatabaseKeys } from '../../helper/helper';
 import { getAppSwitchesDeviceOnTheNetworkSelector } from '../../store/AppSwitches/Selectors';
 import { closeTaskAction } from '../../store/Tasks/Action';
 import { getTasksListOpenTaskSelector, getTasksListTasksKindOfDictByUserUIDSelector } from '../../store/Tasks/Selectors';
@@ -47,6 +47,6 @@ export const OpenTask = (props) => {
     }, [tasksListOpenTaskSel]);
     
     return (
-        <OpenTaskUI classes={classes} closeTheTask={closeTheTask} tasksListOpenTaskSel={tasksListOpenTaskSel} someTaskIsOpen={someTaskIsOpen} changeTask={props.changeTask} deleteTask={props.deleteTask} characterToAutocompleteEmptyTaskSign={characterToAutocompleteEmptyTaskSign} dispatch={props.dispatch} tasksKindOfDictByUserUIDSel={props.tasksKindOfDictByUserUIDSel} history={props.history} replaceBrieflyValueToDetailValueOfTheTaskSign={replaceBrieflyValueToDetailValueOfTheTaskSign} allSignsForTasksFilter={allSignsForTasksFilter} userUID={userUID} deviceOnTheNetworkSel={deviceOnTheNetworkSel} changeTaskSignValue={changeTaskSignValue}></OpenTaskUI>
+        <OpenTaskUI classes={classes} closeTheTask={closeTheTask} tasksListOpenTaskSel={replaceInTaskAllowedCharactersFromFirebaseDatabaseKeys(tasksListOpenTaskSel)} someTaskIsOpen={someTaskIsOpen} changeTask={props.changeTask} deleteTask={props.deleteTask} characterToAutocompleteEmptyTaskSign={characterToAutocompleteEmptyTaskSign} dispatch={props.dispatch} tasksKindOfDictByUserUIDSel={props.tasksKindOfDictByUserUIDSel} history={props.history} replaceBrieflyValueToDetailValueOfTheTaskSign={replaceBrieflyValueToDetailValueOfTheTaskSign} allSignsForTasksFilter={allSignsForTasksFilter} userUID={userUID} deviceOnTheNetworkSel={deviceOnTheNetworkSel} changeTaskSignValue={changeTaskSignValue}></OpenTaskUI>
     )
 };
