@@ -325,6 +325,13 @@ export const useStyles = makeStyles({
   tasksFilter__btn_mobileDevice: {
     width: styleConsts.width.tableCellMobileDevice,
   },
+  tasksFilter__btnIcon: {
+    position: 'absolute',
+    top: 'calc((15px - 1rem / 16 * 6) / 2)',
+    left: '1px',
+    fontSize: 'calc(1rem / 16 * 6)',
+    lineHeight: '100%',
+  },
   tasksFilter__signIsTurnOn: {
     position: 'absolute',
     top: '3.5px',
@@ -388,7 +395,7 @@ export const useStyles = makeStyles({
     border: 'none',
   },
   tasksFilter__tasksFilteringBtn: {
-    fontSize: 'calc(1em / 16 * 16)',
+    fontSize: 'calc(1rem / 16 * 16)',
     fontWeight: '500',
   },
   tasksFilter__listTitleText: {
@@ -396,7 +403,7 @@ export const useStyles = makeStyles({
   },
   tasksFilter__tasksSortingBtn: {
     fontWeight: '500',
-    fontSize: 'calc(1em / 16 * 20)',
+    fontSize: 'calc(1rem / 16 * 20)',
     transition: 'font-weight 0.1s linear 0.1s',
     '&:hover': {
       fontWeight: '700',

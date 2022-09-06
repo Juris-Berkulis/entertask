@@ -5,6 +5,23 @@ export const TasksFilterUI = (props) => {
     return (
         <div className={props.classes.tasksFilter}>
             <button className={`${props.classes.tasksFilter__btn} ${props.isMobileDeviceBoolean ? props.classes.tasksFilter__btn_mobileDevice : null}`} onClick={props.toggleListPropertiesForTasksFilter}>
+                {
+                    (
+                        props.allTasksSignPropertiesForFilteringAreTrue 
+                        || 
+                        props.allTasksSignPropertiesForFilteringAreFalse
+                    )
+                    ? 
+                    (
+                        props.allTasksSignPropertiesForFilteringAreTrue 
+                        ? 
+                        <span className={`${props.classes.tasksFilter__btnIcon}`}>&#9989;</span>
+                        : 
+                        <span className={`${props.classes.tasksFilter__btnIcon}`}>&#10060;</span>
+                    )
+                    : 
+                    <span className={`${props.classes.tasksFilter__btnIcon}`}>&#128305;</span>
+                }
                 <span className={props.classes.tasksFilter__btnText}>{allSignsForTasksFilter[props.signForTasksFilter].decodingIntoRus}</span>
                 {
                     (
