@@ -42,6 +42,10 @@ export const changeTaskPropertyShowWithThunkAction = (userUID, sign, property, v
     tasksFilterDBRef.child(userUID).child(sign).update({[property]: !value,});
 };
 
+export const changeTaskPropertyShowToSpecificValueWithThunkAction = (userUID, sign, property, value) => () => {
+    tasksFilterDBRef.child(userUID).child(sign).update({[property]: value,});
+};
+
 export const changeTaskSignValueWithThunkAction = (userUID, taskUTCInMilliseconds, sign, value, addInFilter=true) => () => {
     tasksDBRef.child(userUID).child(taskUTCInMilliseconds).child(sign).set(replaceForbiddenCharactersForFirebaseDatabaseKeys(value));
 

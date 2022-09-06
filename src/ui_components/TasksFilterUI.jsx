@@ -25,6 +25,29 @@ export const TasksFilterUI = (props) => {
                     <li className={props.classes.tasksFilter__list}>
                         <div className={props.classes.tasksFilter__closeListBtn} onClick={props.toggleListPropertiesForTasksFilter}>&#10006;</div>
                         <p className={props.classes.tasksFilter__listTitle}>
+                            {
+                                (
+                                    props.allTasksSignPropertiesForFilteringAreTrue 
+                                    || 
+                                    props.allTasksSignPropertiesForFilteringAreFalse
+                                )
+                                ? 
+                                (
+                                    props.allTasksSignPropertiesForFilteringAreTrue 
+                                    ? 
+                                    <button className={`${props.classes.tasksFilter__tasksBtnsPanel} ${props.classes.tasksFilter__tasksFilteringBtn}`} onClick={() => props.togglePropertyShowToSpecificValue(false)}>
+                                        <span className={`${props.classes.tasksFilter__tasksFilteringBtnSpan}`}>&#9989;</span>
+                                    </button>
+                                    : 
+                                    <button className={`${props.classes.tasksFilter__tasksBtnsPanel} ${props.classes.tasksFilter__tasksFilteringBtn}`} onClick={() => props.togglePropertyShowToSpecificValue(true)}>
+                                        <span className={`${props.classes.tasksFilter__tasksFilteringBtnSpan}`}>&#10060;</span>
+                                    </button>
+                                )
+                                : 
+                                <button className={`${props.classes.tasksFilter__tasksBtnsPanel} ${props.classes.tasksFilter__tasksFilteringBtn}`} onClick={() => props.togglePropertyShowToSpecificValue(true)}>
+                                    <span className={`${props.classes.tasksFilter__tasksFilteringBtnSpan}`}>&#128305;</span>
+                                </button>
+                            }
                             <span className={props.classes.tasksFilter__listTitleText}>{allSignsForTasksFilter[props.signForTasksFilter].decodingIntoRus}</span>
                             {
                                 (
@@ -33,7 +56,7 @@ export const TasksFilterUI = (props) => {
                                     (props.location.pathname === props.allAppComponentsWithPageTitle.tasksfortoday.path && props.tasksSignForTodayTasksSortingSel === allSignsForTasksFilter[props.signForTasksFilter].variable)
                                 )
                                 ? 
-                                <button className={props.classes.tasksFilter__tasksSortingBtn} onClick={props.toggleDirectionForTasksSortingBySign}>
+                                <button className={`${props.classes.tasksFilter__tasksBtnsPanel} ${props.classes.tasksFilter__tasksSortingBtn}`} onClick={props.toggleDirectionForTasksSortingBySign}>
                                     {
                                         (
                                             (props.location.pathname === props.allAppComponentsWithPageTitle.alltasks.path && props.reverseDirectionForTasksSortinBySignSel) 
@@ -47,7 +70,7 @@ export const TasksFilterUI = (props) => {
                                     }
                                 </button>
                                 : 
-                                <button className={props.classes.tasksFilter__tasksSortingBtn} onClick={() => props.selectSignForTasksSorting(allSignsForTasksFilter[props.signForTasksFilter].variable)}>
+                                <button className={`${props.classes.tasksFilter__tasksBtnsPanel} ${props.classes.tasksFilter__tasksSortingBtn}`} onClick={() => props.selectSignForTasksSorting(allSignsForTasksFilter[props.signForTasksFilter].variable)}>
                                     <span className={`${props.classes.tasksFilter__tasksSortingBtnArrow} ${props.classes.tasksFilter__tasksSortingBtnArrow_andUpAndDown}`}>&#8597;</span>
                                 </button>
                             }

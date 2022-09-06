@@ -380,15 +380,23 @@ export const useStyles = makeStyles({
     fontWeight: '700',
     textDecoration: 'underline',
   },
-  tasksFilter__tasksSortingBtn: {
+  tasksFilter__tasksBtnsPanel: {
     height: '27px',
     width: '27px',
-    marginLeft: '5px',
-    fontWeight: '500',
     cursor: 'pointer',
-    fontSize: 'calc(1em / 16 * 20)',
     backgroundColor: 'transparent',
     border: 'none',
+  },
+  tasksFilter__tasksFilteringBtn: {
+    fontSize: 'calc(1em / 16 * 16)',
+    fontWeight: '500',
+  },
+  tasksFilter__listTitleText: {
+    margin: '0 5px',
+  },
+  tasksFilter__tasksSortingBtn: {
+    fontWeight: '500',
+    fontSize: 'calc(1em / 16 * 20)',
     transition: 'font-weight 0.1s linear 0.1s',
     '&:hover': {
       fontWeight: '700',

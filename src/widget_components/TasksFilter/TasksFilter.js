@@ -6,13 +6,16 @@ import { auth } from '../../firebase/firebase';
 import { isMobileDevice, replaceAllowedCharactersFromFirebaseDatabaseKeys, replaceBrieflyValueToDetailValueOfTheTaskSign } from '../../helper/helper';
 import { switchForCloseAllListsForTasksPropertiesFilterAction } from '../../store/AppSwitches/Action';
 import { getAppSwitchesDeviceOnTheNetworkSelector, getAppSwitchesSwitchForCloseAllListsForTasksPropertiesFilterSelector } from '../../store/AppSwitches/Selectors';
-import { changeTaskPropertyShowWithThunkAction, reverseDirectionForTasksSortinBySignAction, reverseDirectionForTodayTasksSortinBySignAction, tasksSignForTasksSortingAction, tasksSignForTodayTasksSortingAction } from '../../store/Tasks/Action';
+import { changeTaskPropertyShowToSpecificValueWithThunkAction, changeTaskPropertyShowWithThunkAction, reverseDirectionForTasksSortinBySignAction, reverseDirectionForTodayTasksSortinBySignAction, tasksSignForTasksSortingAction, tasksSignForTodayTasksSortingAction } from '../../store/Tasks/Action';
 import { getTasksListReverseDirectionForTasksSortinBySignSelector, getTasksListReverseDirectionForTodayTasksSortinBySignSelector, getTasksListTasksSignForTasksSortingSelector, getTasksListTasksSignForTodayTasksSortingSelector } from '../../store/Tasks/Selectors';
 import { useStyles } from '../../styles/Style';
 import { TasksFilterUI } from '../../ui_components/TasksFilterUI';
 
 export const TasksFilter = (props) => {
     const classes = useStyles();
+
+    const [allTasksSignPropertiesForFilteringAreTrue, allTasksSignPropertiesForFilteringAreTrueSet] = useState(-1);
+    const [allTasksSignPropertiesForFilteringAreFalse, allTasksSignPropertiesForFilteringAreFalseSet] = useState(-1);
 
     const isMobileDeviceBoolean = isMobileDevice();
 
@@ -46,6 +49,16 @@ export const TasksFilter = (props) => {
         }
 
         dispatch(changeTaskPropertyShowWithThunkAction(userUID, props.signForTasksFilter, item, props.propertiesForTasksFilter[item]));
+    };
+
+    const togglePropertyShowToSpecificValue = (value) => {
+        if (!deviceOnTheNetworkSel) {
+            return
+        }
+
+        for (let item in props.propertiesForTasksFilter) {
+            dispatch(changeTaskPropertyShowToSpecificValueWithThunkAction(userUID, props.signForTasksFilter, item, value));
+        }
     };
 
     const propertiesForTasksFilterList = Object.keys(props.propertiesForTasksFilter).map((item) => {
@@ -101,7 +114,69 @@ export const TasksFilter = (props) => {
         }
     }, [switchForCloseAllListsForTasksPropertiesFilterSel, props.signForTasksFilter]);
 
+    useEffect(() => {
+        let allPropertiesHasTrue = false;
+        let allPropertiesHasFalse = false;
+        let allPropertiesHasDifferentValues = false;
+
+        for (let property in props.propertiesForTasksFilter) {
+            if (props.propertiesForTasksFilter[property]) {
+                allPropertiesHasTrue = true;
+
+                if (allPropertiesHasFalse === false) {
+                    continue;
+                } else {
+                    allPropertiesHasTrue = false;
+                    allPropertiesHasFalse = false;
+                    allPropertiesHasDifferentValues = true;
+
+                    break;
+                }
+            } else {
+                allPropertiesHasFalse = true;
+
+                if (allPropertiesHasTrue === false) {
+                    continue;
+                } else {
+                    allPropertiesHasTrue = false;
+                    allPropertiesHasFalse = false;
+                    allPropertiesHasDifferentValues = true;
+
+                    break;
+                }
+            }
+        }
+
+        if (allPropertiesHasTrue) {
+            allTasksSignPropertiesForFilteringAreTrueSet(true);
+            allTasksSignPropertiesForFilteringAreFalseSet(false);
+        } else if (allPropertiesHasFalse) {
+            allTasksSignPropertiesForFilteringAreTrueSet(false);
+            allTasksSignPropertiesForFilteringAreFalseSet(true);
+        } else if (allPropertiesHasDifferentValues) {
+            allTasksSignPropertiesForFilteringAreTrueSet(false);
+            allTasksSignPropertiesForFilteringAreFalseSet(false);
+        }
+    }, [props.propertiesForTasksFilter]);
+
     return (
-        <TasksFilterUI classes={classes} propertiesForTasksFilterList={propertiesForTasksFilterList} signForTasksFilter={props.signForTasksFilter} toggleListPropertiesForTasksFilter={toggleListPropertiesForTasksFilter} showListPropertiesForTasksFilter={showListPropertiesForTasksFilter} selectSignForTasksSorting={selectSignForTasksSorting} toggleDirectionForTasksSortingBySign={toggleDirectionForTasksSortingBySign} tasksSignForTasksSortingSel={tasksSignForTasksSortingSel} reverseDirectionForTasksSortinBySignSel={reverseDirectionForTasksSortinBySignSel} isMobileDeviceBoolean={isMobileDeviceBoolean} tasksSignForTodayTasksSortingSel={tasksSignForTodayTasksSortingSel} reverseDirectionForTodayTasksSortinBySignSel={reverseDirectionForTodayTasksSortinBySignSel} location={location} allAppComponentsWithPageTitle={allAppComponentsWithPageTitle}></TasksFilterUI>
+        <TasksFilterUI 
+            classes={classes} 
+            propertiesForTasksFilterList={propertiesForTasksFilterList} 
+            signForTasksFilter={props.signForTasksFilter} 
+            toggleListPropertiesForTasksFilter={toggleListPropertiesForTasksFilter} 
+            showListPropertiesForTasksFilter={showListPropertiesForTasksFilter} 
+            selectSignForTasksSorting={selectSignForTasksSorting} 
+            toggleDirectionForTasksSortingBySign={toggleDirectionForTasksSortingBySign} 
+            tasksSignForTasksSortingSel={tasksSignForTasksSortingSel} 
+            reverseDirectionForTasksSortinBySignSel={reverseDirectionForTasksSortinBySignSel} 
+            isMobileDeviceBoolean={isMobileDeviceBoolean} 
+            tasksSignForTodayTasksSortingSel={tasksSignForTodayTasksSortingSel} 
+            reverseDirectionForTodayTasksSortinBySignSel={reverseDirectionForTodayTasksSortinBySignSel} 
+            location={location} allAppComponentsWithPageTitle={allAppComponentsWithPageTitle} 
+            togglePropertyShowToSpecificValue={togglePropertyShowToSpecificValue} 
+            allTasksSignPropertiesForFilteringAreTrue={allTasksSignPropertiesForFilteringAreTrue} 
+            allTasksSignPropertiesForFilteringAreFalse={allTasksSignPropertiesForFilteringAreFalse}
+        ></TasksFilterUI>
     )
 };
