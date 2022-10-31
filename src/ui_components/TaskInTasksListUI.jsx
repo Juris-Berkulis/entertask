@@ -146,7 +146,7 @@ export const TaskInTasksListUI = (props) => {
                         props.item.taskCreateAt !== props.characterToAutocompleteEmptyTaskSign 
                         && 
                         <p className={`${props.classes.allTasks__taskListItemParagraph}`}>
-                            <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.item.taskCreateAt}</span>
+                            <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.getLocalDateAndTime(props.item.taskCreateAt)}</span>
                         </p>
                     }
                 </div>
