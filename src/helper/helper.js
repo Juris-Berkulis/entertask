@@ -421,6 +421,8 @@ export const replaceBrieflyValueToDetailValueOfTheTaskSign = (sign, property) =>
         return importance[property] && importance[property].detail
     } else if (sign === allSignsForTasksFilter.taskEisenhowerMatrixValue.variable) {
         return replaceBrieflyValueToDetailValueOfTheEisenhowerMatrix(property)
+    } else if (sign === allSignsForTasksFilter.taskCreateAt.variable) {
+        return getLocalDateAndTime(property)
     } else {
         return property
     }
@@ -678,7 +680,7 @@ const parseLocalDataAndTimeString = (validDateAndTime) => {
     const validLocalYear = +validDateAndTimeList[3];
     const validLocalMonth = getMonth(validDateAndTimeList[1]);
     const validLocalNumber = validDateAndTimeList[2];
-    const validLocalHour = +validDateAndTimeList[4].split(':')[0];
+    const validLocalHour = validDateAndTimeList[4].split(':')[0];
     const validLocalMinute = validDateAndTimeList[4].split(':')[1];
     const validLocalSecond = validDateAndTimeList[4].split(':')[2];
 
