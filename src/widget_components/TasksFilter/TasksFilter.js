@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { useLocation } from 'react-router-dom';
-import { allAppComponentsWithPageTitle } from '../../data/consts';
+import { allAppComponentsWithPageTitle, allSignsForTasksFilter } from '../../data/consts';
 import { auth } from '../../firebase/firebase';
 import { isMobileDevice, replaceAllowedCharactersFromFirebaseDatabaseKeys, replaceBrieflyValueToDetailValueOfTheTaskSign } from '../../helper/helper';
 import { switchForCloseAllListsForTasksPropertiesFilterAction } from '../../store/AppSwitches/Action';
@@ -61,7 +61,24 @@ export const TasksFilter = (props) => {
         }
     };
 
-    const propertiesForTasksFilterList = Object.keys(props.propertiesForTasksFilter).map((item) => {
+    const sortFilteringListWithTaskCreateAt = (itemA, itemB, signForTasksFilter) => {
+        if (signForTasksFilter === allSignsForTasksFilter.taskCreateAt.variable) {
+            const dateA = new Date(itemA);
+            const dateB = new Date(itemB);
+
+            if (dateA > dateB) {
+                return 1
+            } else if (dateA < dateB) {
+                return -1
+            } else {
+                return 0
+            }
+        } else {
+            return 0
+        }
+    };
+
+    const propertiesForTasksFilterList = Object.keys(props.propertiesForTasksFilter).sort((itemA, itemB) => sortFilteringListWithTaskCreateAt(itemA, itemB, props.signForTasksFilter)).map((item) => {
         return (
             <p className={classes.tasksFilter__listItem} onClick={() => togglePropertyShow(item)} key={item}>
                 {
