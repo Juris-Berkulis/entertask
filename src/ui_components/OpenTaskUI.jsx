@@ -112,7 +112,7 @@ export const OpenTaskUI = (props) => {
                     && 
                     props.tasksListOpenTaskSel.taskCreateAt !== props.characterToAutocompleteEmptyTaskSign 
                     && 
-                    <p className={`${props.classes.openTask__taskListItemParagraph} ${props.classes.allTasks__taskListItemParagraph}`}>{props.allSignsForTasksFilter.taskCreateAt.decodingIntoRus}: <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.tasksListOpenTaskSel.taskCreateAt}</span></p>
+                    <p className={`${props.classes.openTask__taskListItemParagraph} ${props.classes.allTasks__taskListItemParagraph}`}>{props.allSignsForTasksFilter.taskCreateAt.decodingIntoRus}: <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.getLocalDateAndTime(props.tasksListOpenTaskSel.taskCreateAt)}</span></p>
                 }
                 {
                     props.tasksListOpenTaskSel.taskComment 
