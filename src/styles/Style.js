@@ -6,6 +6,7 @@ export const useStyles = makeStyles({
     padding: '0 calc((100% - 90vw) / 2)',
   },
   main: {
+    position: 'relative',
     height: '100vh',
     backgroundColor: '#caffca',
     padding: '0 0 10vh',
@@ -842,7 +843,7 @@ export const useStyles = makeStyles({
     },
   },
   deviceOnTheNetwork__wrapper: {
-    position: 'fixed',
+    position: 'absolute',
     top: '2vh',
     right: '2vw',
     height: '6vh',
