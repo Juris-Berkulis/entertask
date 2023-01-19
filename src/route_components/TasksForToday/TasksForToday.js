@@ -3,10 +3,10 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { allAppComponentsWithPageTitle, allSignsForTasksFilter } from '../../data/consts';
 import { auth } from '../../firebase/firebase';
-import { changeTask, deleteTask, deleteTheTaskFromListWithTasksForToday, openTheTask, sortTasksBySign, tasksFiltering } from '../../helper/helper';
+import { changeTask, deleteTask, deleteTheTaskFromListWithTasksForToday, openTheTask, searchForEnteredValue, sortTasksBySign, tasksFiltering } from '../../helper/helper';
 import { getAppSwitchesSelectTodayTaskIDSelector } from '../../store/AppSwitches/Selectors';
 import { changeTaskSignValueWithThunkAction, offTrackingChangeValueInTasksListWithThunkAction, onTrackingChangeDictWithListsForTasksFilterWithThunkAction, onTrackingChangeValueInTasksListWithThunkAction, reverseDirectionForTodayTasksSortinBySignAction, tasksSignForTodayTasksSortingAction } from '../../store/Tasks/Action';
-import { getTasksListDictWithListsForTasksFilterSelector, getTasksListReverseDirectionForTodayTasksSortinBySignSelector, getTasksListTasksKindOfDictByUserUIDSelector, getTasksListTasksKindOfListByUserUIDSelector, getTasksListTasksSignForTodayTasksSortingSelector } from '../../store/Tasks/Selectors';
+import { getTasksListDictWithListsForTasksFilterSelector, getTasksListIsStrictSearchSelector, getTasksListReverseDirectionForTodayTasksSortinBySignSelector, getTasksListTasksKindOfDictByUserUIDSelector, getTasksListTasksKindOfListByUserUIDSelector, getTasksListTasksSignForTodayTasksSortingSelector, getTasksListValueInInputForTasksLookupSelector } from '../../store/Tasks/Selectors';
 import { useStyles } from '../../styles/Style';
 import { TasksForTodayUI } from '../../ui_components/TasksForTodayUI';
 import { TaskInTasksList } from '../TaskInTasksList/TaskInTasksList';
@@ -29,6 +29,8 @@ export const TasksForToday = () => {
     const tasksSignForTodayTasksSortingSel = useSelector(getTasksListTasksSignForTodayTasksSortingSelector);
     const reverseDirectionForTodayTasksSortinBySignSel = useSelector(getTasksListReverseDirectionForTodayTasksSortinBySignSelector);
     const selectTodayTaskIDSel = useSelector(getAppSwitchesSelectTodayTaskIDSelector);
+    const valueInInputForTasksLookupSel = useSelector(getTasksListValueInInputForTasksLookupSelector);
+    const isStrictSearchSel = useSelector(getTasksListIsStrictSearchSelector);
 
     const tasksListTasksKindOfListByIdSelForProps = tasksKindOfListByUserUIDSel
     .filter((item) => {
@@ -41,6 +43,7 @@ export const TasksForToday = () => {
             tasksFiltering(item, dictWithListsForTasksFilterSel, allSignsForTasksFilter)
         )
     })
+    .filter(task => searchForEnteredValue(task.taskName, valueInInputForTasksLookupSel, isStrictSearchSel))
     .sort((itemA, itemB) => sortTasksBySign(itemA, itemB, tasksSignForTodayTasksSortingSel, reverseDirectionForTodayTasksSortinBySignSel))
     .map((item) => (
         <TaskInTasksList key={item.taskID} item={item} changeTask={changeTask} deleteTask={deleteTask} openTheTask={openTheTask} deleteTheTaskFromListWithTasksForToday={deleteTheTaskFromListWithTasksForToday} history={history} selectTodayTaskRef={selectTodayTaskRef} unselectTodayTaskRef={unselectTodayTaskRef}></TaskInTasksList>

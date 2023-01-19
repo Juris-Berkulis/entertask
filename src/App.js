@@ -23,6 +23,7 @@ import { StartingScreensaver } from './widget_components/StartingScreensaver/Sta
 import { Profile } from './route_components/Profile/Profile';
 import { deviceOnTheNetworkAction, eventForPWAInstallation } from './store/AppSwitches/Action';
 import { DeviceOnTheNetwork } from './widget_components/DeviceOnTheNetwork/DeviceOnTheNetwork';
+import { valueInInputForTasksLookupAction } from './store/Tasks/Action';
 
 export const App = () => {
   const classes = useStyles();
@@ -119,6 +120,15 @@ export const App = () => {
           });
         }
       });
+    }, [dispatch]);
+
+    useEffect(() => {
+      return () => {
+        dispatch({
+          type: valueInInputForTasksLookupAction.type,
+          payload: '',
+        });
+      }
     }, [dispatch]);
 
   return (

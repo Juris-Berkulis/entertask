@@ -12,7 +12,7 @@ export const useStyles = makeStyles({
   },
   field: {
     height: '90vh !important',
-    padding: '5vh 2vw 1vh !important',
+    padding: '2vh 2vw 5vh !important',
     overflow: 'hidden !important',
   },
   field_mobileDevice: {
@@ -68,18 +68,94 @@ export const useStyles = makeStyles({
   },
   allTasks: {
     height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
   },
   allTasks__filterWrapper: {
     textAlign: 'center',
-    maxHeight: '18%',
+    height: '34px',
+    maxHeight: '68px',
     maxWidth: '1100px',
     overflow: 'auto',
-    margin: '0 auto 2%',
+    margin: '0 auto',
     userSelect: 'none',
+    flexShrink: '0',
+  },
+  additionalPanelWithTasksSettings: {
+    height: '17px',
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'flex-end',
+  },
+  tasksSearch: {
+    display: 'flex',
+    height: '100%',
+    width: '20%',
+  },
+  tasksSearch__inputWrapper: {
+    height: '100%',
+    position: 'relative',
+    flexGrow: '1',
+  },
+  tasksSearch__input: {
+    height: '100%',
+    width: '100%',
+    border: 'none',
+    borderRadius: '5px',
+    outline: 'none',
+    padding: '1px 5px',
+    backgroundColor: '#e9ffe9',
+    '&:focus': {
+      backgroundColor: '#f5fff5',
+    },
+  },
+  tasksSearch__setting: {
+    height: '100%',
+    width: '17px',
+    position: 'absolute',
+    top: '0',
+    right: '0',
+    backgroundColor: '#a2e0a2',
+    cursor: 'pointer',
+    '&:hover': {
+      backgroundColor: '#006600',
+    },
+  },
+  tasksSearch__settingSign: {
+    height: '100%',
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-around',
+    alignItems: 'center',
+  },
+  tasksSearch__settingSignPoint: {
+    height: '2px',
+    width: '2px',
+    borderRadius: '50%',
+    backgroundColor: '#aaaaaa',
+  },
+  tasksSearch__settingList: {
+    width: '100%',
+    position: 'absolute',
+    top: '17px',
+    right: '0',
+    padding: '5px 0',
+    borderBottomLeftRadius: '5px',
+    borderBottomRightRadius: '5px',
+    backgroundColor: '#f5fff5',
+  },
+  tasksSearch__settingItem: {
+    cursor: 'pointer',
+    padding: '3px 5px',
+    '&:hover': {
+      color: '#eeeeee',
+      backgroundColor: '#006600',
+    },
   },
   allTasks__tableWrapper: {
     width: '100%',
-    height: '80%',
+    flexGrow: '1',
     overflow: 'auto',
     '&::-webkit-scrollbar': {
       width: '10px', //* - ширина полосы прокрутки.

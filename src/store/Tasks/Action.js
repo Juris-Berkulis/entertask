@@ -209,3 +209,15 @@ export const deleteTheTaskFromListWithTasksForTodayWithThunkAction = (userUID, t
         [allSignsForTasksFilter.taskForToday.variable]: false,
     });
 };
+
+const VALUE_IN_INPUT_FOR_tASKS_LOOKUP_ACTION = 'VALUE_IN_INPUT_FOR_tASKS_LOOKUP_ACTION';
+
+export const valueInInputForTasksLookupAction = {
+    type: VALUE_IN_INPUT_FOR_tASKS_LOOKUP_ACTION,
+};
+
+const IS_STRICT_SEARCH_ACTION = 'IS_STRICT_SEARCH_ACTION';
+
+export const isStrictSearchAction = {
+    type: IS_STRICT_SEARCH_ACTION,
+};

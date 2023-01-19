@@ -1,6 +1,7 @@
 import React from 'react';
 import { allSignsForTasksFilter } from '../data/consts';
 import { OpenTask } from '../route_components/OpenTask/OpenTask';
+import { AdditionalPanelWithTasksSettings } from '../widget_components/AdditionalPanelWithTasksSettings/AdditionalPanelWithTasksSettings';
 import { TasksFilter } from '../widget_components/TasksFilter/TasksFilter';
 
 export const TasksPageUI = (props) => {
@@ -22,6 +23,7 @@ export const TasksPageUI = (props) => {
                 <TasksFilter propertiesForTasksFilter={props.dictWithListsForTasksFilterSel.taskCreateAt || {}} signForTasksFilter={allSignsForTasksFilter.taskCreateAt.variable}></TasksFilter>
                 <TasksFilter propertiesForTasksFilter={props.dictWithListsForTasksFilterSel.taskComment || {}} signForTasksFilter={allSignsForTasksFilter.taskComment.variable}></TasksFilter>
             </div>
+            <AdditionalPanelWithTasksSettings></AdditionalPanelWithTasksSettings>
             <div className={props.classes.allTasks__tableWrapper}>
                 <div className={props.classes.allTasks__table}>
                     <div className={`${props.classes.allTasks__tableTitleWrapper} ${props.isMobileDeviceBoolean ? props.classes.allTasks__tableTitleWrapper_mobileDevice : null}`}>
@@ -60,7 +62,7 @@ export const TasksPageUI = (props) => {
                             ? 
                             props.tasksListTasksKindOfListByIdSelForProps
                             : 
-                            <li className={props.classes.allTasks__tasksEmptyListText}>Список задач пуст</li>
+                            <li className={props.classes.allTasks__tasksEmptyListText}>{props.valueInInputForTasksLookupSel === '' ? 'Список задач пуст' : 'Нет подходящих задач'}</li>
                         }
                     </ul>
                 </div>

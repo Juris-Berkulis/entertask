@@ -3,9 +3,9 @@ import { useDispatch, useSelector } from 'react-redux';
 import { useNavigate } from 'react-router-dom';
 import { allAppComponentsWithPageTitle, allSignsForTasksFilter } from '../../data/consts';
 import { auth } from '../../firebase/firebase';
-import { addTheTaskInListWithTasksForToday, changeTask, deleteTask, deleteTheTaskFromListWithTasksForToday, openTheTask, sortTasksBySign, tasksFiltering } from '../../helper/helper';
+import { addTheTaskInListWithTasksForToday, changeTask, deleteTask, deleteTheTaskFromListWithTasksForToday, openTheTask, searchForEnteredValue, sortTasksBySign, tasksFiltering } from '../../helper/helper';
 import { offTrackingChangeValueInTasksListWithThunkAction, onTrackingChangeDictWithListsForTasksFilterWithThunkAction, onTrackingChangeValueInTasksListWithThunkAction } from '../../store/Tasks/Action';
-import { getTasksListDictWithListsForTasksFilterSelector, getTasksListReverseDirectionForTasksSortinBySignSelector, getTasksListTasksKindOfDictByUserUIDSelector, getTasksListTasksKindOfListByUserUIDSelector, getTasksListTasksSignForTasksSortingSelector } from '../../store/Tasks/Selectors';
+import { getTasksListDictWithListsForTasksFilterSelector, getTasksListIsStrictSearchSelector, getTasksListReverseDirectionForTasksSortinBySignSelector, getTasksListTasksKindOfDictByUserUIDSelector, getTasksListTasksKindOfListByUserUIDSelector, getTasksListTasksSignForTasksSortingSelector, getTasksListValueInInputForTasksLookupSelector } from '../../store/Tasks/Selectors';
 import { useStyles } from '../../styles/Style';
 import { AllTasksUI } from '../../ui_components/AllTasksUI';
 import { TaskInTasksList } from '../TaskInTasksList/TaskInTasksList';
@@ -24,6 +24,8 @@ export const AllTasks = () => {
     const dictWithListsForTasksFilterSel = useSelector(getTasksListDictWithListsForTasksFilterSelector);
     const tasksSignForTasksSortingSel = useSelector(getTasksListTasksSignForTasksSortingSelector);
     const reverseDirectionForTasksSortinBySignSel = useSelector(getTasksListReverseDirectionForTasksSortinBySignSelector);
+    const valueInInputForTasksLookupSel = useSelector(getTasksListValueInInputForTasksLookupSelector);
+    const isStrictSearchSel = useSelector(getTasksListIsStrictSearchSelector);
 
     const tasksListTasksKindOfListByIdSelForProps = tasksKindOfListByUserUIDSel
     .filter((item) => {
@@ -31,6 +33,7 @@ export const AllTasks = () => {
             tasksFiltering(item, dictWithListsForTasksFilterSel, allSignsForTasksFilter)
         )
     })
+    .filter(task => searchForEnteredValue(task.taskName, valueInInputForTasksLookupSel, isStrictSearchSel))
     .sort((itemA, itemB) => sortTasksBySign(itemA, itemB, tasksSignForTasksSortingSel, reverseDirectionForTasksSortinBySignSel))
     .map((item) => (
         <TaskInTasksList key={item.taskID} item={item} changeTask={changeTask} deleteTask={deleteTask} openTheTask={openTheTask} addTheTaskInListWithTasksForToday={addTheTaskInListWithTasksForToday} deleteTheTaskFromListWithTasksForToday={deleteTheTaskFromListWithTasksForToday} history={history}></TaskInTasksList>
