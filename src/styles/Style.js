@@ -151,6 +151,7 @@ export const useStyles = makeStyles({
     borderBottomLeftRadius: '5px',
     borderBottomRightRadius: '5px',
     backgroundColor: '#f5fff5',
+    zIndex: '1',
   },
   tasksSearch__settingItem: {
     cursor: 'pointer',
