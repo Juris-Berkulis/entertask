@@ -80,6 +80,9 @@ export const useStyles = makeStyles({
     overflow: 'auto',
     margin: '0 auto',
     userSelect: 'none',
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
     flexShrink: '0',
   },
   additionalPanelWithTasksSettings: {
@@ -92,6 +95,9 @@ export const useStyles = makeStyles({
     display: 'flex',
     height: '100%',
     width: '20%',
+  },
+  tasksSearch_mobileDevice: {
+    width: '40%',
   },
   tasksSearch__inputWrapper: {
     height: '100%',
@@ -378,14 +384,19 @@ export const useStyles = makeStyles({
     color: '#006600',
   },
   tasksFilter: {
-    display: 'inline-block',
+    flexGrow: '1',
+    flexShrink: '1',
+    flexBasis: styleConsts.width.tableCell,
+  },
+  tasksFilter_mobileDevice: {
+    flexBasis: styleConsts.width.tableCellMobileDevice,
   },
   tasksFilter__listWrapper: {
     position: 'relative',
   },
   tasksFilter__btn: {
     position: 'relative',
-    width: styleConsts.width.tableCell,
+    width: '100%',
     height: '17px',
     fontSize: 'calc(1rem / 16 * 13)',
     cursor: 'pointer',
@@ -398,9 +409,6 @@ export const useStyles = makeStyles({
       color: '#caffca',
       backgroundColor: '#006600',
     },
-  },
-  tasksFilter__btn_mobileDevice: {
-    width: styleConsts.width.tableCellMobileDevice,
   },
   tasksFilter__btnIcon: {
     position: 'absolute',

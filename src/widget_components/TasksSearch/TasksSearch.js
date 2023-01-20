@@ -1,5 +1,6 @@
 import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
+import { isMobileDevice } from '../../helper/helper';
 import { isStrictSearchAction, valueInInputForTasksLookupAction } from '../../store/Tasks/Action';
 import { getTasksListIsStrictSearchSelector, getTasksListValueInInputForTasksLookupSelector } from '../../store/Tasks/Selectors';
 import { useStyles } from '../../styles/Style';
@@ -7,6 +8,8 @@ import { TasksSearchUI } from '../../ui_components/TasksSearchUI';
 
 export const TasksSearch = (props) => {
     const classes = useStyles();
+
+    const isMobileDeviceBoolean = isMobileDevice();
 
     const dispatch = useDispatch();
 
@@ -36,6 +39,6 @@ export const TasksSearch = (props) => {
     };
 
     return (
-        <TasksSearchUI classes={classes}  onSaveValueForTasksLookupFromInput={onSaveValueForTasksLookupFromInput} changeTasksSearchMode={changeTasksSearchMode} valueInInputForTasksLookupSel={valueInInputForTasksLookupSel} isTasksSearchSetingsVisibility={isTasksSearchSetingsVisibility} toggleTasksSearchSetingsVisibility={toggleTasksSearchSetingsVisibility} isStrictSearchSel={isStrictSearchSel}></TasksSearchUI>
+        <TasksSearchUI classes={classes}  onSaveValueForTasksLookupFromInput={onSaveValueForTasksLookupFromInput} changeTasksSearchMode={changeTasksSearchMode} valueInInputForTasksLookupSel={valueInInputForTasksLookupSel} isTasksSearchSetingsVisibility={isTasksSearchSetingsVisibility} toggleTasksSearchSetingsVisibility={toggleTasksSearchSetingsVisibility} isStrictSearchSel={isStrictSearchSel} isMobileDeviceBoolean={isMobileDeviceBoolean}></TasksSearchUI>
     )
 };

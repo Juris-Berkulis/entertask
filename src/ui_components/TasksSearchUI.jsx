@@ -2,7 +2,7 @@ import React from 'react';
 
 export const TasksSearchUI = (props) => {
     return (
-        <div className={props.classes.tasksSearch}>
+        <div className={`${props.classes.tasksSearch} ${props.isMobileDeviceBoolean ? props.classes.tasksSearch_mobileDevice : null}`}>
             <div className={props.classes.tasksSearch__inputWrapper}>
                 <input className={props.classes.tasksSearch__input} placeholder='Поиск задач' onChange={props.onSaveValueForTasksLookupFromInput} value={props.valueInInputForTasksLookupSel} ref={props.refInput} />
                 <div className={props.classes.tasksSearch__setting} onClick={() => props.toggleTasksSearchSetingsVisibility()}>

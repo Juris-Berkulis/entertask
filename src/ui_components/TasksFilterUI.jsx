@@ -3,8 +3,8 @@ import { allSignsForTasksFilter } from '../data/consts';
 
 export const TasksFilterUI = (props) => {
     return (
-        <div className={props.classes.tasksFilter}>
-            <button className={`${props.classes.tasksFilter__btn} ${props.isMobileDeviceBoolean ? props.classes.tasksFilter__btn_mobileDevice : null}`} onClick={props.toggleListPropertiesForTasksFilter}>
+        <div className={`${props.classes.tasksFilter} ${props.isMobileDeviceBoolean ? props.classes.tasksFilter_mobileDevice : null}`}>
+            <button className={`${props.classes.tasksFilter__btn}`} onClick={props.toggleListPropertiesForTasksFilter}>
                 {
                     (
                         props.allTasksSignPropertiesForFilteringAreTrue 
