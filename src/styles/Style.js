@@ -411,6 +411,12 @@ export const useStyles = makeStyles({
       backgroundColor: '#006600',
     },
   },
+  tasksFilter__btn_up: {
+    backgroundColor: '#a8dda8',
+  },
+  tasksFilter__btn_down: {
+    backgroundColor: '#dda8a8',
+  },
   tasksFilter__btnIcon: {
     position: 'absolute',
     top: 'calc((15px - 1rem / 16 * 6) / 2)',

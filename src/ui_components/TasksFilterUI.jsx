@@ -4,7 +4,25 @@ import { allSignsForTasksFilter } from '../data/consts';
 export const TasksFilterUI = (props) => {
     return (
         <div className={`${props.classes.tasksFilter} ${props.isMobileDeviceBoolean ? props.classes.tasksFilter_mobileDevice : null}`}>
-            <button className={`${props.classes.tasksFilter__btn}`} onClick={props.toggleListPropertiesForTasksFilter}>
+            <button className={`${props.classes.tasksFilter__btn} ${(
+                (props.location.pathname === props.allAppComponentsWithPageTitle.alltasks.path && props.tasksSignForTasksSortingSel === allSignsForTasksFilter[props.signForTasksFilter].variable) 
+                || 
+                (props.location.pathname === props.allAppComponentsWithPageTitle.tasksfortoday.path && props.tasksSignForTodayTasksSortingSel === allSignsForTasksFilter[props.signForTasksFilter].variable)
+            ) 
+            ? 
+            (
+                (
+                    (props.location.pathname === props.allAppComponentsWithPageTitle.alltasks.path && props.reverseDirectionForTasksSortinBySignSel) 
+                    || 
+                    (props.location.pathname === props.allAppComponentsWithPageTitle.tasksfortoday.path && props.reverseDirectionForTodayTasksSortinBySignSel)
+                ) 
+                ? 
+                props.classes.tasksFilter__btn_up 
+                : 
+                props.classes.tasksFilter__btn_down
+            )
+            : 
+            null}`} onClick={props.toggleListPropertiesForTasksFilter}>
                 {
                     (
                         props.allTasksSignPropertiesForFilteringAreTrue 
