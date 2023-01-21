@@ -720,12 +720,32 @@ export const changeTaskSignValue = (userUID, taskUTCInMilliseconds, editTaskSign
     dispatch(changeTaskSignValueWithThunkAction(userUID, taskUTCInMilliseconds, editTaskSign, editTaskSignValue))
 };
 
-export const searchForEnteredValue = (tasksProperty, valueInInputForTasksLookupSel, isStrictSearchSel) => {
-    if(isStrictSearchSel) {
-        return tasksProperty.toLowerCase().includes(valueInInputForTasksLookupSel.toLowerCase())
+const isValueInInputForTasksLookupInTaskProperty = (tasksProperty, valueInInputForTasksLookupSel, isStrictSearchSel) => {
+    if (typeof(tasksProperty) === 'string') {
+        if(isStrictSearchSel) {
+            return tasksProperty.toLowerCase().includes(valueInInputForTasksLookupSel.toLowerCase())
+        } else {
+            const regExp = new RegExp(valueInInputForTasksLookupSel.toLowerCase().split('').join('.*'));
+    
+            return tasksProperty.toLowerCase().match(regExp)
+        }
     } else {
-        const regExp = new RegExp(valueInInputForTasksLookupSel.toLowerCase().split('').join('.*'));
+        return false
+    }
+};
 
-        return tasksProperty.toLowerCase().match(regExp)
+export const searchForEnteredValue = (task, signForInputForTasksLookupSel, valueInInputForTasksLookupSel, isStrictSearchSel) => {
+    const newTask = replaceInTaskAllowedCharactersFromFirebaseDatabaseKeys(task);
+
+    if (signForInputForTasksLookupSel) {
+        return isValueInInputForTasksLookupInTaskProperty(replaceBrieflyValueToDetailValueOfTheTaskSign(signForInputForTasksLookupSel, newTask[signForInputForTasksLookupSel]), valueInInputForTasksLookupSel, isStrictSearchSel)
+    } else {
+        for (let taskSign in newTask) {
+            if (isValueInInputForTasksLookupInTaskProperty(replaceBrieflyValueToDetailValueOfTheTaskSign(taskSign, newTask[taskSign]), valueInInputForTasksLookupSel, isStrictSearchSel)) {
+                return true
+            }
+        }
+
+        return false
     }
 };

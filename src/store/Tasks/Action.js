@@ -216,6 +216,12 @@ export const valueInInputForTasksLookupAction = {
     type: VALUE_IN_INPUT_FOR_tASKS_LOOKUP_ACTION,
 };
 
+const SIGN_FOR_INPUT_FOR_tASKS_LOOKUP_ACTION = 'SIGN_FOR_INPUT_FOR_tASKS_LOOKUP_ACTION';
+
+export const signForInputForTasksLookupAction = {
+    type: SIGN_FOR_INPUT_FOR_tASKS_LOOKUP_ACTION,
+};
+
 const IS_STRICT_SEARCH_ACTION = 'IS_STRICT_SEARCH_ACTION';
 
 export const isStrictSearchAction = {

@@ -1,4 +1,4 @@
-import { CHANGE_TASKS_LIST, closeTaskAction, dictWithListsForTasksFilterAction, dictWithNewTaskPropertiesErrorsAction, isStrictSearchAction, openTaskAction, resetDictWithNewTaskPropertiesErrorsAction, reverseDirectionForTasksSortinBySignAction, reverseDirectionForTodayTasksSortinBySignAction, tasksSignForTasksSortingAction, tasksSignForTodayTasksSortingAction, valueInInputForTasksLookupAction } from "./Action";
+import { CHANGE_TASKS_LIST, closeTaskAction, dictWithListsForTasksFilterAction, dictWithNewTaskPropertiesErrorsAction, isStrictSearchAction, openTaskAction, resetDictWithNewTaskPropertiesErrorsAction, reverseDirectionForTasksSortinBySignAction, reverseDirectionForTodayTasksSortinBySignAction, signForInputForTasksLookupAction, tasksSignForTasksSortingAction, tasksSignForTodayTasksSortingAction, valueInInputForTasksLookupAction } from "./Action";
 
 const initialState = {};
 
@@ -73,6 +73,12 @@ export const tasksListReducer = (state = initialState, action) => {
             return {
                 ...state,
                 valueInInputForTasksLookupCase: action.payload,
+            }
+        }
+        case signForInputForTasksLookupAction.type: {
+            return {
+                ...state,
+                signForInputForTasksLookupCase: action.payload,
             }
         }
         case isStrictSearchAction.type: {
