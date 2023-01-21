@@ -71,7 +71,7 @@ export const TasksSearch = (props) => {
         const value = 'Все поля';
 
         list.push(
-            <p className={classes.tasksSearch__settingItem} onClick={() => {
+            <p className={`${classes.tasksSearch__settingItem} ${signForInputForTasksLookupSel === false && classes.tasksSearch__settingItem_active}`} onClick={() => {
                 setTaskSignsForTasksFilteringByInputField();
                 closeTasksSearchSetings();
             }} key={value}>{value}</p>
@@ -82,7 +82,7 @@ export const TasksSearch = (props) => {
 
     const tasksSignsListForTasksFilteringByInputField = pushItemToList(
         setListWithTaskSignsForTasksFilteringByInputField(allSignsForTasksFilter).map((taskSign) => (
-            <p className={classes.tasksSearch__settingItem} onClick={() => {
+            <p className={`${classes.tasksSearch__settingItem} ${signForInputForTasksLookupSel === taskSign.variable && classes.tasksSearch__settingItem_active}`} onClick={() => {
                 setTaskSignsForTasksFilteringByInputField(taskSign.variable);
                 closeTasksSearchSetings();
             }} key={taskSign.variable}>{taskSign.decodingIntoRusShort}</p>

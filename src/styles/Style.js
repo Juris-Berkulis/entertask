@@ -144,6 +144,7 @@ export const useStyles = makeStyles({
   },
   tasksSearch__settingList: {
     width: '100%',
+    maxHeight: '60vh',
     position: 'absolute',
     top: '17px',
     right: '0',
@@ -152,6 +153,7 @@ export const useStyles = makeStyles({
     borderBottomRightRadius: '5px',
     backgroundColor: '#f5fff5',
     zIndex: '1',
+    overflow: 'auto',
   },
   tasksSearch__settingItem: {
     cursor: 'pointer',
@@ -160,6 +162,15 @@ export const useStyles = makeStyles({
       color: '#eeeeee',
       backgroundColor: '#006600',
     },
+  },
+  tasksSearch__settingItem_active: {
+    backgroundColor: '#a8dda8',
+  },
+  tasksSearch__settingItemsSeparator: {
+    height: '1px',
+    width: '100%',
+    margin: '3px 0',
+    backgroundColor: '#006600',
   },
   allTasks__tableWrapper: {
     width: '100%',

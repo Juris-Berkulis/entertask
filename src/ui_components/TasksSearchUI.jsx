@@ -28,6 +28,7 @@ export const TasksSearchUI = (props) => {
                                 'Не строгий поиск'
                             }
                         </p>
+                        <div className={props.classes.tasksSearch__settingItemsSeparator}></div>
                         {props.tasksSignsListForTasksFilteringByInputField}
                     </div>
                 }
