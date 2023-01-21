@@ -81,7 +81,7 @@ export const TasksSearch = (props) => {
     };
 
     const tasksSignsListForTasksFilteringByInputField = pushItemToList(
-        setListWithTaskSignsForTasksFilteringByInputField(allSignsForTasksFilter).map((taskSign) => (
+        setListWithTaskSignsForTasksFilteringByInputField(allSignsForTasksFilter).sort((a, b) => a.showForInputFilter - b.showForInputFilter).map((taskSign) => (
             <p className={`${classes.tasksSearch__settingItem} ${signForInputForTasksLookupSel === taskSign.variable && classes.tasksSearch__settingItem_active}`} onClick={() => {
                 setTaskSignsForTasksFilteringByInputField(taskSign.variable);
                 closeTasksSearchSetings();
