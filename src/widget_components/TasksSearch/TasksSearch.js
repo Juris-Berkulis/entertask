@@ -1,4 +1,4 @@
-import React, { useState } from 'react';
+import React, { useCallback, useEffect, useRef, useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { allSignsForTasksFilter } from '../../data/consts';
 import { isMobileDevice } from '../../helper/helper';
@@ -13,6 +13,8 @@ export const TasksSearch = (props) => {
     const isMobileDeviceBoolean = isMobileDevice();
 
     const dispatch = useDispatch();
+
+    const inputRef = useRef(null);
 
     const [isTasksSearchSetingsVisibility, setIsTasksSearchSetingsVisibility] = useState(false);
 
@@ -38,6 +40,14 @@ export const TasksSearch = (props) => {
         setIsTasksSearchSetingsVisibility(!isTasksSearchSetingsVisibility);
     };
 
+    const closeTasksSearchSetings = () => {
+        setIsTasksSearchSetingsVisibility(false);
+    };
+
+    const putFocusOnSearchInputField = () => {
+        inputRef.current.focus();
+    };
+
     const setTaskSignsForTasksFilteringByInputField = (taskSign=false) => {
         dispatch({
             type: signForInputForTasksLookupAction.type,
@@ -61,7 +71,10 @@ export const TasksSearch = (props) => {
         const value = 'Все поля';
 
         list.push(
-            <p className={classes.tasksSearch__settingItem} onClick={() => setTaskSignsForTasksFilteringByInputField()} key={value}>{value}</p>
+            <p className={classes.tasksSearch__settingItem} onClick={() => {
+                setTaskSignsForTasksFilteringByInputField();
+                closeTasksSearchSetings();
+            }} key={value}>{value}</p>
         );
 
         return list
@@ -69,25 +82,32 @@ export const TasksSearch = (props) => {
 
     const tasksSignsListForTasksFilteringByInputField = pushItemToList(
         setListWithTaskSignsForTasksFilteringByInputField(allSignsForTasksFilter).map((taskSign) => (
-            <p className={classes.tasksSearch__settingItem} onClick={() => setTaskSignsForTasksFilteringByInputField(taskSign.variable)} key={taskSign.variable}>{taskSign.decodingIntoRusShort}</p>
+            <p className={classes.tasksSearch__settingItem} onClick={() => {
+                setTaskSignsForTasksFilteringByInputField(taskSign.variable);
+                closeTasksSearchSetings();
+            }} key={taskSign.variable}>{taskSign.decodingIntoRusShort}</p>
         ))
     );
 
-    const focusIsOnInputForTasksLookup = () => {
+    const focusIsOnInputForTasksLookup = useCallback(() => {
         dispatch({
             type: isFocusOnInputForTasksLookupAction.type,
             payload: true,
-        })
-    };
+        });
+    }, [dispatch]);
 
-    const focusIsNotOnInputForTasksLookup = () => {
+    const focusIsNotOnInputForTasksLookup = useCallback(() => {
         dispatch({
             type: isFocusOnInputForTasksLookupAction.type,
             payload: false,
-        })
-    };
+        });
+    }, [dispatch]);
+
+    useEffect(() => {
+        focusIsNotOnInputForTasksLookup();
+    }, [focusIsNotOnInputForTasksLookup]);
 
     return (
-        <TasksSearchUI classes={classes}  onSaveValueForTasksLookupFromInput={onSaveValueForTasksLookupFromInput} changeTasksSearchMode={changeTasksSearchMode} valueInInputForTasksLookupSel={valueInInputForTasksLookupSel} isTasksSearchSetingsVisibility={isTasksSearchSetingsVisibility} toggleTasksSearchSetingsVisibility={toggleTasksSearchSetingsVisibility} isStrictSearchSel={isStrictSearchSel} isMobileDeviceBoolean={isMobileDeviceBoolean} tasksSignsListForTasksFilteringByInputField={tasksSignsListForTasksFilteringByInputField} signForInputForTasksLookupSel={signForInputForTasksLookupSel} allSignsForTasksFilter={allSignsForTasksFilter} focusIsOnInputForTasksLookup={focusIsOnInputForTasksLookup} focusIsNotOnInputForTasksLookup={focusIsNotOnInputForTasksLookup}></TasksSearchUI>
+        <TasksSearchUI classes={classes} onSaveValueForTasksLookupFromInput={onSaveValueForTasksLookupFromInput} changeTasksSearchMode={changeTasksSearchMode} valueInInputForTasksLookupSel={valueInInputForTasksLookupSel} isTasksSearchSetingsVisibility={isTasksSearchSetingsVisibility} toggleTasksSearchSetingsVisibility={toggleTasksSearchSetingsVisibility} isStrictSearchSel={isStrictSearchSel} isMobileDeviceBoolean={isMobileDeviceBoolean} tasksSignsListForTasksFilteringByInputField={tasksSignsListForTasksFilteringByInputField} signForInputForTasksLookupSel={signForInputForTasksLookupSel} allSignsForTasksFilter={allSignsForTasksFilter} focusIsOnInputForTasksLookup={focusIsOnInputForTasksLookup} focusIsNotOnInputForTasksLookup={focusIsNotOnInputForTasksLookup} inputRef={inputRef} putFocusOnSearchInputField={putFocusOnSearchInputField} closeTasksSearchSetings={closeTasksSearchSetings}></TasksSearchUI>
     )
 };
