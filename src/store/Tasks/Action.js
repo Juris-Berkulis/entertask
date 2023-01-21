@@ -222,6 +222,12 @@ export const signForInputForTasksLookupAction = {
     type: SIGN_FOR_INPUT_FOR_tASKS_LOOKUP_ACTION,
 };
 
+const IS_FOCUS_ON_INPUT_FOR_TASKS_LOOKUP_ACTION = 'IS_FOCUS_ON_INPUT_FOR_TASKS_LOOKUP_ACTION';
+
+export const isFocusOnInputForTasksLookupAction = {
+    type: IS_FOCUS_ON_INPUT_FOR_TASKS_LOOKUP_ACTION,
+};
+
 const IS_STRICT_SEARCH_ACTION = 'IS_STRICT_SEARCH_ACTION';
 
 export const isStrictSearchAction = {

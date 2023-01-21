@@ -2,7 +2,7 @@ import React, { useState } from 'react';
 import { useDispatch, useSelector } from 'react-redux';
 import { allSignsForTasksFilter } from '../../data/consts';
 import { isMobileDevice } from '../../helper/helper';
-import { isStrictSearchAction, signForInputForTasksLookupAction, valueInInputForTasksLookupAction } from '../../store/Tasks/Action';
+import { isFocusOnInputForTasksLookupAction, isStrictSearchAction, signForInputForTasksLookupAction, valueInInputForTasksLookupAction } from '../../store/Tasks/Action';
 import { getTasksListIsStrictSearchSelector, getTasksListSignForInputForTasksLookupSelector, getTasksListValueInInputForTasksLookupSelector } from '../../store/Tasks/Selectors';
 import { useStyles } from '../../styles/Style';
 import { TasksSearchUI } from '../../ui_components/TasksSearchUI';
@@ -73,7 +73,21 @@ export const TasksSearch = (props) => {
         ))
     );
 
+    const focusIsOnInputForTasksLookup = () => {
+        dispatch({
+            type: isFocusOnInputForTasksLookupAction.type,
+            payload: true,
+        })
+    };
+
+    const focusIsNotOnInputForTasksLookup = () => {
+        dispatch({
+            type: isFocusOnInputForTasksLookupAction.type,
+            payload: false,
+        })
+    };
+
     return (
-        <TasksSearchUI classes={classes}  onSaveValueForTasksLookupFromInput={onSaveValueForTasksLookupFromInput} changeTasksSearchMode={changeTasksSearchMode} valueInInputForTasksLookupSel={valueInInputForTasksLookupSel} isTasksSearchSetingsVisibility={isTasksSearchSetingsVisibility} toggleTasksSearchSetingsVisibility={toggleTasksSearchSetingsVisibility} isStrictSearchSel={isStrictSearchSel} isMobileDeviceBoolean={isMobileDeviceBoolean} tasksSignsListForTasksFilteringByInputField={tasksSignsListForTasksFilteringByInputField} signForInputForTasksLookupSel={signForInputForTasksLookupSel} allSignsForTasksFilter={allSignsForTasksFilter}></TasksSearchUI>
+        <TasksSearchUI classes={classes}  onSaveValueForTasksLookupFromInput={onSaveValueForTasksLookupFromInput} changeTasksSearchMode={changeTasksSearchMode} valueInInputForTasksLookupSel={valueInInputForTasksLookupSel} isTasksSearchSetingsVisibility={isTasksSearchSetingsVisibility} toggleTasksSearchSetingsVisibility={toggleTasksSearchSetingsVisibility} isStrictSearchSel={isStrictSearchSel} isMobileDeviceBoolean={isMobileDeviceBoolean} tasksSignsListForTasksFilteringByInputField={tasksSignsListForTasksFilteringByInputField} signForInputForTasksLookupSel={signForInputForTasksLookupSel} allSignsForTasksFilter={allSignsForTasksFilter} focusIsOnInputForTasksLookup={focusIsOnInputForTasksLookup} focusIsNotOnInputForTasksLookup={focusIsNotOnInputForTasksLookup}></TasksSearchUI>
     )
 };
