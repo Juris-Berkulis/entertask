@@ -722,12 +722,30 @@ export const changeTaskSignValue = (userUID, taskUTCInMilliseconds, editTaskSign
 
 const isValueInInputForTasksLookupInTaskProperty = (tasksProperty, valueInInputForTasksLookupSel, isStrictSearchSel) => {
     if (typeof(tasksProperty) === 'string') {
-        if(isStrictSearchSel) {
-            return tasksProperty.toLowerCase().includes(valueInInputForTasksLookupSel.toLowerCase())
-        } else {
-            const regExp = new RegExp(valueInInputForTasksLookupSel.toLowerCase().split('').join('.*'));
-    
-            return tasksProperty.toLowerCase().match(regExp)
+        if(isStrictSearchSel) { //* - Строгий ли поиск.
+            return tasksProperty.toLowerCase().includes(valueInInputForTasksLookupSel.toLowerCase()) //* Ищим подстроку в строке (введённое пользователем значение в свойстве задачи).
+        } else { //* - Эту часть функции можно сделать через регулярное выражение [const regExp = new RegExp(valueInInputForTasksLookupSel.toLowerCase().split('').join('.*')); return tasksProperty.toLowerCase().match(regExp)], однако тогда придётся ещё дополнительно учитывать случаи, если пользователь ввёл спецсимволы регулярных выражений.
+
+            const tasksPropertyLowerCase = tasksProperty.toLowerCase(); //* - Проверяемое свойство задачи в нижнем регистре.
+            const valueInInputForTasksLookupSelLowerCase = valueInInputForTasksLookupSel.toLowerCase(); //* - Введённое пользователем значение  в нижнем регистре.
+
+            let taskPropertyIndex = 0; //* - Индекс свойства задачи, с которого начинаем поиск очередной буквы из введённого пользователем значения.
+
+            for (let i=0; i < valueInInputForTasksLookupSelLowerCase.length; i++) { //* - Проверяем по отдельности каждую введённую пользователем букву (символ).
+                const foundLetterIndex = tasksPropertyLowerCase.indexOf(valueInInputForTasksLookupSelLowerCase[i], taskPropertyIndex); //* - Поиск индекса свойства задачи, на котором найдена искомая буква (символ) из введённого пользователем значения. Первый аргумент в методе ".indexOf()" - это искомая буква (символ) из введённого пользователем значения; второй аргумент - это индекс свойства задачи, с которого начинаем поиск буквы (символа).
+
+                if (foundLetterIndex > -1) { //* - Искомая буква найдена в свойстве задачи.
+                    taskPropertyIndex = foundLetterIndex + 1; //* - Поиск следующеё буквы из введённого пользователем значения будет осуществляться с индекса свойства задачи, идущего следующим после индекса, на котором была найдена буква (символ).
+
+                    if (i === valueInInputForTasksLookupSelLowerCase.length - 1) { //* - Последняя буква из введённого пользователем значения найдена.
+                        return true
+                    }
+                } else { //* - Искомая буква не найдена в свойстве задачи.
+                    return false
+                }
+            }
+
+            return true //* - Пользователь ничего не вводил в поле поиска (ничего искать не надо).
         }
     } else {
         return false
