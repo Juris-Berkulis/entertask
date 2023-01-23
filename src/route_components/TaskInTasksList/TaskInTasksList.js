@@ -6,7 +6,7 @@ import { auth } from '../../firebase/firebase';
 import { changeTaskSignValue, getLocalDateAndTime, isMobileDevice, replaceBrieflyValueToDetailValueOfTheTaskSign, replaceInTaskAllowedCharactersFromFirebaseDatabaseKeys } from '../../helper/helper';
 import { selectTodayTaskIDAction } from '../../store/AppSwitches/Action';
 import { getAppSwitchesDeviceOnTheNetworkSelector, getAppSwitchesSelectTodayTaskIDSelector } from '../../store/AppSwitches/Selectors';
-import { getTasksListTasksKindOfDictByUserUIDSelector } from '../../store/Tasks/Selectors';
+import { getTasksListIsFocusOnInputForTasksLookupSelector, getTasksListTasksKindOfDictByUserUIDSelector } from '../../store/Tasks/Selectors';
 import { useStyles } from '../../styles/Style';
 import { TaskInTasksListUI } from '../../ui_components/TaskInTasksListUI';
 
@@ -24,6 +24,7 @@ export const TaskInTasksList = (props) => {
     const deviceOnTheNetworkSel = useSelector(getAppSwitchesDeviceOnTheNetworkSelector);
     const tasksKindOfDictByUserUIDSel = useSelector(getTasksListTasksKindOfDictByUserUIDSelector(userUID));
     const selectTodayTaskIDSel = useSelector(getAppSwitchesSelectTodayTaskIDSelector);
+    const isFocusOnInputForTasksLookupSel = useSelector(getTasksListIsFocusOnInputForTasksLookupSelector);
 
     const selectTask = (task) => {
         if (location.pathname === allAppComponentsWithPageTitle.tasksfortoday.path) {
@@ -59,7 +60,8 @@ export const TaskInTasksList = (props) => {
             allAppComponentsWithPageTitle={allAppComponentsWithPageTitle} 
             selectTodayTaskRef={props.selectTodayTaskRef} 
             unselectTodayTaskRef={props.unselectTodayTaskRef} 
-            getLocalDateAndTime={getLocalDateAndTime}
+            getLocalDateAndTime={getLocalDateAndTime} 
+            isFocusOnInputForTasksLookupSel={isFocusOnInputForTasksLookupSel} 
         ></TaskInTasksListUI>
     )
 };

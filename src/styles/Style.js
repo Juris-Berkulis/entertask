@@ -128,12 +128,22 @@ export const useStyles = makeStyles({
       backgroundColor: '#006600',
     },
   },
+  tasksSearch__settingClose: {
+    height: '100%',
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  tasksSearch__settingCloseItem: {
+    color: '#aaaaaa',
+  },
   tasksSearch__settingSign: {
     height: '100%',
     width: '100%',
     display: 'flex',
     flexDirection: 'column',
-    justifyContent: 'space-around',
+    justifyContent: 'space-evenly',
     alignItems: 'center',
   },
   tasksSearch__settingSignPoint: {

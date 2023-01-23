@@ -2,7 +2,7 @@ import React from 'react';
 
 export const TaskInTasksListUI = (props) => {
     return (
-        <li className={`${props.classes.allTasks__taskListItem} ${props.item.taskID === props.selectTodayTaskIDSel && props.location.pathname === props.allAppComponentsWithPageTitle.tasksfortoday.path ? props.classes.allTasks__taskListItem_select : null}`} onClick={() => props.selectTask(props.item)} ref={props.item.taskID === props.selectTodayTaskIDSel && props.location.pathname === props.allAppComponentsWithPageTitle.tasksfortoday.path ? props.selectTodayTaskRef : props.unselectTodayTaskRef}>
+        <li className={`${props.classes.allTasks__taskListItem} ${props.item.taskID === props.selectTodayTaskIDSel && props.location.pathname === props.allAppComponentsWithPageTitle.tasksfortoday.path && !props.isFocusOnInputForTasksLookupSel ? props.classes.allTasks__taskListItem_select : null}`} onClick={() => props.selectTask(props.item)} ref={props.item.taskID === props.selectTodayTaskIDSel && props.location.pathname === props.allAppComponentsWithPageTitle.tasksfortoday.path ? props.selectTodayTaskRef : props.unselectTodayTaskRef}>
             <div className={`${props.classes.allTasks__taskListItemLinePannel}`}>
                 <div className={props.classes.allTasks__taskListItemBtnsPannel}>
                     <button className={`${props.classes.allTasks__taskListItemBtn} ${props.classes.allTasks__taskListItemBtn_open}`} onClick={() => props.openTheTask(props.item.taskID, props.dispatch)}>Открыть</button>

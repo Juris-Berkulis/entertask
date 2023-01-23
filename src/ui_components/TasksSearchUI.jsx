@@ -6,11 +6,19 @@ export const TasksSearchUI = (props) => {
             <div className={props.classes.tasksSearch__inputWrapper} onClick={() => props.putFocusOnSearchInputField()}>
                 <input className={props.classes.tasksSearch__input} placeholder={`Поиск по "${props.signForInputForTasksLookupSel ? props.allSignsForTasksFilter[props.signForInputForTasksLookupSel].decodingIntoRusShort : 'Все поля'}"`} onFocus={() => props.focusIsOnInputForTasksLookup()} onBlur={() => props.focusIsNotOnInputForTasksLookup()} onChange={(e) => props.onSaveValueForTasksLookupFromInput(e)} value={props.valueInInputForTasksLookupSel} ref={props.inputRef} />
                 <div className={props.classes.tasksSearch__setting} onClick={() => props.toggleTasksSearchSetingsVisibility()}>
-                    <div className={props.classes.tasksSearch__settingSign}>
-                        <div className={`${props.classes.tasksSearch__settingSignPoint} ${props.classes.tasksSearch__settingSignPoint-1}`}></div>
-                        <div className={`${props.classes.tasksSearch__settingSignPoint} ${props.classes.tasksSearch__settingSignPoint-1}`}></div>
-                        <div className={`${props.classes.tasksSearch__settingSignPoint} ${props.classes.tasksSearch__settingSignPoint-1}`}></div>
-                    </div>
+                    {
+                        props.isTasksSearchSetingsVisibility 
+                        ? 
+                        <div className={props.classes.tasksSearch__settingClose}>
+                            <p className={props.classes.tasksSearch__settingCloseItem}>&#10006;</p>
+                        </div>
+                        : 
+                        <div className={props.classes.tasksSearch__settingSign}>
+                            <div className={`${props.classes.tasksSearch__settingSignPoint} ${props.classes.tasksSearch__settingSignPoint-1}`}></div>
+                            <div className={`${props.classes.tasksSearch__settingSignPoint} ${props.classes.tasksSearch__settingSignPoint-1}`}></div>
+                            <div className={`${props.classes.tasksSearch__settingSignPoint} ${props.classes.tasksSearch__settingSignPoint-1}`}></div>
+                        </div>
+                    }
                 </div>
                 {
                     props.isTasksSearchSetingsVisibility
