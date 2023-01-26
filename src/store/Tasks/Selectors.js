@@ -9,3 +9,7 @@ export const getTasksListTasksSignForTodayTasksSortingSelector = (state) => getT
 export const getTasksListReverseDirectionForTodayTasksSortinBySignSelector = (state) => getTasksListRootSelector(state).reverseDirectionForTodayTasksSortinBySignCase || false;
 export const getTasksListDictWithNewTaskPropertiesErrorsSelector = (state) => getTasksListRootSelector(state).dictWithNewTaskPropertiesErrorsCase || {};
 export const getTasksListOpenTaskSelector = (state) => getTasksListRootSelector(state).openTaskCase || {};
+export const getTasksListValueInInputForTasksLookupSelector = (state) => getTasksListRootSelector(state).valueInInputForTasksLookupCase || '';
+export const getTasksListSignForInputForTasksLookupSelector = (state) => getTasksListRootSelector(state).signForInputForTasksLookupCase || false;
+export const getTasksListIsFocusOnInputForTasksLookupSelector = (state) => getTasksListRootSelector(state).isFocusOnInputForTasksLookupCase || false;
+export const getTasksListIsStrictSearchSelector = (state) => getTasksListRootSelector(state).isStrictSearchCase || false;

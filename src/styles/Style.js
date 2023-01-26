@@ -6,13 +6,14 @@ export const useStyles = makeStyles({
     padding: '0 calc((100% - 90vw) / 2)',
   },
   main: {
+    position: 'relative',
     height: '100vh',
     backgroundColor: '#caffca',
     padding: '0 0 10vh',
   },
   field: {
     height: '90vh !important',
-    padding: '5vh 2vw 1vh !important',
+    padding: '2vh 2vw 5vh !important',
     overflow: 'hidden !important',
   },
   field_mobileDevice: {
@@ -68,18 +69,122 @@ export const useStyles = makeStyles({
   },
   allTasks: {
     height: '100%',
+    display: 'flex',
+    flexDirection: 'column',
   },
   allTasks__filterWrapper: {
     textAlign: 'center',
-    maxHeight: '18%',
+    height: '34px',
+    maxHeight: '68px',
     maxWidth: '1100px',
     overflow: 'auto',
-    margin: '0 auto 2%',
+    margin: '0 auto',
     userSelect: 'none',
+    display: 'flex',
+    flexWrap: 'wrap',
+    justifyContent: 'center',
+    flexShrink: '0',
+  },
+  additionalPanelWithTasksSettings: {
+    height: '17px',
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'flex-end',
+  },
+  tasksSearch: {
+    display: 'flex',
+    height: '100%',
+    width: '20%',
+  },
+  tasksSearch_mobileDevice: {
+    width: '40%',
+  },
+  tasksSearch__inputWrapper: {
+    height: '100%',
+    position: 'relative',
+    flexGrow: '1',
+  },
+  tasksSearch__input: {
+    height: '100%',
+    width: '100%',
+    border: 'none',
+    borderRadius: '5px',
+    outline: 'none',
+    padding: '1px 5px',
+    backgroundColor: '#e9ffe9',
+    '&:focus': {
+      backgroundColor: '#f5fff5',
+    },
+  },
+  tasksSearch__setting: {
+    height: '100%',
+    width: '17px',
+    position: 'absolute',
+    top: '0',
+    right: '0',
+    backgroundColor: '#a2e0a2',
+    cursor: 'pointer',
+    '&:hover': {
+      backgroundColor: '#006600',
+    },
+  },
+  tasksSearch__settingClose: {
+    height: '100%',
+    width: '100%',
+    display: 'flex',
+    justifyContent: 'center',
+    alignItems: 'center',
+  },
+  tasksSearch__settingCloseItem: {
+    color: '#aaaaaa',
+  },
+  tasksSearch__settingSign: {
+    height: '100%',
+    width: '100%',
+    display: 'flex',
+    flexDirection: 'column',
+    justifyContent: 'space-evenly',
+    alignItems: 'center',
+  },
+  tasksSearch__settingSignPoint: {
+    height: '2px',
+    width: '2px',
+    borderRadius: '50%',
+    backgroundColor: '#aaaaaa',
+  },
+  tasksSearch__settingList: {
+    width: '100%',
+    maxHeight: '60vh',
+    position: 'absolute',
+    top: '17px',
+    right: '0',
+    padding: '5px 0',
+    borderBottomLeftRadius: '5px',
+    borderBottomRightRadius: '5px',
+    backgroundColor: '#f5fff5',
+    zIndex: '1',
+    overflow: 'auto',
+  },
+  tasksSearch__settingItem: {
+    cursor: 'pointer',
+    padding: '3px 5px',
+    '&:hover': {
+      color: '#eeeeee',
+      backgroundColor: '#006600',
+    },
+  },
+  tasksSearch__settingItem_active: {
+    backgroundColor: '#a8dda8',
+  },
+  tasksSearch__settingItemsSeparator: {
+    height: '1px',
+    width: '100%',
+    margin: '3px 0',
+    backgroundColor: '#006600',
   },
   allTasks__tableWrapper: {
     width: '100%',
-    height: '80%',
+    flexGrow: '1',
     overflow: 'auto',
     '&::-webkit-scrollbar': {
       width: '10px', //* - ширина полосы прокрутки.
@@ -163,6 +268,9 @@ export const useStyles = makeStyles({
       backgroundColor: '#99ff99',
     },
   },
+  allTasks__taskListItem_select: {
+    boxShadow: 'inset 0 0 2px 2px #006600'
+  },
   allTasks__taskListItemParagraph: {
     fontSize: 'calc(1rem / 16 * 16)',
     lineHeight: '100%',
@@ -186,15 +294,23 @@ export const useStyles = makeStyles({
     color: '#ffffff',
     fontWeight: '700',
     borderRadius: '50%',
+    userSelect: 'none',
+    cursor: 'pointer',
   },
   allTasks__taskListItemParagraphValue_status_mobileDevice: {
     fontWeight: '400',
   },
   allTasks__taskListItemParagraphValue_statusPlus: {
     backgroundColor: '#006600',
+    '&:hover': {
+      backgroundColor: '#008800',
+    },
   },
   allTasks__taskListItemParagraphValue_statusMinus: {
     backgroundColor: '#660000',
+    '&:hover': {
+      backgroundColor: '#880000',
+    },
   },
   allTasks__taskListItemLinePannel: {
     position: 'relative',
@@ -290,14 +406,19 @@ export const useStyles = makeStyles({
     color: '#006600',
   },
   tasksFilter: {
-    display: 'inline-block',
+    flexGrow: '1',
+    flexShrink: '1',
+    flexBasis: styleConsts.width.tableCell,
+  },
+  tasksFilter_mobileDevice: {
+    flexBasis: styleConsts.width.tableCellMobileDevice,
   },
   tasksFilter__listWrapper: {
     position: 'relative',
   },
   tasksFilter__btn: {
     position: 'relative',
-    width: styleConsts.width.tableCell,
+    width: '100%',
     height: '17px',
     fontSize: 'calc(1rem / 16 * 13)',
     cursor: 'pointer',
@@ -311,8 +432,18 @@ export const useStyles = makeStyles({
       backgroundColor: '#006600',
     },
   },
-  tasksFilter__btn_mobileDevice: {
-    width: styleConsts.width.tableCellMobileDevice,
+  tasksFilter__btn_up: {
+    backgroundColor: '#a8dda8',
+  },
+  tasksFilter__btn_down: {
+    backgroundColor: '#dda8a8',
+  },
+  tasksFilter__btnIcon: {
+    position: 'absolute',
+    top: 'calc((15px - 1rem / 16 * 6) / 2)',
+    left: '1px',
+    fontSize: 'calc(1rem / 16 * 6)',
+    lineHeight: '100%',
   },
   tasksFilter__signIsTurnOn: {
     position: 'absolute',
@@ -369,15 +500,23 @@ export const useStyles = makeStyles({
     fontWeight: '700',
     textDecoration: 'underline',
   },
-  tasksFilter__tasksSortingBtn: {
+  tasksFilter__tasksBtnsPanel: {
     height: '27px',
     width: '27px',
-    marginLeft: '5px',
-    fontWeight: '500',
     cursor: 'pointer',
-    fontSize: 'calc(1em / 16 * 20)',
     backgroundColor: 'transparent',
     border: 'none',
+  },
+  tasksFilter__tasksFilteringBtn: {
+    fontSize: 'calc(1rem / 16 * 16)',
+    fontWeight: '500',
+  },
+  tasksFilter__listTitleText: {
+    margin: '0 5px',
+  },
+  tasksFilter__tasksSortingBtn: {
+    fontWeight: '500',
+    fontSize: 'calc(1rem / 16 * 20)',
     transition: 'font-weight 0.1s linear 0.1s',
     '&:hover': {
       fontWeight: '700',
@@ -396,13 +535,33 @@ export const useStyles = makeStyles({
     maxHeight: '50vh',
     borderTop: '1px solid #000000',
     borderBottom: '1px solid #000000',
+    overflow: 'auto',
   },
   tasksFilter__listItem: {
     display: 'flex',
     borderTop: '1px solid #000000',
     borderBottom: '1px solid #000000',
     padding: '0 10px',
+    overflow: 'auto',
+    whiteSpace: 'pre',
     cursor: 'pointer',
+    '&::-webkit-scrollbar': {
+      width: '0', //* - ширина полосы прокрутки.
+      height: '7px', //* - высота полосы прокрутки.
+    },
+    //* Дальнейшая стилизация навигационных кнопок:
+    '&::-webkit-scrollbar-button:single-button': {
+      height: '7px',
+      width: '7px',
+    },
+    //* Стилизация левой навигационной кнопки:
+    '&::-webkit-scrollbar-button:single-button:horizontal:decrement': {
+      borderWidth: '3.5px 7px 3.5px 0',
+    },
+    //* Стилизация правой навигационной кнопки:
+    '&::-webkit-scrollbar-button:single-button:horizontal:increment': {
+      borderWidth: '3.5px 0 3.5px 7px',
+    },
     '&:hover': {
       backgroundColor: '#aaffaa',
     },
@@ -720,7 +879,7 @@ export const useStyles = makeStyles({
     },
   },
   deviceOnTheNetwork__wrapper: {
-    position: 'fixed',
+    position: 'absolute',
     top: '2vh',
     right: '2vw',
     height: '6vh',
@@ -796,31 +955,31 @@ export const useStyles = makeStyles({
     borderBottom: '5px solid #000000',
   },
   taskEisenhowerMatrixValue__color_1_1: {
-    borderBottom: '5px solid #aa00aa',
+    borderBottom: '5px solid #a5c2f2',
   },
   taskEisenhowerMatrixValue__color_1_2: {
-    borderBottom: '5px solid blue',
+    borderBottom: '5px solid #3c79d2',
   },
   taskEisenhowerMatrixValue__color_1_3: {
-    borderBottom: '5px solid cyan',
+    borderBottom: '5px solid #0101ff',
   },
   taskEisenhowerMatrixValue__color_2_1: {
-    borderBottom: '5px solid green',
+    borderBottom: '5px solid #fcdb63',
   },
   taskEisenhowerMatrixValue__color_2_2: {
-    borderBottom: '5px solid lightgreen',
+    borderBottom: '5px solid #f0c22e',
   },
   taskEisenhowerMatrixValue__color_2_3: {
-    borderBottom: '5px solid yellow',
+    borderBottom: '5px solid #fefe00',
   },
   taskEisenhowerMatrixValue__color_3_1: {
-    borderBottom: '5px solid orange',
+    borderBottom: '5px solid #ea9998',
   },
   taskEisenhowerMatrixValue__color_3_2: {
-    borderBottom: '5px solid pink',
+    borderBottom: '5px solid #de6665',
   },
   taskEisenhowerMatrixValue__color_3_3: {
-    borderBottom: '5px solid red',
+    borderBottom: '5px solid #f80200',
   },
   textAlign_center: {
     textAlign: 'center',

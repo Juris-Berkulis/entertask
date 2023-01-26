@@ -2,10 +2,10 @@ import React from 'react';
 
 export const TaskInTasksListUI = (props) => {
     return (
-        <li className={props.classes.allTasks__taskListItem}>
+        <li className={`${props.classes.allTasks__taskListItem} ${props.item.taskID === props.selectTodayTaskIDSel && props.location.pathname === props.allAppComponentsWithPageTitle.tasksfortoday.path && !props.isFocusOnInputForTasksLookupSel ? props.classes.allTasks__taskListItem_select : null}`} onClick={() => props.selectTask(props.item)} ref={props.item.taskID === props.selectTodayTaskIDSel && props.location.pathname === props.allAppComponentsWithPageTitle.tasksfortoday.path ? props.selectTodayTaskRef : props.unselectTodayTaskRef}>
             <div className={`${props.classes.allTasks__taskListItemLinePannel}`}>
                 <div className={props.classes.allTasks__taskListItemBtnsPannel}>
-                    <button className={`${props.classes.allTasks__taskListItemBtn} ${props.classes.allTasks__taskListItemBtn_open}`} onClick={() => props.openTheTask(props.item, props.dispatch)}>Открыть</button>
+                    <button className={`${props.classes.allTasks__taskListItemBtn} ${props.classes.allTasks__taskListItemBtn_open}`} onClick={() => props.openTheTask(props.item.taskID, props.dispatch)}>Открыть</button>
                     {
                         props.item.taskForToday
                         ? 
@@ -58,7 +58,7 @@ export const TaskInTasksListUI = (props) => {
                         props.item.taskStatus !== props.characterToAutocompleteEmptyTaskSign 
                         && 
                         <p className={`${props.classes.allTasks__taskListItemParagraph} ${props.classes.allTasks__taskListItemParagraph_status} ${(props.item.taskStatus === '+' && props.classes.allTasks__taskListItemParagraph_statusPlus) || (props.item.taskStatus === '-' && props.classes.allTasks__taskListItemParagraph_statusMinus) || null} ${props.classes.textAlign_center}`}>
-                            <span className={`${props.classes.allTasks__taskListItemParagraphValue} ${props.classes.allTasks__taskListItemParagraphValue_status} ${props.isMobileDeviceBoolean ? props.classes.allTasks__taskListItemParagraphValue_status_mobileDevice : null} ${(props.item.taskStatus === '+' && props.classes.allTasks__taskListItemParagraphValue_statusPlus) || (props.item.taskStatus === '-' && props.classes.allTasks__taskListItemParagraphValue_statusMinus) || null}`}>{props.item.taskStatus === '-' ? <span>&#8722;</span> : props.item.taskStatus}</span>
+                            <span className={`${props.classes.allTasks__taskListItemParagraphValue} ${props.classes.allTasks__taskListItemParagraphValue_status} ${props.isMobileDeviceBoolean ? props.classes.allTasks__taskListItemParagraphValue_status_mobileDevice : null} ${(props.item.taskStatus === '+' && props.classes.allTasks__taskListItemParagraphValue_statusPlus) || (props.item.taskStatus === '-' && props.classes.allTasks__taskListItemParagraphValue_statusMinus) || null}`} onClick={props.item.taskStatus === '-' ? () => props.changeTaskSignValue(props.userUID, props.item.taskID, props.allSignsForTasksFilter.taskStatus.variable, '+', props.tasksKindOfDictByUserUIDSel, props.dispatch) : () => props.changeTaskSignValue(props.userUID, props.item.taskID, props.allSignsForTasksFilter.taskStatus.variable, '-', props.tasksKindOfDictByUserUIDSel, props.dispatch)}>{props.item.taskStatus === '-' ? <span>&#8722;</span> : props.item.taskStatus}</span>
                         </p>
                     }
                 </div>
@@ -146,7 +146,7 @@ export const TaskInTasksListUI = (props) => {
                         props.item.taskCreateAt !== props.characterToAutocompleteEmptyTaskSign 
                         && 
                         <p className={`${props.classes.allTasks__taskListItemParagraph}`}>
-                            <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.item.taskCreateAt}</span>
+                            <span className={`${props.classes.allTasks__taskListItemParagraphValue}`}>{props.getLocalDateAndTime(props.item.taskCreateAt)}</span>
                         </p>
                     }
                 </div>

@@ -42,6 +42,18 @@ export const changeTaskPropertyShowWithThunkAction = (userUID, sign, property, v
     tasksFilterDBRef.child(userUID).child(sign).update({[property]: !value,});
 };
 
+export const changeTaskPropertyShowToSpecificValueWithThunkAction = (userUID, sign, property, value) => () => {
+    tasksFilterDBRef.child(userUID).child(sign).update({[property]: value,});
+};
+
+export const changeTaskSignValueWithThunkAction = (userUID, taskUTCInMilliseconds, sign, value, addInFilter=true) => () => {
+    tasksDBRef.child(userUID).child(taskUTCInMilliseconds).child(sign).set(replaceForbiddenCharactersForFirebaseDatabaseKeys(value));
+
+    if (addInFilter) {
+        tasksFilterDBRef.child(userUID).child(sign).update({[replaceForbiddenCharactersForFirebaseDatabaseKeys(value)]: true,});
+    }
+};
+
 //! TODO: Объединить общий код с "addNewTaskWithThunkAction":
 export const editTaskWithThunkAction = (userUID, taskUTCInMilliseconds, editableTask) => () => {
     tasksDBRef.child(userUID).child(taskUTCInMilliseconds).child(allSignsForTasksFilter.taskCategory.variable).set(replaceForbiddenCharactersForFirebaseDatabaseKeys(editableTask.taskCategory));
@@ -92,11 +104,15 @@ const changeTasksList = (dispatch, userUID) => {
 };
 
 export const onTrackingChangeValueInTasksListWithThunkAction = (userUID) => (dispatch) => {
-    tasksDBRef.child(userUID).on('value', changeTasksList(dispatch, userUID));
+    if (userUID !== null) {
+        tasksDBRef.child(userUID).on('value', changeTasksList(dispatch, userUID));
+    }
 };
 
 export const offTrackingChangeValueInTasksListWithThunkAction = (userUID) => (dispatch) => {
-    tasksDBRef.child(userUID).off('value', changeTasksList(dispatch, userUID));
+    if (userUID !== null) {
+        tasksDBRef.child(userUID).off('value', changeTasksList(dispatch, userUID));
+    }
 };
 
 export const DICT_WITH_LISTS_FOR_TASKS_FILTER_ACTION = 'DICT_WITH_LISTS_FOR_TASKS_FILTER_ACTION';
@@ -115,11 +131,15 @@ const changeTasksFilter = (dispatch) => {
 };
 
 export const onTrackingChangeDictWithListsForTasksFilterWithThunkAction = (userUID) => (dispatch) => {
-    tasksFilterDBRef.child(userUID).on('value', changeTasksFilter(dispatch));
+    if (userUID !== null) {
+        tasksFilterDBRef.child(userUID).on('value', changeTasksFilter(dispatch));
+    }
 };
 
 export const offTrackingChangeDictWithListsForTasksFilterWithThunkAction = (userUID) => (dispatch) => {
-    tasksFilterDBRef.child(userUID).off('value', changeTasksFilter(dispatch));
+    if (userUID !== null) {
+        tasksFilterDBRef.child(userUID).off('value', changeTasksFilter(dispatch));
+    }
 };
 
 export const deleteExtraSignOfTaskFilteringWithThunkAction = (userUID, sign, property) => () => {
@@ -188,4 +208,28 @@ export const deleteTheTaskFromListWithTasksForTodayWithThunkAction = (userUID, t
     tasksDBRef.child(userUID).child(taskUTCInMilliseconds).update({
         [allSignsForTasksFilter.taskForToday.variable]: false,
     });
+};
+
+const VALUE_IN_INPUT_FOR_TASKS_LOOKUP_ACTION = 'VALUE_IN_INPUT_FOR_TASKS_LOOKUP_ACTION';
+
+export const valueInInputForTasksLookupAction = {
+    type: VALUE_IN_INPUT_FOR_TASKS_LOOKUP_ACTION,
+};
+
+const SIGN_FOR_INPUT_FOR_TASKS_LOOKUP_ACTION = 'SIGN_FOR_INPUT_FOR_TASKS_LOOKUP_ACTION';
+
+export const signForInputForTasksLookupAction = {
+    type: SIGN_FOR_INPUT_FOR_TASKS_LOOKUP_ACTION,
+};
+
+const IS_FOCUS_ON_INPUT_FOR_TASKS_LOOKUP_ACTION = 'IS_FOCUS_ON_INPUT_FOR_TASKS_LOOKUP_ACTION';
+
+export const isFocusOnInputForTasksLookupAction = {
+    type: IS_FOCUS_ON_INPUT_FOR_TASKS_LOOKUP_ACTION,
+};
+
+const IS_STRICT_SEARCH_ACTION = 'IS_STRICT_SEARCH_ACTION';
+
+export const isStrictSearchAction = {
+    type: IS_STRICT_SEARCH_ACTION,
 };

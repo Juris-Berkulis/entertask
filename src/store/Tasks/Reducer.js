@@ -1,4 +1,4 @@
-import { CHANGE_TASKS_LIST, closeTaskAction, dictWithListsForTasksFilterAction, dictWithNewTaskPropertiesErrorsAction, openTaskAction, resetDictWithNewTaskPropertiesErrorsAction, reverseDirectionForTasksSortinBySignAction, reverseDirectionForTodayTasksSortinBySignAction, tasksSignForTasksSortingAction, tasksSignForTodayTasksSortingAction } from "./Action";
+import { CHANGE_TASKS_LIST, closeTaskAction, dictWithListsForTasksFilterAction, dictWithNewTaskPropertiesErrorsAction, isFocusOnInputForTasksLookupAction, isStrictSearchAction, openTaskAction, resetDictWithNewTaskPropertiesErrorsAction, reverseDirectionForTasksSortinBySignAction, reverseDirectionForTodayTasksSortinBySignAction, signForInputForTasksLookupAction, tasksSignForTasksSortingAction, tasksSignForTodayTasksSortingAction, valueInInputForTasksLookupAction } from "./Action";
 
 const initialState = {};
 
@@ -66,7 +66,31 @@ export const tasksListReducer = (state = initialState, action) => {
         case closeTaskAction.type: {
             return {
                 ...state,
-                openTaskCase: {},
+                openTaskCase: false,
+            }
+        }
+        case valueInInputForTasksLookupAction.type: {
+            return {
+                ...state,
+                valueInInputForTasksLookupCase: action.payload,
+            }
+        }
+        case signForInputForTasksLookupAction.type: {
+            return {
+                ...state,
+                signForInputForTasksLookupCase: action.payload,
+            }
+        }
+        case isFocusOnInputForTasksLookupAction.type: {
+            return {
+                ...state,
+                isFocusOnInputForTasksLookupCase: action.payload,
+            }
+        }
+        case isStrictSearchAction.type: {
+            return {
+                ...state,
+                isStrictSearchCase: action.payload,
             }
         }
         default: {

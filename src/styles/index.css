@@ -10,6 +10,10 @@ html {
   line-height: 16px;
 }
 
+button, a, input {
+  font-family: Arial, "Helvetica CY", "Nimbus Sans L", sans-serif;
+}
+
 ::-webkit-scrollbar {
   width: 10px;
   height: 0;

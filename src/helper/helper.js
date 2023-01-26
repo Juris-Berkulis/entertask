@@ -1,7 +1,7 @@
 import { allAppComponentsWithPageTitle, allSignsForTasksFilter, appTitle, characterToAutocompleteEmptyTaskSign, eisenhowerMatrix, importance, mobileScreenWidth, objectWithForbiddenCharactersForFirebaseDatabaseKeys, urgency } from "../data/consts";
 import { auth } from "../firebase/firebase";
 import { countdownForLetterRequest, editableTaskObjectAction } from "../store/AppSwitches/Action";
-import { addTheTaskInListWithTasksForTodayWithThunkAction, deleteExtraSignOfTaskFilteringWithThunkAction, deleteTaskWithThunkAction, deleteTheTaskFromListWithTasksForTodayWithThunkAction, dictWithNewTaskPropertiesErrorsAction, openTaskAction } from "../store/Tasks/Action";
+import { addTheTaskInListWithTasksForTodayWithThunkAction, changeTaskSignValueWithThunkAction, deleteExtraSignOfTaskFilteringWithThunkAction, deleteTaskWithThunkAction, deleteTheTaskFromListWithTasksForTodayWithThunkAction, dictWithNewTaskPropertiesErrorsAction, openTaskAction } from "../store/Tasks/Action";
 
 export const getWindowDimensions = () => {
     const { innerWidth: width, innerHeight: height } = window;
@@ -410,6 +410,137 @@ export const getEisenhowerMatrixValue = (taskUrgency, taskImportance) => {
     }
 };
 
+const localTimezone = new Date().getTimezoneOffset() / -60;
+
+const getMonth = (monthString) => {
+    if (monthString === 'Jan') {
+        return '01'
+    } else if (monthString === 'Feb') {
+        return '02'
+    } else if (monthString === 'Mar') {
+        return '03'
+    } else if (monthString === 'Apr') {
+        return '04'
+    } else if (monthString === 'May') {
+        return '05'
+    } else if (monthString === 'Jun') {
+        return '06'
+    } else if (monthString === 'Jul') {
+        return '07'
+    } else if (monthString === 'Aug') {
+        return '08'
+    } else if (monthString === 'Sep') {
+        return '09'
+    } else if (monthString === 'Oct') {
+        return '10'
+    } else if (monthString === 'Nov') {
+        return '11'
+    } else if (monthString === 'Dec') {
+        return '12'
+    } else {
+        return '??'
+    };
+};
+
+const parseUTCDataAndTimeString = (utcDateAndTime) => {
+    const utcDateAndTimeList = utcDateAndTime.split(' ');
+    const localYear = +utcDateAndTimeList[3];
+    const localMonth = getMonth(utcDateAndTimeList[2]);
+    const localNumber = utcDateAndTimeList[1];
+    const localHour = +utcDateAndTimeList[4].split(':')[0] + localTimezone;
+    const localMinute = +utcDateAndTimeList[4].split(':')[1];
+    const localSecond = +utcDateAndTimeList[4].split(':')[2];
+
+    return {
+        localYear, 
+        localMonth, 
+        localNumber, 
+        localHour, 
+        localMinute, 
+        localSecond
+    }
+};
+
+const getValidLocalDateAndTime = (
+    localYear, 
+    localMonth, 
+    localNumber, 
+    localHour, 
+    localMinute, 
+    localSecond
+    ) => {
+    const localDateAndTime = new Date(localYear, localMonth, localNumber, localHour, localMinute, localSecond).toString(); 
+    //* - Example: "Mon Dec 27 2021 18:14:41 GMT+0300 (Москва, стандартное время)".
+    
+    return localDateAndTime
+};
+
+const getDayOfTheWeek = (dayOfTheWeekString) => {
+    if (dayOfTheWeekString === 'Mon') {
+        return 'Пн'
+    } else if (dayOfTheWeekString === 'Tue') {
+        return 'Вт'
+    } else if (dayOfTheWeekString === 'Wed') {
+        return 'Ср'
+    } else if (dayOfTheWeekString === 'Thu') {
+        return 'Чт'
+    } else if (dayOfTheWeekString === 'Fri') {
+        return 'Пт'
+    } else if (dayOfTheWeekString === 'Sat') {
+        return 'Сб'
+    } else if (dayOfTheWeekString === 'Sun') {
+        return 'Вс'
+    } else {
+        return dayOfTheWeekString
+    };
+};
+
+const parseLocalDataAndTimeString = (validDateAndTime) => {
+    const validDateAndTimeList = validDateAndTime.split(' ');
+    const validLocalDayOfTheWeek = getDayOfTheWeek(validDateAndTimeList[0]);
+    const validLocalYear = +validDateAndTimeList[3];
+    const validLocalMonth = getMonth(validDateAndTimeList[1]);
+    const validLocalNumber = validDateAndTimeList[2];
+    const validLocalHour = validDateAndTimeList[4].split(':')[0];
+    const validLocalMinute = validDateAndTimeList[4].split(':')[1];
+    const validLocalSecond = validDateAndTimeList[4].split(':')[2];
+
+    return {
+        validLocalDayOfTheWeek, 
+        validLocalNumber, 
+        validLocalMonth, 
+        validLocalYear, 
+        validLocalHour, 
+        validLocalMinute, 
+        validLocalSecond
+    }
+};
+
+export const getLocalDateAndTime = (utcDateAndTime) => { //* - Example: "Mon, 27 Dec 2021 15:14:41 GMT".
+    const {
+        localYear, 
+        localMonth, 
+        localNumber, 
+        localHour, 
+        localMinute, 
+        localSecond
+    } = parseUTCDataAndTimeString(utcDateAndTime);
+
+    const validDateAndTime = getValidLocalDateAndTime(localYear, +localMonth - 1, localNumber, localHour, localMinute, localSecond);
+
+    const {
+        validLocalDayOfTheWeek, 
+        validLocalNumber, 
+        validLocalMonth, 
+        validLocalYear, 
+        validLocalHour, 
+        validLocalMinute, 
+        validLocalSecond
+    } = parseLocalDataAndTimeString(validDateAndTime);
+
+    return `(${validLocalDayOfTheWeek}) ${validLocalNumber}.${validLocalMonth}.${validLocalYear} в ${validLocalHour}:${validLocalMinute}:${validLocalSecond}`
+};
+
 export const replaceBrieflyValueToDetailValueOfTheEisenhowerMatrix = (taskEisenhowerMatrixValue) => {
     return eisenhowerMatrix[taskEisenhowerMatrixValue].detail
 };
@@ -421,6 +552,8 @@ export const replaceBrieflyValueToDetailValueOfTheTaskSign = (sign, property) =>
         return importance[property] && importance[property].detail
     } else if (sign === allSignsForTasksFilter.taskEisenhowerMatrixValue.variable) {
         return replaceBrieflyValueToDetailValueOfTheEisenhowerMatrix(property)
+    } else if (sign === allSignsForTasksFilter.taskCreateAt.variable) {
+        return getLocalDateAndTime(property)
     } else {
         return property
     }
@@ -552,4 +685,85 @@ export const allowedPeriodInsideTheApp = (
     );
 
     return period
+};
+
+export const isDeleteTaskSignValueFindInOtherTasks = (tasksKindOfDictByUserUIDSel, taskUTCInMilliseconds, editTaskSign, thisTaskWillBeEdited) => {
+    let deleteTaskSignIsFind = false;
+    
+    for (let specificTaskId in tasksKindOfDictByUserUIDSel) {
+        if (tasksKindOfDictByUserUIDSel[specificTaskId][editTaskSign]) {
+            if (+specificTaskId === taskUTCInMilliseconds) {
+                continue;
+            } else if (+specificTaskId !== taskUTCInMilliseconds) {
+                if (tasksKindOfDictByUserUIDSel[specificTaskId][editTaskSign] === thisTaskWillBeEdited[editTaskSign]) {
+                    deleteTaskSignIsFind = true;
+                    break;
+                } else if (tasksKindOfDictByUserUIDSel[specificTaskId][editTaskSign] !== thisTaskWillBeEdited[editTaskSign]) {
+                    continue;
+                }
+            }
+        }
+    }
+
+    return deleteTaskSignIsFind
+};
+
+export const changeTaskSignValue = (userUID, taskUTCInMilliseconds, editTaskSign, editTaskSignValue, tasksKindOfDictByUserUIDSel, dispatch) => {
+    const thisTaskWillBeEdited = tasksKindOfDictByUserUIDSel[taskUTCInMilliseconds];
+
+    const deleteTaskSignIsFind = isDeleteTaskSignValueFindInOtherTasks(tasksKindOfDictByUserUIDSel, taskUTCInMilliseconds, editTaskSign, thisTaskWillBeEdited);
+
+    if (!deleteTaskSignIsFind) {
+        dispatch(deleteExtraSignOfTaskFilteringWithThunkAction(userUID, editTaskSign, thisTaskWillBeEdited[editTaskSign]));
+    }
+
+    dispatch(changeTaskSignValueWithThunkAction(userUID, taskUTCInMilliseconds, editTaskSign, editTaskSignValue))
+};
+
+const isValueInInputForTasksLookupInTaskProperty = (tasksProperty, valueInInputForTasksLookupSel, isStrictSearchSel) => {
+    if (typeof(tasksProperty) === 'string') {
+        if(isStrictSearchSel) { //* - Строгий ли поиск.
+            return tasksProperty.toLowerCase().includes(valueInInputForTasksLookupSel.toLowerCase()) //* Ищим подстроку в строке (введённое пользователем значение в свойстве задачи).
+        } else { //* - Эту часть функции можно сделать через регулярное выражение [const regExp = new RegExp(valueInInputForTasksLookupSel.toLowerCase().split('').join('.*')); return tasksProperty.toLowerCase().match(regExp)], однако тогда придётся ещё дополнительно учитывать случаи, если пользователь ввёл спецсимволы регулярных выражений.
+
+            const tasksPropertyLowerCase = tasksProperty.toLowerCase(); //* - Проверяемое свойство задачи в нижнем регистре.
+            const valueInInputForTasksLookupSelLowerCase = valueInInputForTasksLookupSel.toLowerCase(); //* - Введённое пользователем значение  в нижнем регистре.
+
+            let taskPropertyIndex = 0; //* - Индекс свойства задачи, с которого начинаем поиск очередной буквы из введённого пользователем значения.
+
+            for (let i=0; i < valueInInputForTasksLookupSelLowerCase.length; i++) { //* - Проверяем по отдельности каждую введённую пользователем букву (символ).
+                const foundLetterIndex = tasksPropertyLowerCase.indexOf(valueInInputForTasksLookupSelLowerCase[i], taskPropertyIndex); //* - Поиск индекса свойства задачи, на котором найдена искомая буква (символ) из введённого пользователем значения. Первый аргумент в методе ".indexOf()" - это искомая буква (символ) из введённого пользователем значения; второй аргумент - это индекс свойства задачи, с которого начинаем поиск буквы (символа).
+
+                if (foundLetterIndex > -1) { //* - Искомая буква найдена в свойстве задачи.
+                    taskPropertyIndex = foundLetterIndex + 1; //* - Поиск следующеё буквы из введённого пользователем значения будет осуществляться с индекса свойства задачи, идущего следующим после индекса, на котором была найдена буква (символ).
+
+                    if (i === valueInInputForTasksLookupSelLowerCase.length - 1) { //* - Последняя буква из введённого пользователем значения найдена.
+                        return true
+                    }
+                } else { //* - Искомая буква не найдена в свойстве задачи.
+                    return false
+                }
+            }
+
+            return true //* - Пользователь ничего не вводил в поле поиска (ничего искать не надо).
+        }
+    } else {
+        return false
+    }
+};
+
+export const searchForEnteredValue = (task, signForInputForTasksLookupSel, valueInInputForTasksLookupSel, isStrictSearchSel) => {
+    const newTask = replaceInTaskAllowedCharactersFromFirebaseDatabaseKeys(task);
+
+    if (signForInputForTasksLookupSel) {
+        return isValueInInputForTasksLookupInTaskProperty(replaceBrieflyValueToDetailValueOfTheTaskSign(signForInputForTasksLookupSel, newTask[signForInputForTasksLookupSel]), valueInInputForTasksLookupSel, isStrictSearchSel)
+    } else {
+        for (let taskSign in newTask) {
+            if (isValueInInputForTasksLookupInTaskProperty(replaceBrieflyValueToDetailValueOfTheTaskSign(taskSign, newTask[taskSign]), valueInInputForTasksLookupSel, isStrictSearchSel)) {
+                return true
+            }
+        }
+
+        return false
+    }
 };

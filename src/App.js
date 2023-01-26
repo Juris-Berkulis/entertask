@@ -1,4 +1,4 @@
-import React, { useEffect } from 'react';
+import React, { useEffect, useState } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 import { allAppComponentsWithPageTitle, condition } from './data/consts';
@@ -23,6 +23,8 @@ import { StartingScreensaver } from './widget_components/StartingScreensaver/Sta
 import { Profile } from './route_components/Profile/Profile';
 import { deviceOnTheNetworkAction, eventForPWAInstallation } from './store/AppSwitches/Action';
 import { DeviceOnTheNetwork } from './widget_components/DeviceOnTheNetwork/DeviceOnTheNetwork';
+import { valueInInputForTasksLookupAction } from './store/Tasks/Action';
+import { getTasksListValueInInputForTasksLookupSelector } from './store/Tasks/Selectors';
 
 export const App = () => {
   const classes = useStyles();
@@ -39,7 +41,10 @@ export const App = () => {
   const fullPageTitle = makeFullPageTitle(pageTitle);
   giveTitleForPage(fullPageTitle);
 
+  const [didUseEffectWorkOnce, setDidUseEffectWorkOnce] = useState(false);
+
   const lastAuthorizationDateAndTime = useSelector(getStatusesInTheAppLastAuthorizationDateAndTimeSelector)
+  const valueInInputForTasksLookupSel = useSelector(getTasksListValueInInputForTasksLookupSelector);
 
   const isMobileDeviceBoolean = isMobileDevice();
 
@@ -120,6 +125,19 @@ export const App = () => {
         }
       });
     }, [dispatch]);
+
+    useEffect(() => {
+      if (!didUseEffectWorkOnce) {
+        if (valueInInputForTasksLookupSel !== '') {
+          dispatch({
+            type: valueInInputForTasksLookupAction.type,
+            payload: '',
+          });
+        }
+
+        setDidUseEffectWorkOnce(true);
+      }
+    }, [dispatch, didUseEffectWorkOnce, valueInInputForTasksLookupSel]);
 
   return (
     <PersistGate persistor={persistor}>
