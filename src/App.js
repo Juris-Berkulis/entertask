@@ -1,4 +1,4 @@
-import React, { useEffect, useState } from 'react';
+import React, { useEffect, useLayoutEffect, useState } from 'react';
 import { Route, Routes, useLocation } from 'react-router-dom';
 import { PersistGate } from 'redux-persist/lib/integration/react';
 import { allAppComponentsWithPageTitle, condition } from './data/consts';
@@ -21,7 +21,7 @@ import { useDispatch, useSelector } from 'react-redux';
 import { auth, connectedDBRef } from './firebase/firebase';
 import { StartingScreensaver } from './widget_components/StartingScreensaver/StartingScreensaver';
 import { Profile } from './route_components/Profile/Profile';
-import { deviceOnTheNetworkAction, eventForPWAInstallation } from './store/AppSwitches/Action';
+import { deviceOnTheNetworkAction, eventForPWAInstallation, isFocusOnAppAction } from './store/AppSwitches/Action';
 import { DeviceOnTheNetwork } from './widget_components/DeviceOnTheNetwork/DeviceOnTheNetwork';
 import { valueInInputForTasksLookupAction } from './store/Tasks/Action';
 import { getTasksListValueInInputForTasksLookupSelector } from './store/Tasks/Selectors';
@@ -47,6 +47,34 @@ export const App = () => {
   const valueInInputForTasksLookupSel = useSelector(getTasksListValueInInputForTasksLookupSelector);
 
   const isMobileDeviceBoolean = isMobileDevice();
+
+  window.onfocus = () => {
+    dispatch({
+      type: isFocusOnAppAction.type,
+      payload: true,
+    });
+  };
+
+  window.onblur = () => {
+    dispatch({
+      type: isFocusOnAppAction.type,
+      payload: false,
+    });
+  };
+
+  useLayoutEffect(() => {
+    dispatch({
+      type: isFocusOnAppAction.type,
+      payload: false,
+    });
+
+    if (!document.hidden) {
+      dispatch({
+        type: isFocusOnAppAction.type,
+        payload: true,
+      });
+    }
+  }, [dispatch]);
 
   useEffect(() => {
     if (isMobileDeviceBoolean) {

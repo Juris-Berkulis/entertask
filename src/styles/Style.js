@@ -674,14 +674,14 @@ export const useStyles = makeStyles({
     color: '#ffffff',
     backgroundColor: '#006600',
     fontSize: 'calc(1rem / 16 * 13)',
-    boxShadow: 'inset 0px 15px 15px -7.5px #caffca, inset 0px -15px 15px -7.5px #225522, 0px 3px 3px #337733, 1.5px 3px 3px #337733, -1.5px 3px 3px #337733',
+    boxShadow: 'inset 0px 15px 15px -7.5px #caffca, inset 0px -15px 15px -7.5px #225522, 0px 3px 3px #333333',
     cursor: 'pointer',
     transition: 'background-color 0.1s linear 0.1s',
     '&:hover': {
       backgroundColor: '#007700',
     },
     '&:active': {
-      boxShadow: 'inset 0px 15px 15px -7.5px #caffca, inset 0px -15px 15px -7.5px #225522, 0px 1px 1px #337733, 0px 1px 1px #337733, 0px 1px 1px #337733',
+      boxShadow: 'inset 0px 15px 15px -7.5px #caffca, inset 0px -15px 15px -7.5px #225522, 0px 1px 1px #333333',
     },
   },
   openTask__wrapper: {
@@ -798,14 +798,14 @@ export const useStyles = makeStyles({
     borderRadius: '50em',
     color: '#ffffff',
     backgroundColor: '#006600',
-    boxShadow: 'inset 0px 15px 15px -7.5px #caffca, inset 0px -15px 15px -7.5px #225522, 0px 3px 3px #337733',
+    boxShadow: 'inset 0px 15px 15px -7.5px #caffca, inset 0px -15px 15px -7.5px #225522, 0px 3px 3px #333333',
     cursor: 'pointer',
     transition: 'background-color 0.1s linear 0.1s',
     '&:hover': {
       backgroundColor: '#007700',
     },
     '&:active': {
-      boxShadow: 'inset 0px 15px 15px -7.5px #caffca, inset 0px -15px 15px -7.5px #225522, 0px 1px 1px #337733',
+      boxShadow: 'inset 0px 15px 15px -7.5px #caffca, inset 0px -15px 15px -7.5px #225522, 0px 1px 1px #333333',
     },
   },
   SigLogActionWaiting: {
@@ -869,14 +869,14 @@ export const useStyles = makeStyles({
     borderRadius: '50em',
     color: '#ffffff',
     backgroundColor: '#006600',
-    boxShadow: 'inset 0px 15px 15px -7.5px #caffca, inset 0px -15px 15px -7.5px #225522, 0px 3px 3px #337733',
+    boxShadow: 'inset 0px 15px 15px -7.5px #caffca, inset 0px -15px 15px -7.5px #225522, 0px 3px 3px #333333',
     cursor: 'pointer',
     transition: 'background-color 0.1s linear 0.1s',
     '&:hover': {
       backgroundColor: '#007700',
     },
     '&:active': {
-      boxShadow: 'inset 0px 15px 15px -7.5px #caffca, inset 0px -15px 15px -7.5px #225522, 0px 1px 1px #337733',
+      boxShadow: 'inset 0px 15px 15px -7.5px #caffca, inset 0px -15px 15px -7.5px #225522, 0px 1px 1px #333333',
     },
   },
   deviceOnTheNetwork__wrapper: {

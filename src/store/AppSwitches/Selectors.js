@@ -8,3 +8,4 @@ export const getStatusesInTheAppLastAuthorizationDateAndTimeSelector = (state) =
 export const getStatusesInTheAppEventForPWAInstallationSelector = (state) => getAppSwitchesRootSelector(state).eventForPWAInstallationCase || null;
 export const getAppSwitchesDeviceOnTheNetworkSelector = (state) => getAppSwitchesRootSelector(state).deviceOnTheNetworkCase || false;
 export const getAppSwitchesSelectTodayTaskIDSelector = (state) => getAppSwitchesRootSelector(state).selectTodayTaskIDCase || false;
+export const getAppSwitchesIsFocusOnAppSelector = (state) => getAppSwitchesRootSelector(state).isFocusOnAppCase || false;

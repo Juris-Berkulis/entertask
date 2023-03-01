@@ -8,6 +8,7 @@ const LAST_AUTHORIZATION = 'LAST_AUTHORIZATION';
 const EVENT_FOR_PWA_INSTALLATION = 'EVENT_FOR_PWA_INSTALLATION';
 const DEVICE_ON_THE_NETWORK_ACTION = 'DEVICE_ON_THE_NETWORK_ACTION';
 const SELECT_TODAY_TASK_ID_ACTION = 'SELECT_TODAY_TASK_ID_ACTION';
+const IS_FOCUS_ON_APP_ACTION = 'IS_FOCUS_ON_APP_ACTION';
 
 export const resetInputFieldsValuesInitializerAction = {
     type: RESET_INPUT_FIELDS_VALUES_INITIALIZER_ACTION,
@@ -47,4 +48,8 @@ export const deviceOnTheNetworkAction = {
 
 export const selectTodayTaskIDAction = {
     type: SELECT_TODAY_TASK_ID_ACTION,
+};
+
+export const isFocusOnAppAction = {
+    type: IS_FOCUS_ON_APP_ACTION,
 };
