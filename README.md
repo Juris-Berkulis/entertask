@@ -27,11 +27,8 @@ After clicking on one of the above URLs, the web version of the Entertask applic
     - filtering tasks simultaneously by several properties and by any values of these properties;
     - automatic determination of available values in these properties for filtering.
   - 2nd way: filtering tasks using the input field:
-    - 2 filtering modes:
-      - strict search;
-      - not strict search.
-    - filtering by a specific task property;
-    - filtering simultaneously by all properties.
+    - 2 filtering modes (strict and not strict search);
+    - filtering by a specific task property or simultaneously by all properties.
 - there is possible to mark tasks as completed and vice versa;
 - there is the possibility of opening each task to view information on it;
 - there is the possibility of assigning tasks to the "tasks for today" list and deleting them from this list;
