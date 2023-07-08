@@ -5,6 +5,7 @@ import {
     emailVerificationConfirmationWaitingIsFalse,
     emailVerificationConfirmationWaitingIsTrue,
     eventForPWAInstallation,
+    isFocusOnAppAction,
     lastAuthorization,
     resetInputFieldsValuesInitializerAction, 
     selectTodayTaskIDAction, 
@@ -73,6 +74,12 @@ export const appSwitchesReducer = (state = initialState, action) => {
             return {
                 ...state,
                 selectTodayTaskIDCase: action.payload,
+            }
+        }
+        case isFocusOnAppAction.type: {
+            return {
+                ...state,
+                isFocusOnAppCase: action.payload,
             }
         }
         default: {

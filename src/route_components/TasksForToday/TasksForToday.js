@@ -4,7 +4,7 @@ import { useNavigate } from 'react-router-dom';
 import { allAppComponentsWithPageTitle, allSignsForTasksFilter } from '../../data/consts';
 import { auth } from '../../firebase/firebase';
 import { changeTask, deleteTask, deleteTheTaskFromListWithTasksForToday, openTheTask, searchForEnteredValue, sortTasksBySign, tasksFiltering } from '../../helper/helper';
-import { getAppSwitchesSelectTodayTaskIDSelector } from '../../store/AppSwitches/Selectors';
+import { getAppSwitchesIsFocusOnAppSelector, getAppSwitchesSelectTodayTaskIDSelector } from '../../store/AppSwitches/Selectors';
 import { changeTaskSignValueWithThunkAction, offTrackingChangeValueInTasksListWithThunkAction, onTrackingChangeDictWithListsForTasksFilterWithThunkAction, onTrackingChangeValueInTasksListWithThunkAction, reverseDirectionForTodayTasksSortinBySignAction, tasksSignForTodayTasksSortingAction } from '../../store/Tasks/Action';
 import { getTasksListDictWithListsForTasksFilterSelector, getTasksListIsFocusOnInputForTasksLookupSelector, getTasksListIsStrictSearchSelector, getTasksListReverseDirectionForTodayTasksSortinBySignSelector, getTasksListSignForInputForTasksLookupSelector, getTasksListTasksKindOfDictByUserUIDSelector, getTasksListTasksKindOfListByUserUIDSelector, getTasksListTasksSignForTodayTasksSortingSelector, getTasksListValueInInputForTasksLookupSelector } from '../../store/Tasks/Selectors';
 import { useStyles } from '../../styles/Style';
@@ -33,6 +33,7 @@ export const TasksForToday = () => {
     const signForInputForTasksLookupSel = useSelector(getTasksListSignForInputForTasksLookupSelector);
     const isFocusOnInputForTasksLookupSel = useSelector(getTasksListIsFocusOnInputForTasksLookupSelector);
     const isStrictSearchSel = useSelector(getTasksListIsStrictSearchSelector);
+    const isFocusOnAppSel = useSelector(getAppSwitchesIsFocusOnAppSelector);
 
     const tasksListTasksKindOfListByIdSelForProps = tasksKindOfListByUserUIDSel
     .filter((item) => {
@@ -52,10 +53,12 @@ export const TasksForToday = () => {
     ));
 
     useEffect(() => {
-        tasksListTasksKindOfListByIdSelForProps.forEach((renderedTask, index) => {
-            dispatch(changeTaskSignValueWithThunkAction(userUID, renderedTask.props.item.taskID, allSignsForTasksFilter.todayTaskNumber.variable, index, false));
-        });
-    }, [dispatch, tasksListTasksKindOfListByIdSelForProps, tasksSignForTodayTasksSortingSel, userUID]);
+        if (!document.hidden && isFocusOnAppSel) {
+            tasksListTasksKindOfListByIdSelForProps.forEach((renderedTask, index) => {
+                dispatch(changeTaskSignValueWithThunkAction(userUID, renderedTask.props.item.taskID, allSignsForTasksFilter.todayTaskNumber.variable, index, false));
+            });
+        }
+    }, [dispatch, tasksListTasksKindOfListByIdSelForProps, tasksSignForTodayTasksSortingSel, userUID, isFocusOnAppSel]);
 
     useLayoutEffect(() => {
         dispatch(onTrackingChangeValueInTasksListWithThunkAction(userUID));
@@ -75,7 +78,7 @@ export const TasksForToday = () => {
     
     useEffect(() => {
         const moveTask = (event) => {
-            if (!isFocusOnInputForTasksLookupSel) {
+            if (!isFocusOnInputForTasksLookupSel && !document.hidden && isFocusOnAppSel) {
                 event.preventDefault();
 
                 if (
@@ -173,7 +176,7 @@ export const TasksForToday = () => {
             window.attachEvent('keydown', moveTask);
             return () => window.detachEvent('keydown', moveTask);
         }
-    }, [dispatch, tasksKindOfDictByUserUIDSel, selectTodayTaskIDSel, userUID, tasksListTasksKindOfListByIdSelForProps, isFocusOnInputForTasksLookupSel]);
+    }, [dispatch, tasksKindOfDictByUserUIDSel, selectTodayTaskIDSel, userUID, tasksListTasksKindOfListByIdSelForProps, isFocusOnInputForTasksLookupSel, isFocusOnAppSel]);
 
     return (
         <TasksForTodayUI classes={classes} allAppComponentsWithPageTitle={allAppComponentsWithPageTitle} tasksListTasksKindOfListByIdSelForProps={tasksListTasksKindOfListByIdSelForProps} dictWithListsForTasksFilterSel={dictWithListsForTasksFilterSel} changeTask={changeTask} deleteTask={deleteTask} dispatch={dispatch} tasksKindOfDictByUserUIDSel={tasksKindOfDictByUserUIDSel} history={history}></TasksForTodayUI>

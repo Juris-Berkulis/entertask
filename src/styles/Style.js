@@ -28,7 +28,7 @@ export const useStyles = makeStyles({
     justifyContent: 'center',
     alignItems: 'center',
     userSelect: 'none',
-    boxShadow: 'inset 0px 4.194vh 4.194vh -2.097vh #caffca, inset 0px -4.194vh 4.194vh -2.097vh #225522, 0px 0.483vh 0.483vh #337733',
+    boxShadow: 'inset 0px 4.194vh 4.194vh -2.097vh #caffca, inset 0px -4.194vh 4.194vh -2.097vh #225522, 0px 0.483vh 0.483vh #333333',
   },
   header__link: {
     height: '100%',
@@ -38,28 +38,28 @@ export const useStyles = makeStyles({
     fontSize: 'calc(1rem / 16 * 16)',
     lineHeight: '10vh',
     backgroundColor: 'transparent',
-    boxShadow: '1px 0px 1px #004400, -1px 0px 1px #004400, inset 0px 6.291vh 6.291vh -3.1455vh #caffca, inset 0px -6.291vh 6.291vh -3.1455vh #225522, 0px 0.805vh 0.805vh #337733',
+    boxShadow: '1px 0px 1px #004400, -1px 0px 1px #004400, inset 0px 6.291vh 6.291vh -3.1455vh #caffca, inset 0px -6.291vh 6.291vh -3.1455vh #225522, 0px 0.805vh 0.805vh #333333',
     textShadow: '#393939 1px 1px 1px',
     '&:hover': {
       backgroundColor: 'transparent',
-      boxShadow: '1px 0px 1px #004400, -1px 0px 1px #004400, inset 0px 5.4522vh 5.4522vh -2.7261vh #caffca, inset 0px -5.4522vh 5.4522vh -2.7261vh #225522, 0px 0.6279vh 0.6279vh #337733',
+      boxShadow: '1px 0px 1px #004400, -1px 0px 1px #004400, inset 0px 5.4522vh 5.4522vh -2.7261vh #caffca, inset 0px -5.4522vh 5.4522vh -2.7261vh #225522, 0px 0.6279vh 0.6279vh #333333',
     },
     '&:active': {
       backgroundColor: '#006600',
-      boxShadow: '1px 0px 1px #004400, -1px 0px 1px #004400, inset 0px 4.194vh 4.194vh -2.097vh #caffca, inset 0px -4.194vh 4.194vh -2.097vh #225522, 0px 0.483vh 0.483vh #337733',
+      boxShadow: '1px 0px 1px #004400, -1px 0px 1px #004400, inset 0px 4.194vh 4.194vh -2.097vh #caffca, inset 0px -4.194vh 4.194vh -2.097vh #225522, 0px 0.483vh 0.483vh #333333',
     },
   },
   header__link_activePage: {
     cursor: 'default',
     backgroundColor: '#006600',
-    boxShadow: '1px 0px 1px #004400, -1px 0px 1px #004400, inset 0px 4.194vh 4.194vh -2.097vh #caffca, inset 0px -4.194vh 4.194vh -2.097vh #225522, 0px 0.483vh 0.483vh #337733',
+    boxShadow: '1px 0px 1px #004400, -1px 0px 1px #004400, inset 0px 4.194vh 4.194vh -2.097vh #caffca, inset 0px -4.194vh 4.194vh -2.097vh #225522, 0px 0.483vh 0.483vh #333333',
     '&:hover': {
       backgroundColor: '#006600',
-      boxShadow: '1px 0px 1px #004400, -1px 0px 1px #004400, inset 0px 4.194vh 4.194vh -2.097vh #caffca, inset 0px -4.194vh 4.194vh -2.097vh #225522, 0px 0.483vh 0.483vh #337733',
+      boxShadow: '1px 0px 1px #004400, -1px 0px 1px #004400, inset 0px 4.194vh 4.194vh -2.097vh #caffca, inset 0px -4.194vh 4.194vh -2.097vh #225522, 0px 0.483vh 0.483vh #333333',
     },
     '&:active': {
       backgroundColor: '#006600',
-      boxShadow: '1px 0px 1px #004400, -1px 0px 1px #004400, inset 0px 4.194vh 4.194vh -2.097vh #caffca, inset 0px -4.194vh 4.194vh -2.097vh #225522, 0px 0.483vh 0.483vh #337733',
+      boxShadow: '1px 0px 1px #004400, -1px 0px 1px #004400, inset 0px 4.194vh 4.194vh -2.097vh #caffca, inset 0px -4.194vh 4.194vh -2.097vh #225522, 0px 0.483vh 0.483vh #333333',
     },
   },
   header__link_logoutBtn: {
@@ -674,14 +674,14 @@ export const useStyles = makeStyles({
     color: '#ffffff',
     backgroundColor: '#006600',
     fontSize: 'calc(1rem / 16 * 13)',
-    boxShadow: 'inset 0px 15px 15px -7.5px #caffca, inset 0px -15px 15px -7.5px #225522, 0px 3px 3px #337733, 1.5px 3px 3px #337733, -1.5px 3px 3px #337733',
+    boxShadow: 'inset 0px 15px 15px -7.5px #caffca, inset 0px -15px 15px -7.5px #225522, 0px 3px 3px #333333',
     cursor: 'pointer',
     transition: 'background-color 0.1s linear 0.1s',
     '&:hover': {
       backgroundColor: '#007700',
     },
     '&:active': {
-      boxShadow: 'inset 0px 15px 15px -7.5px #caffca, inset 0px -15px 15px -7.5px #225522, 0px 1px 1px #337733, 0px 1px 1px #337733, 0px 1px 1px #337733',
+      boxShadow: 'inset 0px 15px 15px -7.5px #caffca, inset 0px -15px 15px -7.5px #225522, 0px 1px 1px #333333',
     },
   },
   openTask__wrapper: {
@@ -691,9 +691,9 @@ export const useStyles = makeStyles({
     width: '70vw',
     border: '2px solid #000000',
     borderRadius: '15px',
-    padding: '15px',
+    padding: '7vh 15px',
     backgroundColor: '#006600',
-    boxShadow: '1px 0px 1px #004400, -1px 0px 1px #004400, inset 0px 6.291vh 6.291vh -3.1455vh #caffca, inset 0px -6.291vh 6.291vh -3.1455vh #225522, 0px 0.805vh 0.805vh #337733, 0.4025vh 0.805vh 0.805vh #337733, -0.4025vh 0.805vh 0.805vh #337733',
+    boxShadow: '1px 0px 1px #22222299, -1px 0px 1px #22222299, inset 0px 6.291vh 6.291vh -3.1455vh #caffca, inset 0px -6.291vh 6.291vh -3.1455vh #003300, 0px 3vh 3vh #55555599, 0.4025vh 3vh 3vh #55555599, -0.4025vh 3vh 3vh #55555599',
     zIndex: '3',
   },
   openTask__controlPanel: {
@@ -711,6 +711,7 @@ export const useStyles = makeStyles({
     },
   },
   openTask__taskInfo: {
+    maxHeight: '50vh',
     overflow: 'auto',
     color: '#ffffff',
   },
@@ -797,14 +798,14 @@ export const useStyles = makeStyles({
     borderRadius: '50em',
     color: '#ffffff',
     backgroundColor: '#006600',
-    boxShadow: 'inset 0px 15px 15px -7.5px #caffca, inset 0px -15px 15px -7.5px #225522, 0px 3px 3px #337733',
+    boxShadow: 'inset 0px 15px 15px -7.5px #caffca, inset 0px -15px 15px -7.5px #225522, 0px 3px 3px #333333',
     cursor: 'pointer',
     transition: 'background-color 0.1s linear 0.1s',
     '&:hover': {
       backgroundColor: '#007700',
     },
     '&:active': {
-      boxShadow: 'inset 0px 15px 15px -7.5px #caffca, inset 0px -15px 15px -7.5px #225522, 0px 1px 1px #337733',
+      boxShadow: 'inset 0px 15px 15px -7.5px #caffca, inset 0px -15px 15px -7.5px #225522, 0px 1px 1px #333333',
     },
   },
   SigLogActionWaiting: {
@@ -868,14 +869,14 @@ export const useStyles = makeStyles({
     borderRadius: '50em',
     color: '#ffffff',
     backgroundColor: '#006600',
-    boxShadow: 'inset 0px 15px 15px -7.5px #caffca, inset 0px -15px 15px -7.5px #225522, 0px 3px 3px #337733',
+    boxShadow: 'inset 0px 15px 15px -7.5px #caffca, inset 0px -15px 15px -7.5px #225522, 0px 3px 3px #333333',
     cursor: 'pointer',
     transition: 'background-color 0.1s linear 0.1s',
     '&:hover': {
       backgroundColor: '#007700',
     },
     '&:active': {
-      boxShadow: 'inset 0px 15px 15px -7.5px #caffca, inset 0px -15px 15px -7.5px #225522, 0px 1px 1px #337733',
+      boxShadow: 'inset 0px 15px 15px -7.5px #caffca, inset 0px -15px 15px -7.5px #225522, 0px 1px 1px #333333',
     },
   },
   deviceOnTheNetwork__wrapper: {
