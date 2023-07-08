@@ -32,9 +32,15 @@
     "workbox-streams": "^5.1.4"
   },
   "scripts": {
-    "deploy": "npm run build && firebase deploy && netlify deploy --dir=build --prod && vercel --prod && vercel list && npm run copy_index_as_200 && surge --project ./build --domain https://entertask.surge.sh && surge list",
+    "deploy_to_firebase": "firebase deploy",
+    "deploy_to_netlify": "netlify deploy --dir=build --prod && netlify sites:list && netlify status",
+    "deploy_to_vercel": "vercel --prod && vercel list",
+    "deploy_to_surge": "npm run copy_index_as_200 && surge --project ./build --domain https://entertask.surge.sh && surge list",
+    "deploy": "npm run build && npm run deploy_to_firebase && npm run deploy_to_netlify && npm run deploy_to_vercel && npm run deploy_to_surge && npm run update_git_branches && npm run get_date",
     "deploy_for_development": "npm run build && npm run copy_index_as_200 && surge --project ./build --domain https://entertask-dev.surge.sh && surge list",
     "copy_index_as_200": "copy build\\index.html build\\200.html",
+    "update_git_branches": "git fetch",
+    "get_date": "node getDate.js",
     "start": "react-scripts start",
     "build": "react-scripts build",
     "test": "react-scripts test",
