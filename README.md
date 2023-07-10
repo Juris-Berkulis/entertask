@@ -8,13 +8,13 @@
 
 To use the Entertask app, simply go to any of the URLs:
 
-- **Entertask on [на netlify](https://entertask.netlify.app/)**;
-- **Entertask on [на vercel](https://entertask.vercel.app/)**;
-- **Entertask on [на surge](https://entertask.surge.sh/)**;
-- **Entertask on [на firebase 1](https://entertask-app.web.app/)**;
-- **Entertask on [на firebase 2](https://entertask-app.firebaseapp.com/)**.
+- **[Entertask](https://entertask.netlify.app/)** on netlify;
+- **[Entertask](https://entertask.vercel.app/)** on vercel;
+- **[Entertask](https://entertask.surge.sh/)** on surge;
+- **[Entertask](https://entertask-app.web.app/)** on firebase 1;
+- **[Entertask](https://entertask-app.firebaseapp.com/)** on firebase 2.
 
-After clicking on one of the above URLs, the web version of the Entertask application will open, and if your browser supports installing applications, you will be prompted to install the task manager on your device. Also, you can install the application at any time on the "Profile" tab. Application size: <1MB.
+After clicking on one of the above URLs, the web version of the Entertask application will open, and if your browser supports installing applications, you will be prompted to install the task manager on your device. Also, you can install the application at any time on the "Profile" tab. Application size: **<1MB**.
 
 ## APP FUNCTIONALITY:
 
@@ -47,4 +47,4 @@ You can work in Entertask both on the site directly in the browser of your smart
 
 ## FREE SERVICE
 
-Entertask task manager is **completely free**, without any paid subscriptions and annoying ads.
+Entertask task manager is **completely free**, without paid features, without paid subscriptions, and without annoying ads.
